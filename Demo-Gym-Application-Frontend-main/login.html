@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In — GymFlow SaaS Platform</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <style>
+    .auth-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      background: linear-gradient(135deg, var(--bg-body) 0%, var(--bg-surface-secondary) 100%);
+    }
+    .auth-card {
+      width: 100%;
+      max-width: 480px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-xl);
+      padding: 2.5rem;
+    }
+    .demo-role-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      background: var(--bg-surface-secondary);
+      transition: all var(--transition-fast);
+      margin-bottom: 0.5rem;
+      text-align: left;
+    }
+    .demo-role-btn:hover {
+      background: var(--bg-surface-hover);
+      border-color: var(--color-accent);
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body class="auth-page">
+
+  <div class="auth-card">
+    <!-- Brand -->
+    <div style="text-align: center; margin-bottom: 2rem;">
+      <a href="index.html" class="brand-link" style="justify-content: center; margin-bottom: 0.75rem;">
+        <div class="brand-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <div class="brand-text">Gym<span>Flow</span></div>
+      </a>
+      <h2 style="font-size: 1.5rem; margin-bottom: 0.35rem;">Welcome Back</h2>
+      <p style="font-size: 0.875rem;">Sign in to your GymFlow portal or select a demo role.</p>
+    </div>
+
+    <!-- Alert demo info -->
+    <!-- <div class="alert alert-info" style="font-size: 0.8125rem; margin-bottom: 1.5rem;">
+      <i class="fa-solid fa-circle-info"></i>
+      <div><strong>Interactive Demo:</strong> Click any demo role below for instant 1-click login, or enter credentials.</div>
+    </div> -->
+
+    <!-- Quick Demo Logins -->
+    <div style="margin-bottom: 1.5rem;">
+      <label class="form-label" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">
+        One-Click Demo Roles:
+      </label>
+      <button type="button" class="demo-role-btn" onclick="quickLogin('superadmin')">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <span class="role-indicator super-admin"><i class="fa-solid fa-crown"></i></span>
+          <div>
+            <div style="font-weight: 700; font-size: 0.875rem;">Super Admin</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">admin@gymflow.com</div>
+          </div>
+        </div>
+        <i class="fa-solid fa-arrow-right text-muted"></i>
+      </button>
+
+      <button type="button" class="demo-role-btn" onclick="quickLogin('gymadmin')">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <span class="role-indicator admin"><i class="fa-solid fa-building"></i></span>
+          <div>
+            <div style="font-weight: 700; font-size: 0.875rem;">Gym Admin (Owner)</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">marcus@ironpulse.com</div>
+          </div>
+        </div>
+        <i class="fa-solid fa-arrow-right text-muted"></i>
+      </button>
+
+      <button type="button" class="demo-role-btn" onclick="quickLogin('member')">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <span class="role-indicator member"><i class="fa-solid fa-user"></i></span>
+          <div>
+            <div style="font-weight: 700; font-size: 0.875rem;">Gym Member</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">alex.morgan@example.com</div>
+          </div>
+        </div>
+        <i class="fa-solid fa-arrow-right text-muted"></i>
+      </button>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 1rem; margin: 1.5rem 0;">
+      <div style="flex: 1; height: 1px; background: var(--border-color);"></div>
+      <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">OR SIGN IN WITH EMAIL</span>
+      <div style="flex: 1; height: 1px; background: var(--border-color);"></div>
+    </div>
+
+    <!-- Login Form -->
+    <form id="form-login" onsubmit="handleFormLogin(event)">
+      <div class="form-group">
+        <label class="form-label" for="login-email">Email Address <span class="required">*</span></label>
+        <div class="input-with-icon">
+          <i class="fa-solid fa-envelope input-icon"></i>
+          <input type="email" id="login-email" class="form-control" placeholder="name@domain.com" required value="marcus@ironpulse.com">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+          <label class="form-label" for="login-password" style="margin: 0;">Password <span class="required">*</span></label>
+          <a href="forgot-password.html" style="font-size: 0.8rem; font-weight: 600;">Forgot Password?</a>
+        </div>
+        <div class="input-with-icon input-with-icon-right">
+          <i class="fa-solid fa-lock input-icon"></i>
+          <input type="password" id="login-password" class="form-control" placeholder="••••••••" required value="demo1234">
+          <button type="button" class="input-icon-right" onclick="togglePasswordVisibility('login-password', this)">
+            <i class="fa-solid fa-eye"></i>
+          </button>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <label class="form-check">
+          <input type="checkbox" id="remember-me" checked>
+          <span style="font-size: 0.85rem;">Remember this session</span>
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100 btn-lg mb-3">
+        <i class="fa-solid fa-arrow-right-to-bracket"></i>
+        <span>Sign In</span>
+      </button>
+
+      <div style="text-align: center; font-size: 0.875rem; color: var(--text-muted);">
+        Don't have a gym registered?
+        <a href="register.html" class="font-semibold text-accent">Register Organization</a>
+      </div>
+    </form>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/mock-data.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/components.js"></script>
+  <script src="assets/js/validation.js"></script>
+  <script src="assets/js/navigation.js"></script>
+  <script>
+    function togglePasswordVisibility(inputId, btn) {
+      const input = document.getElementById(inputId);
+      if (input.type === 'password') {
+        input.type = 'text';
+        btn.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
+      } else {
+        input.type = 'password';
+        btn.innerHTML = '<i class="fa-solid fa-eye"></i>';
+      }
+    }
+
+    function quickLogin(role) {
+      const user = Auth.loginAs(role);
+      Toast.success(`Signed in as ${user.roleLabel} (${user.name})`);
+      setTimeout(() => {
+        window.location.href = user.dashboardUrl.replace('../', '');
+      }, 400);
+    }
+
+    function handleFormLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value;
+      const pass = document.getElementById('login-password').value;
+      const remember = document.getElementById('remember-me').checked;
+
+      const res = Auth.login(email, pass, remember);
+      Toast.success(`Welcome back, ${res.user.name}!`);
+      setTimeout(() => {
+        window.location.href = res.redirect;
+      }, 400);
+    }
+  </script>
+</body>
+</html>

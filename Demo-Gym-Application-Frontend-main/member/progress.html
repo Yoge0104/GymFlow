@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Body Progress & Metrics — Member Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <a href="dashboard.html" class="brand-link">
+        <div class="brand-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <div class="brand-text">Gym<span>Flow</span></div>
+      </a>
+      <button class="topbar-toggle sidebar-toggle-btn d-none"><i class="fa-solid fa-bars"></i></button>
+    </div>
+    <div class="sidebar-nav">
+      <div class="nav-section-title">Overview</div>
+      <div class="nav-item"><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a></div>
+      
+      <div class="nav-section-title">Fitness & Training</div>
+      <div class="nav-item"><a href="workout-plan.html" class="nav-link"><i class="fa-solid fa-clipboard-list"></i><span>Workout Plan</span></a></div>
+      <div class="nav-item"><a href="classes.html" class="nav-link"><i class="fa-solid fa-calendar-days"></i><span>Classes & Timetable</span></a></div>
+      <div class="nav-item"><a href="my-bookings.html" class="nav-link"><i class="fa-solid fa-bookmark"></i><span>My Bookings</span></a></div>
+      <div class="nav-item"><a href="progress.html" class="nav-link active"><i class="fa-solid fa-chart-line"></i><span>Body Progress</span></a></div>
+      <div class="nav-item"><a href="attendance.html" class="nav-link"><i class="fa-solid fa-clock-rotate-left"></i><span>Attendance History</span></a></div>
+      
+      <div class="nav-section-title">Membership & Billing</div>
+      <div class="nav-item"><a href="my-membership.html" class="nav-link"><i class="fa-solid fa-id-card"></i><span>My Membership</span></a></div>
+      <div class="nav-item"><a href="plans.html" class="nav-link"><i class="fa-solid fa-tags"></i><span>Plans & Upgrade</span></a></div>
+      <div class="nav-item"><a href="payments.html" class="nav-link"><i class="fa-solid fa-credit-card"></i><span>Billing & Receipts</span></a></div>
+      
+      <div class="nav-section-title">Account & Support</div>
+      <div class="nav-item"><a href="my-profile.html" class="nav-link"><i class="fa-solid fa-user"></i><span>My Profile</span></a></div>
+      <div class="nav-item"><a href="notifications.html" class="nav-link"><i class="fa-solid fa-bell"></i><span>Notifications</span></a></div>
+      <div class="nav-item"><a href="support.html" class="nav-link"><i class="fa-solid fa-headset"></i><span>Member Support</span></a></div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop" alt="Member" class="current-user-avatar"></div>
+        <div class="sidebar-user-info"><span class="sidebar-user-name current-user-name">Alex Morgan</span><span class="sidebar-user-role">IronPulse Member</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main-wrapper">
+    <header class="topbar">
+      <div class="topbar-left"><button class="topbar-toggle sidebar-toggle-btn"><i class="fa-solid fa-bars"></i></button></div>
+      <div class="topbar-right">
+        <span class="role-indicator member" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); font-weight: 600; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem;">
+          <i class="fa-solid fa-person-running"></i> Gym Member
+        </span>
+        <button class="topbar-action-btn theme-toggle-btn"><i class="fa-solid fa-moon"></i></button>
+        <a href="notifications.html" class="topbar-action-btn" id="btn-notifications"><i class="fa-solid fa-bell"></i><span class="action-badge"></span></a>
+        <div class="dropdown">
+          <button class="topbar-user-btn" data-dropdown-toggle>
+            <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop" class="current-user-avatar" alt="Avatar"></div>
+            <div><div class="topbar-user-name current-user-name">Alex Morgan</div><div class="topbar-user-role">IronPulse Member</div></div>
+            <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; color: var(--text-subtle);"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="my-profile.html" class="dropdown-item"><i class="fa-solid fa-user"></i> My Profile</a>
+            <a href="my-membership.html" class="dropdown-item"><i class="fa-solid fa-id-card"></i> Membership</a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item text-danger btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-wrapper">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">
+            <a href="dashboard.html">Member Portal</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Body Progress</span>
+          </div>
+          <h1 class="page-title">Fitness Progress & Biometrics</h1>
+          <p class="page-subtitle">Track weight trends, body composition scans, tape measurements, and transformation milestones.</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-accent" onclick="Modal.open('modal-add-metric')"><i class="fa-solid fa-plus"></i> Log Measurement</button>
+        </div>
+      </div>
+<<<<<<< HEAD
+<!-- KPI Summary Cards -->
+<div class="stats-grid progress-kpi-grid"
+     style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-bottom: 1.5rem;">
+
+    <div class="stat-card progress-kpi-card">
+        <div class="stat-icon blue">
+            <i class="fa-solid fa-weight-scale"></i>
+        </div>
+        <div class="stat-info">
+            <span class="stat-label">Current Weight</span>
+            <span class="stat-value" id="kpi-prog-weight">81.3 kg</span>
+            <span class="stat-change text-success">
+                <i class="fa-solid fa-arrow-down"></i> -3.2 kg overall
+            </span>
+        </div>
+    </div>
+
+    <div class="stat-card progress-kpi-card">
+        <div class="stat-icon green">
+            <i class="fa-solid fa-percent"></i>
+        </div>
+        <div class="stat-info">
+            <span class="stat-label">Body Fat %</span>
+            <span class="stat-value" id="kpi-prog-fat">14.6%</span>
+            <span class="stat-change text-success">
+                <i class="fa-solid fa-arrow-down"></i> -3.6% reduction
+            </span>
+        </div>
+    </div>
+
+    <div class="stat-card progress-kpi-card">
+        <div class="stat-icon purple">
+            <i class="fa-solid fa-ruler-combined"></i>
+        </div>
+        <div class="stat-info">
+            <span class="stat-label">Chest Width</span>
+            <span class="stat-value" id="kpi-prog-chest">107 cm</span>
+            <span class="stat-change text-success">
+                <i class="fa-solid fa-arrow-up"></i> +3.0 cm gain
+            </span>
+        </div>
+    </div>
+
+    <div class="stat-card progress-kpi-card">
+        <div class="stat-icon orange">
+            <i class="fa-solid fa-ruler"></i>
+        </div>
+        <div class="stat-info">
+            <span class="stat-label">Waist Size</span>
+            <span class="stat-value" id="kpi-prog-waist">82 cm</span>
+            <span class="stat-change text-success">
+                <i class="fa-solid fa-arrow-down"></i> -6.0 cm trim
+            </span>
+        </div>
+    </div>
+
+</div>
+
+<!-- Progress Line Chart Card -->
+<div class="card" style="margin-bottom: 1.5rem;">
+    <div class="card-header"
+         style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+
+        <h3 class="card-title">
+            <i class="fa-solid fa-chart-line text-accent"></i>
+            Weight &amp; Body Composition Trend
+        </h3>
+
+        <span class="text-xs text-muted">
+            Monthly InBody and Scale Measurements
+        </span>
+    </div>
+
+    <div class="card-body">
+        <div style="height: 280px; position: relative;">
+            <canvas id="weightProgressChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<!-- Measurement History Table -->
+<div class="attendance-card card table-container">
+
+    <div class="attendance-header card-header table-toolbar"
+         style="gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+
+        <div>
+            <h3 class="card-title">
+                <i class="fa-solid fa-chart-line text-accent"></i>
+                Biometric History Log
+            </h3>
+            <p class="attendance-subtitle">
+                Track body weight, body fat %, and muscle measurement logs
+            </p>
+        </div>
+
+        <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+            <div style="position: relative; width: 170px;">
+                <input
+                    type="text"
+                    id="prog-search"
+                    class="form-control"
+                    placeholder="Search date..."
+                    style="padding: 0.35rem 0.65rem; font-size: 0.8rem;"
+                    oninput="filterProgress()">
+            </div>
+
+            <button type="button" onclick="resetProgressFilters()">
+    <i class="fa-solid fa-rotate-left"></i>
+    Reset
+</button>
+        </div>
+    </div>
+
+    <div class="attendance-body card-body">
+        <div class="attendance-table-wrapper table-responsive">
+            <table class="attendance-table data-table table">
+                <thead>
+                    <tr>
+                      <th class="sortable" onclick="sortProgress('date')" style="cursor: pointer;">
+                            Sr no
+                            <i class="fa-solid fa-sort text-muted" id="sort-icon-date"></i>
+                        </th>
+
+                        <th class="sortable" onclick="sortProgress('date')" style="cursor: pointer;">
+                            Date
+                            <i class="fa-solid fa-sort text-muted" id="sort-icon-date"></i>
+                        </th>
+
+                        <th class="sortable" onclick="sortProgress('weight')" style="cursor: pointer;">
+                            Weight (kg)
+                            <i class="fa-solid fa-sort text-muted" id="sort-icon-weight"></i>
+                        </th>
+
+                        <th class="sortable" onclick="sortProgress('fat')" style="cursor: pointer;">
+                            Body Fat %
+                            <i class="fa-solid fa-sort text-muted" id="sort-icon-fat"></i>
+                        </th>
+
+                        <th class="sortable" onclick="sortProgress('chest')" style="cursor: pointer;">
+                            Chest (cm)
+                            <i class="fa-solid fa-sort text-muted" id="sort-icon-chest"></i>
+                        </th>
+
+                        <th class="sortable" onclick="sortProgress('waist')" style="cursor: pointer;">
+                            Waist (cm)
+                            <i class="fa-solid fa-sort text-muted" id="sort-icon-waist"></i>
+                        </th>
+
+                        <th class="sortable" onclick="sortProgress('arms')" style="cursor: pointer;">
+                            Arms (cm)
+                            <i class="fa-solid fa-sort text-muted" id="sort-icon-arms"></i>
+                        </th>
+
+                        <th style="text-align: right;">Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="progress-history-tbody">
+                    <!-- Rendered via JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+=======
+
+      <!-- KPI Summary Cards -->
+      <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-bottom: 1.5rem;">
+        <div class="stat-card">
+          <div class="stat-icon blue"><i class="fa-solid fa-weight-scale"></i></div>
+          <div class="stat-info">
+            <span class="stat-label">Current Weight</span>
+            <span class="stat-value" id="kpi-prog-weight">81.3 kg</span>
+            <span class="stat-change text-success"><i class="fa-solid fa-arrow-down"></i> -3.2 kg overall</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon green"><i class="fa-solid fa-percent"></i></div>
+          <div class="stat-info">
+            <span class="stat-label">Body Fat %</span>
+            <span class="stat-value" id="kpi-prog-fat">14.6%</span>
+            <span class="stat-change text-success"><i class="fa-solid fa-arrow-down"></i> -3.6% reduction</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon purple"><i class="fa-solid fa-ruler-combined"></i></div>
+          <div class="stat-info">
+            <span class="stat-label">Chest Width</span>
+            <span class="stat-value" id="kpi-prog-chest">107 cm</span>
+            <span class="stat-change text-success"><i class="fa-solid fa-arrow-up"></i> +3.0 cm gain</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon orange"><i class="fa-solid fa-ruler"></i></div>
+          <div class="stat-info">
+            <span class="stat-label">Waist Size</span>
+            <span class="stat-value" id="kpi-prog-waist">82 cm</span>
+            <span class="stat-change text-success"><i class="fa-solid fa-arrow-down"></i> -6.0 cm trim</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress Line Chart Card -->
+      <div class="card" style="margin-bottom: 1.5rem;">
+        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+          <h3 class="card-title"><i class="fa-solid fa-chart-line text-accent"></i> Weight & Body Composition Trend</h3>
+          <span class="text-xs text-muted">Monthly InBody and Scale Measurements</span>
+        </div>
+        <div class="card-body">
+          <div style="height: 280px; position: relative;">
+            <canvas id="weightProgressChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Measurement History Table -->
+      <div class="attendance-card card table-container">
+      <div class="attendance-card card table-container">
+        <div class="attendance-header card-header table-toolbar" style="gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+          <div>
+            <h3 class="card-title"><i class="fa-solid fa-chart-line text-accent"></i> Biometric History Log</h3>
+            <p class="attendance-subtitle">Track body weight, body fat %, and muscle measurement logs</p>
+          </div>
+          <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+            <div style="position: relative; width: 170px;">
+              <input type="text" id="prog-search" class="form-control" placeholder="Search date..." style="padding: 0.35rem 0.65rem; font-size: 0.8rem;" oninput="filterProgress()">
+            </div>
+            <button type="button" class="btn btn-outline btn-sm" onclick="resetProgressFilters()" title="Reset sort & filters">
+              <i class="fa-solid fa-arrow-rotate-left"></i> Reset
+            </button>
+          </div>
+        </div>
+        <div class="attendance-body card-body">
+          <div class="attendance-table-wrapper table-responsive">
+            <table class="attendance-table data-table table">
+              <thead>
+              <thead>
+                <tr>
+                  <th class="sortable" onclick="sortProgress('date')" style="cursor: pointer;">
+                    Date <i class="fa-solid fa-sort text-muted" id="sort-icon-date"></i>
+                  </th>
+                  <th class="sortable" onclick="sortProgress('weight')" style="cursor: pointer;">
+                    Weight (kg) <i class="fa-solid fa-sort text-muted" id="sort-icon-weight"></i>
+                  </th>
+                  <th class="sortable" onclick="sortProgress('fat')" style="cursor: pointer;">
+                    Body Fat % <i class="fa-solid fa-sort text-muted" id="sort-icon-fat"></i>
+                  </th>
+                  <th class="sortable" onclick="sortProgress('chest')" style="cursor: pointer;">
+                    Chest (cm) <i class="fa-solid fa-sort text-muted" id="sort-icon-chest"></i>
+                  </th>
+                  <th class="sortable" onclick="sortProgress('waist')" style="cursor: pointer;">
+                    Waist (cm) <i class="fa-solid fa-sort text-muted" id="sort-icon-waist"></i>
+                  </th>
+                  <th class="sortable" onclick="sortProgress('arms')" style="cursor: pointer;">
+                    Arms (cm) <i class="fa-solid fa-sort text-muted" id="sort-icon-arms"></i>
+                  </th>
+                  <th style="text-align: right;">Action</th>
+                </tr>
+              </thead>
+              <tbody id="progress-history-tbody">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+>>>>>>> d832a2791cfbe3530142912a0522d7e539f037e8
+</div>
+
+<!-- Modal: Log New Measurement -->
+<div class="modal-backdrop" id="modal-add-metric">
+<<<<<<< HEAD
+    <div class="modal">
+
+        <div class="modal-header">
+            <h3 class="modal-title">
+                <i class="fa-solid fa-weight-scale text-accent"></i>
+                Log Biometric Check-in
+            </h3>
+
+            <button type="button" class="modal-close" data-modal-close>
+                &times;
+            </button>
+        </div>
+
+        <form onsubmit="handleSaveMeasurement(event)">
+            <div class="modal-body">
+
+                <div class="form-grid" style="grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem;">
+
+                    <div class="form-group">
+                        <label for="m-date" class="form-label">
+                            Check-in Date <span class="required">*</span>
+                        </label>
+                        <input type="date" id="m-date" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="m-weight" class="form-label">
+                            Weight (kg) <span class="required">*</span>
+                        </label>
+                        <input type="number" step="0.1" min="1" id="m-weight"
+                               class="form-control" required placeholder="e.g. 80.8">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="m-fat" class="form-label">Body Fat (%)</label>
+                        <input type="number" step="0.1" min="0" max="100"
+                               id="m-fat" class="form-control" placeholder="e.g. 14.2">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="m-chest" class="form-label">Chest (cm)</label>
+                        <input type="number" step="0.5" min="0"
+                               id="m-chest" class="form-control" placeholder="e.g. 107.5">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="m-waist" class="form-label">Waist (cm)</label>
+                        <input type="number" step="0.5" min="0"
+                               id="m-waist" class="form-control" placeholder="e.g. 81.5">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="m-arms" class="form-label">Arms (cm)</label>
+                        <input type="number" step="0.5" min="0"
+                               id="m-arms" class="form-control" placeholder="e.g. 36">
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" data-modal-close>
+                    Cancel
+                </button>
+
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    Save Measurement
+                </button>
+            </div>
+        </form>
+    </div>
+  </div>
+
+=======
+  <div class="modal">
+    <div class="modal-header">
+      <h3 class="modal-title"><i class="fa-solid fa-weight-scale text-accent"></i> Log Biometric Check-in</h3>
+      <button type="button" class="modal-close" data-modal-close>&times;</button>
+    </div>
+    <form onsubmit="handleSaveMeasurement(event)">
+      <div class="modal-body">
+        <div class="form-grid" style="grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="form-group">
+            <label class="form-label">Check-in Date <span class="required">*</span></label>
+            <input type="date" id="m-date" class="form-control" required value="2026-04-22">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Weight (kg) <span class="required">*</span></label>
+            <input type="number" step="0.1" id="m-weight" class="form-control" required placeholder="e.g. 80.8">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Body Fat (%)</label>
+            <input type="number" step="0.1" id="m-fat" class="form-control" placeholder="e.g. 14.2">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Chest (cm)</label>
+            <input type="number" step="0.5" id="m-chest" class="form-control" placeholder="e.g. 107.5">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Waist (cm)</label>
+            <input type="number" step="0.5" id="m-waist" class="form-control" placeholder="e.g. 81.5">
+          </div>
+>>>>>>> d832a2791cfbe3530142912a0522d7e539f037e8
+          <div class="form-group">
+            <label class="form-label">Arms / Biceps (cm)</label>
+            <input type="number" step="0.5" id="m-arms" class="form-control" placeholder="e.g. 40.0">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-modal-close>Cancel</button>
+        <button type="submit" class="btn btn-accent"><i class="fa-solid fa-check"></i> Save Biometric Record</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../assets/js/mock-data.js"></script>
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/charts.js"></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/navigation.js"></script>
+<script src="../assets/js/app.js"></script>
+
+<script>
+<<<<<<< HEAD
+    let records = [];
+    let filteredRecords = [];
+    let chartInstance = null;
+
+    let currentProgSort = 'date';
+    let isProgAsc = false;
+
+    document.addEventListener('DOMContentLoaded', () => {
+        loadProgress();
+    });
+
+   
+function loadProgress() {
+    const memberId = Auth.getActiveMemberId();
+
+    if (!memberId) {
+        records = [];
+        filteredRecords = [];
+        renderTable();
+        return;
+    }
+
+    const demoKey = `progressDemoInitialized_${memberId}`;
+
+    // Load demo records from memory if already initialized.
+    // Otherwise, create the initial demo dataset.
+    if (!window.progressDemoRecords) {
+        window.progressDemoRecords = {};
+    }
+
+    if (!window.progressDemoRecords[memberId]) {
+        window.progressDemoRecords[memberId] = [
+            {
+                memberId,
+                date: '2026-01-15',
+                weightKg: 84.5,
+                bodyFatPct: 18.2,
+                chestCm: 104,
+                waistCm: 88,
+                armsCm: 38
+            },
+            {
+                memberId,
+                date: '2026-02-15',
+                weightKg: 83.2,
+                bodyFatPct: 16.8,
+                chestCm: 105,
+                waistCm: 86,
+                armsCm: 38.5
+            },
+            {
+                memberId,
+                date: '2026-03-15',
+                weightKg: 82.0,
+                bodyFatPct: 15.5,
+                chestCm: 106,
+                waistCm: 84,
+                armsCm: 39
+            },
+            {
+                memberId,
+                date: '2026-04-15',
+                weightKg: 81.3,
+                bodyFatPct: 14.6,
+                chestCm: 107,
+                waistCm: 82,
+                armsCm: 39.5
+            }
+        ];
+
+        localStorage.setItem(demoKey, 'true');
+    }
+
+    // Use the demo dataset as the source of truth
+    records = window.progressDemoRecords[memberId];
+
+    // Sort newest first
+    records.sort((a, b) => b.date.localeCompare(a.date));
+
+    // Initialize the filtered list
+    filteredRecords = [...records];
+
+    // Refresh the UI
+    updateProgressKPIs();
+    renderTable();
+    initProgressChart();
+}
+
+
+    function updateProgressKPIs() {
+        const latest = [...records].sort(
+            (a, b) => b.date.localeCompare(a.date)
+        )[0];
+
+        document.getElementById('kpi-prog-weight').textContent =
+            latest ? `${latest.weightKg} kg` : '--';
+
+        document.getElementById('kpi-prog-fat').textContent =
+            latest ? `${latest.bodyFatPct ?? '--'}%` : '--';
+
+        document.getElementById('kpi-prog-chest').textContent =
+            latest ? `${latest.chestCm ?? '--'} cm` : '--';
+
+        document.getElementById('kpi-prog-waist').textContent =
+            latest ? `${latest.waistCm ?? '--'} cm` : '--';
+    }
+
+    function filterProgress() {
+        const q = (
+            document.getElementById('prog-search')?.value || ''
+        ).trim().toLowerCase();
+
+        filteredRecords = records.filter(r => {
+            return (
+                !q ||
+                String(r.date || '').toLowerCase().includes(q) ||
+                String(r.weightKg ?? '').includes(q) ||
+                String(r.bodyFatPct ?? '').includes(q) ||
+                String(r.chestCm ?? '').includes(q) ||
+                String(r.waistCm ?? '').includes(q) ||
+                String(r.armsCm ?? '').includes(q)
+            );
+        });
+
+        const sortKeyMap = {
+            weight: 'weightKg',
+            fat: 'bodyFatPct',
+            chest: 'chestCm',
+            waist: 'waistCm',
+            arms: 'armsCm'
+        };
+
+        const sortKey = sortKeyMap[currentProgSort] || currentProgSort;
+
+        filteredRecords.sort((a, b) => {
+            if (sortKey === 'date') {
+                const result = String(a.date).localeCompare(String(b.date));
+                return isProgAsc ? result : -result;
+            }
+
+            return DataGridHelper.compare(
+                a,
+                b,
+                sortKey,
+                isProgAsc
+            );
+        });
+
+        renderTable();
+    }
+
+    function sortProgress(key) {
+        if (currentProgSort === key) {
+            isProgAsc = !isProgAsc;
+        } else {
+            currentProgSort = key;
+            isProgAsc = true;
+        }
+
+        DataGridHelper.updateSortHeaders(
+            document.querySelector('.attendance-table thead'),
+            currentProgSort,
+            isProgAsc
+        );
+
+        filterProgress();
+    }
+
+    
+
+function renderTable() {
+    const tbody = document.getElementById('progress-history-tbody');
+
+    if (!tbody) return;
+
+    if (filteredRecords.length === 0) {
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="8">
+                    ${DataGridHelper.getEmptyStateHtml(
+                        'No Biometric Logs Found',
+                        'No records match your search or filter.',
+                        'resetProgressFilters()'
+                    )}
+                </td>
+            </tr>
+        `;
+        return;
+    }
+
+    tbody.innerHTML = filteredRecords.map((r, idx) => `
+        <tr>
+            <td>${idx + 1}</td>
+
+            <td>
+                <strong>${App.formatDate(r.date)}</strong>
+            </td>
+
+            <td>
+                <strong>${r.weightKg ?? '--'} kg</strong>
+            </td>
+
+            <td>
+                <span class="badge badge-neutral">
+                    ${r.bodyFatPct ?? '--'}%
+                </span>
+            </td>
+
+            <td>${r.chestCm ?? '--'} cm</td>
+            <td>${r.waistCm ?? '--'} cm</td>
+            <td>${r.armsCm ?? '--'} cm</td>
+
+            <td style="text-align: center;">
+                <button
+                    type="button"
+                    class="btn btn-icon btn-icon-sm"
+                    data-delete-date="${r.date}"
+                    title="Delete measurement"
+                    aria-label="Delete measurement">
+                    <i class="fa-solid fa-trash text-danger"></i>
+                </button>
+            </td>
+        </tr>
+    `).join('');
+
+    // Attach click handlers to Delete buttons
+    tbody.querySelectorAll('[data-delete-date]').forEach(button => {
+        button.addEventListener('click', function () {
+            deleteMeasurement(this.dataset.deleteDate);
+        });
+    });
+}
+
+
+function deleteMeasurement(date) {
+    const memberId = Auth.getActiveMemberId();
+
+    // Find the demo record belonging to the active member
+    const recordIndex = records.findIndex(r =>
+        String(r.memberId) === String(memberId) &&
+        String(r.date) === String(date)
+    );
+
+    if (recordIndex === -1) {
+        Toast.error('Measurement not found.');
+        return;
+    }
+
+    // Ask for confirmation
+    const confirmed = window.confirm(
+        `Are you sure you want to delete the measurement dated ${date}?`
+    );
+
+    if (!confirmed) return;
+
+    // Remove the record from the demo data array
+    records.splice(recordIndex, 1);
+
+    // Remove the record from the filtered data array
+    filteredRecords = filteredRecords.filter(r =>
+        !(
+            String(r.memberId) === String(memberId) &&
+            String(r.date) === String(date)
+        )
+    );
+
+    // Refresh the interface
+    updateProgressKPIs();
+    renderTable();
+    initProgressChart();
+
+    Toast.success('Measurement deleted successfully!');
+}
+
+
+
+
+function finishMeasurementDelete(memberId, date) {
+    // Remove the measurement from the main records
+    records = records.filter(record =>
+        !(
+            record.memberId === memberId &&
+            record.date === date
+        )
+    );
+
+    // Remove it from the filtered records
+    filteredRecords = filteredRecords.filter(record =>
+        !(
+            record.memberId === memberId &&
+            record.date === date
+        )
+    );
+
+    // Refresh dashboard data
+    updateProgressKPIs();
+    renderTable();
+    initProgressChart();
+
+    Toast.success('Measurement deleted successfully!');
+}
+
+    function handleSaveMeasurement(e) {
+        e.preventDefault();
+
+        const memberId = Auth.getActiveMemberId();
+
+        const newRecord = {
+            memberId: memberId,
+            date: document.getElementById('m-date').value,
+            weightKg: parseFloat(
+                document.getElementById('m-weight').value
+            ),
+            bodyFatPct: parseFloat(
+                document.getElementById('m-fat').value
+            ) || 14.5,
+            chestCm: parseFloat(
+                document.getElementById('m-chest').value
+            ) || 107.5,
+            waistCm: parseFloat(
+                document.getElementById('m-waist').value
+            ) || 81.5,
+            armsCm: parseFloat(
+                document.getElementById('m-arms').value
+            ) || 40.0
+        };
+
+        GymFlowDB.insert('progressRecords', newRecord);
+
+        localStorage.setItem(
+            `progressDemoInitialized_${memberId}`,
+            'true'
+        );
+
+        Modal.close('modal-add-metric');
+
+        Toast.success(
+            'New biometric measurement successfully recorded!'
+        );
+
+        loadProgress();
+    }
+
+    window.filterProgress = filterProgress;
+    window.sortProgress = sortProgress;
+    window.resetProgressFilters = resetProgressFilters;
+    window.deleteMeasurement = deleteMeasurement;
+    window.handleSaveMeasurement = handleSaveMeasurement;
+=======
+  let records = [];
+  let chartInstance = null;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadProgress();
+  });
+
+  function loadProgress() {
+    const memberId = Auth.getActiveMemberId();
+    records = GymFlowDB.get('progressRecords', { memberId: memberId });
+    if (records.length === 0) {
+      records = [
+        { memberId: memberId, date: "2026-01-15", weightKg: 84.5, bodyFatPct: 18.2, chestCm: 104, waistCm: 88, armsCm: 38 },
+        { memberId: memberId, date: "2026-02-15", weightKg: 83.2, bodyFatPct: 16.8, chestCm: 105, waistCm: 86, armsCm: 38.5 },
+        { memberId: memberId, date: "2026-03-15", weightKg: 82.0, bodyFatPct: 15.5, chestCm: 106, waistCm: 84, armsCm: 39 },
+        { memberId: memberId, date: "2026-04-15", weightKg: 81.3, bodyFatPct: 14.6, chestCm: 107, waistCm: 82, armsCm: 39.5 }
+      ];
+    }
+
+    const latest = records[records.length - 1];
+    if (latest) {
+      document.getElementById('kpi-prog-weight').textContent = `${latest.weightKg} kg`;
+      document.getElementById('kpi-prog-fat').textContent = `${latest.bodyFatPct}%`;
+      document.getElementById('kpi-prog-chest').textContent = `${latest.chestCm} cm`;
+      document.getElementById('kpi-prog-waist').textContent = `${latest.waistCm} cm`;
+    }
+
+    renderTable();
+    initProgressChart();
+  }
+
+  let filteredRecords = [];
+  let currentProgSort = 'date';
+  let isProgAsc = false;
+
+  function filterProgress() {
+    const q = (document.getElementById('prog-search')?.value || '').trim();
+
+    filteredRecords = records.filter(r => {
+      return !q || (r.date && r.date.includes(q)) || String(r.weight).includes(q);
+    });
+
+    filteredRecords.sort((a, b) => {
+      return DataGridHelper.compare(a, b, currentProgSort, isProgAsc);
+    });
+
+    renderTable();
+  }
+
+  function sortProgress(key) {
+    if (currentProgSort === key) {
+      isProgAsc = !isProgAsc;
+    } else {
+      currentProgSort = key;
+      isProgAsc = true;
+    }
+    DataGridHelper.updateSortHeaders(document.querySelector('.attendance-table thead'), currentProgSort, isProgAsc);
+    filterProgress();
+  }
+
+  function resetProgressFilters() {
+    if (document.getElementById('prog-search')) document.getElementById('prog-search').value = '';
+    currentProgSort = 'date';
+    isProgAsc = false;
+    DataGridHelper.updateSortHeaders(document.querySelector('.attendance-table thead'), '', false);
+    filterProgress();
+  }
+
+  function renderTable() {
+    const tbody = document.getElementById('progress-history-tbody');
+    const list = filteredRecords.length ? filteredRecords : records;
+
+    if (!list || list.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="7">${DataGridHelper.getEmptyStateHtml('No Biometric Logs Found', 'No records match your search or filter.', 'resetProgressFilters()')}</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = list.map((r, idx) => `
+      <tr>
+        <td><strong>${App.formatDate(r.date)}</strong></td>
+        <td><strong>${r.weight} kg</strong></td>
+        <td><span class="badge badge-neutral">${r.fat || '--'}%</span></td>
+        <td>${r.chest || '--'} cm</td>
+        <td>${r.waist || '--'} cm</td>
+        <td>${r.arms || '--'} cm</td>
+        <td style="text-align: right;">
+          <button class="btn btn-icon btn-icon-sm" onclick="deleteMeasurement(${idx})" title="Delete entry">
+            <i class="fa-solid fa-trash text-danger"></i>
+          </button>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  function handleSaveMeasurement(e) {
+    e.preventDefault();
+    const memberId = Auth.getActiveMemberId();
+    const newRecord = {
+      memberId: memberId,
+      date: document.getElementById('m-date').value,
+      weightKg: parseFloat(document.getElementById('m-weight').value),
+      bodyFatPct: parseFloat(document.getElementById('m-fat').value) || 14.5,
+      chestCm: parseFloat(document.getElementById('m-chest').value) || 107.5,
+      waistCm: parseFloat(document.getElementById('m-waist').value) || 81.5,
+      armsCm: parseFloat(document.getElementById('m-arms').value) || 40.0
+    };
+
+    GymFlowDB.insert('progressRecords', newRecord);
+    records.push(newRecord);
+    Modal.close('modal-add-metric');
+    Toast.success('New biometric measurement successfully recorded!');
+    loadProgress();
+  }
+>>>>>>> d832a2791cfbe3530142912a0522d7e539f037e8
+</script>
+</body>
+</html>

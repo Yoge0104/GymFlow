@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Classes & Timetable — Member Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <a href="dashboard.html" class="brand-link">
+        <div class="brand-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <div class="brand-text">Gym<span>Flow</span></div>
+      </a>
+      <button class="topbar-toggle sidebar-toggle-btn d-none"><i class="fa-solid fa-bars"></i></button>
+    </div>
+    <div class="sidebar-nav">
+      <div class="nav-section-title">Overview</div>
+      <div class="nav-item"><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a></div>
+      
+      <div class="nav-section-title">Fitness & Training</div>
+      <div class="nav-item"><a href="workout-plan.html" class="nav-link"><i class="fa-solid fa-clipboard-list"></i><span>Workout Plan</span></a></div>
+      <div class="nav-item"><a href="classes.html" class="nav-link active"><i class="fa-solid fa-calendar-days"></i><span>Classes & Timetable</span></a></div>
+      <div class="nav-item"><a href="my-bookings.html" class="nav-link"><i class="fa-solid fa-bookmark"></i><span>My Bookings</span></a></div>
+      <div class="nav-item"><a href="progress.html" class="nav-link"><i class="fa-solid fa-chart-line"></i><span>Body Progress</span></a></div>
+      <div class="nav-item"><a href="attendance.html" class="nav-link"><i class="fa-solid fa-clock-rotate-left"></i><span>Attendance History</span></a></div>
+      
+      <div class="nav-section-title">Membership & Billing</div>
+      <div class="nav-item"><a href="my-membership.html" class="nav-link"><i class="fa-solid fa-id-card"></i><span>My Membership</span></a></div>
+      <div class="nav-item"><a href="plans.html" class="nav-link"><i class="fa-solid fa-tags"></i><span>Plans & Upgrade</span></a></div>
+      <div class="nav-item"><a href="payments.html" class="nav-link"><i class="fa-solid fa-credit-card"></i><span>Billing & Receipts</span></a></div>
+      
+      <div class="nav-section-title">Account & Support</div>
+      <div class="nav-item"><a href="my-profile.html" class="nav-link"><i class="fa-solid fa-user"></i><span>My Profile</span></a></div>
+      <div class="nav-item"><a href="notifications.html" class="nav-link"><i class="fa-solid fa-bell"></i><span>Notifications</span></a></div>
+      <div class="nav-item"><a href="support.html" class="nav-link"><i class="fa-solid fa-headset"></i><span>Member Support</span></a></div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop" alt="Member" class="current-user-avatar"></div>
+        <div class="sidebar-user-info"><span class="sidebar-user-name current-user-name">Alex Morgan</span><span class="sidebar-user-role">IronPulse Member</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main-wrapper">
+    <header class="topbar">
+      <div class="topbar-left"><button class="topbar-toggle sidebar-toggle-btn"><i class="fa-solid fa-bars"></i></button></div>
+      <div class="topbar-right">
+        <span class="role-indicator member" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); font-weight: 600; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem;">
+          <i class="fa-solid fa-person-running"></i> Gym Member
+        </span>
+        <button class="topbar-action-btn theme-toggle-btn"><i class="fa-solid fa-moon"></i></button>
+        <a href="notifications.html" class="topbar-action-btn" id="btn-notifications"><i class="fa-solid fa-bell"></i><span class="action-badge"></span></a>
+        <div class="dropdown">
+          <button class="topbar-user-btn" data-dropdown-toggle>
+            <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop" class="current-user-avatar" alt="Avatar"></div>
+            <div><div class="topbar-user-name current-user-name">Alex Morgan</div><div class="topbar-user-role">IronPulse Member</div></div>
+            <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; color: var(--text-subtle);"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="my-profile.html" class="dropdown-item"><i class="fa-solid fa-user"></i> My Profile</a>
+            <a href="my-membership.html" class="dropdown-item"><i class="fa-solid fa-id-card"></i> Membership</a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item text-danger btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-wrapper">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">
+            <a href="dashboard.html">Member Portal</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Classes & Timetable</span>
+          </div>
+          <h1 class="page-title">Group Fitness Classes</h1>
+          <p class="page-subtitle">Reserve spots in instructor-led HIIT, strength, spin, and mobility sessions.</p>
+        </div>
+        <div class="page-actions">
+          <a href="my-bookings.html" class="btn btn-outline"><i class="fa-solid fa-bookmark"></i> View My Bookings</a>
+        </div>
+      </div>
+
+      <!-- Filters & Category Nav -->
+      <!-- Filters & Search Toolbar -->
+      <div class="card" style="margin-bottom: 1.5rem; padding: 1rem 1.25rem;">
+        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+          <!-- Top Row: Search and Controls -->
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+            <div style="position: relative; flex: 1; min-width: 220px; max-width: 320px;">
+              <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 0.85rem; pointer-events: none;"></i>
+              <input type="text" id="member-class-search" class="form-control" placeholder="Search class or coach..." style="padding-left: 34px;" oninput="applyFilters()">
+            </div>
+
+            <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+              <!-- Day Selector -->
+              <select id="day-filter" class="form-select form-select-sm" style="width: 130px;" onchange="applyFilters()">
+                <option value="All">All Days</option>
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+                <option value="Saturday">Saturday</option>
+              </select>
+
+              <!-- Availability Selector -->
+              <select id="avail-filter" class="form-select form-select-sm" style="width: 140px;" onchange="applyFilters()">
+                <option value="all">All Seats</option>
+                <option value="open">Seats Open</option>
+                <option value="fast">Filling Fast (&le;3)</option>
+              </select>
+
+              <!-- Sort By -->
+              <select id="member-class-sort" class="form-select form-select-sm" style="width: 160px;" onchange="applyFilters()">
+                <option value="time_asc">Time (Earliest)</option>
+                <option value="time_desc">Time (Latest)</option>
+                <option value="spots_desc">Spots (Most Open)</option>
+                <option value="name_asc">Name (A-Z)</option>
+              </select>
+
+              <!-- Reset Button -->
+              <button type="button" class="btn btn-outline btn-sm" onclick="resetClassFilters()" title="Reset all filters">
+                <i class="fa-solid fa-arrow-rotate-left"></i> Reset
+              </button>
+            </div>
+          </div>
+
+          <!-- Category Pills -->
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;" id="category-filter-pills">
+            <button class="btn btn-sm btn-primary filter-pill active" onclick="setCategoryFilter('All', this)">All Classes</button>
+            <button class="btn btn-sm btn-secondary filter-pill" onclick="setCategoryFilter('HIIT', this)">HIIT</button>
+            <button class="btn btn-sm btn-secondary filter-pill" onclick="setCategoryFilter('Strength', this)">Strength</button>
+            <button class="btn btn-sm btn-secondary filter-pill" onclick="setCategoryFilter('Yoga', this)">Yoga & Mobility</button>
+            <button class="btn btn-sm btn-secondary filter-pill" onclick="setCategoryFilter('Spin', this)">Cycling / Spin</button>
+            <button class="btn btn-sm btn-secondary filter-pill" onclick="setCategoryFilter('Boxing', this)">Boxing</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Class Cards Grid -->
+      <div class="classes-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 1.5rem;" id="classes-container">
+        <!-- Rendered via JS -->
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="../assets/js/mock-data.js"></script>
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/navigation.js"></script>
+<script src="../assets/js/app.js"></script>
+
+<script>
+  let activeCategory = 'All';
+  let allClasses = [];
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadClasses();
+  });
+
+  function loadClasses() {
+    const gymId = Auth.getTenantGymId();
+    allClasses = GymFlowDB.get('classes', { gymId: gymId });
+    renderClasses(allClasses);
+  }
+
+  function setCategoryFilter(category, btn) {
+    activeCategory = category;
+    document.querySelectorAll('#category-filter-pills button').forEach(b => {
+      b.classList.remove('btn-primary', 'active');
+      b.classList.add('btn-secondary');
+    });
+    btn.classList.remove('btn-secondary');
+    btn.classList.add('btn-primary', 'active');
+    applyFilters();
+  }
+
+  function applyFilters() {
+    const q = (document.getElementById('member-class-search')?.value || '').trim();
+    const day = document.getElementById('day-filter')?.value || 'All';
+    const avail = document.getElementById('avail-filter')?.value || 'all';
+    const sortVal = document.getElementById('member-class-sort')?.value || 'time_asc';
+
+    let filtered = allClasses.filter(c => {
+      const matchQ = DataGridHelper.matchSearch(c, q, ['name', 'trainerName', 'category', 'room', 'description']);
+      const matchCat = activeCategory === 'All' || (c.category || '').toLowerCase().includes(activeCategory.toLowerCase());
+      const matchDay = day === 'All' || c.dayOfWeek === day;
+
+      const spotsLeft = Math.max(0, (c.capacity || 20) - (c.bookedCount || 0));
+      let matchAvail = true;
+      if (avail === 'open') matchAvail = spotsLeft > 0;
+      else if (avail === 'fast') matchAvail = spotsLeft > 0 && spotsLeft <= 3;
+
+      return matchQ && matchCat && matchDay && matchAvail;
+    });
+
+    // Sorting
+    filtered.sort((a, b) => {
+      if (sortVal === 'time_asc') return DataGridHelper.compare(a, b, 'time', true);
+      if (sortVal === 'time_desc') return DataGridHelper.compare(a, b, 'time', false);
+      if (sortVal === 'spots_desc') {
+        const spotsA = Math.max(0, (a.capacity || 20) - (a.bookedCount || 0));
+        const spotsB = Math.max(0, (b.capacity || 20) - (b.bookedCount || 0));
+        return spotsB - spotsA;
+      }
+      if (sortVal === 'name_asc') return DataGridHelper.compare(a, b, 'name', true);
+      return 0;
+    });
+
+    renderClasses(filtered);
+  }
+
+  function resetClassFilters() {
+    if (document.getElementById('member-class-search')) document.getElementById('member-class-search').value = '';
+    if (document.getElementById('day-filter')) document.getElementById('day-filter').value = 'All';
+    if (document.getElementById('avail-filter')) document.getElementById('avail-filter').value = 'all';
+    if (document.getElementById('member-class-sort')) document.getElementById('member-class-sort').value = 'time_asc';
+    activeCategory = 'All';
+    document.querySelectorAll('#category-filter-pills button').forEach((b, idx) => {
+      if (idx === 0) {
+        b.classList.remove('btn-secondary');
+        b.classList.add('btn-primary', 'active');
+      } else {
+        b.classList.remove('btn-primary', 'active');
+        b.classList.add('btn-secondary');
+      }
+    });
+    applyFilters();
+  }
+
+  function renderClasses(list) {
+    const memberId = Auth.getActiveMemberId();
+    const myBookings = GymFlowDB.get('classBookings', { memberId: memberId, status: 'Confirmed' });
+    const bookedIds = new Set(myBookings.map(b => b.classId));
+
+    const container = document.getElementById('classes-container');
+    if (list.length === 0) {
+      container.innerHTML = `
+        <div class="empty-state" style="grid-column: 1 / -1; padding: 3rem; text-align: center;">
+          <i class="fa-solid fa-calendar-xmark" style="font-size: 2.5rem; color: var(--text-muted); margin-bottom: 0.75rem;"></i>
+          <h3>No Classes Found</h3>
+          <p class="text-muted text-sm">No group sessions match the selected day or category filters.</p>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = list.map(c => {
+      const isBooked = bookedIds.has(c.id);
+      const spotsLeft = Math.max(0, (c.capacity || 20) - (c.bookedCount || 0));
+      const isFull = spotsLeft === 0;
+
+      return `
+        <div class="card" style="display: flex; flex-direction: column; justify-content: space-between; border-top: 4px solid var(--accent-color);">
+          <div class="card-body">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
+              <span class="badge badge-neutral">${c.category || 'Fitness'}</span>
+              <span class="badge ${spotsLeft <= 3 ? 'badge-danger' : 'badge-success'}">
+                ${isFull ? 'Class Full' : `${spotsLeft} spots left`}
+              </span>
+            </div>
+
+            <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">${c.name}</h3>
+
+            <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1rem;">
+              <div class="avatar avatar-xs"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&h=100&fit=crop" alt="Trainer"></div>
+              <span class="text-sm font-semibold">${c.trainerName}</span>
+            </div>
+
+            <div style="background: var(--bg-hover); padding: 0.75rem; border-radius: var(--radius-md); font-size: 0.8125rem; display: flex; flex-direction: column; gap: 0.35rem;">
+              <div><i class="fa-solid fa-calendar-day text-accent"></i> <strong>${c.dayOfWeek || 'Weekday'}</strong> (${c.date || 'Weekly'})</div>
+              <div><i class="fa-solid fa-clock text-accent"></i> <strong>${c.time}</strong> &bull; ${c.duration || '50 mins'}</div>
+              <div><i class="fa-solid fa-location-dot text-accent"></i> ${c.room || 'Studio A'} &bull; Downtown Branch</div>
+            </div>
+          </div>
+
+          <div class="card-footer" style="padding: 1rem 1.25rem; border-top: 1px solid var(--border-color);">
+            ${isBooked ? `
+              <button class="btn btn-outline" style="width: 100%; border-color: var(--accent-color); color: var(--accent-color);" disabled>
+                <i class="fa-solid fa-circle-check"></i> Reserved Spot
+              </button>
+            ` : isFull ? `
+              <button class="btn btn-secondary" style="width: 100%;" disabled>
+                <i class="fa-solid fa-ban"></i> Class Full
+              </button>
+            ` : `
+              <button class="btn btn-primary" style="width: 100%;" onclick="bookClass('${c.id}')">
+                <i class="fa-solid fa-plus"></i> Reserve Spot
+              </button>
+            `}
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function bookClass(classId) {
+    const memberId = Auth.getActiveMemberId();
+    const gymId = Auth.getTenantGymId();
+    const cls = GymFlowDB.findById('classes', classId);
+
+    if (!cls) return;
+
+    // Check if duplicate booking
+    const existing = GymFlowDB.get('classBookings', { memberId: memberId, classId: classId, status: 'Confirmed' });
+    if (existing.length > 0) {
+      Toast.info(`You have already reserved a spot in ${cls.name}.`);
+      return;
+    }
+
+    // Insert booking
+    GymFlowDB.insert('classBookings', {
+      id: `bk_${Date.now()}`,
+      gymId: gymId,
+      memberId: memberId,
+      memberName: 'Alex Morgan',
+      classId: cls.id,
+      className: cls.name,
+      trainerName: cls.trainerName,
+      date: cls.date || '2026-04-28',
+      time: cls.time,
+      bookingDate: new Date().toISOString().split('T')[0],
+      status: 'Confirmed'
+    });
+
+    // Update booked count
+    const updatedCount = (cls.bookedCount || 0) + 1;
+    GymFlowDB.update('classes', classId, { bookedCount: updatedCount });
+
+    Toast.success(`Spot confirmed for ${cls.name}! See you in ${cls.room || 'the studio'}.`);
+    loadClasses();
+  }
+</script>
+</body>
+</html>

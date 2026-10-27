@@ -1,0 +1,1351 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reports & Analytics — Gym Admin</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+
+  <style>
+    [hidden] {
+      display: none !important;
+    }
+
+    .report-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+      gap: 14px;
+      margin-bottom: 22px;
+      padding: 18px;
+      border: 1px solid var(--border-color, #e5e7eb);
+      border-radius: 12px;
+      background: var(--card-bg, #fff);
+    }
+
+    .report-filter {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      min-width: 150px;
+    }
+
+    .report-filter label {
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .report-filter select,
+    .report-filter input {
+      min-height: 40px;
+      padding: 8px 10px;
+      border: 1px solid var(--border-color, #ddd);
+      border-radius: 7px;
+      background: var(--card-bg, #fff);
+      color: var(--text-primary, #222);
+      font: inherit;
+    }
+
+    .report-filter select:focus,
+    .report-filter input:focus {
+      outline: 2px solid var(--accent-color, #8b5cf6);
+      outline-offset: 1px;
+    }
+
+    .report-date-range {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .report-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-left: auto;
+    }
+
+    .report-status {
+      margin: 0 0 16px;
+      font-size: 13px;
+      color: var(--text-muted, #6b7280);
+    }
+
+    .report-print-header {
+      display: none;
+    }
+
+    .report-table-wrap {
+      overflow-x: auto;
+    }
+
+    .report-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .report-table th,
+    .report-table td {
+      padding: 11px 12px;
+      border-bottom: 1px solid var(--border-color, #e5e7eb);
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    .report-table th {
+      font-weight: 700;
+      background: var(--surface-bg, #f8fafc);
+    }
+
+    .report-table .amount {
+      text-align: right;
+      font-weight: 600;
+    }
+
+    .report-empty {
+      padding: 24px;
+      text-align: center;
+      color: var(--text-muted, #6b7280);
+    }
+
+    .report-note {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--text-muted, #6b7280);
+    }
+
+    .report-section {
+      margin-top: 22px;
+    }
+
+    .report-chart {
+      position: relative;
+      height: 270px;
+    }
+
+    @media print {
+      @page {
+        size: A4 landscape;
+        margin: 12mm;
+      }
+
+      body {
+        background: #fff !important;
+        color: #111 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .sidebar,
+      .topbar,
+      .report-toolbar,
+      .page-actions,
+      .breadcrumb,
+      .report-status,
+      .no-print {
+        display: none !important;
+      }
+
+      .dashboard-layout,
+      .main-wrapper,
+      .content-wrapper {
+        display: block !important;
+        width: 100% !important;
+        max-width: none !important;
+        min-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        box-shadow: none !important;
+      }
+
+      .report-print-header {
+        display: block !important;
+        margin-bottom: 18px;
+      }
+
+      .report-print-header h1 {
+        margin: 0 0 6px;
+        font-size: 24px;
+      }
+
+      .report-print-header p {
+        margin: 0;
+        font-size: 11px;
+        color: #444;
+      }
+
+      .stats-grid {
+        display: grid !important;
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+        gap: 10px !important;
+      }
+
+      .grid-2 {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 12px !important;
+      }
+
+      .card,
+      .stat-card {
+        break-inside: avoid;
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+        background: #fff !important;
+      }
+
+      .report-chart {
+        height: 220px !important;
+      }
+
+      .report-table-wrap {
+        overflow: visible !important;
+      }
+
+      .report-table {
+        font-size: 9px !important;
+      }
+
+      .report-table th,
+      .report-table td {
+        padding: 6px !important;
+        white-space: normal !important;
+      }
+
+      .report-section {
+        margin-top: 14px;
+      }
+
+      .card-header,
+      .card-body {
+        padding: 10px !important;
+      }
+
+      a {
+        text-decoration: none !important;
+        color: inherit !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<div class="dashboard-layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <a href="dashboard.html" class="brand-link">
+        <div class="brand-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <div class="brand-text">Gym<span>Flow</span></div>
+      </a>
+      <button class="topbar-toggle sidebar-toggle-btn d-none">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+    <div class="sidebar-nav">
+      <div class="nav-section-title">Overview</div>
+      <div class="nav-item"><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i><span>Dashboard</span></a></div>
+
+      <div class="nav-section-title">Members & Club</div>
+      <div class="nav-item"><a href="branches.html" class="nav-link"><i class="fa-solid fa-network-wired"></i><span>Branches</span></a></div>
+      <div class="nav-item"><a href="members.html" class="nav-link"><i class="fa-solid fa-users"></i><span>Members</span></a></div>
+      <div class="nav-item"><a href="memberships.html" class="nav-link"><i class="fa-solid fa-id-card"></i><span>Memberships</span></a></div>
+      <div class="nav-item"><a href="membership-plans.html" class="nav-link"><i class="fa-solid fa-tags"></i><span>Plans</span></a></div>
+      <div class="nav-item"><a href="attendance.html" class="nav-link"><i class="fa-solid fa-id-card-clip"></i><span>Attendance Desk</span></a></div>
+
+      <div class="nav-section-title">Training & Classes</div>
+      <div class="nav-item"><a href="trainers.html" class="nav-link"><i class="fa-solid fa-user-ninja"></i><span>Trainers</span></a></div>
+      <div class="nav-item"><a href="classes.html" class="nav-link"><i class="fa-solid fa-calendar-days"></i><span>Classes & Timetable</span></a></div>
+      <div class="nav-item"><a href="class-bookings.html" class="nav-link"><i class="fa-solid fa-book-bookmark"></i><span>Class Bookings</span></a></div>
+      <div class="nav-item"><a href="workout-plans.html" class="nav-link"><i class="fa-solid fa-clipboard-list"></i><span>Workout Plans</span></a></div>
+
+      <div class="nav-section-title">Financials & Sales</div>
+      <div class="nav-item"><a href="payments.html" class="nav-link"><i class="fa-solid fa-credit-card"></i><span>Payments</span></a></div>
+      <div class="nav-item"><a href="invoices.html" class="nav-link"><i class="fa-solid fa-file-invoice-dollar"></i><span>Invoices</span></a></div>
+      <div class="nav-item"><a href="expenses.html" class="nav-link"><i class="fa-solid fa-receipt"></i><span>Expenses</span></a></div>
+      <div class="nav-item"><a href="leads.html" class="nav-link"><i class="fa-solid fa-user-plus"></i><span>Leads CRM</span></a></div>
+
+      <div class="nav-section-title">Operations</div>
+      <div class="nav-item"><a href="equipment.html" class="nav-link"><i class="fa-solid fa-dumbbell"></i><span>Equipment</span></a></div>
+      <div class="nav-item"><a href="maintenance.html" class="nav-link"><i class="fa-solid fa-screwdriver-wrench"></i><span>Maintenance</span></a></div>
+      <div class="nav-item"><a href="reports.html" class="nav-link active"><i class="fa-solid fa-chart-line"></i><span>Reports & Analytics</span></a></div>
+
+      <div class="nav-section-title">Administration</div>
+      <div class="nav-item"><a href="staff.html" class="nav-link"><i class="fa-solid fa-user-tie"></i><span>Staff Accounts</span></a></div>
+      <div class="nav-item"><a href="roles-permissions.html" class="nav-link"><i class="fa-solid fa-lock"></i><span>Roles & Access</span></a></div>
+      <div class="nav-item"><a href="notifications.html" class="nav-link"><i class="fa-solid fa-bell"></i><span>Notifications</span></a></div>
+      <div class="nav-item"><a href="support.html" class="nav-link"><i class="fa-solid fa-headset"></i><span>Support Helpdesk</span></a></div>
+      <div class="nav-item"><a href="settings.html" class="nav-link"><i class="fa-solid fa-gear"></i><span>Gym Settings</span></a></div>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm">
+          <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&h=100&fit=crop" alt="User" class="current-user-avatar">
+        </div>
+        <div class="sidebar-user-info">
+          <span class="sidebar-user-name current-user-name">Marcus Vance</span>
+          <span class="sidebar-user-role">Gym Admin</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <div class="main-wrapper">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="topbar-toggle sidebar-toggle-btn">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+
+      <div class="topbar-right">
+        <span class="role-indicator admin"><i class="fa-solid fa-building"></i> Gym Admin</span>
+        <button class="topbar-action-btn theme-toggle-btn"><i class="fa-solid fa-moon"></i></button>
+        <button class="topbar-action-btn" id="btn-notifications">
+          <i class="fa-solid fa-bell"></i><span class="action-badge"></span>
+        </button>
+
+        <div class="dropdown">
+          <button class="topbar-user-btn" data-dropdown-toggle>
+            <div class="avatar avatar-sm">
+              <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&h=100&fit=crop" class="current-user-avatar" alt="Avatar">
+            </div>
+            <div>
+              <div class="topbar-user-name current-user-name">Marcus Vance</div>
+              <div class="topbar-user-role">Gym Admin</div>
+            </div>
+            <i class="fa-solid fa-chevron-down" style="font-size:.75rem;color:var(--text-subtle)"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="settings.html" class="dropdown-item"><i class="fa-solid fa-gear"></i> Settings</a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item text-danger btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-wrapper">
+
+      <!-- Filters and actions -->
+      <div class="page-header no-print">
+        <div>
+          <div class="breadcrumb">
+            <a href="dashboard.html">Gym Admin</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Reports & Insights</span>
+          </div>
+          <h1 class="page-title">Executive Reports & Business Analytics</h1>
+          <p class="page-subtitle">Revenue, expenses, class occupancy, and attendance analytics.</p>
+        </div>
+      </div>
+
+      <div class="report-toolbar no-print">
+        <div class="report-filter">
+          <label for="report-period">Reporting period</label>
+          <select id="report-period">
+            <option value="today">Today</option>
+            <option value="last7">Last 7 days</option>
+            <option value="last30" selected>Last 30 days</option>
+            <option value="ytd">Year to date</option>
+            <option value="custom">Custom range</option>
+            <option value="all">All available dates</option>
+          </select>
+        </div>
+
+        <div class="report-filter" id="report-start-wrap" hidden>
+          <label for="report-start">Start date</label>
+          <input type="date" id="report-start">
+        </div>
+
+        <div class="report-filter" id="report-end-wrap" hidden>
+          <label for="report-end">End date</label>
+          <input type="date" id="report-end">
+        </div>
+
+        <div class="report-filter">
+          <label for="report-branch">Branch</label>
+          <select id="report-branch">
+            <option value="">All branches</option>
+          </select>
+        </div>
+
+        <div class="report-actions">
+          <button class="btn btn-outline" id="btn-apply-filters">
+            <i class="fa-solid fa-filter"></i> Apply filters
+          </button>
+          <button class="btn btn-outline" id="btn-reset-filters">
+            <i class="fa-solid fa-rotate-left"></i> Reset
+          </button>
+          <button class="btn btn-outline" id="btn-export-csv">
+            <i class="fa-solid fa-file-csv"></i> Export CSV
+          </button>
+          <button class="btn btn-primary" id="btn-print-report">
+            <i class="fa-solid fa-file-pdf"></i> Print / Save PDF
+          </button>
+        </div>
+      </div>
+
+      <p id="report-status" class="report-status" role="status" aria-live="polite">
+        Loading report data...
+      </p>
+
+      <!-- Everything inside this section is included in the PDF -->
+      <section id="report-print-area">
+
+        <div class="report-print-header">
+          <h1>GymFlow — Reports & Analytics</h1>
+          <p id="report-print-meta"></p>
+          <p id="report-generated-at"></p>
+        </div>
+
+        <!-- KPI cards -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-label">Gross Collections</span>
+              <span class="stat-icon green"><i class="fa-solid fa-cash-register"></i></span>
+            </div>
+            <div class="stat-value" id="kpi-revenue">₹0</div>
+            <div class="stat-meta"><span id="kpi-payment-count">0 successful payments</span></div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-label">Total Outflows</span>
+              <span class="stat-icon red"><i class="fa-solid fa-file-invoice-dollar"></i></span>
+            </div>
+            <div class="stat-value" id="kpi-expenses">₹0</div>
+            <div class="stat-meta"><span>Expenses in selected period</span></div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-label">Net Operating Result</span>
+              <span class="stat-icon green"><i class="fa-solid fa-wallet"></i></span>
+            </div>
+            <div class="stat-value" id="kpi-net">₹0</div>
+            <div class="stat-meta"><span id="kpi-margin">0% operating margin</span></div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-label">Class Seat Occupancy</span>
+              <span class="stat-icon purple"><i class="fa-solid fa-users"></i></span>
+            </div>
+            <div class="stat-value" id="kpi-occupancy">0%</div>
+            <div class="stat-meta"><span id="kpi-class-count">0 classes counted</span></div>
+          </div>
+        </div>
+
+        <!-- Charts -->
+        <div class="grid-2 report-section">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="fa-solid fa-chart-line text-accent"></i>
+                Revenue & Expenses
+              </h3>
+            </div>
+            <div class="card-body">
+              <div class="report-chart">
+                <canvas id="chart-report-revenue"></canvas>
+              </div>
+              <p class="report-note">Monthly totals based on the selected date and branch filters.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="fa-solid fa-chart-column text-electric"></i>
+                Weekly Attendance
+              </h3>
+            </div>
+            <div class="card-body">
+              <div class="report-chart">
+                <canvas id="chart-report-attendance"></canvas>
+              </div>
+              <p class="report-note">Check-in records grouped by weekday. Missing attendance data is not estimated.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Financial activity -->
+        <div class="card report-section">
+          <div class="card-header">
+            <h3 class="card-title">
+              <i class="fa-solid fa-list"></i> Recent Financial Activity
+            </h3>
+          </div>
+          <div class="card-body">
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Reference / Description</th>
+                    <th>Status</th>
+                    <th class="amount">Amount</th>
+                  </tr>
+                </thead>
+                <tbody id="report-activity-body">
+                  <tr><td colspan="5" class="report-empty">Loading records...</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="report-note" id="report-activity-note">
+              The table shows up to 30 recent records. CSV export includes all filtered financial records.
+            </p>
+          </div>
+        </div>
+
+      </section>
+    </main>
+  </div>
+</div>
+
+<!-- Existing GymFlow scripts -->
+<script src="../assets/js/mock-data.js"></script>
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/charts.js"></script>
+<script src="../assets/js/navigation.js"></script>
+<script src="../assets/js/app.js"></script>
+
+<script>
+(() => {
+  'use strict';
+
+  const $ = (id) => document.getElementById(id);
+
+  const state = {
+    payments: [],
+    expenses: [],
+    classes: [],
+    attendance: [],
+    branches: [],
+    filteredPayments: [],
+    filteredExpenses: [],
+    filteredClasses: [],
+    filteredAttendance: [],
+    revenueChart: null,
+    attendanceChart: null,
+    startDate: '',
+    endDate: '',
+    branchId: '',
+    periodLabel: 'Last 30 days'
+  };
+
+  const moneyFormatter = new Intl.NumberFormat('en-IN', {
+    style: 'currency',
+    currency: 'INR',
+    maximumFractionDigits: 2
+  });
+
+  function money(value) {
+    return moneyFormatter.format(Number(value) || 0);
+  }
+
+  function escapeHTML(value) {
+    return String(value ?? '').replace(/[&<>"']/g, (char) => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;'
+    })[char]);
+  }
+
+  function firstValue(record, keys, fallback = '') {
+    for (const key of keys) {
+      if (record && record[key] !== undefined && record[key] !== null && record[key] !== '') {
+        return record[key];
+      }
+    }
+    return fallback;
+  }
+
+  function toNumber(value) {
+    if (typeof value === 'number') {
+      return Number.isFinite(value) ? value : 0;
+    }
+
+    if (value === null || value === undefined || value === '') {
+      return 0;
+    }
+
+    const parsed = Number(String(value).replace(/[₹,\s]/g, ''));
+    return Number.isFinite(parsed) ? parsed : 0;
+  }
+
+  function localDateString(date = new Date()) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
+  function parseDate(value) {
+    if (!value) return null;
+
+    // ISO date strings are compared using their date portion to avoid
+    // shifting a date because of UTC/local timezone conversion.
+    const stringValue = String(value);
+    const match = stringValue.match(/^(\d{4}-\d{2}-\d{2})/);
+
+    if (match) {
+      const [year, month, day] = match[1].split('-').map(Number);
+      const date = new Date(year, month - 1, day);
+      return Number.isNaN(date.getTime()) ? null : date;
+    }
+
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return null;
+
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  }
+
+  function dateKey(record, keys = ['date', 'paymentDate', 'createdAt', 'created_at', 'expenseDate', 'checkInDate', 'checkInTime']) {
+    const value = firstValue(record, keys, '');
+    if (!value) return '';
+    const parsed = parseDate(value);
+    return parsed ? localDateString(parsed) : '';
+  }
+
+  function getGymId() {
+    // Try common authentication shapes. If your Auth API uses another
+    // method, update this function to return the logged-in admin's gym ID.
+    try {
+      if (window.Auth) {
+        const user =
+          (typeof Auth.getCurrentUser === 'function' && Auth.getCurrentUser()) ||
+          (typeof Auth.getUser === 'function' && Auth.getUser()) ||
+          Auth.currentUser ||
+          Auth.user;
+
+        if (user) {
+          const id = firstValue(user, ['gymId', 'gym_id', 'organizationId', 'organization_id'], '');
+          if (id !== '') return id;
+        }
+      }
+    } catch (error) {
+      console.warn('Could not resolve gym ID from Auth:', error);
+    }
+
+    // Fallback for projects that store the logged-in user in localStorage.
+    try {
+      for (const key of ['currentUser', 'gymflow_user', 'user', 'authUser']) {
+        const raw = localStorage.getItem(key);
+        if (!raw) continue;
+
+        const user = JSON.parse(raw);
+        const id = firstValue(user, ['gymId', 'gym_id', 'organizationId', 'organization_id'], '');
+        if (id !== '') return id;
+      }
+    } catch (error) {
+      console.warn('Could not resolve gym ID from localStorage:', error);
+    }
+
+    return '';
+  }
+
+  function normalizeRows(result) {
+    if (Array.isArray(result)) return result;
+    if (result && Array.isArray(result.data)) return result.data;
+    if (result && Array.isArray(result.records)) return result.records;
+    return [];
+  }
+
+  function readTable(tableName) {
+    if (!window.GymFlowDB || typeof GymFlowDB.get !== 'function') {
+      console.warn('GymFlowDB.get is not available.');
+      return [];
+    }
+
+    const gymId = getGymId();
+
+    try {
+      const result = gymId !== ''
+        ? GymFlowDB.get(tableName, { gymId })
+        : GymFlowDB.get(tableName);
+
+      return normalizeRows(result);
+    } catch (error) {
+      console.warn(`Could not read "${tableName}" from GymFlowDB:`, error);
+      return [];
+    }
+  }
+
+  function getBranchId(record) {
+    return String(firstValue(record, [
+      'branchId', 'branch_id', 'gymBranchId', 'gym_branch_id'
+    ], ''));
+  }
+
+  function getAmount(record) {
+    return toNumber(firstValue(record, [
+      'amount', 'totalAmount', 'total_amount', 'price', 'cost', 'paidAmount', 'paid_amount'
+    ], 0));
+  }
+
+  function getStatus(record) {
+    return String(firstValue(record, [
+      'status', 'paymentStatus', 'payment_status', 'state'
+    ], '')).trim().toLowerCase();
+  }
+
+  function isSuccessfulPayment(record) {
+    const status = getStatus(record);
+
+    // If the record has no status field, include it as a legacy record.
+    // Update this rule if your database uses a different payment status.
+    if (!status) return true;
+
+    return [
+      'paid', 'success', 'successful', 'completed', 'settled',
+      'captured', 'approved'
+    ].includes(status);
+  }
+
+  function getPaymentDate(record) {
+    return dateKey(record, [
+      'paymentDate', 'payment_date', 'date', 'createdAt', 'created_at',
+      'paidAt', 'paid_at', 'transactionDate', 'transaction_date'
+    ]);
+  }
+
+  function getExpenseDate(record) {
+    return dateKey(record, [
+      'expenseDate', 'expense_date', 'date', 'createdAt', 'created_at'
+    ]);
+  }
+
+  function getAttendanceDate(record) {
+    return dateKey(record, [
+      'checkInDate', 'check_in_date', 'date', 'checkInTime',
+      'check_in_time', 'createdAt', 'created_at'
+    ]);
+  }
+
+  function getClassCapacity(record) {
+    return Math.max(0, toNumber(firstValue(record, [
+      'capacity', 'maxCapacity', 'max_capacity', 'seatCapacity', 'seat_capacity'
+    ], 0)));
+  }
+
+  function getClassBookedCount(record) {
+    const directCount = firstValue(record, [
+      'bookedCount', 'booked_count', 'bookingsCount', 'bookings_count',
+      'enrolledCount', 'enrolled_count', 'currentBookings'
+    ], null);
+
+    if (directCount !== null) return Math.max(0, toNumber(directCount));
+
+    // If bookings are stored separately, count those belonging to this class.
+    const classId = firstValue(record, ['id', 'classId', 'class_id'], '');
+    if (classId === '') return 0;
+
+    const bookings = readTable('classBookings');
+    return bookings.filter((booking) => {
+      const bookingClassId = String(firstValue(booking, ['classId', 'class_id'], ''));
+      const status = String(firstValue(booking, ['status'], 'confirmed')).toLowerCase();
+
+      return bookingClassId === String(classId) &&
+        !['cancelled', 'canceled', 'rejected', 'failed'].includes(status);
+    }).length;
+  }
+
+  function getBranchName(branchId) {
+    const branch = state.branches.find((item) =>
+      String(firstValue(item, ['id', 'branchId', 'branch_id'], '')) === String(branchId)
+    );
+
+    return branch
+      ? String(firstValue(branch, ['name', 'branchName', 'branch_name', 'title'], branchId))
+      : (branchId ? String(branchId) : 'Unassigned');
+  }
+
+  function loadData() {
+    state.payments = readTable('payments');
+    state.expenses = readTable('expenses');
+    state.classes = readTable('classes');
+    state.branches = readTable('branches');
+
+    // A missing attendance table is treated as no attendance data.
+    state.attendance = readTable('attendance');
+
+    populateBranchFilter();
+  }
+
+  function populateBranchFilter() {
+    const select = $('report-branch');
+    const currentValue = select.value;
+
+    const options = state.branches.map((branch) => {
+      const id = firstValue(branch, ['id', 'branchId', 'branch_id'], '');
+      const name = firstValue(branch, ['name', 'branchName', 'branch_name', 'title'], id);
+
+      if (id === '') return '';
+
+      return `<option value="${escapeHTML(id)}">${escapeHTML(name)}</option>`;
+    }).filter(Boolean);
+
+    select.innerHTML = '<option value="">All branches</option>' + options.join('');
+
+    if ([...select.options].some((option) => option.value === currentValue)) {
+      select.value = currentValue;
+    }
+  }
+
+  function getSelectedDateRange() {
+    const period = $('report-period').value;
+    const today = new Date();
+    const todayKey = localDateString(today);
+
+    let start = '';
+    let end = todayKey;
+    let label = '';
+
+    if (period === 'today') {
+      start = todayKey;
+      label = 'Today';
+    } else if (period === 'last7') {
+      const date = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 6);
+      start = localDateString(date);
+      label = 'Last 7 days';
+    } else if (period === 'last30') {
+      const date = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 29);
+      start = localDateString(date);
+      label = 'Last 30 days';
+    } else if (period === 'ytd') {
+      start = `${today.getFullYear()}-01-01`;
+      label = 'Year to date';
+    } else if (period === 'custom') {
+      start = $('report-start').value;
+      end = $('report-end').value;
+      label = start || end
+        ? `${start || 'Beginning'} to ${end || 'Today'}`
+        : 'Custom date range';
+    } else {
+      start = '';
+      end = '';
+      label = 'All available dates';
+    }
+
+    if (period !== 'all' && period !== 'custom') {
+      $('report-start').value = start;
+      $('report-end').value = end;
+    }
+
+    return { start, end, label, period };
+  }
+
+  function isWithinDateRange(recordDate, start, end) {
+    // Without a usable date, a record cannot be reliably assigned to a
+    // date-filtered report.
+    if (!recordDate) return !start && !end;
+    if (start && recordDate < start) return false;
+    if (end && recordDate > end) return false;
+    return true;
+  }
+
+  function matchesBranch(record, branchId) {
+    if (!branchId) return true;
+    return getBranchId(record) === String(branchId);
+  }
+
+  function filterRecords(records, getDate) {
+    return records.filter((record) => {
+      return isWithinDateRange(getDate(record), state.startDate, state.endDate) &&
+        matchesBranch(record, state.branchId);
+    });
+  }
+
+  function getFilteredClassRecords() {
+    return filterRecords(state.classes, (record) => dateKey(record, [
+      'classDate', 'class_date', 'date', 'scheduledDate', 'scheduled_date'
+    ]));
+  }
+
+  function calculateOccupancy(classes) {
+    let capacityTotal = 0;
+    let bookedTotal = 0;
+    let countedClasses = 0;
+
+    classes.forEach((item) => {
+      const capacity = getClassCapacity(item);
+      if (capacity <= 0) return;
+
+      const booked = getClassBookedCount(item);
+      capacityTotal += capacity;
+      bookedTotal += booked;
+      countedClasses += 1;
+    });
+
+    return {
+      percentage: capacityTotal > 0
+        ? Math.min(100, (bookedTotal / capacityTotal) * 100)
+        : 0,
+      capacity: capacityTotal,
+      booked: bookedTotal,
+      countedClasses
+    };
+  }
+
+  function updateKPIs() {
+    const successfulPayments = state.filteredPayments.filter(isSuccessfulPayment);
+    const revenue = successfulPayments.reduce((sum, item) => sum + getAmount(item), 0);
+    const expenses = state.filteredExpenses.reduce((sum, item) => sum + getAmount(item), 0);
+    const net = revenue - expenses;
+    const margin = revenue > 0 ? (net / revenue) * 100 : 0;
+    const occupancy = calculateOccupancy(state.filteredClasses);
+
+    $('kpi-revenue').textContent = money(revenue);
+    $('kpi-payment-count').textContent =
+      `${successfulPayments.length} successful payment${successfulPayments.length === 1 ? '' : 's'}`;
+
+    $('kpi-expenses').textContent = money(expenses);
+    $('kpi-net').textContent = money(net);
+    $('kpi-margin').textContent = `${margin.toFixed(1)}% operating margin`;
+
+    $('kpi-occupancy').textContent = `${occupancy.percentage.toFixed(1)}%`;
+    $('kpi-class-count').textContent =
+      `${occupancy.countedClasses} class${occupancy.countedClasses === 1 ? '' : 'es'} with capacity data`;
+
+    return { revenue, expenses, net, margin, occupancy, successfulPayments };
+  }
+
+  function monthLabel(key) {
+    const [year, month] = key.split('-').map(Number);
+    return new Date(year, month - 1, 1).toLocaleDateString('en-IN', {
+      month: 'short',
+      year: '2-digit'
+    });
+  }
+
+  function buildMonthlyFinancialData() {
+    const totals = new Map();
+
+    function ensureMonth(key) {
+      if (!totals.has(key)) {
+        totals.set(key, { revenue: 0, expenses: 0 });
+      }
+      return totals.get(key);
+    }
+
+    state.filteredPayments.filter(isSuccessfulPayment).forEach((payment) => {
+      const date = getPaymentDate(payment);
+      if (!date) return;
+      const bucket = ensureMonth(date.slice(0, 7));
+      bucket.revenue += getAmount(payment);
+    });
+
+    state.filteredExpenses.forEach((expense) => {
+      const date = getExpenseDate(expense);
+      if (!date) return;
+      const bucket = ensureMonth(date.slice(0, 7));
+      bucket.expenses += getAmount(expense);
+    });
+
+    // Keep an empty chart meaningful without inventing values.
+    if (totals.size === 0) {
+      const todayKey = localDateString().slice(0, 7);
+      ensureMonth(todayKey);
+    }
+
+    const keys = [...totals.keys()].sort();
+
+    return {
+      labels: keys.map(monthLabel),
+      revenue: keys.map((key) => totals.get(key).revenue),
+      expenses: keys.map((key) => totals.get(key).expenses)
+    };
+  }
+
+  function buildAttendanceData() {
+    const labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    const values = [0, 0, 0, 0, 0, 0, 0];
+
+    state.filteredAttendance.forEach((record) => {
+      const key = getAttendanceDate(record);
+      if (!key) return;
+
+      const date = parseDate(key);
+      if (!date) return;
+
+      // JavaScript: Sunday=0. Convert to Monday=0.
+      const index = (date.getDay() + 6) % 7;
+      values[index] += 1;
+    });
+
+    return { labels, values };
+  }
+
+  function renderCharts() {
+    if (typeof Chart === 'undefined') {
+      $('report-status').textContent =
+        'Chart.js could not be loaded. Check your internet connection or Chart.js script.';
+      return;
+    }
+
+    const financial = buildMonthlyFinancialData();
+    const attendance = buildAttendanceData();
+
+    if (state.revenueChart) state.revenueChart.destroy();
+    if (state.attendanceChart) state.attendanceChart.destroy();
+
+    state.revenueChart = new Chart($('chart-report-revenue'), {
+      type: 'line',
+      data: {
+        labels: financial.labels,
+        datasets: [
+          {
+            label: 'Gross Collections',
+            data: financial.revenue,
+            borderColor: '#16a34a',
+            backgroundColor: 'rgba(22, 163, 74, 0.12)',
+            fill: true,
+            tension: 0.3,
+            pointRadius: 3
+          },
+          {
+            label: 'Expenses',
+            data: financial.expenses,
+            borderColor: '#dc2626',
+            backgroundColor: 'rgba(220, 38, 38, 0.08)',
+            fill: false,
+            tension: 0.3,
+            pointRadius: 3
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { intersect: false, mode: 'index' },
+        plugins: {
+          legend: { position: 'bottom' },
+          tooltip: {
+            callbacks: {
+              label: (context) => `${context.dataset.label}: ${money(context.raw)}`
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              callback: (value) => '₹' + Number(value).toLocaleString('en-IN')
+            }
+          }
+        }
+      }
+    });
+
+    state.attendanceChart = new Chart($('chart-report-attendance'), {
+      type: 'bar',
+      data: {
+        labels: attendance.labels,
+        datasets: [{
+          label: 'Check-ins',
+          data: attendance.values,
+          backgroundColor: '#8b5cf6',
+          borderRadius: 5,
+          maxBarThickness: 38
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: (context) => `${context.raw} check-in${context.raw === 1 ? '' : 's'}`
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: { precision: 0 }
+          }
+        }
+      }
+    });
+  }
+
+  function renderActivityTable() {
+    const rows = [];
+
+    state.filteredPayments.forEach((payment) => {
+      rows.push({
+        date: getPaymentDate(payment),
+        type: 'Payment',
+        description: firstValue(payment, [
+          'invoiceNumber', 'invoice_number', 'transactionId',
+          'transaction_id', 'reference', 'description', 'id'
+        ], 'Payment'),
+        status: getStatus(payment) || 'Not specified',
+        amount: getAmount(payment),
+        branchId: getBranchId(payment)
+      });
+    });
+
+    state.filteredExpenses.forEach((expense) => {
+      rows.push({
+        date: getExpenseDate(expense),
+        type: 'Expense',
+        description: firstValue(expense, [
+          'title', 'description', 'category', 'expenseType', 'expense_type', 'id'
+        ], 'Expense'),
+        status: String(firstValue(expense, ['status'], 'Recorded')),
+        amount: getAmount(expense),
+        branchId: getBranchId(expense)
+      });
+    });
+
+    rows.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+
+    const tbody = $('report-activity-body');
+    const visibleRows = rows.slice(0, 30);
+
+    if (!visibleRows.length) {
+      tbody.innerHTML =
+        '<tr><td colspan="5" class="report-empty">No financial records found for the selected filters.</td></tr>';
+      $('report-activity-note').textContent =
+        'No matching financial records were found. Try changing the date range or branch.';
+      return;
+    }
+
+    tbody.innerHTML = visibleRows.map((row) => `
+      <tr>
+        <td>${escapeHTML(row.date || 'No date')}</td>
+        <td>${escapeHTML(row.type)}</td>
+        <td>
+          ${escapeHTML(row.description)}
+          <div class="report-note">${escapeHTML(getBranchName(row.branchId))}</div>
+        </td>
+        <td>${escapeHTML(row.status)}</td>
+        <td class="amount">${escapeHTML(money(row.amount))}</td>
+      </tr>
+    `).join('');
+
+    $('report-activity-note').textContent =
+      `Showing ${visibleRows.length} of ${rows.length} matching financial records. CSV export includes all filtered financial records.`;
+  }
+
+  function updateReportMeta() {
+    const branchName = state.branchId
+      ? getBranchName(state.branchId)
+      : 'All branches';
+
+    const start = state.startDate || 'Earliest available';
+    const end = state.endDate || 'Latest available';
+
+    const meta = `Period: ${state.periodLabel} (${start} to ${end}) | Branch: ${branchName}`;
+
+    $('report-print-meta').textContent = meta;
+    $('report-generated-at').textContent =
+      `Generated on ${new Date().toLocaleString('en-IN')}`;
+  }
+
+  function applyReportFilters() {
+    const range = getSelectedDateRange();
+
+    if (range.start && range.end && range.start > range.end) {
+      $('report-status').textContent = 'Start date cannot be later than the end date.';
+      return;
+    }
+
+    state.startDate = range.start;
+    state.endDate = range.end;
+    state.periodLabel = range.label;
+    state.branchId = $('report-branch').value;
+
+    state.filteredPayments = filterRecords(state.payments, getPaymentDate);
+    state.filteredExpenses = filterRecords(state.expenses, getExpenseDate);
+    state.filteredClasses = getFilteredClassRecords();
+    state.filteredAttendance = filterRecords(state.attendance, getAttendanceDate);
+
+    const kpis = updateKPIs();
+    renderCharts();
+    renderActivityTable();
+    updateReportMeta();
+
+    const dateText = state.startDate || state.endDate
+      ? `${state.startDate || 'earliest'} to ${state.endDate || 'latest'}`
+      : 'all available dates';
+
+    const branchText = state.branchId
+      ? getBranchName(state.branchId)
+      : 'all branches';
+
+    $('report-status').textContent =
+      `Report updated: ${dateText}, ${branchText}. ` +
+      `${state.filteredPayments.length} payment records, ` +
+      `${state.filteredExpenses.length} expense records. ` +
+      (state.filteredAttendance.length
+        ? `${state.filteredAttendance.length} attendance records found.`
+        : 'No attendance records found for this selection.');
+
+    // Keep the KPI result referenced for debugging if needed.
+    console.debug('GymFlow report totals:', kpis);
+  }
+
+  function resetFilters() {
+    $('report-period').value = 'last30';
+    $('report-branch').value = '';
+    $('report-start').value = '';
+    $('report-end').value = '';
+    toggleCustomDates();
+    applyReportFilters();
+  }
+
+  function toggleCustomDates() {
+    const isCustom = $('report-period').value === 'custom';
+    $('report-start-wrap').hidden = !isCustom;
+    $('report-end-wrap').hidden = !isCustom;
+  }
+
+  function csvCell(value) {
+    const stringValue = String(value ?? '');
+    return '"' + stringValue.replace(/"/g, '""') + '"';
+  }
+
+  function downloadCsv(filename, rows) {
+    const csv = '\uFEFF' + rows.map((row) => row.map(csvCell).join(',')).join('\r\n');
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  function exportAnalyticsCsv() {
+    const successfulPayments = state.filteredPayments.filter(isSuccessfulPayment);
+    const revenue = successfulPayments.reduce((sum, item) => sum + getAmount(item), 0);
+    const expenses = state.filteredExpenses.reduce((sum, item) => sum + getAmount(item), 0);
+    const net = revenue - expenses;
+
+    const rows = [
+      ['GymFlow Reports & Analytics'],
+      ['Period', state.periodLabel],
+      ['Start date', state.startDate || 'Earliest available'],
+      ['End date', state.endDate || 'Latest available'],
+      ['Branch', state.branchId ? getBranchName(state.branchId) : 'All branches'],
+      ['Generated at', new Date().toLocaleString('en-IN')],
+      [],
+      ['Summary metric', 'Value'],
+      ['Gross collections (successful payments only)', revenue],
+      ['Total expenses', expenses],
+      ['Net operating result', net],
+      ['Operating margin (%)', revenue > 0 ? ((net / revenue) * 100).toFixed(2) : 0],
+      [],
+      ['Type', 'Date', 'Reference / Description', 'Status', 'Branch', 'Amount (INR)']
+    ];
+
+    state.filteredPayments.forEach((payment) => {
+      rows.push([
+        'Payment',
+        getPaymentDate(payment),
+        firstValue(payment, [
+          'invoiceNumber', 'invoice_number', 'transactionId',
+          'transaction_id', 'reference', 'description', 'id'
+        ], 'Payment'),
+        getStatus(payment) || 'Not specified',
+        getBranchName(getBranchId(payment)),
+        getAmount(payment)
+      ]);
+    });
+
+    state.filteredExpenses.forEach((expense) => {
+      rows.push([
+        'Expense',
+        getExpenseDate(expense),
+        firstValue(expense, [
+          'title', 'description', 'category', 'expenseType', 'expense_type', 'id'
+        ], 'Expense'),
+        String(firstValue(expense, ['status'], 'Recorded')),
+        getBranchName(getBranchId(expense)),
+        getAmount(expense)
+      ]);
+    });
+
+    downloadCsv('gymflow-analytics-report.csv', rows);
+  }
+
+  function printAnalyticsReport() {
+    updateReportMeta();
+
+    // Let Chart.js resize its canvases before the browser print dialog opens.
+    if (state.revenueChart) state.revenueChart.resize();
+    if (state.attendanceChart) state.attendanceChart.resize();
+
+    window.print();
+  }
+
+  function initialize() {
+    loadData();
+    toggleCustomDates();
+
+    $('report-period').addEventListener('change', () => {
+      toggleCustomDates();
+
+      if ($('report-period').value !== 'custom') {
+        applyReportFilters();
+      }
+    });
+
+    $('btn-apply-filters').addEventListener('click', applyReportFilters);
+    $('btn-reset-filters').addEventListener('click', resetFilters);
+    $('btn-export-csv').addEventListener('click', exportAnalyticsCsv);
+    $('btn-print-report').addEventListener('click', printAnalyticsReport);
+
+    $('report-start').addEventListener('change', () => {
+      if ($('report-period').value === 'custom') applyReportFilters();
+    });
+
+    $('report-end').addEventListener('change', () => {
+      if ($('report-period').value === 'custom') applyReportFilters();
+    });
+
+    $('report-branch').addEventListener('change', applyReportFilters);
+
+    applyReportFilters();
+  }
+
+  // Preserve the global function name if another existing element or script
+  // calls exportAnalyticsCsv().
+  window.exportAnalyticsCsv = exportAnalyticsCsv;
+
+  document.addEventListener('DOMContentLoaded', initialize);
+})();
+</script>
+</body>
+</html>

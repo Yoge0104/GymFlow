@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Membership Plans & Upgrade — Member Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <a href="dashboard.html" class="brand-link">
+        <div class="brand-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <div class="brand-text">Gym<span>Flow</span></div>
+      </a>
+      <button class="topbar-toggle sidebar-toggle-btn d-none"><i class="fa-solid fa-bars"></i></button>
+    </div>
+    <div class="sidebar-nav">
+      <div class="nav-section-title">Overview</div>
+      <div class="nav-item"><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a></div>
+      
+      <div class="nav-section-title">Fitness & Training</div>
+      <div class="nav-item"><a href="workout-plan.html" class="nav-link"><i class="fa-solid fa-clipboard-list"></i><span>Workout Plan</span></a></div>
+      <div class="nav-item"><a href="classes.html" class="nav-link"><i class="fa-solid fa-calendar-days"></i><span>Classes & Timetable</span></a></div>
+      <div class="nav-item"><a href="my-bookings.html" class="nav-link"><i class="fa-solid fa-bookmark"></i><span>My Bookings</span></a></div>
+      <div class="nav-item"><a href="progress.html" class="nav-link"><i class="fa-solid fa-chart-line"></i><span>Body Progress</span></a></div>
+      <div class="nav-item"><a href="attendance.html" class="nav-link"><i class="fa-solid fa-clock-rotate-left"></i><span>Attendance History</span></a></div>
+      
+      <div class="nav-section-title">Membership & Billing</div>
+      <div class="nav-item"><a href="my-membership.html" class="nav-link"><i class="fa-solid fa-id-card"></i><span>My Membership</span></a></div>
+      <div class="nav-item"><a href="plans.html" class="nav-link active"><i class="fa-solid fa-tags"></i><span>Plans & Upgrade</span></a></div>
+      <div class="nav-item"><a href="payments.html" class="nav-link"><i class="fa-solid fa-credit-card"></i><span>Billing & Receipts</span></a></div>
+      
+      <div class="nav-section-title">Account & Support</div>
+      <div class="nav-item"><a href="my-profile.html" class="nav-link"><i class="fa-solid fa-user"></i><span>My Profile</span></a></div>
+      <div class="nav-item"><a href="notifications.html" class="nav-link"><i class="fa-solid fa-bell"></i><span>Notifications</span></a></div>
+      <div class="nav-item"><a href="support.html" class="nav-link"><i class="fa-solid fa-headset"></i><span>Member Support</span></a></div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop" alt="Member" class="current-user-avatar"></div>
+        <div class="sidebar-user-info"><span class="sidebar-user-name current-user-name">Alex Morgan</span><span class="sidebar-user-role">IronPulse Member</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main-wrapper">
+    <header class="topbar">
+      <div class="topbar-left"><button class="topbar-toggle sidebar-toggle-btn"><i class="fa-solid fa-bars"></i></button></div>
+      <div class="topbar-right">
+        <span class="role-indicator member" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); font-weight: 600; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem;">
+          <i class="fa-solid fa-person-running"></i> Gym Member
+        </span>
+        <button class="topbar-action-btn theme-toggle-btn"><i class="fa-solid fa-moon"></i></button>
+        <a href="notifications.html" class="topbar-action-btn" id="btn-notifications"><i class="fa-solid fa-bell"></i><span class="action-badge"></span></a>
+        <div class="dropdown">
+          <button class="topbar-user-btn" data-dropdown-toggle>
+            <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop" class="current-user-avatar" alt="Avatar"></div>
+            <div><div class="topbar-user-name current-user-name">Alex Morgan</div><div class="topbar-user-role">IronPulse Member</div></div>
+            <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; color: var(--text-subtle);"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="my-profile.html" class="dropdown-item"><i class="fa-solid fa-user"></i> My Profile</a>
+            <a href="my-membership.html" class="dropdown-item"><i class="fa-solid fa-id-card"></i> Membership</a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item text-danger btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+<<<<<<< HEAD
+    <main class="content-wrapper member-plans-page">
+
+    <div class="page-header">
+        <div>
+            <div class="breadcrumb">
+                <a href="dashboard.html">Member Portal</a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">Gym Plans</span>
+            </div>
+
+            <h1 class="page-title">Gym Membership Options</h1>
+
+            <p class="page-subtitle">
+                Compare club membership plans and easily upgrade or adjust your subscription.
+            </p>
+        </div>
+    </div>
+
+    <!-- Keep your existing search, filters, plan cards and FAQ sections here -->
+
+
+
+      <!-- Search, Filter & Sort Toolbar -->
+<div class="card member-plan-toolbar">
+
+    <!-- Search Input -->
+    <div class="plan-search">
+        <label for="member-plan-search" class="plan-toolbar-label">
+            Search Membership Plans
+        </label>
+
+        <div class="plan-search-input">
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="member-plan-search"
+                class="form-control"
+                placeholder="Search plan name or perks..."
+                oninput="filterMemberPlans()"
+            >
+        </div>
+    </div>
+
+    <!-- Filters and Sorting -->
+    <div class="plan-filters">
+
+        <div class="plan-filter-group">
+            <label for="member-plan-filter-duration" class="plan-toolbar-label">
+                Billing Frequency
+            </label>
+
+            <select
+                id="member-plan-filter-duration"
+                class="form-select"
+                onchange="filterMemberPlans()"
+            >
+                <option value="">All Frequencies</option>
+            </select>
+        </div>
+
+        <div class="plan-filter-group">
+            <label for="member-plan-filter-price" class="plan-toolbar-label">
+                Price Range
+            </label>
+
+            <select
+                id="member-plan-filter-price"
+                class="form-select"
+                onchange="filterMemberPlans()"
+            >
+                <option value="">All Price Tiers</option>
+                <option value="0-50">Under ₹50</option>
+                <option value="50-150">₹50 - ₹150</option>
+                <option value="150+">₹150 & Above</option>
+            </select>
+        </div>
+
+        <div class="plan-filter-group">
+            <label for="member-plan-sort" class="plan-toolbar-label">
+                Sort By
+            </label>
+
+            <select
+                id="member-plan-sort"
+                class="form-select"
+                onchange="filterMemberPlans()"
+            >
+                <option value="price_asc">Price: Lowest First</option>
+                <option value="price_desc">Price: Highest First</option>
+                <option value="duration_desc">Duration: Longest</option>
+                <option value="name_asc">Name: A–Z</option>
+            </select>
+        </div>
+
+        <!-- Reset Filters -->
+        <div class="plan-reset-group">
+            <span class="plan-toolbar-label">Actions</span>
+
+            <button
+                type="button"
+                class="btn btn-outline plan-reset-btn"
+                onclick="resetMemberPlanFilters()"
+                title="Reset all filters"
+            >
+                <i class="fa-solid fa-arrow-rotate-left"></i>
+                Reset Filters
+            </button>
+        </div>
+
+    </div>
+</div>
+=======
+    <main class="content-wrapper">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">
+            <a href="dashboard.html">Member Portal</a>
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">
+            <a href="dashboard.html">Member Portal</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Gym Plans</span>
+          </div>
+          <h1 class="page-title">Gym Membership Options</h1>
+          <p class="page-subtitle">Compare club membership plans and easily upgrade or adjust your subscription.</p>
+        </div>
+      </div>
+
+      <!-- Search, Filter & Sort Toolbar -->
+      <div class="card" style="margin-bottom: 1.5rem; padding: 1rem 1.25rem;">
+        <div style="display: flex; gap: 1rem; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+          <div style="position: relative; flex: 1; min-width: 240px; max-width: 340px;">
+            <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none;"></i>
+            <input type="text" id="member-plan-search" class="form-control" placeholder="Search plan name or perks..." style="padding-left: 38px;" oninput="filterMemberPlans()">
+          </div>
+
+          <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+            <!-- Duration / Billing Frequency -->
+            <select id="member-plan-filter-duration" class="form-select" style="min-width: 140px;" onchange="filterMemberPlans()">
+              <option value="">All Frequencies</option>
+            </select>
+
+            <!-- Price Tier -->
+            <select id="member-plan-filter-price" class="form-select" style="min-width: 140px;" onchange="filterMemberPlans()">
+              <option value="">All Price Tiers</option>
+              <option value="0-50">Under ₹50</option>
+              <option value="50-150">₹50 - ₹150</option>
+              <option value="150+">₹150 & Above</option>
+            </select>
+
+            <!-- Sort By -->
+            <select id="member-plan-sort" class="form-select" style="min-width: 160px;" onchange="filterMemberPlans()">
+              <option value="price_asc">Price (Lowest First)</option>
+              <option value="price_desc">Price (Highest First)</option>
+              <option value="duration_desc">Duration (Longest)</option>
+              <option value="name_asc">Name (A-Z)</option>
+            </select>
+
+            <!-- Reset Button -->
+            <button type="button" class="btn btn-outline btn-sm" onclick="resetMemberPlanFilters()" title="Reset all filters">
+              <i class="fa-solid fa-arrow-rotate-left"></i> Reset
+            </button>
+          </div>
+        </div>
+      </div>
+>>>>>>> d832a2791cfbe3530142912a0522d7e539f037e8
+      <!-- Plan Cards Grid -->
+      <div class="pricing-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;" id="plans-container">
+        <!-- Rendered via JS -->
+      </div>
+
+      <!-- FAQ Section -->
+      <div class="card" style="margin-top: 2rem;">
+        <div class="card-header">
+          <h3 class="card-title"><i class="fa-solid fa-circle-question text-accent"></i> Membership FAQs</h3>
+        </div>
+        <div class="card-body">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+            <div>
+              <h4 style="font-size: 0.95rem; margin-bottom: 0.25rem;">How does upgrading work?</h4>
+              <p class="text-xs text-muted">When you upgrade mid-cycle, your remaining balance is pro-rated and applied immediately as a discount toward your new tier.</p>
+            </div>
+            <div>
+              <h4 style="font-size: 0.95rem; margin-bottom: 0.25rem;">Can I switch between monthly and annual?</h4>
+              <p class="text-xs text-muted">Yes, switching to annual saves you up to 20% compared to monthly dues and includes extra perks like free guest passes.</p>
+            </div>
+            <div>
+              <h4 style="font-size: 0.95rem; margin-bottom: 0.25rem;">Are there cancellation fees?</h4>
+              <p class="text-xs text-muted">No contracts or hidden cancellation fees. You can cancel your renewal anytime with 30 days notice before the next billing cycle.</p>
+            </div>
+            <div>
+              <h4 style="font-size: 0.95rem; margin-bottom: 0.25rem;">Does my keycard change?</h4>
+              <p class="text-xs text-muted">No, your existing keycard and digital app QR code will automatically unlock upgraded amenities (such as 24/7 branch doors or recovery lounge).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- Modal: Confirm Plan Upgrade -->
+<div class="modal-backdrop" id="modal-upgrade-plan">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 class="modal-title"><i class="fa-solid fa-circle-arrow-up text-accent"></i> Confirm Plan Selection</h3>
+      <button type="button" class="modal-close" data-modal-close>&times;</button>
+    </div>
+    <form onsubmit="handleConfirmUpgrade(event)">
+      <div class="modal-body">
+        <p class="text-sm text-muted">You are selecting the following membership plan:</p>
+        <div style="background: var(--bg-hover); padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1rem;">
+          <h3 id="modal-plan-name" style="margin-bottom: 0.25rem;">Standard Fitness Pro</h3>
+          <p id="modal-plan-price" style="font-size: 1.25rem; font-weight: 700; color: var(--accent-color); margin: 0;">₹69 / month</p>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Payment Method</label>
+          <select class="form-select">
+            <option>Visa ending in 4242</option>
+            <option>Mastercard ending in 8891</option>
+          </select>
+        </div>
+        <p class="text-xs text-muted">A confirmation receipt will be generated and added to your billing history.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-modal-close>Cancel</button>
+        <button type="submit" class="btn btn-accent"><i class="fa-solid fa-lock"></i> Confirm & Activate Plan</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="../assets/js/mock-data.js"></script>
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/navigation.js"></script>
+<script src="../assets/js/app.js"></script>
+
+<script>
+  let selectedPlanId = null;
+  let allPlans = [];
+  let filteredPlans = [];
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadPlans();
+  });
+
+  function loadPlans() {
+    const gymId = Auth.getTenantGymId();
+    allPlans = GymFlowDB.get('gymPlans', { gymId: gymId }) || [];
+
+    // Populate duration filter
+    const durSelect = document.getElementById('member-plan-filter-duration');
+    if (durSelect) {
+      const durs = Array.from(new Set(allPlans.map(p => p.duration).filter(Boolean)));
+      durSelect.innerHTML = '<option value="">All Frequencies</option>' +
+        durs.map(d => `<option value="${d}">${d}</option>`).join('');
+    }
+
+    filterMemberPlans();
+  }
+
+  function filterMemberPlans() {
+    const q = (document.getElementById('member-plan-search')?.value || '').trim();
+    const duration = document.getElementById('member-plan-filter-duration')?.value || '';
+    const priceRange = document.getElementById('member-plan-filter-price')?.value || '';
+    const sortVal = document.getElementById('member-plan-sort')?.value || 'price_asc';
+
+    filteredPlans = allPlans.filter(p => {
+      const matchQ = DataGridHelper.matchSearch(p, q, ['name', 'duration', 'benefits']);
+      const matchDuration = !duration || p.duration === duration;
+
+      let matchPrice = true;
+      const price = Number(p.price) || 0;
+      if (priceRange === '0-50') matchPrice = price < 50;
+      else if (priceRange === '50-150') matchPrice = price >= 50 && price <= 150;
+      else if (priceRange === '150+') matchPrice = price > 150;
+
+      return matchQ && matchDuration && matchPrice;
+    });
+
+    // Sorting
+    filteredPlans.sort((a, b) => {
+      if (sortVal === 'price_asc') return (Number(a.price) || 0) - (Number(b.price) || 0);
+      if (sortVal === 'price_desc') return (Number(b.price) || 0) - (Number(a.price) || 0);
+      if (sortVal === 'duration_desc') return (Number(b.durationDays) || 0) - (Number(a.durationDays) || 0);
+      if (sortVal === 'name_asc') return DataGridHelper.compare(a, b, 'name', true);
+      return 0;
+    });
+
+    renderPlans();
+  }
+
+  function resetMemberPlanFilters() {
+    if (document.getElementById('member-plan-search')) document.getElementById('member-plan-search').value = '';
+    if (document.getElementById('member-plan-filter-duration')) document.getElementById('member-plan-filter-duration').value = '';
+    if (document.getElementById('member-plan-filter-price')) document.getElementById('member-plan-filter-price').value = '';
+    if (document.getElementById('member-plan-sort')) document.getElementById('member-plan-sort').value = 'price_asc';
+    filterMemberPlans();
+  }
+
+  function renderPlans() {
+    const memberId = Auth.getActiveMemberId();
+    const member = GymFlowDB.findById('members', memberId);
+    const container = document.getElementById('plans-container');
+
+    if (!filteredPlans.length) {
+      container.style.display = 'block';
+      container.innerHTML = DataGridHelper.getEmptyStateHtml(
+        'No Membership Packages Found',
+        'No gym tiers match your selected search or filter options.',
+        'resetMemberPlanFilters()'
+      );
+      return;
+    }
+
+    container.style.display = 'grid';
+    container.innerHTML = filteredPlans.map(p => {
+      const isCurrent = member && (member.planId === p.id || member.planName === p.name);
+      return `
+        <div class="card" style="display: flex; flex-direction: column; justify-content: space-between; border: ${isCurrent ? '2px solid var(--accent-color)' : '1px solid var(--border-color)'}; position: relative; overflow: hidden;">
+          ${isCurrent ? '<div style="position: absolute; top: 12px; right: 12px;"><span class="badge badge-accent">CURRENT PLAN</span></div>' : ''}
+          <div class="card-body" style="padding: 1.75rem 1.5rem;">
+            <span class="badge badge-neutral" style="margin-bottom: 0.75rem; text-transform: uppercase;">${p.duration}</span>
+            <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.5rem;">${p.name}</h3>
+            <div style="font-size: 2rem; font-weight: 800; color: var(--text-heading); margin-bottom: 1.25rem;">
+              ₹${p.price}<span style="font-size: 0.9rem; font-weight: 500; color: var(--text-muted);">/${p.duration.includes('Annual') || p.duration.includes('Year') ? 'yr' : 'mo'}</span>
+            </div>
+
+            <ul style="list-style: none; padding: 0; margin: 0 0 1.5rem; display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.85rem;">
+              ${(p.benefits || [
+                'Gym floor & weight area access',
+                'Locker rooms & hot showers',
+                'Mobile app digital QR pass'
+              ]).map(f => `
+                <li style="display: flex; gap: 0.5rem; align-items: center;">
+                  <i class="fa-solid fa-check text-success" style="font-size: 0.8rem;"></i>
+                  <span>${f}</span>
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+          <div class="card-footer" style="padding: 1.25rem 1.5rem; background: var(--bg-surface); border-top: 1px solid var(--border-color);">
+            ${isCurrent ? `
+              <button class="btn btn-outline" style="width: 100%;" disabled><i class="fa-solid fa-circle-check text-success"></i> Active Plan</button>
+            ` : `
+              <button class="btn btn-primary" style="width: 100%;" onclick="openUpgradeModal('${p.id}', '${p.name}', ${p.price}, '${p.duration}')">
+                Select & Switch Plan
+              </button>
+            `}
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function openUpgradeModal(id, name, price, duration) {
+    selectedPlanId = id;
+    document.getElementById('modal-plan-name').textContent = name;
+    document.getElementById('modal-plan-price').textContent = `₹${price} / ${duration}`;
+    Modal.open('modal-upgrade-plan');
+  }
+
+  function handleConfirmUpgrade(e) {
+    e.preventDefault();
+    const memberId = Auth.getActiveMemberId();
+    const gymId = Auth.getTenantGymId();
+    const plan = GymFlowDB.findById('gymPlans', selectedPlanId);
+
+    if (plan) {
+      GymFlowDB.update('members', memberId, {
+        planId: plan.id,
+        planName: plan.name
+      });
+
+      // Record transaction
+      GymFlowDB.insert('payments', {
+        id: `pay_${Date.now()}`,
+        gymId: gymId,
+        memberId: memberId,
+        memberName: 'Alex Morgan',
+        invoiceNumber: `INV-IP-${Math.floor(1000 + Math.random() * 9000)}`,
+        amount: plan.price,
+        description: `Plan Switch to ${plan.name}`,
+        method: 'Visa •••• 4242',
+        status: 'Paid',
+        date: new Date().toISOString().split('T')[0]
+      });
+
+      Modal.close('modal-upgrade-plan');
+      Toast.success(`Membership updated to ${plan.name}!`);
+      renderPlans();
+    }
+  }
+</script>
+</body>
+</html>

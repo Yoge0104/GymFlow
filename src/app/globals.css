@@ -1,0 +1,60 @@
+@import "../styles/style.css";
+@import "../styles/components.css";
+@import "../styles/dashboard.css";
+@import "../styles/responsive.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Additional utility and print overrides */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 12pt;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .sidebar,
+  .topbar,
+  .no-print,
+  #demo-role-banner,
+  .sidebar-overlay,
+  .modal-header,
+  button,
+  .btn,
+  .page-header {
+    display: none !important;
+  }
+  .main-wrapper {
+    margin-left: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+  .content-wrapper {
+    padding: 0 !important;
+  }
+  .modal {
+    position: static !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    height: auto !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+  .modal-backdrop {
+    position: static !important;
+    background: none !important;
+  }
+  .print-document-container {
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  table, tr, td, th {
+    page-break-inside: avoid;
+  }
+}

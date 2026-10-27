@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gym Equipment — Gym Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <a href="dashboard.html" class="brand-link">
+        <div class="brand-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <div class="brand-text">Gym<span>Flow</span></div>
+      </a>
+      <button class="topbar-toggle sidebar-toggle-btn d-none"><i class="fa-solid fa-bars"></i></button>
+    </div>
+    <div class="sidebar-nav">
+      <div class="nav-section-title">Overview</div>
+      <div class="nav-item"><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i><span>Dashboard</span></a></div>
+      <div class="nav-section-title">Members & Club</div>
+      <div class="nav-item"><a href="branches.html" class="nav-link"><i class="fa-solid fa-network-wired"></i><span>Branches</span></a></div>
+      <div class="nav-item"><a href="members.html" class="nav-link"><i class="fa-solid fa-users"></i><span>Membership Management</span></a></div>
+      <div class="nav-item"><a href="membership-plans.html" class="nav-link"><i class="fa-solid fa-tags"></i><span>Plans</span></a></div>
+      <div class="nav-item"><a href="attendance.html" class="nav-link"><i class="fa-solid fa-id-card-clip"></i><span>Attendance Desk</span></a></div>
+      <div class="nav-section-title">Training & Classes</div>
+      <div class="nav-item"><a href="trainers.html" class="nav-link"><i class="fa-solid fa-user-ninja"></i><span>Trainers</span></a></div>
+      <div class="nav-item"><a href="classes.html" class="nav-link"><i class="fa-solid fa-calendar-days"></i><span>Classes & Timetable</span></a></div>
+      <div class="nav-item"><a href="class-bookings.html" class="nav-link"><i class="fa-solid fa-book-bookmark"></i><span>Class Bookings</span></a></div>
+      <div class="nav-item"><a href="workout-plans.html" class="nav-link"><i class="fa-solid fa-clipboard-list"></i><span>Workout Plans</span></a></div>
+      <div class="nav-section-title">Financials & Sales</div>
+      <div class="nav-item"><a href="payments.html" class="nav-link"><i class="fa-solid fa-credit-card"></i><span>Payments</span></a></div>
+      <div class="nav-item"><a href="invoices.html" class="nav-link"><i class="fa-solid fa-file-invoice-dollar"></i><span>Invoices</span></a></div>
+      <div class="nav-item"><a href="expenses.html" class="nav-link"><i class="fa-solid fa-receipt"></i><span>Expenses</span></a></div>
+      <div class="nav-item"><a href="leads.html" class="nav-link"><i class="fa-solid fa-user-plus"></i><span>Leads CRM</span></a></div>
+      <div class="nav-section-title">Operations</div>
+      <div class="nav-item"><a href="equipment.html" class="nav-link active"><i class="fa-solid fa-dumbbell"></i><span>Equipment</span></a></div>
+      <div class="nav-item"><a href="maintenance.html" class="nav-link"><i class="fa-solid fa-screwdriver-wrench"></i><span>Maintenance</span></a></div>
+      <div class="nav-item"><a href="reports.html" class="nav-link"><i class="fa-solid fa-chart-line"></i><span>Reports & Analytics</span></a></div>
+      <div class="nav-section-title">Administration</div>
+      <div class="nav-item"><a href="staff.html" class="nav-link"><i class="fa-solid fa-user-tie"></i><span>Staff Accounts</span></a></div>
+      <div class="nav-item"><a href="roles-permissions.html" class="nav-link"><i class="fa-solid fa-lock"></i><span>Roles & Access</span></a></div>
+      <div class="nav-item"><a href="notifications.html" class="nav-link"><i class="fa-solid fa-bell"></i><span>Notifications</span></a></div>
+      <div class="nav-item"><a href="support.html" class="nav-link"><i class="fa-solid fa-headset"></i><span>Support Helpdesk</span></a></div>
+      <div class="nav-item"><a href="settings.html" class="nav-link"><i class="fa-solid fa-gear"></i><span>Gym Settings</span></a></div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&h=100&fit=crop" alt="User" class="current-user-avatar"></div>
+        <div class="sidebar-user-info"><span class="sidebar-user-name current-user-name">Marcus Vance</span><span class="sidebar-user-role">Gym Admin</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main-wrapper">
+    <header class="topbar">
+      <div class="topbar-left"><button class="topbar-toggle sidebar-toggle-btn"><i class="fa-solid fa-bars"></i></button></div>
+      <div class="topbar-right">
+        <span class="role-indicator admin"><i class="fa-solid fa-building"></i> Gym Admin</span>
+        <button class="topbar-action-btn theme-toggle-btn"><i class="fa-solid fa-moon"></i></button>
+        <button class="topbar-action-btn" id="btn-notifications"><i class="fa-solid fa-bell"></i><span class="action-badge"></span></button>
+        <div class="dropdown">
+          <button class="topbar-user-btn" data-dropdown-toggle>
+            <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&h=100&fit=crop" class="current-user-avatar" alt="Avatar"></div>
+            <div><div class="topbar-user-name current-user-name">Marcus Vance</div><div class="topbar-user-role">Gym Admin</div></div>
+            <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; color: var(--text-subtle);"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="settings.html" class="dropdown-item"><i class="fa-solid fa-gear"></i> Settings</a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item text-danger btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-wrapper">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">
+            <a href="dashboard.html">Gym Admin</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Gym Equipment</span>
+          </div>
+          <h1 class="page-title">Gym Hardware & Equipment Inventory</h1>
+          <p class="page-subtitle">Track machines, barbell racks, cardio equipment, warranties, and service schedules.</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-accent" onclick="Modal.open('modal-add-eq')"><i class="fa-solid fa-plus"></i> Add Equipment</button>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <div class="table-toolbar" style="gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+          <div class="table-search" style="flex: 1; min-width: 220px; max-width: 280px;">
+            <div class="input-with-icon">
+              <i class="fa-solid fa-magnifying-glass input-icon"></i>
+              <input type="text" id="eq-search" class="form-control" placeholder="Search machine, model, ID..." oninput="filterEquipment()">
+            </div>
+          </div>
+          <div class="table-actions" style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+            <!-- Condition filter -->
+            <select id="eq-filter-cond" class="form-select" style="width: 150px;" onchange="filterEquipment()">
+              <option value="">All Conditions</option>
+              <option value="Excellent">Excellent</option>
+              <option value="Good">Good</option>
+              <option value="Needs Service">Needs Service</option>
+              <option value="Under Maintenance">Under Maintenance</option>
+            </select>
+
+            <!-- Category filter -->
+            <select id="eq-filter-cat" class="form-select" style="width: 150px;" onchange="filterEquipment()">
+              <option value="">All Categories</option>
+            </select>
+
+            <!-- Branch filter -->
+            <select id="eq-filter-branch" class="form-select" style="width: 140px;" onchange="filterEquipment()">
+              <option value="">All Branches</option>
+            </select>
+
+            <!-- Reset Button -->
+            <button type="button" class="btn btn-outline btn-sm" id="btn-reset-equipment" onclick="resetEquipmentFilters()" title="Reset all filters">
+              <i class="fa-solid fa-arrow-rotate-left"></i> Reset
+            </button>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+            <thead>
+              <tr>
+                <th class="sortable" onclick="sortEquipment('name')" style="cursor: pointer;">
+                  Machine / Hardware <i class="fa-solid fa-sort text-muted" id="sort-icon-name"></i>
+                </th>
+                <th class="sortable" onclick="sortEquipment('category')" style="cursor: pointer;">
+                  Category <i class="fa-solid fa-sort text-muted" id="sort-icon-category"></i>
+                </th>
+                <th class="sortable" onclick="sortEquipment('branchId')" style="cursor: pointer;">
+                  Branch <i class="fa-solid fa-sort text-muted" id="sort-icon-branchId"></i>
+                </th>
+                <th class="sortable" onclick="sortEquipment('condition')" style="cursor: pointer;">
+                  Condition <i class="fa-solid fa-sort text-muted" id="sort-icon-condition"></i>
+                </th>
+                <th>Warranty Expiry</th>
+                <th>Last Service</th>
+                <th class="sortable" onclick="sortEquipment('nextMaintenance')" style="cursor: pointer;">
+                  Next Service <i class="fa-solid fa-sort text-muted" id="sort-icon-nextMaintenance"></i>
+                </th>
+                <th style="text-align: right;">Action</th>
+              </tr>
+            </thead>
+            <tbody id="eq-tbody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- Modal: Add Equipment -->
+<div class="modal-backdrop" id="modal-add-eq">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <h3 class="modal-title"><i class="fa-solid fa-dumbbell text-accent"></i> Add Equipment Item</h3>
+      <button type="button" class="modal-close" data-modal-close>&times;</button>
+    </div>
+    <form onsubmit="handleSaveEquipment(event)">
+      <div class="modal-body">
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Equipment Name <span class="required">*</span></label>
+            <input type="text" id="eq-name" class="form-control" placeholder="e.g. Rogue Echo Bike #2" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Category <span class="required">*</span></label>
+            <select id="eq-cat" class="form-select" required>
+              <option value="Cardio">Cardio</option>
+              <option value="Free Weights & Racks">Free Weights & Racks</option>
+              <option value="Cable & Selectorized">Cable & Selectorized</option>
+              <option value="Plate Loaded">Plate Loaded</option>
+              <option value="Spin">Spin & Bikes</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Branch <span class="required">*</span></label>
+            <select id="eq-branch" class="form-select" required>
+              <option value="br_1">Downtown Flagship</option>
+              <option value="br_2">North Austin Studio</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Condition Status <span class="required">*</span></label>
+            <select id="eq-cond" class="form-select" required>
+              <option value="Excellent">Excellent</option>
+              <option value="Good" selected>Good</option>
+              <option value="Needs Service">Needs Service</option>
+              <option value="Under Maintenance">Under Maintenance</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Warranty Expiry</label>
+            <input type="date" id="eq-warranty" class="form-control" value="2028-06-30">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Next Maintenance Due</label>
+            <input type="date" id="eq-next-maint" class="form-control" value="2026-08-15">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-modal-close>Cancel</button>
+        <button type="submit" class="btn btn-accent"><i class="fa-solid fa-plus"></i> Save Item</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="../assets/js/mock-data.js"></script>
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/navigation.js"></script>
+<script src="../assets/js/app.js"></script>
+
+<script>
+  let equipmentList = [];
+  let filteredEquipment = [];
+  let currentSortKey = 'name';
+  let isSortAsc = true;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadEquipment();
+  });
+
+  function loadEquipment() {
+    const gymId = Auth.getTenantGymId();
+    equipmentList = GymFlowDB.get('equipment', { gymId: gymId }) || [];
+
+    // Populate category filter
+    const catSelect = document.getElementById('eq-filter-cat');
+    if (catSelect) {
+      const cats = Array.from(new Set(equipmentList.map(e => e.category).filter(Boolean)));
+      catSelect.innerHTML = '<option value="">All Categories</option>' +
+        cats.map(c => `<option value="${c}">${c}</option>`).join('');
+    }
+
+    // Populate branch filter
+    const brSelect = document.getElementById('eq-filter-branch');
+    if (brSelect) {
+      const branches = GymFlowDB.get('branches', { gymId: gymId }) || [];
+      brSelect.innerHTML = '<option value="">All Branches</option>' +
+        branches.map(b => `<option value="${b.id}">${b.name}</option>`).join('');
+    }
+
+    filterEquipment();
+  }
+
+  function filterEquipment() {
+    const q = (document.getElementById('eq-search')?.value || '').trim();
+    const cond = document.getElementById('eq-filter-cond')?.value || '';
+    const cat = document.getElementById('eq-filter-cat')?.value || '';
+    const branch = document.getElementById('eq-filter-branch')?.value || '';
+
+    filteredEquipment = equipmentList.filter(e => {
+      const matchQ = DataGridHelper.matchSearch(e, q, ['name', 'category', 'model', 'id']);
+      const matchCond = !cond || e.condition === cond;
+      const matchCat = !cat || e.category === cat;
+      const matchBranch = !branch || e.branchId === branch;
+      return matchQ && matchCond && matchCat && matchBranch;
+    });
+
+    // Sorting
+    filteredEquipment.sort((a, b) => {
+      return DataGridHelper.compare(a, b, currentSortKey, isSortAsc);
+    });
+
+    renderEquipment();
+  }
+
+  function sortEquipment(key) {
+    if (currentSortKey === key) {
+      isSortAsc = !isSortAsc;
+    } else {
+      currentSortKey = key;
+      isSortAsc = true;
+    }
+    DataGridHelper.updateSortHeaders(document.querySelector('.data-table thead'), currentSortKey, isSortAsc);
+    filterEquipment();
+  }
+
+  function resetEquipmentFilters() {
+    if (document.getElementById('eq-search')) document.getElementById('eq-search').value = '';
+    if (document.getElementById('eq-filter-cond')) document.getElementById('eq-filter-cond').value = '';
+    if (document.getElementById('eq-filter-cat')) document.getElementById('eq-filter-cat').value = '';
+    if (document.getElementById('eq-filter-branch')) document.getElementById('eq-filter-branch').value = '';
+    currentSortKey = 'name';
+    isSortAsc = true;
+    DataGridHelper.updateSortHeaders(document.querySelector('.data-table thead'), '', true);
+    filterEquipment();
+  }
+
+  function renderEquipment() {
+    const tbody = document.getElementById('eq-tbody');
+    if (!filteredEquipment.length) {
+      tbody.innerHTML = `<tr><td colspan="8">${DataGridHelper.getEmptyStateHtml('No Equipment Found', 'No hardware matches your search or filter options.', 'resetEquipmentFilters()')}</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = filteredEquipment.map(e => {
+      let badge = 'badge-success';
+      if (e.condition === 'Needs Service') badge = 'badge-warning';
+      if (e.condition === 'Under Maintenance') badge = 'badge-danger';
+
+      return `
+        <tr>
+          <td>
+            <strong>${e.name}</strong>
+            <div class="text-xs text-muted">ID: ${e.id} &bull; Model: ${e.model || 'Standard'}</div>
+          </td>
+          <td><span class="badge badge-neutral">${e.category}</span></td>
+          <td>${e.branchId === 'br_2' ? 'North Austin' : 'Downtown Flagship'}</td>
+          <td><span class="badge ${badge}"><span class="badge-dot"></span>${e.condition}</span></td>
+          <td class="text-xs text-muted">${e.warrantyExpiry}</td>
+          <td class="text-xs text-muted">${e.lastMaintenance}</td>
+          <td class="text-xs text-muted font-bold">${e.nextMaintenance}</td>
+          <td style="text-align: right;">
+            <button class="btn btn-sm btn-outline" onclick="changeCond('${e.id}')">
+              <i class="fa-solid fa-sliders"></i> Status
+            </button>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  function handleSaveEquipment(e) {
+    e.preventDefault();
+    const gymId = Auth.getTenantGymId();
+    const newEq = {
+      id: `eq_${Date.now()}`,
+      gymId: gymId,
+      branchId: document.getElementById('eq-branch').value,
+      name: document.getElementById('eq-name').value,
+      category: document.getElementById('eq-cat').value,
+      condition: document.getElementById('eq-cond').value,
+      warrantyExpiry: document.getElementById('eq-warranty').value,
+      lastMaintenance: new Date().toISOString().split('T')[0],
+      nextMaintenance: document.getElementById('eq-next-maint').value
+    };
+
+    GymFlowDB.insert('equipment', newEq);
+    Modal.close('modal-add-eq');
+    Toast.success(`Equipment ${newEq.name} registered.`);
+    loadEquipment();
+  }
+
+  function changeCond(id) {
+    const eq = GymFlowDB.getById('equipment', id);
+    if (!eq) return;
+
+    const next = eq.condition === 'Under Maintenance' ? 'Good' : 'Under Maintenance';
+    GymFlowDB.update('equipment', id, { condition: next });
+    Toast.success(`Status for ${eq.name} switched to ${next}.`);
+    loadEquipment();
+  }
+</script>
+</body>
+</html>

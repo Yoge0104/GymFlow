@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Platform Billing & Invoices — Super Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <a href="dashboard.html" class="brand-link">
+        <div class="brand-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <div class="brand-text">Gym<span>Flow</span></div>
+      </a>
+      <button class="topbar-toggle sidebar-toggle-btn d-none"><i class="fa-solid fa-bars"></i></button>
+    </div>
+    <div class="sidebar-nav">
+      <div class="nav-section-title">Overview</div>
+      <div class="nav-item"><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i><span>Dashboard</span></a></div>
+      <div class="nav-section-title">Organizations</div>
+      <div class="nav-item"><a href="gyms.html" class="nav-link"><i class="fa-solid fa-building"></i><span>Gym Directory</span></a></div>
+      <div class="nav-item"><a href="subscriptions.html" class="nav-link"><i class="fa-solid fa-receipt"></i><span>Subscriptions</span></a></div>
+      <div class="nav-item"><a href="plans.html" class="nav-link"><i class="fa-solid fa-tags"></i><span>SaaS Plans</span></a></div>
+      <div class="nav-section-title">Finance</div>
+      <div class="nav-item"><a href="billing.html" class="nav-link active"><i class="fa-solid fa-credit-card"></i><span>Platform Billing</span></a></div>
+      <div class="nav-section-title">Platform Team</div>
+      <div class="nav-item"><a href="platform-users.html" class="nav-link"><i class="fa-solid fa-user-shield"></i><span>Platform Users</span></a></div>
+      <div class="nav-item"><a href="roles-permissions.html" class="nav-link"><i class="fa-solid fa-lock"></i><span>Roles & Matrix</span></a></div>
+      <div class="nav-item"><a href="announcements.html" class="nav-link"><i class="fa-solid fa-bullhorn"></i><span>Announcements</span></a></div>
+      <div class="nav-section-title">Operations</div>
+      <div class="nav-item"><a href="support-tickets.html" class="nav-link"><i class="fa-solid fa-headset"></i><span>Support Tickets</span><span class="badge badge-danger nav-badge">3</span></a></div>
+      <div class="nav-item"><a href="audit-logs.html" class="nav-link"><i class="fa-solid fa-list-check"></i><span>Audit Logs</span></a></div>
+      <div class="nav-item"><a href="system-health.html" class="nav-link"><i class="fa-solid fa-heart-pulse"></i><span>System Health</span></a></div>
+      <div class="nav-item"><a href="settings.html" class="nav-link"><i class="fa-solid fa-gear"></i><span>Platform Settings</span></a></div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" alt="Admin" class="current-user-avatar"></div>
+        <div class="sidebar-user-info"><span class="sidebar-user-name current-user-name">Alex Vance</span><span class="sidebar-user-role">Super Admin</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main-wrapper">
+    <header class="topbar">
+      <div class="topbar-left"><button class="topbar-toggle sidebar-toggle-btn"><i class="fa-solid fa-bars"></i></button></div>
+      <div class="topbar-right">
+        <span class="role-indicator super-admin"><i class="fa-solid fa-shield-halved"></i> Super Admin</span>
+        <button class="topbar-action-btn theme-toggle-btn"><i class="fa-solid fa-moon"></i></button>
+        <button class="topbar-action-btn" id="btn-notifications"><i class="fa-solid fa-bell"></i><span class="action-badge"></span></button>
+        <div class="dropdown">
+          <button class="topbar-user-btn" data-dropdown-toggle>
+            <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" class="current-user-avatar" alt="Avatar"></div>
+            <div><div class="topbar-user-name current-user-name">Alex Vance</div><div class="topbar-user-role">Super Admin</div></div>
+            <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; color: var(--text-subtle);"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="settings.html" class="dropdown-item"><i class="fa-solid fa-gear"></i> Settings</a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item text-danger btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-wrapper">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">
+            <a href="dashboard.html">Super Admin</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Billing & Invoices</span>
+          </div>
+          <h1 class="page-title">Platform Billing & SaaS Revenue</h1>
+          <p class="page-subtitle">Track incoming payments from gym organizations, generate PDF receipts, and audit failed invoices.</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-outline" onclick="exportBillingCsv()"><i class="fa-solid fa-download"></i> Export CSV</button>
+        </div>
+      </div>
+
+      <!-- Financial Summary & Revenue Chart -->
+      <div class="grid-2-1">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title"><i class="fa-solid fa-chart-line text-accent"></i> Platform Gross Revenue (6 Months)</h3>
+          </div>
+          <div class="card-body">
+            <div style="height: 260px; position: relative;">
+              <canvas id="chart-billing-trend"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title"><i class="fa-solid fa-wallet text-electric"></i> Revenue Snapshot</h3>
+          </div>
+          <div class="card-body">
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+              <div>
+                <span class="text-xs text-muted">CURRENT MONTH REVENUE</span>
+                <div style="font-size: 1.75rem; font-weight: 800; color: var(--color-accent);">₹1,180.00</div>
+              </div>
+              <div style="border-top: 1px solid var(--border-color); padding-top: 0.75rem;">
+                <span class="text-xs text-muted">FAILED TRANSACTIONS</span>
+                <div style="font-size: 1.25rem; font-weight: 700; color: var(--color-danger);">₹49.00 (1 Gym)</div>
+              </div>
+              <div style="border-top: 1px solid var(--border-color); padding-top: 0.75rem;">
+                <span class="text-xs text-muted">PAYMENT GATEWAY</span>
+                <div style="font-size: 0.875rem; font-weight: 600;">Stripe Connect & ACH Direct</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Transactions Table -->
+      <div class="table-container">
+      <div class="table-container">
+        <div class="table-toolbar" style="gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+          <div class="table-search" style="flex: 1; min-width: 220px; max-width: 280px;">
+            <div class="input-with-icon">
+              <i class="fa-solid fa-magnifying-glass input-icon"></i>
+              <input type="text" id="billing-search" class="form-control" placeholder="Search invoice or gym..." oninput="filterBilling()">
+            </div>
+          </div>
+          <div class="table-actions" style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+            <!-- Status filter -->
+            <select id="billing-filter-status" class="form-select" style="width: 150px;" onchange="filterBilling()">
+              <option value="">All Statuses</option>
+              <option value="Paid">Paid</option>
+              <option value="Pending">Pending</option>
+              <option value="Failed">Failed</option>
+            </select>
+
+            <!-- Method filter -->
+            <select id="billing-filter-method" class="form-select" style="width: 160px;" onchange="filterBilling()">
+              <option value="">All Methods</option>
+              <option value="Stripe Connect">Stripe Connect</option>
+              <option value="ACH Direct">ACH Direct</option>
+              <option value="Wire Transfer">Wire Transfer</option>
+              <option value="Credit Card">Credit Card</option>
+            </select>
+
+            <!-- Reset Button -->
+            <button type="button" class="btn btn-outline btn-sm" id="btn-reset-billing" onclick="resetBillingFilters()" title="Reset all filters">
+              <i class="fa-solid fa-arrow-rotate-left"></i> Reset
+            </button>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th class="sortable" onclick="sortBilling('invoiceNo')" style="cursor: pointer;">
+                  Invoice # <i class="fa-solid fa-sort text-muted" id="sort-icon-invoiceNo"></i>
+                </th>
+                <th class="sortable" onclick="sortBilling('gymName')" style="cursor: pointer;">
+                  Gym Organization <i class="fa-solid fa-sort text-muted" id="sort-icon-gymName"></i>
+                </th>
+                <th>Plan Tier</th>
+                <th class="sortable" onclick="sortBilling('date')" style="cursor: pointer;">
+                  Date <i class="fa-solid fa-sort text-muted" id="sort-icon-date"></i>
+                </th>
+                <th class="sortable" onclick="sortBilling('amount')" style="cursor: pointer;">
+                  Amount <i class="fa-solid fa-sort text-muted" id="sort-icon-amount"></i>
+                </th>
+                <th>Payment Method</th>
+                <th class="sortable" onclick="sortBilling('status')" style="cursor: pointer;">
+                  Status <i class="fa-solid fa-sort text-muted" id="sort-icon-status"></i>
+                </th>
+                <th>Refund</th>
+                <th style="text-align: right;">Action</th>
+              </tr>
+            </thead>
+            <tbody id="billing-tbody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="../assets/js/mock-data.js"></script>
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/charts.js"></script>
+<script src="../assets/js/navigation.js"></script>
+<script src="../assets/js/app.js"></script>
+
+<script>
+  let txList = [];
+  let filteredBilling = [];
+  let currentSortKey = 'date';
+  let isSortAsc = false;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadBilling();
+    GymCharts.renderRevenueChart(
+      'chart-billing-trend',
+      ['Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr'],
+      [640, 720, 890, 940, 1060, 1180]
+    );
+  });
+
+  function loadBilling() {
+    txList = GymFlowDB.get('platformBilling') || [];
+    filterBilling();
+  }
+
+  function filterBilling() {
+    const q = (document.getElementById('billing-search')?.value || '').trim();
+    const status = document.getElementById('billing-filter-status')?.value || '';
+    const method = document.getElementById('billing-filter-method')?.value || '';
+
+    filteredBilling = txList.filter(t => {
+      const matchQ = DataGridHelper.matchSearch(t, q, ['invoiceNo', 'gymName', 'planName', 'id']);
+      const matchStatus = !status || t.status === status;
+      const matchMethod = !method || (t.method && t.method.toLowerCase().includes(method.toLowerCase()));
+      return matchQ && matchStatus && matchMethod;
+    });
+
+    // Sorting
+    filteredBilling.sort((a, b) => {
+      return DataGridHelper.compare(a, b, currentSortKey, isSortAsc);
+    });
+
+    renderBilling();
+  }
+
+  function sortBilling(key) {
+    if (currentSortKey === key) {
+      isSortAsc = !isSortAsc;
+    } else {
+      currentSortKey = key;
+      isSortAsc = true;
+    }
+    DataGridHelper.updateSortHeaders(document.querySelector('.data-table thead'), currentSortKey, isSortAsc);
+    filterBilling();
+  }
+
+  function resetBillingFilters() {
+    if (document.getElementById('billing-search')) document.getElementById('billing-search').value = '';
+    if (document.getElementById('billing-filter-status')) document.getElementById('billing-filter-status').value = '';
+    if (document.getElementById('billing-filter-method')) document.getElementById('billing-filter-method').value = '';
+    currentSortKey = 'date';
+    isSortAsc = false;
+    DataGridHelper.updateSortHeaders(document.querySelector('.data-table thead'), '', false);
+    filterBilling();
+  }
+
+  function renderBilling() {
+    const tbody = document.getElementById('billing-tbody');
+    if (!filteredBilling.length) {
+      tbody.innerHTML = `<tr><td colspan="9">${DataGridHelper.getEmptyStateHtml('No Billing Invoices Found', 'No transactions match your search or filter options.', 'resetBillingFilters()')}</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = filteredBilling.map(t => `
+      <tr>
+        <td><strong>${t.invoiceNo}</strong></td>
+        <td><strong>${t.gymName}</strong></td>
+        <td><span class="badge badge-neutral">${t.planName}</span></td>
+        <td class="text-xs text-muted">${t.date}</td>
+        <td><strong>₹${(Number(t.amount) || 0).toFixed(2)}</strong></td>
+        <td class="text-xs text-muted">${t.method}</td>
+        <td><span class="badge ${t.status === 'Paid' ? 'badge-success' : 'badge-danger'}">${t.status}</span></td>
+        <td><span class="badge ${t.refundStatus === 'Refunded' ? 'badge-warning' : 'badge-neutral'}">${t.refundStatus || 'None'}</span></td>
+        <td style="text-align: right;">
+          <div style="display: inline-flex; gap: 0.35rem;">
+            <button class="btn btn-sm btn-outline" title="Print Invoice" onclick="previewSaaSInvoice('${t.id}')">
+              <i class="fa-solid fa-receipt"></i> Preview
+            </button>
+            ${t.status === 'Paid' && t.refundStatus !== 'Refunded' ? `
+              <button class="btn btn-sm btn-outline-danger" title="Simulate Refund" onclick="simulateRefund('${t.id}')">
+                <i class="fa-solid fa-rotate-left"></i> Refund
+              </button>
+            ` : ''}
+          </div>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  function previewSaaSInvoice(txId) {
+    const tx = GymFlowDB.getById('platformBilling', txId);
+    if (!tx) return;
+
+    PrintHelper.previewInvoice({
+      invoiceNo: tx.invoiceNo,
+      amount: tx.amount,
+      date: tx.date,
+      description: `GymFlow SaaS Platform Subscription (${tx.planName} Tier)`,
+      memberName: tx.gymName,
+      memberId: tx.gymId,
+      method: tx.method,
+      status: tx.status
+    }, {
+      name: "GymFlow SaaS Platform Inc.",
+      address: "100 Cloud Computing Way, Suite 400, San Francisco, CA",
+      phone: "+1 (800) 555-FLOW",
+      email: "billing@gymflow.app"
+    });
+  }
+
+  function simulateRefund(txId) {
+    Modal.confirm({
+      title: 'Simulate Payment Refund?',
+      message: 'This will mark the SaaS billing invoice as Refunded and record an audit log entry.',
+      confirmText: 'Refund Transaction',
+      confirmClass: 'btn-danger',
+      onConfirm: () => {
+        GymFlowDB.update('platformBilling', txId, { refundStatus: 'Refunded' });
+        Toast.warning('Transaction marked as Refunded.');
+        loadBilling();
+      }
+    });
+  }
+
+  function exportBillingCsv() {
+    const headers = ['Invoice #', 'Gym Name', 'Plan', 'Date', 'Amount (₹)', 'Method', 'Status', 'Refund Status'];
+    const rows = txList.map(t => [t.invoiceNo, t.gymName, t.planName, t.date, t.amount, t.method, t.status, t.refundStatus]);
+    TableHelper.exportToCsv('gymflow-platform-billing.csv', headers, rows);
+  }
+</script>
+</body>
+</html>

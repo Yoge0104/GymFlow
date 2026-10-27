@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gym Details — Super Admin</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <a href="dashboard.html" class="brand-link">
+        <div class="brand-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <div class="brand-text">Gym<span>Flow</span></div>
+      </a>
+      <button class="topbar-toggle sidebar-toggle-btn d-none"><i class="fa-solid fa-bars"></i></button>
+    </div>
+
+    <div class="sidebar-nav">
+      <div class="nav-section-title">Overview</div>
+      <div class="nav-item">
+        <a href="dashboard.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i><span>Dashboard</span></a>
+      </div>
+
+      <div class="nav-section-title">Organizations</div>
+      <div class="nav-item">
+        <a href="gyms.html" class="nav-link active"><i class="fa-solid fa-building"></i><span>Gym Directory</span></a>
+      </div>
+      <div class="nav-item">
+        <a href="subscriptions.html" class="nav-link"><i class="fa-solid fa-receipt"></i><span>Subscriptions</span></a>
+      </div>
+      <div class="nav-item">
+        <a href="plans.html" class="nav-link"><i class="fa-solid fa-tags"></i><span>SaaS Plans</span></a>
+      </div>
+
+      <div class="nav-section-title">Finance</div>
+      <div class="nav-item">
+        <a href="billing.html" class="nav-link"><i class="fa-solid fa-credit-card"></i><span>Platform Billing</span></a>
+      </div>
+
+      <div class="nav-section-title">Platform Team</div>
+      <div class="nav-item">
+        <a href="platform-users.html" class="nav-link"><i class="fa-solid fa-user-shield"></i><span>Platform Users</span></a>
+      </div>
+      <div class="nav-item">
+        <a href="roles-permissions.html" class="nav-link"><i class="fa-solid fa-lock"></i><span>Roles & Matrix</span></a>
+      </div>
+      <div class="nav-item">
+        <a href="announcements.html" class="nav-link"><i class="fa-solid fa-bullhorn"></i><span>Announcements</span></a>
+      </div>
+
+      <div class="nav-section-title">Operations</div>
+      <div class="nav-item">
+        <a href="support-tickets.html" class="nav-link"><i class="fa-solid fa-headset"></i><span>Support Tickets</span><span class="badge badge-danger nav-badge">3</span></a>
+      </div>
+      <div class="nav-item">
+        <a href="audit-logs.html" class="nav-link"><i class="fa-solid fa-list-check"></i><span>Audit Logs</span></a>
+      </div>
+      <div class="nav-item">
+        <a href="system-health.html" class="nav-link"><i class="fa-solid fa-heart-pulse"></i><span>System Health</span></a>
+      </div>
+      <div class="nav-item">
+        <a href="settings.html" class="nav-link"><i class="fa-solid fa-gear"></i><span>Platform Settings</span></a>
+      </div>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" alt="Admin" class="current-user-avatar">
+        </div>
+        <div class="sidebar-user-info">
+          <span class="sidebar-user-name current-user-name">Alex Vance</span>
+          <span class="sidebar-user-role">Super Admin</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content Wrapper -->
+  <div class="main-wrapper">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="topbar-toggle sidebar-toggle-btn"><i class="fa-solid fa-bars"></i></button>
+      </div>
+      <div class="topbar-right">
+        <span class="role-indicator super-admin"><i class="fa-solid fa-shield-halved"></i> Super Admin</span>
+        <button class="topbar-action-btn theme-toggle-btn" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
+        <button class="topbar-action-btn" id="btn-notifications"><i class="fa-solid fa-bell"></i><span class="action-badge"></span></button>
+        <div class="dropdown">
+          <button class="topbar-user-btn" data-dropdown-toggle>
+            <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" class="current-user-avatar" alt="User"></div>
+            <div><div class="topbar-user-name current-user-name">Alex Vance</div><div class="topbar-user-role">Super Admin</div></div>
+            <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; color: var(--text-subtle);"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="settings.html" class="dropdown-item"><i class="fa-solid fa-gear"></i> Settings</a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item text-danger btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-wrapper">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">
+            <a href="dashboard.html">Super Admin</a>
+            <span class="breadcrumb-separator">/</span>
+            <a href="gyms.html">Gym Directory</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current" id="breadcrumb-gym-name">Loading...</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.85rem;">
+            <h1 class="page-title" id="gym-title-name">Gym Organization</h1>
+            <span class="badge" id="gym-status-badge">ACTIVE</span>
+          </div>
+          <p class="page-subtitle" id="gym-subtitle-info">ID: gym_1 &bull; Austin, TX</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-outline" id="btn-toggle-suspend" onclick="toggleGymStatus()">
+            <i class="fa-solid fa-ban"></i> Suspend Gym
+          </button>
+          <button class="btn btn-primary" onclick="simulateLoginAsGymAdmin()">
+            <i class="fa-solid fa-arrow-right-to-bracket"></i> Login as Gym Admin
+          </button>
+        </div>
+      </div>
+
+      <!-- Overview Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">SaaS Plan</span>
+            <span class="stat-icon purple"><i class="fa-solid fa-crown"></i></span>
+          </div>
+          <div class="stat-value" id="stat-plan-name">Growth</div>
+          <div class="stat-meta">
+            <span class="stat-trend positive" id="stat-mrr">₹99 / month</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">Total Members</span>
+            <span class="stat-icon green"><i class="fa-solid fa-users"></i></span>
+          </div>
+          <div class="stat-value" id="stat-members-count">420</div>
+          <div class="stat-meta">
+            <span class="text-muted">Capacity: 1,000 max</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">Branches</span>
+            <span class="stat-icon blue"><i class="fa-solid fa-network-wired"></i></span>
+          </div>
+          <div class="stat-value" id="stat-branches-count">2</div>
+          <div class="stat-meta">
+            <span class="text-muted">Max allowed: 3</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">Next Renewal</span>
+            <span class="stat-icon amber"><i class="fa-solid fa-calendar"></i></span>
+          </div>
+          <div class="stat-value" style="font-size: 1.35rem;" id="stat-renewal-date">2026-05-15</div>
+          <div class="stat-meta">
+            <span class="badge badge-success">Auto-renewal ON</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div class="tabs-nav">
+        <button class="tab-btn active" data-tab="tab-overview"><i class="fa-solid fa-circle-info"></i> Organization Profile</button>
+        <button class="tab-btn" data-tab="tab-branches"><i class="fa-solid fa-map-location-dot"></i> Branches (<span id="tab-branch-counter">2</span>)</button>
+        <button class="tab-btn" data-tab="tab-billing"><i class="fa-solid fa-credit-card"></i> Billing History</button>
+        <button class="tab-btn" data-tab="tab-activity"><i class="fa-solid fa-clock-rotate-left"></i> Audit Timeline</button>
+      </div>
+
+      <!-- Tab: Overview -->
+      <div class="tab-pane active" id="tab-overview">
+        <div class="grid-2">
+          <!-- Org Profile Card -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i class="fa-solid fa-building text-accent"></i> Organization Info</h3>
+            </div>
+            <div class="card-body">
+              <div style="display: flex; gap: 1.25rem; align-items: center; margin-bottom: 1.5rem;">
+                <div class="avatar avatar-lg">
+                  <img id="detail-gym-logo" src="" alt="Gym Logo">
+                </div>
+                <div>
+                  <h3 id="detail-gym-name" style="margin-bottom: 0.2rem;">--</h3>
+                  <div class="text-sm text-muted" id="detail-gym-slug">slug: --</div>
+                </div>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.875rem;">
+                <div><strong>Primary Address:</strong> <span id="detail-gym-address" class="text-muted">--</span></div>
+                <div><strong>City & State:</strong> <span id="detail-gym-city" class="text-muted">--</span></div>
+                <div><strong>Registration Date:</strong> <span id="detail-gym-regdate" class="text-muted">--</span></div>
+                <div><strong>Account Status:</strong> <span id="detail-gym-status-badge">--</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Owner Profile Card -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i class="fa-solid fa-user-tie text-electric"></i> Owner & Admin Contact</h3>
+            </div>
+            <div class="card-body">
+              <div style="display: flex; flex-direction: column; gap: 0.85rem; font-size: 0.875rem;">
+                <div><strong>Owner Name:</strong> <span id="detail-owner-name" class="text-muted">--</span></div>
+                <div><strong>Direct Email:</strong> <span id="detail-owner-email" class="text-muted">--</span></div>
+                <div><strong>Direct Phone:</strong> <span id="detail-owner-phone" class="text-muted">--</span></div>
+                <div><strong>Security 2FA:</strong> <span class="badge badge-success">Enabled</span></div>
+                <div><strong>Associated Platform Users:</strong> <span class="text-muted">1 Primary Owner Account</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Branches -->
+      <div class="tab-pane" id="tab-branches">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title"><i class="fa-solid fa-network-wired text-accent"></i> Authorized Branches</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Branch Name</th>
+                  <th>Address</th>
+                  <th>Manager</th>
+                  <th>Phone</th>
+                  <th>Active Members</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="detail-branches-tbody">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Billing -->
+      <div class="tab-pane" id="tab-billing">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title"><i class="fa-solid fa-receipt text-accent"></i> SaaS Subscription Billing Records</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Invoice #</th>
+                  <th>Plan Tier</th>
+                  <th>Date</th>
+                  <th>Amount</th>
+                  <th>Payment Method</th>
+                  <th>Status</th>
+                  <th>Receipt</th>
+                </tr>
+              </thead>
+              <tbody id="detail-billing-tbody">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Activity -->
+      <div class="tab-pane" id="tab-activity">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title"><i class="fa-solid fa-clock-rotate-left text-warning"></i> Administrative Audit Trail</h3>
+          </div>
+          <div class="card-body">
+            <div class="timeline" id="detail-activity-timeline">
+              <!-- Injected via JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="../assets/js/mock-data.js"></script>
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/navigation.js"></script>
+<script src="../assets/js/app.js"></script>
+
+<script>
+  let currentGym = null;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const gymId = params.get('id') || 'gym_1';
+    currentGym = GymFlowDB.getById('gyms', gymId) || GymFlowDB.get('gyms')[0];
+
+    if (!currentGym) {
+      Toast.error('Gym not found.');
+      return;
+    }
+
+    renderGymDetails();
+  });
+
+  function renderGymDetails() {
+    document.getElementById('breadcrumb-gym-name').textContent = currentGym.name;
+    document.getElementById('gym-title-name').textContent = currentGym.name;
+    document.getElementById('gym-subtitle-info').textContent = `ID: ${currentGym.id} • ${currentGym.city} • Registered ${currentGym.registrationDate}`;
+    
+    // Status Badge
+    let badgeClass = 'badge-success';
+    if (currentGym.status === 'trial') badgeClass = 'badge-warning';
+    if (currentGym.status === 'suspended') badgeClass = 'badge-danger';
+    const statusEl = document.getElementById('gym-status-badge');
+    statusEl.className = `badge ${badgeClass}`;
+    statusEl.textContent = currentGym.status.toUpperCase();
+
+    // Suspend button text
+    const btnSuspend = document.getElementById('btn-toggle-suspend');
+    btnSuspend.innerHTML = currentGym.status === 'suspended' ? 
+      '<i class="fa-solid fa-rotate-left"></i> Reactivate Gym' : 
+      '<i class="fa-solid fa-ban"></i> Suspend Gym';
+
+    // Stats
+    document.getElementById('stat-plan-name').textContent = currentGym.planName;
+    document.getElementById('stat-mrr').textContent = `₹${currentGym.mrr} / month`;
+    document.getElementById('stat-members-count').textContent = currentGym.membersCount || 0;
+    document.getElementById('stat-branches-count').textContent = currentGym.branchesCount || 1;
+    document.getElementById('stat-renewal-date').textContent = currentGym.renewalDate || '2026-05-15';
+
+    // Overview Tab
+    document.getElementById('detail-gym-logo').src = currentGym.logo;
+    document.getElementById('detail-gym-name').textContent = currentGym.name;
+    document.getElementById('detail-gym-slug').textContent = `slug: ${currentGym.slug || currentGym.id}`;
+    document.getElementById('detail-gym-address').textContent = currentGym.address;
+    document.getElementById('detail-gym-city').textContent = currentGym.city;
+    document.getElementById('detail-gym-regdate').textContent = currentGym.registrationDate;
+    document.getElementById('detail-gym-status-badge').innerHTML = `<span class="badge ${badgeClass}">${currentGym.status.toUpperCase()}</span>`;
+
+    document.getElementById('detail-owner-name').textContent = currentGym.owner;
+    document.getElementById('detail-owner-email').textContent = currentGym.email;
+    document.getElementById('detail-owner-phone').textContent = currentGym.phone;
+
+    // Branches Tab
+    const branches = GymFlowDB.get('branches', { gymId: currentGym.id });
+    const branchTbody = document.getElementById('detail-branches-tbody');
+    document.getElementById('tab-branch-counter').textContent = branches.length;
+    
+    if (branches.length === 0) {
+      branchTbody.innerHTML = `
+        <tr><td colspan="6" class="text-center text-muted" style="padding: 2rem;">No branches registered for this gym yet.</td></tr>
+      `;
+    } else {
+      branchTbody.innerHTML = branches.map(br => `
+        <tr>
+          <td><strong>${br.name}</strong></td>
+          <td class="text-xs text-muted">${br.address}</td>
+          <td>${br.manager}</td>
+          <td class="text-xs text-muted">${br.phone}</td>
+          <td><strong>${br.memberCount}</strong></td>
+          <td><span class="badge badge-success">Active</span></td>
+        </tr>
+      `).join('');
+    }
+
+    // Billing Tab
+    const txs = GymFlowDB.get('platformBilling', { gymId: currentGym.id });
+    const billingTbody = document.getElementById('detail-billing-tbody');
+    if (txs.length === 0) {
+      billingTbody.innerHTML = `
+        <tr><td colspan="7" class="text-center text-muted" style="padding: 2rem;">No platform transactions recorded for this organization.</td></tr>
+      `;
+    } else {
+      billingTbody.innerHTML = txs.map(tx => `
+        <tr>
+          <td><strong>${tx.invoiceNo}</strong></td>
+          <td><span class="badge badge-neutral">${tx.planName}</span></td>
+          <td class="text-xs text-muted">${tx.date}</td>
+          <td><strong>₹${tx.amount.toFixed(2)}</strong></td>
+          <td class="text-xs text-muted">${tx.method}</td>
+          <td><span class="badge ${tx.status === 'Paid' ? 'badge-success' : 'badge-danger'}">${tx.status}</span></td>
+          <td>
+            <button class="btn btn-sm btn-outline" onclick="PrintHelper.previewInvoice(${JSON.stringify(tx).replace(/"/g, '&quot;')})">
+              <i class="fa-solid fa-receipt"></i> View
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // Activity Timeline
+    const timeline = document.getElementById('detail-activity-timeline');
+    const logs = GymFlowDB.get('auditLogs').slice(0, 4);
+    timeline.innerHTML = logs.map(l => `
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-header">
+          <span class="timeline-title">${l.action}</span>
+          <span class="timeline-time">${l.timestamp}</span>
+        </div>
+        <p class="timeline-desc">${l.actor}: ${l.resource}</p>
+      </div>
+    `).join('');
+  }
+
+  function toggleGymStatus() {
+    const next = currentGym.status === 'suspended' ? 'active' : 'suspended';
+    Modal.confirm({
+      title: `${next === 'active' ? 'Reactivate' : 'Suspend'} Gym?`,
+      message: `Are you sure you want to change the status of ${currentGym.name} to ${next}?`,
+      confirmText: next === 'active' ? 'Reactivate' : 'Suspend',
+      confirmClass: next === 'active' ? 'btn-accent' : 'btn-danger',
+      onConfirm: () => {
+        GymFlowDB.update('gyms', currentGym.id, { status: next });
+        currentGym.status = next;
+        renderGymDetails();
+        Toast.success(`Gym organization is now ${next}.`);
+      }
+    });
+  }
+
+  function simulateLoginAsGymAdmin() {
+    Auth.setUser({
+      id: `usr_${currentGym.id}`,
+      name: currentGym.owner,
+      email: currentGym.email,
+      role: 'gymadmin',
+      roleLabel: 'Gym Admin (Owner)',
+      gymId: currentGym.id,
+      gymName: currentGym.name,
+      avatar: currentGym.logo,
+      dashboardUrl: '../admin/dashboard.html'
+    }, true);
+
+    Toast.success(`Impersonating Gym Admin for ${currentGym.name}`);
+    setTimeout(() => {
+      window.location.href = '../admin/dashboard.html';
+    }, 600);
+  }
+</script>
+</body>
+</html>

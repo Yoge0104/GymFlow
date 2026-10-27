@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leads & Sales CRM — Gym Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <a href="dashboard.html" class="brand-link">
+        <div class="brand-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <div class="brand-text">Gym<span>Flow</span></div>
+      </a>
+      <button class="topbar-toggle sidebar-toggle-btn d-none"><i class="fa-solid fa-bars"></i></button>
+    </div>
+    <div class="sidebar-nav">
+      <div class="nav-section-title">Overview</div>
+      <div class="nav-item"><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i><span>Dashboard</span></a></div>
+      <div class="nav-section-title">Members & Club</div>
+      <div class="nav-item"><a href="branches.html" class="nav-link"><i class="fa-solid fa-network-wired"></i><span>Branches</span></a></div>
+      <div class="nav-item"><a href="members.html" class="nav-link"><i class="fa-solid fa-users"></i><span>Membership Management</span></a></div>
+      <div class="nav-item"><a href="membership-plans.html" class="nav-link"><i class="fa-solid fa-tags"></i><span>Plans</span></a></div>
+      <div class="nav-item"><a href="attendance.html" class="nav-link"><i class="fa-solid fa-id-card-clip"></i><span>Attendance Desk</span></a></div>
+      <div class="nav-section-title">Training & Classes</div>
+      <div class="nav-item"><a href="trainers.html" class="nav-link"><i class="fa-solid fa-user-ninja"></i><span>Trainers</span></a></div>
+      <div class="nav-item"><a href="classes.html" class="nav-link"><i class="fa-solid fa-calendar-days"></i><span>Classes & Timetable</span></a></div>
+      <div class="nav-item"><a href="class-bookings.html" class="nav-link"><i class="fa-solid fa-book-bookmark"></i><span>Class Bookings</span></a></div>
+      <div class="nav-item"><a href="workout-plans.html" class="nav-link"><i class="fa-solid fa-clipboard-list"></i><span>Workout Plans</span></a></div>
+      <div class="nav-section-title">Financials & Sales</div>
+      <div class="nav-item"><a href="payments.html" class="nav-link"><i class="fa-solid fa-credit-card"></i><span>Payments</span></a></div>
+      <div class="nav-item"><a href="invoices.html" class="nav-link"><i class="fa-solid fa-file-invoice-dollar"></i><span>Invoices</span></a></div>
+      <div class="nav-item"><a href="expenses.html" class="nav-link"><i class="fa-solid fa-receipt"></i><span>Expenses</span></a></div>
+      <div class="nav-item"><a href="leads.html" class="nav-link active"><i class="fa-solid fa-user-plus"></i><span>Leads CRM</span></a></div>
+      <div class="nav-section-title">Operations</div>
+      <div class="nav-item"><a href="equipment.html" class="nav-link"><i class="fa-solid fa-dumbbell"></i><span>Equipment</span></a></div>
+      <div class="nav-item"><a href="maintenance.html" class="nav-link"><i class="fa-solid fa-screwdriver-wrench"></i><span>Maintenance</span></a></div>
+      <div class="nav-item"><a href="reports.html" class="nav-link"><i class="fa-solid fa-chart-line"></i><span>Reports & Analytics</span></a></div>
+      <div class="nav-section-title">Administration</div>
+      <div class="nav-item"><a href="staff.html" class="nav-link"><i class="fa-solid fa-user-tie"></i><span>Staff Accounts</span></a></div>
+      <div class="nav-item"><a href="roles-permissions.html" class="nav-link"><i class="fa-solid fa-lock"></i><span>Roles & Access</span></a></div>
+      <div class="nav-item"><a href="notifications.html" class="nav-link"><i class="fa-solid fa-bell"></i><span>Notifications</span></a></div>
+      <div class="nav-item"><a href="support.html" class="nav-link"><i class="fa-solid fa-headset"></i><span>Support Helpdesk</span></a></div>
+      <div class="nav-item"><a href="settings.html" class="nav-link"><i class="fa-solid fa-gear"></i><span>Gym Settings</span></a></div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&h=100&fit=crop" alt="User" class="current-user-avatar"></div>
+        <div class="sidebar-user-info"><span class="sidebar-user-name current-user-name">Marcus Vance</span><span class="sidebar-user-role">Gym Admin</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main-wrapper">
+    <header class="topbar">
+      <div class="topbar-left"><button class="topbar-toggle sidebar-toggle-btn"><i class="fa-solid fa-bars"></i></button></div>
+      <div class="topbar-right">
+        <span class="role-indicator admin"><i class="fa-solid fa-building"></i> Gym Admin</span>
+        <button class="topbar-action-btn theme-toggle-btn"><i class="fa-solid fa-moon"></i></button>
+        <button class="topbar-action-btn" id="btn-notifications"><i class="fa-solid fa-bell"></i><span class="action-badge"></span></button>
+        <div class="dropdown">
+          <button class="topbar-user-btn" data-dropdown-toggle>
+            <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&h=100&fit=crop" class="current-user-avatar" alt="Avatar"></div>
+            <div><div class="topbar-user-name current-user-name">Marcus Vance</div><div class="topbar-user-role">Gym Admin</div></div>
+            <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; color: var(--text-subtle);"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="settings.html" class="dropdown-item"><i class="fa-solid fa-gear"></i> Settings</a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item text-danger btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-wrapper">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">
+            <a href="dashboard.html">Gym Admin</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Sales Pipeline</span>
+          </div>
+          <h1 class="page-title">Lead Management & CRM</h1>
+          <p class="page-subtitle">Track prospective member enquiries, schedule gym floor trials, and convert to active members.</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-accent" onclick="Modal.open('modal-add-lead')"><i class="fa-solid fa-plus"></i> New Lead</button>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <div class="table-toolbar" style="gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+          <div class="table-search" style="flex: 1; min-width: 220px; max-width: 280px;">
+            <div class="input-with-icon">
+              <i class="fa-solid fa-magnifying-glass input-icon"></i>
+              <input type="text" id="lead-search" class="form-control" placeholder="Search name, email, phone..." oninput="filterLeads()">
+            </div>
+          </div>
+          <div class="table-actions" style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+            <!-- Status filter -->
+            <select id="lead-filter-status" class="form-select" style="width: 130px;" onchange="filterLeads()">
+              <option value="">All Statuses</option>
+              <option value="New">New</option>
+              <option value="Contacted">Contacted</option>
+              <option value="Trial Scheduled">Trial Scheduled</option>
+              <option value="Converted">Converted</option>
+              <option value="Lost">Lost</option>
+            </select>
+
+            <!-- Source filter -->
+            <select id="lead-filter-source" class="form-select" style="width: 140px;" onchange="filterLeads()">
+              <option value="">All Sources</option>
+            </select>
+
+            <!-- Staff filter -->
+            <select id="lead-filter-staff" class="form-select" style="width: 130px;" onchange="filterLeads()">
+              <option value="">All Staff</option>
+            </select>
+
+            <!-- Follow-up date filter -->
+            <input type="date" id="lead-filter-date" class="form-control" style="width: 150px;" onchange="filterLeads()" title="Follow-up Date">
+
+            <!-- Reset Button -->
+            <button type="button" class="btn btn-outline btn-sm" id="btn-reset-leads" onclick="resetLeadFilters()" title="Reset all filters">
+              <i class="fa-solid fa-arrow-rotate-left"></i> Reset
+            </button>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+            <thead>
+              <tr>
+                <th class="sortable" onclick="sortLeads('name')" style="cursor: pointer;">
+                  Lead Contact <i class="fa-solid fa-sort text-muted" id="sort-icon-name"></i>
+                </th>
+                <th>Interested Package</th>
+                <th class="sortable" onclick="sortLeads('source')" style="cursor: pointer;">
+                  Source <i class="fa-solid fa-sort text-muted" id="sort-icon-source"></i>
+                </th>
+                <th>Assigned Staff</th>
+                <th class="sortable" onclick="sortLeads('followUpDate')" style="cursor: pointer;">
+                  Follow-Up Date <i class="fa-solid fa-sort text-muted" id="sort-icon-followUpDate"></i>
+                </th>
+                <th class="sortable" onclick="sortLeads('status')" style="cursor: pointer;">
+                  Status <i class="fa-solid fa-sort text-muted" id="sort-icon-status"></i>
+                </th>
+                <th style="text-align: right;">Action</th>
+              </tr>
+            </thead>
+            <tbody id="leads-tbody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- Modal: Add Lead -->
+<div class="modal-backdrop" id="modal-add-lead">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <h3 class="modal-title"><i class="fa-solid fa-user-plus text-accent"></i> Add Prospective Lead</h3>
+      <button type="button" class="modal-close" data-modal-close>&times;</button>
+    </div>
+    <form onsubmit="handleSaveLead(event)">
+      <div class="modal-body">
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Full Name <span class="required">*</span></label>
+            <input type="text" id="ld-name" class="form-control" placeholder="Jane Parker" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Interested Package <span class="required">*</span></label>
+            <input type="text" id="ld-plan" class="form-control" value="Annual VIP All-Access" required>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Email Address <span class="required">*</span></label>
+            <input type="email" id="ld-email" class="form-control" placeholder="jane@example.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone Number <span class="required">*</span></label>
+            <input type="tel" id="ld-phone" class="form-control" placeholder="+1 (555) 777-8899" required>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Acquisition Source</label>
+            <select id="ld-source" class="form-select">
+              <option value="Walk-in">Walk-in Inquiry</option>
+              <option value="Instagram Ad">Instagram / Social Ad</option>
+              <option value="Google Search">Google Maps / Search</option>
+              <option value="Member Referral">Member Referral</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Assigned Staff</label>
+            <input type="text" id="ld-staff" class="form-control" value="Marcus Vance">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-modal-close>Cancel</button>
+        <button type="submit" class="btn btn-accent"><i class="fa-solid fa-check"></i> Save Lead</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="../assets/js/mock-data.js"></script>
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/navigation.js"></script>
+<script src="../assets/js/app.js"></script>
+
+<script>
+  let leads = [];
+  let filteredLeads = [];
+  let currentSortKey = 'name';
+  let isSortAsc = true;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadLeads();
+  });
+
+  function loadLeads() {
+    const gymId = Auth.getTenantGymId();
+    leads = GymFlowDB.get('leads', { gymId: gymId }) || [];
+
+    // Populate source filter
+    const srcSelect = document.getElementById('lead-filter-source');
+    if (srcSelect) {
+      const sources = Array.from(new Set(leads.map(l => l.source).filter(Boolean)));
+      srcSelect.innerHTML = '<option value="">All Sources</option>' +
+        sources.map(s => `<option value="${s}">${s}</option>`).join('');
+    }
+
+    // Populate staff filter
+    const staffSelect = document.getElementById('lead-filter-staff');
+    if (staffSelect) {
+      const staffList = Array.from(new Set(leads.map(l => l.assignedStaff).filter(Boolean)));
+      staffSelect.innerHTML = '<option value="">All Staff</option>' +
+        staffList.map(s => `<option value="${s}">${s}</option>`).join('');
+    }
+
+    filterLeads();
+  }
+
+  function filterLeads() {
+    const q = (document.getElementById('lead-search')?.value || '').trim();
+    const status = document.getElementById('lead-filter-status')?.value || '';
+    const source = document.getElementById('lead-filter-source')?.value || '';
+    const staff = document.getElementById('lead-filter-staff')?.value || '';
+    const followDate = document.getElementById('lead-filter-date')?.value || '';
+
+    filteredLeads = leads.filter(l => {
+      const matchQ = DataGridHelper.matchSearch(l, q, ['name', 'email', 'phone', 'source', 'interestedPlan']);
+      const matchStatus = !status || l.status === status;
+      const matchSource = !source || l.source === source;
+      const matchStaff = !staff || l.assignedStaff === staff;
+      const matchDate = !followDate || l.followUpDate === followDate;
+      return matchQ && matchStatus && matchSource && matchStaff && matchDate;
+    });
+
+    // Sorting
+    filteredLeads.sort((a, b) => {
+      return DataGridHelper.compare(a, b, currentSortKey, isSortAsc);
+    });
+
+    renderLeads();
+  }
+
+  function sortLeads(key) {
+    if (currentSortKey === key) {
+      isSortAsc = !isSortAsc;
+    } else {
+      currentSortKey = key;
+      isSortAsc = true;
+    }
+    DataGridHelper.updateSortHeaders(document.querySelector('.data-table thead'), currentSortKey, isSortAsc);
+    filterLeads();
+  }
+
+  function resetLeadFilters() {
+    if (document.getElementById('lead-search')) document.getElementById('lead-search').value = '';
+    if (document.getElementById('lead-filter-status')) document.getElementById('lead-filter-status').value = '';
+    if (document.getElementById('lead-filter-source')) document.getElementById('lead-filter-source').value = '';
+    if (document.getElementById('lead-filter-staff')) document.getElementById('lead-filter-staff').value = '';
+    if (document.getElementById('lead-filter-date')) document.getElementById('lead-filter-date').value = '';
+    currentSortKey = 'name';
+    isSortAsc = true;
+    DataGridHelper.updateSortHeaders(document.querySelector('.data-table thead'), '', true);
+    filterLeads();
+  }
+
+  function renderLeads() {
+    const tbody = document.getElementById('leads-tbody');
+    if (!filteredLeads.length) {
+      tbody.innerHTML = `<tr><td colspan="7">${DataGridHelper.getEmptyStateHtml('No Prospective Leads Found', 'No leads match your search or filter combination.', 'resetLeadFilters()')}</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = filteredLeads.map(l => {
+      let badge = 'badge-neutral';
+      if (l.status === 'New') badge = 'badge-info';
+      if (l.status === 'Contacted') badge = 'badge-warning';
+      if (l.status === 'Trial Scheduled') badge = 'badge-purple';
+      if (l.status === 'Converted') badge = 'badge-success';
+      if (l.status === 'Lost') badge = 'badge-danger';
+
+      return `
+        <tr>
+          <td>
+            <strong>${l.name}</strong>
+            <div class="text-xs text-muted">${l.email} &bull; ${l.phone}</div>
+          </td>
+          <td><span class="badge badge-neutral">${l.interestedPlan}</span></td>
+          <td>${l.source}</td>
+          <td>${l.assignedStaff}</td>
+          <td class="text-xs text-muted">${l.followUpDate || 'Today'}</td>
+          <td><span class="badge ${badge}"><span class="badge-dot"></span>${l.status}</span></td>
+          <td style="text-align: right;">
+            ${l.status !== 'Converted' ? `
+              <button class="btn btn-sm btn-accent" onclick="convertLeadToMember('${l.id}')">
+                <i class="fa-solid fa-user-check"></i> Convert
+              </button>
+            ` : `
+              <span class="text-xs text-success font-bold"><i class="fa-solid fa-check"></i> Enrolled</span>
+            `}
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  function handleSaveLead(e) {
+    e.preventDefault();
+    const gymId = Auth.getTenantGymId();
+    const newLd = {
+      id: `ld_${Date.now()}`,
+      gymId: gymId,
+      name: document.getElementById('ld-name').value,
+      email: document.getElementById('ld-email').value,
+      phone: document.getElementById('ld-phone').value,
+      interestedPlan: document.getElementById('ld-plan').value,
+      source: document.getElementById('ld-source').value,
+      assignedStaff: document.getElementById('ld-staff').value,
+      followUpDate: new Date().toISOString().split('T')[0],
+      status: 'New'
+    };
+
+    GymFlowDB.insert('leads', newLd);
+    Modal.close('modal-add-lead');
+    Toast.success(`Added enquiry for ${newLd.name}.`);
+    loadLeads();
+  }
+
+  function convertLeadToMember(leadId) {
+    const l = GymFlowDB.getById('leads', leadId);
+    if (!l) return;
+
+    Modal.confirm({
+      title: 'Convert Lead to Active Member?',
+      message: `Convert ${l.name} into an active registered member? This will provision their member profile and membership term.`,
+      confirmText: 'Convert & Enroll',
+      confirmClass: 'btn-accent',
+      onConfirm: () => {
+        // Mark lead converted
+        GymFlowDB.update('leads', leadId, { status: 'Converted' });
+
+        // Insert new member
+        const newMem = {
+          id: `mem_${Date.now()}`,
+          gymId: l.gymId,
+          branchId: 'br_1',
+          name: l.name,
+          email: l.email,
+          phone: l.phone,
+          avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop',
+          planId: 'gplan_4',
+          planName: l.interestedPlan || 'Annual VIP All-Access',
+          startDate: new Date().toISOString().split('T')[0],
+          expiryDate: new Date(Date.now() + 365 * 86400000).toISOString().split('T')[0],
+          paymentStatus: 'Paid',
+          status: 'Active',
+          fitnessGoal: 'General Health',
+          notes: `Converted from lead source: ${l.source}`
+        };
+        GymFlowDB.insert('members', newMem);
+
+        Toast.success(`${l.name} successfully converted to an active member!`);
+        loadLeads();
+      }
+    });
+  }
+</script>
+</body>
+</html>

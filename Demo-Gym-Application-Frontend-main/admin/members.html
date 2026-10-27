@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Membership Management — Gym Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+  <style>
+    .member-name-link {
+      color: var(--color-electric);
+      text-decoration: none;
+      font-weight: 700;
+      transition: color 0.15s ease;
+    }
+    .member-name-link:hover {
+      text-decoration: underline;
+      color: var(--color-electric-hover);
+    }
+    .tab-badge {
+      font-size: 0.7rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: var(--radius-full);
+      margin-left: 0.4rem;
+    }
+    .action-group {
+      display: inline-flex;
+      gap: 0.4rem;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    .btn-sm-action {
+      padding: 0.35rem 0.65rem;
+      font-size: 0.775rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+
+<div class="dashboard-layout">
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <a href="dashboard.html" class="brand-link">
+        <div class="brand-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <div class="brand-text">Gym<span>Flow</span></div>
+      </a>
+      <button class="topbar-toggle sidebar-toggle-btn d-none"><i class="fa-solid fa-bars"></i></button>
+    </div>
+    <div class="sidebar-nav">
+      <div class="nav-section-title">Overview</div>
+      <div class="nav-item"><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i><span>Dashboard</span></a></div>
+      <div class="nav-section-title">Members & Club</div>
+      <div class="nav-item"><a href="branches.html" class="nav-link"><i class="fa-solid fa-network-wired"></i><span>Branches</span></a></div>
+      <div class="nav-item"><a href="members.html" class="nav-link active"><i class="fa-solid fa-users"></i><span>Membership Management</span></a></div>
+      <div class="nav-item"><a href="membership-plans.html" class="nav-link"><i class="fa-solid fa-tags"></i><span>Plans</span></a></div>
+      <div class="nav-item"><a href="attendance.html" class="nav-link"><i class="fa-solid fa-id-card-clip"></i><span>Attendance Desk</span></a></div>
+      <div class="nav-section-title">Training & Classes</div>
+      <div class="nav-item"><a href="trainers.html" class="nav-link"><i class="fa-solid fa-user-ninja"></i><span>Trainers</span></a></div>
+      <div class="nav-item"><a href="classes.html" class="nav-link"><i class="fa-solid fa-calendar-days"></i><span>Classes & Timetable</span></a></div>
+      <div class="nav-item"><a href="class-bookings.html" class="nav-link"><i class="fa-solid fa-book-bookmark"></i><span>Class Bookings</span></a></div>
+      <div class="nav-item"><a href="workout-plans.html" class="nav-link"><i class="fa-solid fa-clipboard-list"></i><span>Workout Plans</span></a></div>
+      <div class="nav-section-title">Financials & Sales</div>
+      <div class="nav-item"><a href="payments.html" class="nav-link"><i class="fa-solid fa-credit-card"></i><span>Payments</span></a></div>
+      <div class="nav-item"><a href="invoices.html" class="nav-link"><i class="fa-solid fa-file-invoice-dollar"></i><span>Invoices</span></a></div>
+      <div class="nav-item"><a href="expenses.html" class="nav-link"><i class="fa-solid fa-receipt"></i><span>Expenses</span></a></div>
+      <div class="nav-item"><a href="leads.html" class="nav-link"><i class="fa-solid fa-user-plus"></i><span>Leads CRM</span></a></div>
+      <div class="nav-section-title">Operations</div>
+      <div class="nav-item"><a href="equipment.html" class="nav-link"><i class="fa-solid fa-dumbbell"></i><span>Equipment</span></a></div>
+      <div class="nav-item"><a href="maintenance.html" class="nav-link"><i class="fa-solid fa-screwdriver-wrench"></i><span>Maintenance</span></a></div>
+      <div class="nav-item"><a href="reports.html" class="nav-link"><i class="fa-solid fa-chart-line"></i><span>Reports & Analytics</span></a></div>
+      <div class="nav-section-title">Administration</div>
+      <div class="nav-item"><a href="staff.html" class="nav-link"><i class="fa-solid fa-user-tie"></i><span>Staff Accounts</span></a></div>
+      <div class="nav-item"><a href="roles-permissions.html" class="nav-link"><i class="fa-solid fa-lock"></i><span>Roles & Access</span></a></div>
+      <div class="nav-item"><a href="notifications.html" class="nav-link"><i class="fa-solid fa-bell"></i><span>Notifications</span></a></div>
+      <div class="nav-item"><a href="support.html" class="nav-link"><i class="fa-solid fa-headset"></i><span>Support Helpdesk</span></a></div>
+      <div class="nav-item"><a href="settings.html" class="nav-link"><i class="fa-solid fa-gear"></i><span>Gym Settings</span></a></div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&h=100&fit=crop" alt="User" class="current-user-avatar"></div>
+        <div class="sidebar-user-info"><span class="sidebar-user-name current-user-name">Marcus Vance</span><span class="sidebar-user-role">Gym Admin</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content Wrapper -->
+  <div class="main-wrapper">
+    <header class="topbar">
+      <div class="topbar-left"><button class="topbar-toggle sidebar-toggle-btn"><i class="fa-solid fa-bars"></i></button></div>
+      <div class="topbar-right">
+        <span class="role-indicator admin"><i class="fa-solid fa-building"></i> Gym Admin</span>
+        <button class="topbar-action-btn theme-toggle-btn" title="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+        <button class="topbar-action-btn" id="btn-notifications" title="Notifications"><i class="fa-solid fa-bell"></i><span class="action-badge"></span></button>
+        <div class="dropdown">
+          <button class="topbar-user-btn" data-dropdown-toggle>
+            <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&h=100&fit=crop" class="current-user-avatar" alt="Avatar"></div>
+            <div><div class="topbar-user-name current-user-name">Marcus Vance</div><div class="topbar-user-role">Gym Admin</div></div>
+            <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; color: var(--text-subtle);"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="settings.html" class="dropdown-item"><i class="fa-solid fa-gear"></i> Gym Settings</a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item text-danger btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-wrapper">
+      <!-- Page Header -->
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">
+            <a href="dashboard.html">Gym Admin</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Membership Management</span>
+          </div>
+          <h1 class="page-title">Membership Management</h1>
+          <p class="page-subtitle">Manage gym members, membership plans, subscriptions, payments, and renewals from one place.</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-outline" onclick="exportMembersCsv()"><i class="fa-solid fa-download"></i> Export CSV</button>
+          <button class="btn btn-accent" onclick="openEnrollModal()"><i class="fa-solid fa-user-plus"></i> Enroll Member</button>
+        </div>
+      </div>
+
+      <!-- 4 Compact Summary KPI Cards -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">Total Members</span>
+            <div class="stat-icon blue"><i class="fa-solid fa-users"></i></div>
+          </div>
+          <div class="stat-value" id="kpi-total-members">0</div>
+          <div class="stat-meta">
+            <span class="text-muted">Registered in facility roster</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">Active Memberships</span>
+            <div class="stat-icon green"><i class="fa-solid fa-circle-check"></i></div>
+          </div>
+          <div class="stat-value text-success" id="kpi-active-members">0</div>
+          <div class="stat-meta">
+            <span class="stat-trend positive" id="kpi-active-pct"><i class="fa-solid fa-arrow-trend-up"></i> 0%</span>
+            <span class="text-muted">active retention</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">Expiring Soon</span>
+            <div class="stat-icon amber"><i class="fa-solid fa-clock"></i></div>
+          </div>
+          <div class="stat-value text-warning" id="kpi-expiring-members">0</div>
+          <div class="stat-meta">
+            <span class="text-muted">Expiring within 7 days</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">Expired Memberships</span>
+            <div class="stat-icon red"><i class="fa-solid fa-circle-xmark"></i></div>
+          </div>
+          <div class="stat-value text-danger" id="kpi-expired-members">0</div>
+          <div class="stat-meta">
+            <span class="text-muted">Needs renewal outreach</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Workflow Tabs -->
+      <div class="tabs-nav" style="margin-bottom: 1.25rem;">
+        <button type="button" class="tab-btn active" id="tab-btn-all" onclick="switchTab('all')">
+          <i class="fa-solid fa-users"></i> All Members
+          <span class="badge badge-neutral tab-badge" id="tab-badge-all">0</span>
+        </button>
+        <button type="button" class="tab-btn" id="tab-btn-lifecycle" onclick="switchTab('lifecycle')">
+          <i class="fa-solid fa-id-card"></i> Membership Lifecycle
+          <span class="badge badge-neutral tab-badge" id="tab-badge-lifecycle">0</span>
+        </button>
+        <button type="button" class="tab-btn" id="tab-btn-payments" onclick="switchTab('payments')">
+          <i class="fa-solid fa-credit-card"></i> Payments
+          <span class="badge badge-neutral tab-badge" id="tab-badge-payments">0</span>
+        </button>
+      </div>
+
+      <!-- Main Unified Table Card -->
+      <div class="table-container attendance-card card">
+        <div class="table-toolbar attendance-header">
+          <!-- Search input -->
+          <div class="table-search attendance-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="member-search" class="form-control" placeholder="Search by name, email, phone, or ID..." oninput="filterMembers()">
+          </div>
+
+          <!-- Multi-filter actions -->
+          <div class="table-actions" style="display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap;">
+            <!-- Branch dropdown -->
+            <select id="member-filter-branch" class="form-select" style="width: 140px;" onchange="filterMembers()">
+              <option value="">All Branches</option>
+            </select>
+
+            <!-- Membership Plan dropdown -->
+            <select id="member-filter-plan" class="form-select" style="width: 150px;" onchange="filterMembers()">
+              <option value="">All Plans</option>
+            </select>
+
+            <!-- Membership Status dropdown -->
+            <select id="member-filter-status" class="form-select" style="width: 140px;" onchange="filterMembers()">
+              <option value="">All Statuses</option>
+              <option value="Active">Active</option>
+              <option value="Expiring">Expiring Soon</option>
+              <option value="Expired">Expired</option>
+            </select>
+
+            <!-- Payment Status dropdown -->
+            <select id="member-filter-payment" class="form-select" style="width: 140px;" onchange="filterMembers()">
+              <option value="">All Payments</option>
+              <option value="Paid">Paid</option>
+              <option value="Pending">Pending</option>
+              <option value="Failed">Failed</option>
+            </select>
+
+            <!-- Clear/Reset Filters Button -->
+            <button type="button" class="btn btn-outline btn-sm" id="btn-reset-filters" onclick="resetFilters()" title="Reset all filters">
+              <i class="fa-solid fa-arrow-rotate-left"></i> Reset
+            </button>
+          </div>
+        </div>
+
+        <!-- Table Responsive Wrapper -->
+        <div class="attendance-body card-body">
+          <div class="attendance-table-wrapper table-responsive">
+            <table class="data-table attendance-table table">
+              <thead>
+                <tr>
+                  <th class="sortable" onclick="sortMembers('name')" style="min-width: 220px;">
+                    Member <i class="fa-solid fa-sort" id="sort-icon-name"></i>
+                  </th>
+                  <th style="min-width: 140px;">Contact</th>
+                  <th style="min-width: 160px;">Membership Plan</th>
+                  <th class="sortable" onclick="sortMembers('startDate')" style="min-width: 110px;">
+                    Start Date <i class="fa-solid fa-sort" id="sort-icon-startDate"></i>
+                  </th>
+                  <th class="sortable" onclick="sortMembers('expiryDate')" style="min-width: 120px;">
+                    Expiry Date <i class="fa-solid fa-sort" id="sort-icon-expiryDate"></i>
+                  </th>
+                  <th style="min-width: 110px;">Payment</th>
+                  <th style="min-width: 140px;">Membership Status</th>
+                  <th style="text-align: right; min-width: 140px;" id="th-actions-label">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="members-tbody">
+                <!-- Rendered dynamically via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Pagination Controls -->
+        <div class="table-pagination" id="members-pagination">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- ================= MODALS ================= -->
+
+<!-- 1. Modal: Enroll Member -->
+<div class="modal-backdrop" id="modal-add-member">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <h3 class="modal-title"><i class="fa-solid fa-user-plus text-accent"></i> Enroll New Member</h3>
+      <button type="button" class="modal-close" data-modal-close>&times;</button>
+    </div>
+    <form onsubmit="handleSaveMember(event)">
+      <div class="modal-body">
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Full Name <span class="required">*</span></label>
+            <input type="text" id="mem-name" class="form-control" placeholder="e.g. Liam Taylor" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Gender <span class="required">*</span></label>
+            <select id="mem-gender" class="form-select" required>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Non-Binary">Non-Binary</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Email Address <span class="required">*</span></label>
+            <input type="email" id="mem-email" class="form-control" placeholder="liam@example.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone Number <span class="required">*</span></label>
+            <input type="tel" id="mem-phone" class="form-control" placeholder="+1 (555) 901-2345" required>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Membership Plan <span class="required">*</span></label>
+            <select id="mem-plan" class="form-select" required onchange="handlePlanSelectionChange()">
+              <!-- Populated via JS -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Assigned Branch <span class="required">*</span></label>
+            <select id="mem-branch" class="form-select" required>
+              <!-- Populated via JS -->
+            </select>
+          </div>
+        </div>
+
+        <div class="grid-3" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Start Date <span class="required">*</span></label>
+            <input type="date" id="mem-start-date" class="form-control" required onchange="updateComputedExpiryDate()">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Expiry Date <span class="required">*</span></label>
+            <input type="date" id="mem-expiry-date" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Initial Payment <span class="required">*</span></label>
+            <select id="mem-initial-payment" class="form-select" required>
+              <option value="Paid" selected>Paid (Upfront)</option>
+              <option value="Pending">Pending (Invoice Later)</option>
+              <option value="Failed">Failed (Card Declined)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Fitness Goal & Notes</label>
+          <input type="text" id="mem-goal" class="form-control" placeholder="e.g. Fat loss, Strength & conditioning, Marathon training">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-modal-close>Cancel</button>
+        <button type="submit" class="btn btn-accent"><i class="fa-solid fa-check"></i> Register Member</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- 2. Modal: Edit Member -->
+<div class="modal-backdrop" id="modal-edit-member">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <h3 class="modal-title"><i class="fa-solid fa-user-pen text-accent"></i> Edit Member Information</h3>
+      <button type="button" class="modal-close" data-modal-close>&times;</button>
+    </div>
+    <form onsubmit="handleEditMemberSubmit(event)">
+      <input type="hidden" id="edit-mem-id">
+      <div class="modal-body">
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Full Name <span class="required">*</span></label>
+            <input type="text" id="edit-mem-name" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Gender <span class="required">*</span></label>
+            <select id="edit-mem-gender" class="form-select" required>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Non-Binary">Non-Binary</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Email Address <span class="required">*</span></label>
+            <input type="email" id="edit-mem-email" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone Number <span class="required">*</span></label>
+            <input type="tel" id="edit-mem-phone" class="form-control" required>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Membership Plan <span class="required">*</span></label>
+            <select id="edit-mem-plan" class="form-select" required>
+              <!-- Populated via JS -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Assigned Branch <span class="required">*</span></label>
+            <select id="edit-mem-branch" class="form-select" required>
+              <!-- Populated via JS -->
+            </select>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Start Date</label>
+            <input type="date" id="edit-mem-start-date" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Expiry Date</label>
+            <input type="date" id="edit-mem-expiry-date" class="form-control" required>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Membership Status <span class="required">*</span></label>
+            <select id="edit-mem-status" class="form-select" required>
+              <option value="Active">Active</option>
+              <option value="Expiring">Expiring Soon</option>
+              <option value="Expired">Expired</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Payment Status <span class="required">*</span></label>
+            <select id="edit-mem-payment" class="form-select" required>
+              <option value="Paid">Paid</option>
+              <option value="Pending">Pending</option>
+              <option value="Failed">Failed</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Fitness Goal & Notes</label>
+          <input type="text" id="edit-mem-goal" class="form-control">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-modal-close>Cancel</button>
+        <button type="submit" class="btn btn-accent"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- 3. Modal: Renew Membership Plan -->
+<div class="modal-backdrop" id="modal-renew-mship">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 class="modal-title"><i class="fa-solid fa-arrows-rotate text-accent"></i> Renew Member Subscription</h3>
+      <button type="button" class="modal-close" data-modal-close>&times;</button>
+    </div>
+    <form onsubmit="handleRenewSubmit(event)">
+      <input type="hidden" id="renew-mem-id">
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Member & Current Plan</label>
+          <input type="text" id="renew-mem-name" class="form-control" readonly disabled style="background-color: var(--bg-surface-secondary); font-weight: 600;">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Current Expiry Date</label>
+          <input type="text" id="renew-current-expiry" class="form-control" readonly disabled style="background-color: var(--bg-surface-secondary);">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Extend Validity Term By</label>
+          <select id="renew-term-select" class="form-select" onchange="calculateRenewalPreview()">
+            <option value="30" data-price="49">+1 Month (30 Days) — $49</option>
+            <option value="90" data-price="135" selected>+3 Months (Quarterly Pass) — $135</option>
+            <option value="180" data-price="250">+6 Months (Semi-Annual) — $250</option>
+            <option value="365" data-price="450">+12 Months (Annual VIP) — $450</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">New Expiry Date (Preview)</label>
+          <input type="text" id="renew-preview-expiry" class="form-control" readonly disabled style="font-weight: 700; color: var(--color-success);">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Payment Method</label>
+          <select id="renew-pay-method" class="form-select">
+            <option value="Credit Card">Credit / Debit Card (Front Desk POS)</option>
+            <option value="Cash">Cash Receipt</option>
+            <option value="Online Auto-Debit">Online Auto-Debit</option>
+            <option value="Bank Transfer">Bank Transfer / ACH</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-modal-close>Cancel</button>
+        <button type="submit" class="btn btn-accent"><i class="fa-solid fa-check"></i> Process & Activate Renewal</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- 4. Modal: Record or Retry Payment -->
+<div class="modal-backdrop" id="modal-record-payment">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 class="modal-title"><i class="fa-solid fa-credit-card text-accent"></i> Record / Retry Payment</h3>
+      <button type="button" class="modal-close" data-modal-close>&times;</button>
+    </div>
+    <form onsubmit="handleRecordPaymentSubmit(event)">
+      <input type="hidden" id="pay-mem-id">
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Member Details</label>
+          <input type="text" id="pay-mem-name" class="form-control" readonly disabled style="background-color: var(--bg-surface-secondary); font-weight: 600;">
+        </div>
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Outstanding Amount ($)</label>
+            <input type="number" id="pay-mem-amount" class="form-control" value="49.00" step="0.01" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Payment Method</label>
+            <select id="pay-method-select" class="form-select">
+              <option value="Credit Card">Credit / Debit Card</option>
+              <option value="Cash">Cash</option>
+              <option value="Bank Transfer">Bank Transfer</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Payment Note / Reference</label>
+          <input type="text" id="pay-note" class="form-control" placeholder="e.g. Front desk POS transaction #9021">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-modal-close>Cancel</button>
+        <button type="submit" class="btn btn-accent"><i class="fa-solid fa-check"></i> Record Payment as Paid</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="../assets/js/mock-data.js"></script>
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/navigation.js"></script>
+<script src="../assets/js/app.js"></script>
+
+<script>
+  let membersList = [];
+  let filteredMembers = [];
+  let currentTab = 'all'; // 'all' | 'lifecycle' | 'payments'
+  let currentPage = 1;
+  const pageSize = 10;
+  let sortKey = 'name';
+  let sortAsc = true;
+  let gymPlans = [];
+  let branches = [];
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Check URL parameters for tab
+    const urlParams = new URLSearchParams(window.location.search);
+    const tabParam = urlParams.get('tab');
+    if (tabParam && ['all', 'lifecycle', 'payments'].includes(tabParam)) {
+      currentTab = tabParam;
+    }
+
+    initPageData();
+  });
+
+  function initPageData() {
+    const gymId = Auth.getTenantGymId();
+    gymPlans = GymFlowDB.get('gymPlans', { gymId: gymId });
+    branches = GymFlowDB.get('branches', { gymId: gymId });
+
+    if (!gymPlans || gymPlans.length === 0) {
+      gymPlans = [
+        { id: 'gplan_1', name: 'Standard Monthly', price: 49, durationDays: 30 },
+        { id: 'gplan_2', name: 'Quarterly Fitness Pass', price: 135, durationDays: 90 },
+        { id: 'gplan_3', name: 'Semi-Annual Club', price: 250, durationDays: 180 },
+        { id: 'gplan_4', name: 'Annual VIP All-Access', price: 450, durationDays: 365 },
+        { id: 'gplan_5', name: 'Personal Training Elite', price: 380, durationDays: 30 }
+      ];
+    }
+
+    if (!branches || branches.length === 0) {
+      branches = [
+        { id: 'br_1', name: 'Downtown Flagship' },
+        { id: 'br_2', name: 'North Austin Studio' }
+      ];
+    }
+
+    populatePlanDropdowns();
+    populateBranchDropdowns();
+    updateTabButtonsUI();
+    loadMembers();
+  }
+
+  function populatePlanDropdowns() {
+    const filterSelect = document.getElementById('member-filter-plan');
+    const enrollSelect = document.getElementById('mem-plan');
+    const editSelect = document.getElementById('edit-mem-plan');
+
+    filterSelect.innerHTML = '<option value="">All Plans</option>' + gymPlans.map(p => `
+      <option value="${p.id}">${p.name}</option>
+    `).join('');
+
+    const planOptions = gymPlans.map(p => `
+      <option value="${p.id}">${p.name} ($${p.price || 49})</option>
+    `).join('');
+
+    enrollSelect.innerHTML = planOptions;
+    editSelect.innerHTML = planOptions;
+  }
+
+  function populateBranchDropdowns() {
+    const enrollBranch = document.getElementById('mem-branch');
+    const editBranch = document.getElementById('edit-mem-branch');
+    const filterBranch = document.getElementById('member-filter-branch');
+
+    const branchOptions = branches.map(b => `
+      <option value="${b.id}">${b.name}</option>
+    `).join('');
+
+    if (enrollBranch) enrollBranch.innerHTML = branchOptions;
+    if (editBranch) editBranch.innerHTML = branchOptions;
+    if (filterBranch) filterBranch.innerHTML = '<option value="">All Branches</option>' + branchOptions;
+  }
+
+  function loadMembers() {
+    const gymId = Auth.getTenantGymId();
+    membersList = GymFlowDB.get('members', { gymId: gymId });
+    calculateKPIs();
+    filterMembers();
+  }
+
+  function calculateKPIs() {
+    const total = membersList.length;
+    const active = membersList.filter(m => m.status === 'Active').length;
+    const expiring = membersList.filter(m => m.status === 'Expiring').length;
+    const expired = membersList.filter(m => m.status === 'Expired').length;
+    const pendingFailedPayments = membersList.filter(m => m.paymentStatus !== 'Paid').length;
+    const activePct = total > 0 ? Math.round((active / total) * 100) : 0;
+
+    // Summary cards
+    document.getElementById('kpi-total-members').textContent = total;
+    document.getElementById('kpi-active-members').textContent = active;
+    document.getElementById('kpi-expiring-members').textContent = expiring;
+    document.getElementById('kpi-expired-members').textContent = expired;
+    document.getElementById('kpi-active-pct').innerHTML = `<i class="fa-solid fa-arrow-trend-up"></i> ${activePct}%`;
+
+    // Tab badges
+    document.getElementById('tab-badge-all').textContent = total;
+    document.getElementById('tab-badge-lifecycle').textContent = expiring + expired;
+    document.getElementById('tab-badge-payments').textContent = pendingFailedPayments;
+  }
+
+  function switchTab(tab) {
+    currentTab = tab;
+    updateTabButtonsUI();
+
+    // Update URL parameter without reload
+    const newUrl = tab === 'all' ? 'members.html' : `members.html?tab=${tab}`;
+    window.history.replaceState(null, '', newUrl);
+
+    // Update actions header label to reflect tab focus
+    const actionsHeader = document.getElementById('th-actions-label');
+    if (tab === 'lifecycle') {
+      actionsHeader.textContent = 'Renewal Actions';
+    } else if (tab === 'payments') {
+      actionsHeader.textContent = 'Payment Actions';
+    } else {
+      actionsHeader.textContent = 'Actions';
+    }
+
+    currentPage = 1;
+    filterMembers();
+  }
+
+  function updateTabButtonsUI() {
+    document.querySelectorAll('.tabs-nav .tab-btn').forEach(btn => btn.classList.remove('active'));
+    const activeBtn = document.getElementById(`tab-btn-${currentTab}`);
+    if (activeBtn) activeBtn.classList.add('active');
+  }
+
+  function filterMembers() {
+    const q = (document.getElementById('member-search').value || '').toLowerCase().trim();
+    const status = document.getElementById('member-filter-status').value;
+    const payment = document.getElementById('member-filter-payment').value;
+    const plan = document.getElementById('member-filter-plan').value;
+    const branch = document.getElementById('member-filter-branch')?.value || '';
+
+    filteredMembers = membersList.filter(m => {
+      const matchBranch = !branch || m.branchId === branch || m.branch === branch;
+      // Free text search
+      const matchQ = !q ||
+        (m.name && m.name.toLowerCase().includes(q)) ||
+        (m.email && m.email.toLowerCase().includes(q)) ||
+        (m.phone && m.phone.toLowerCase().includes(q)) ||
+        (m.id && m.id.toLowerCase().includes(q)) ||
+        (m.planName && m.planName.toLowerCase().includes(q));
+
+      // Dropdown filters
+      const matchStatus = !status || m.status === status;
+      const matchPayment = !payment || m.paymentStatus === payment;
+      const matchPlan = !plan || m.planId === plan;
+
+      return matchQ && matchStatus && matchPayment && matchPlan && matchBranch;
+    });
+
+    // Sorting
+    filteredMembers.sort((a, b) => {
+      let valA = a[sortKey] || '';
+      let valB = b[sortKey] || '';
+
+      if (sortKey === 'expiryDate' || sortKey === 'startDate') {
+        valA = new Date(valA).getTime() || 0;
+        valB = new Date(valB).getTime() || 0;
+      } else if (typeof valA === 'string') {
+        valA = valA.toLowerCase();
+        valB = valB.toLowerCase();
+      }
+
+      if (valA < valB) return sortAsc ? -1 : 1;
+      if (valA > valB) return sortAsc ? 1 : -1;
+      return 0;
+    });
+
+    renderMembersTable();
+  }
+
+  function sortMembers(key) {
+    if (sortKey === key) {
+      sortAsc = !sortAsc;
+    } else {
+      sortKey = key;
+      sortAsc = true;
+    }
+
+    // Update icons
+    ['name', 'startDate', 'expiryDate'].forEach(k => {
+      const icon = document.getElementById(`sort-icon-${k}`);
+      if (icon) {
+        if (k === sortKey) {
+          icon.className = sortAsc ? 'fa-solid fa-sort-up text-accent' : 'fa-solid fa-sort-down text-accent';
+        } else {
+          icon.className = 'fa-solid fa-sort text-muted';
+        }
+      }
+    });
+
+    filterMembers();
+  }
+
+  function resetFilters() {
+    document.getElementById('member-search').value = '';
+    document.getElementById('member-filter-status').value = '';
+    document.getElementById('member-filter-payment').value = '';
+    document.getElementById('member-filter-plan').value = '';
+    if (document.getElementById('member-filter-branch')) {
+      document.getElementById('member-filter-branch').value = '';
+    }
+
+    sortKey = 'name';
+    sortAsc = true;
+    ['name', 'startDate', 'expiryDate'].forEach(k => {
+      const icon = document.getElementById(`sort-icon-${k}`);
+      if (icon) icon.className = 'fa-solid fa-sort text-muted';
+    });
+
+    filterMembers();
+    Toast.info('Filters have been reset.');
+  }
+
+  function renderMembersTable() {
+    const tbody = document.getElementById('members-tbody');
+    const start = (currentPage - 1) * pageSize;
+    const paged = filteredMembers.slice(start, start + pageSize);
+
+    if (paged.length === 0) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="8">
+            <div class="empty-state" style="padding: 3.5rem 1rem; text-align: center;">
+              <div class="empty-icon" style="font-size: 3rem; color: var(--text-subtle); margin-bottom: 0.75rem;">
+                <i class="fa-solid fa-users-slash"></i>
+              </div>
+              <div class="empty-title" style="font-size: 1.15rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.35rem;">
+                No Members Found
+              </div>
+              <p class="text-muted text-xs" style="max-width: 340px; margin: 0 auto 1.25rem;">
+                No records matched your search or selected filters. Try broadening your criteria or reset the filters.
+              </p>
+              <button class="btn btn-sm btn-outline" onclick="resetFilters()">
+                <i class="fa-solid fa-arrow-rotate-left"></i> Reset All Filters
+              </button>
+            </div>
+          </td>
+        </tr>
+      `;
+      TableHelper.renderPagination(document.getElementById('members-pagination'), 0, 1, pageSize, () => {});
+      return;
+    }
+
+    tbody.innerHTML = paged.map(m => {
+      // Badges
+      let statusBadge = 'badge-success';
+      if (m.status === 'Expiring') statusBadge = 'badge-warning';
+      if (m.status === 'Expired') statusBadge = 'badge-danger';
+
+      let payBadge = 'badge-success';
+      if (m.paymentStatus === 'Pending') payBadge = 'badge-warning';
+      if (m.paymentStatus === 'Failed') payBadge = 'badge-danger';
+
+      const defaultAvatar = 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop';
+      const branchObj = branches.find(b => b.id === m.branchId);
+      const branchName = branchObj ? branchObj.name : (m.branchId === 'br_2' ? 'North Austin Studio' : 'Downtown Flagship');
+
+      // Actions Column Rendering according to currentTab
+      let actionButtonsHtml = '';
+
+      if (currentTab === 'lifecycle') {
+        actionButtonsHtml = `
+          <div class="action-group">
+            <button class="btn btn-sm btn-outline-accent btn-sm-action" onclick="openRenewModal('${m.id}')" title="Renew Member Subscription">
+              <i class="fa-solid fa-arrows-rotate"></i> Renew
+            </button>
+            <a href="member-details.html?id=${m.id}" class="btn-icon btn-icon-sm" title="View Full Profile">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        `;
+      } else if (currentTab === 'payments') {
+        actionButtonsHtml = `
+          <div class="action-group">
+            ${m.paymentStatus !== 'Paid' ? `
+              <button class="btn btn-sm btn-outline-warning btn-sm-action" onclick="openRecordPaymentModal('${m.id}')" title="Record or Retry Payment">
+                <i class="fa-solid fa-credit-card"></i> Pay / Retry
+              </button>
+            ` : `
+              <button class="btn btn-sm btn-outline btn-sm-action" onclick="viewPaymentReceipt('${m.id}')" title="View Tax Receipt">
+                <i class="fa-solid fa-receipt"></i> Receipt
+              </button>
+            `}
+            <a href="member-details.html?id=${m.id}" class="btn-icon btn-icon-sm" title="View Full Profile">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        `;
+      } else {
+        // 'all' Tab: comprehensive view
+        actionButtonsHtml = `
+          <div class="action-group">
+            ${(m.status === 'Expiring' || m.status === 'Expired') ? `
+              <button class="btn btn-sm btn-outline-accent btn-sm-action" onclick="openRenewModal('${m.id}')" title="Renew Plan">
+                <i class="fa-solid fa-arrows-rotate"></i> Renew
+              </button>
+            ` : ''}
+            <a href="member-details.html?id=${m.id}" class="btn-icon btn-icon-sm" title="View Profile">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+            <button class="btn-icon btn-icon-sm" onclick="openEditModal('${m.id}')" title="Edit Member">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </button>
+            <button class="btn-icon btn-icon-sm ${m.status === 'Active' ? 'text-danger' : 'text-success'}" 
+              title="${m.status === 'Active' ? 'Deactivate Member' : 'Activate Member'}"
+              onclick="toggleMemberStatus('${m.id}', '${m.status}')">
+              <i class="fa-solid ${m.status === 'Active' ? 'fa-ban' : 'fa-check'}"></i>
+            </button>
+          </div>
+        `;
+      }
+
+      return `
+        <tr>
+          <!-- 1. Member: Avatar, Clickable Name, ID, Email -->
+          <td>
+            <div class="cell-entity">
+              <div class="avatar avatar-sm"><img src="${m.avatar || defaultAvatar}" alt="${m.name}"></div>
+              <div>
+                <div>
+                  <a href="member-details.html?id=${m.id}" class="member-name-link">${m.name}</a>
+                </div>
+                <div class="text-xs text-muted">ID: <strong>${m.id}</strong></div>
+                <div class="text-xs text-muted">${m.email}</div>
+              </div>
+            </div>
+          </td>
+
+          <!-- 2. Contact: Phone and Branch -->
+          <td>
+            <div class="text-xs font-semibold">${m.phone}</div>
+            <div class="text-xs text-muted"><i class="fa-solid fa-location-dot" style="font-size: 0.7rem;"></i> ${branchName}</div>
+          </td>
+
+          <!-- 3. Membership Plan -->
+          <td>
+            <span class="badge badge-neutral" style="font-weight: 600;">${m.planName}</span>
+          </td>
+
+          <!-- 4. Start Date -->
+          <td>
+            <span class="text-xs text-muted">${m.startDate || '--'}</span>
+          </td>
+
+          <!-- 5. Expiry Date -->
+          <td>
+            <span class="text-xs ${m.status === 'Expiring' ? 'text-warning font-bold' : (m.status === 'Expired' ? 'text-danger font-bold' : 'text-muted font-semibold')}">
+              <i class="fa-regular fa-calendar-days" style="margin-right: 3px; opacity: 0.7;"></i>${m.expiryDate || '--'}
+            </span>
+          </td>
+
+          <!-- 6. Payment Status -->
+          <td>
+            <span class="badge ${payBadge}"><span class="badge-dot"></span>${m.paymentStatus}</span>
+          </td>
+
+          <!-- 7. Membership Status -->
+          <td>
+            <span class="badge ${statusBadge}"><span class="badge-dot"></span>${m.status === 'Expiring' ? 'Expiring Soon' : m.status}</span>
+          </td>
+
+          <!-- 8. Actions -->
+          <td style="text-align: right;">
+            ${actionButtonsHtml}
+          </td>
+        </tr>
+      `;
+    }).join('');
+
+    TableHelper.renderPagination(
+      document.getElementById('members-pagination'),
+      filteredMembers.length,
+      currentPage,
+      pageSize,
+      (p) => {
+        currentPage = p;
+        renderMembersTable();
+      }
+    );
+  }
+
+  // ================= ENROLL MEMBER WORKFLOW =================
+  function openEnrollModal() {
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('mem-name').value = '';
+    document.getElementById('mem-email').value = '';
+    document.getElementById('mem-phone').value = '';
+    document.getElementById('mem-gender').value = 'Male';
+    document.getElementById('mem-start-date').value = today;
+    document.getElementById('mem-initial-payment').value = 'Paid';
+    document.getElementById('mem-goal').value = '';
+
+    handlePlanSelectionChange();
+    Modal.open('modal-add-member');
+  }
+
+  function handlePlanSelectionChange() {
+    const planId = document.getElementById('mem-plan').value;
+    const plan = gymPlans.find(p => p.id === planId) || gymPlans[0];
+    const duration = plan ? (plan.durationDays || 30) : 30;
+
+    const startVal = document.getElementById('mem-start-date').value || new Date().toISOString().split('T')[0];
+    const startDate = new Date(startVal);
+    const expiryDate = new Date(startDate.getTime() + duration * 86400000);
+    document.getElementById('mem-expiry-date').value = expiryDate.toISOString().split('T')[0];
+  }
+
+  function updateComputedExpiryDate() {
+    handlePlanSelectionChange();
+  }
+
+  function handleSaveMember(e) {
+    e.preventDefault();
+    const gymId = Auth.getTenantGymId();
+    const email = document.getElementById('mem-email').value.trim();
+    const phone = document.getElementById('mem-phone').value.trim();
+
+    // Check duplicate email or phone in existing members
+    const duplicate = membersList.find(m => m.email.toLowerCase() === email.toLowerCase());
+    if (duplicate) {
+      Toast.warning(`A member with email "${email}" already exists (${duplicate.name}).`);
+      return;
+    }
+
+    const planId = document.getElementById('mem-plan').value;
+    const planObj = gymPlans.find(p => p.id === planId) || { name: 'Standard Monthly', price: 49, durationDays: 30 };
+    const initialPayment = document.getElementById('mem-initial-payment').value;
+
+    const newMem = {
+      id: `mem_${Date.now().toString().slice(-6)}`,
+      gymId: gymId,
+      branchId: document.getElementById('mem-branch').value,
+      name: document.getElementById('mem-name').value.trim(),
+      email: email,
+      phone: phone,
+      gender: document.getElementById('mem-gender').value,
+      avatar: `https://images.unsplash.com/photo-${1534528741775 + (membersList.length % 20)}?w=100&h=100&fit=crop`,
+      planId: planId,
+      planName: planObj.name,
+      startDate: document.getElementById('mem-start-date').value,
+      expiryDate: document.getElementById('mem-expiry-date').value,
+      paymentStatus: initialPayment,
+      status: initialPayment === 'Failed' ? 'Expired' : 'Active',
+      fitnessGoal: document.getElementById('mem-goal').value.trim() || 'General Fitness',
+      notes: 'Registered via Membership Management.'
+    };
+
+    GymFlowDB.insert('members', newMem);
+
+    // Record associated transaction
+    GymFlowDB.insert('payments', {
+      id: `pay_${Date.now()}`,
+      gymId: gymId,
+      memberId: newMem.id,
+      memberName: newMem.name,
+      invoiceNo: `INV-${Date.now().toString().slice(-6)}`,
+      description: `${newMem.planName} Enrollment`,
+      amount: planObj.price || 49.00,
+      date: new Date().toISOString().split('T')[0],
+      method: initialPayment === 'Paid' ? 'Card' : 'Invoice',
+      status: initialPayment
+    });
+
+    Modal.close('modal-add-member');
+    Toast.success(`Enrolled ${newMem.name} successfully!`);
+    loadMembers();
+  }
+
+  // ================= EDIT MEMBER WORKFLOW =================
+  function openEditModal(memId) {
+    const m = GymFlowDB.getById('members', memId);
+    if (!m) return;
+
+    document.getElementById('edit-mem-id').value = m.id;
+    document.getElementById('edit-mem-name').value = m.name || '';
+    document.getElementById('edit-mem-gender').value = m.gender || 'Male';
+    document.getElementById('edit-mem-email').value = m.email || '';
+    document.getElementById('edit-mem-phone').value = m.phone || '';
+    document.getElementById('edit-mem-plan').value = m.planId || 'gplan_1';
+    document.getElementById('edit-mem-branch').value = m.branchId || 'br_1';
+    document.getElementById('edit-mem-start-date').value = m.startDate || '';
+    document.getElementById('edit-mem-expiry-date').value = m.expiryDate || '';
+    document.getElementById('edit-mem-status').value = m.status || 'Active';
+    document.getElementById('edit-mem-payment').value = m.paymentStatus || 'Paid';
+    document.getElementById('edit-mem-goal').value = m.fitnessGoal || '';
+
+    Modal.open('modal-edit-member');
+  }
+
+  function handleEditMemberSubmit(e) {
+    e.preventDefault();
+    const id = document.getElementById('edit-mem-id').value;
+    const planId = document.getElementById('edit-mem-plan').value;
+    const planObj = gymPlans.find(p => p.id === planId) || { name: 'Standard Plan' };
+
+    const updated = {
+      name: document.getElementById('edit-mem-name').value.trim(),
+      gender: document.getElementById('edit-mem-gender').value,
+      email: document.getElementById('edit-mem-email').value.trim(),
+      phone: document.getElementById('edit-mem-phone').value.trim(),
+      branchId: document.getElementById('edit-mem-branch').value,
+      planId: planId,
+      planName: planObj.name,
+      startDate: document.getElementById('edit-mem-start-date').value,
+      expiryDate: document.getElementById('edit-mem-expiry-date').value,
+      status: document.getElementById('edit-mem-status').value,
+      paymentStatus: document.getElementById('edit-mem-payment').value,
+      fitnessGoal: document.getElementById('edit-mem-goal').value.trim()
+    };
+
+    GymFlowDB.update('members', id, updated);
+    Modal.close('modal-edit-member');
+    Toast.success(`Updated member "${updated.name}" successfully.`);
+    loadMembers();
+  }
+
+  // ================= RENEW MEMBERSHIP WORKFLOW =================
+  function openRenewModal(memId) {
+    const m = GymFlowDB.getById('members', memId);
+    if (!m) return;
+
+    document.getElementById('renew-mem-id').value = m.id;
+    document.getElementById('renew-mem-name').value = `${m.name} — ${m.planName}`;
+    document.getElementById('renew-current-expiry').value = m.expiryDate || 'N/A';
+    document.getElementById('renew-term-select').value = '90';
+
+    calculateRenewalPreview();
+    Modal.open('modal-renew-mship');
+  }
+
+  function calculateRenewalPreview() {
+    const memId = document.getElementById('renew-mem-id').value;
+    const m = GymFlowDB.getById('members', memId);
+    const days = parseInt(document.getElementById('renew-term-select').value) || 30;
+
+    let baseTime = Date.now();
+    if (m && m.expiryDate) {
+      const exp = new Date(m.expiryDate).getTime();
+      // If currently active and expiry is in the future, extend from current expiry
+      if (exp > Date.now()) {
+        baseTime = exp;
+      }
+    }
+
+    const newExpiry = new Date(baseTime + days * 86400000).toISOString().split('T')[0];
+    document.getElementById('renew-preview-expiry').value = newExpiry;
+  }
+
+  function handleRenewSubmit(e) {
+    e.preventDefault();
+    const id = document.getElementById('renew-mem-id').value;
+    const select = document.getElementById('renew-term-select');
+    const days = parseInt(select.value) || 30;
+    const price = select.options[select.selectedIndex]?.dataset.price || 49;
+    const method = document.getElementById('renew-pay-method').value;
+
+    const m = GymFlowDB.getById('members', id);
+    if (!m) return;
+
+    let baseTime = Date.now();
+    if (m.expiryDate) {
+      const exp = new Date(m.expiryDate).getTime();
+      if (exp > Date.now()) baseTime = exp;
+    }
+
+    const newExpiry = new Date(baseTime + days * 86400000).toISOString().split('T')[0];
+
+    // Update member record to Active and Paid
+    GymFlowDB.update('members', id, {
+      expiryDate: newExpiry,
+      status: 'Active',
+      paymentStatus: 'Paid'
+    });
+
+    // Record payment receipt
+    GymFlowDB.insert('payments', {
+      id: `pay_${Date.now()}`,
+      gymId: m.gymId,
+      memberId: m.id,
+      memberName: m.name,
+      invoiceNo: `INV-REN-${Date.now().toString().slice(-5)}`,
+      description: `${m.planName} Subscription Extension (+${days} Days)`,
+      amount: Number(price),
+      date: new Date().toISOString().split('T')[0],
+      method: method,
+      status: 'Paid'
+    });
+
+    Modal.close('modal-renew-mship');
+    Toast.success(`Membership for ${m.name} renewed until ${newExpiry}!`);
+    loadMembers();
+  }
+
+  // ================= RECORD / RETRY PAYMENT WORKFLOW =================
+  function openRecordPaymentModal(memId) {
+    const m = GymFlowDB.getById('members', memId);
+    if (!m) return;
+
+    const plan = gymPlans.find(p => p.id === m.planId) || { price: 49.00 };
+
+    document.getElementById('pay-mem-id').value = m.id;
+    document.getElementById('pay-mem-name').value = `${m.name} (${m.planName}) — Currently ${m.paymentStatus}`;
+    document.getElementById('pay-mem-amount').value = (plan.price || 49.00).toFixed(2);
+    document.getElementById('pay-note').value = '';
+
+    Modal.open('modal-record-payment');
+  }
+
+  function handleRecordPaymentSubmit(e) {
+    e.preventDefault();
+    const memId = document.getElementById('pay-mem-id').value;
+    const amount = parseFloat(document.getElementById('pay-mem-amount').value) || 49.00;
+    const method = document.getElementById('pay-method-select').value;
+    const note = document.getElementById('pay-note').value.trim();
+
+    const m = GymFlowDB.getById('members', memId);
+    if (!m) return;
+
+    // Update member
+    GymFlowDB.update('members', memId, {
+      paymentStatus: 'Paid',
+      status: m.status === 'Expired' ? 'Active' : m.status
+    });
+
+    // Insert payment
+    GymFlowDB.insert('payments', {
+      id: `pay_${Date.now()}`,
+      gymId: m.gymId,
+      memberId: m.id,
+      memberName: m.name,
+      invoiceNo: `INV-REC-${Date.now().toString().slice(-5)}`,
+      description: `${m.planName} Payment Clearance ${note ? `(${note})` : ''}`,
+      amount: amount,
+      date: new Date().toISOString().split('T')[0],
+      method: method,
+      status: 'Paid'
+    });
+
+    Modal.close('modal-record-payment');
+    Toast.success(`Payment of $${amount.toFixed(2)} recorded for ${m.name}!`);
+    loadMembers();
+  }
+
+  function viewPaymentReceipt(memId) {
+    const m = GymFlowDB.getById('members', memId);
+    if (!m) return;
+
+    // Fetch existing payment record or build receipt object
+    const gymId = Auth.getTenantGymId();
+    const payments = GymFlowDB.get('payments', { memberId: memId }) || [];
+    const latestPayment = payments[payments.length - 1] || {
+      id: `pay_${Date.now()}`,
+      invoiceNo: `INV-${Date.now().toString().slice(-6)}`,
+      memberId: m.id,
+      memberName: m.name,
+      description: `${m.planName} Standard Access`,
+      amount: 49.00,
+      date: m.startDate || new Date().toISOString().split('T')[0],
+      method: 'Credit Card',
+      status: 'Paid'
+    };
+
+    const gymInfo = {
+      name: "IronPulse Fitness Club",
+      address: "742 Evergreen Terrace, Downtown, Austin, TX",
+      phone: "+1 (555) 234-5678",
+      email: "billing@ironpulse.com"
+    };
+
+    PrintHelper.previewInvoice(latestPayment, gymInfo);
+  }
+
+  // ================= TOGGLE STATUS (ACTIVATE / DEACTIVATE) =================
+  function toggleMemberStatus(memId, curr) {
+    const next = curr === 'Active' ? 'Expired' : 'Active';
+    Modal.confirm({
+      title: `${next === 'Active' ? 'Reactivate' : 'Deactivate'} Member?`,
+      message: `Are you sure you want to change membership status for this athlete to "${next}"?`,
+      confirmText: next === 'Active' ? 'Reactivate Member' : 'Deactivate Member',
+      confirmClass: next === 'Active' ? 'btn-accent' : 'btn-danger',
+      onConfirm: () => {
+        GymFlowDB.update('members', memId, { status: next });
+        Toast.success(`Member status updated to ${next}.`);
+        loadMembers();
+      }
+    });
+  }
+
+  // ================= CSV EXPORT =================
+  function exportMembersCsv() {
+    const headers = [
+      'Member ID',
+      'Name',
+      'Email',
+      'Phone',
+      'Plan',
+      'Start Date',
+      'Expiry Date',
+      'Payment Status',
+      'Membership Status'
+    ];
+
+    const rows = filteredMembers.map(m => [
+      m.id,
+      m.name,
+      m.email,
+      m.phone,
+      m.planName,
+      m.startDate,
+      m.expiryDate,
+      m.paymentStatus,
+      m.status
+    ]);
+
+    const filename = `gymflow-memberships-${currentTab}-${new Date().toISOString().split('T')[0]}.csv`;
+    TableHelper.exportToCsv(filename, headers, rows);
+  }
+</script>
+</body>
+</html>

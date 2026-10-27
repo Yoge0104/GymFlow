@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Super Admin Dashboard — GymFlow SaaS</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <a href="dashboard.html" class="brand-link">
+        <div class="brand-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <div class="brand-text">Gym<span>Flow</span></div>
+      </a>
+      <button class="topbar-toggle sidebar-toggle-btn d-none" aria-label="Toggle Sidebar"><i class="fa-solid fa-bars"></i></button>
+    </div>
+
+    <div class="sidebar-nav">
+      <div class="nav-section-title">Overview</div>
+      <div class="nav-item">
+        <a href="dashboard.html" class="nav-link active">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>Dashboard</span>
+        </a>
+      </div>
+
+      <div class="nav-section-title">Organizations</div>
+      <div class="nav-item">
+        <a href="gyms.html" class="nav-link">
+          <i class="fa-solid fa-building"></i>
+          <span>Gym Directory</span>
+        </a>
+      </div>
+      <div class="nav-item">
+        <a href="subscriptions.html" class="nav-link">
+          <i class="fa-solid fa-receipt"></i>
+          <span>Subscriptions</span>
+        </a>
+      </div>
+      <div class="nav-item">
+        <a href="plans.html" class="nav-link">
+          <i class="fa-solid fa-tags"></i>
+          <span>SaaS Plans</span>
+        </a>
+      </div>
+
+      <div class="nav-section-title">Finance</div>
+      <div class="nav-item">
+        <a href="billing.html" class="nav-link">
+          <i class="fa-solid fa-credit-card"></i>
+          <span>Platform Billing</span>
+        </a>
+      </div>
+
+      <div class="nav-section-title">Platform Team</div>
+      <div class="nav-item">
+        <a href="platform-users.html" class="nav-link">
+          <i class="fa-solid fa-user-shield"></i>
+          <span>Platform Users</span>
+        </a>
+      </div>
+      <div class="nav-item">
+        <a href="roles-permissions.html" class="nav-link">
+          <i class="fa-solid fa-lock"></i>
+          <span>Roles & Matrix</span>
+        </a>
+      </div>
+      <div class="nav-item">
+        <a href="announcements.html" class="nav-link">
+          <i class="fa-solid fa-bullhorn"></i>
+          <span>Announcements</span>
+        </a>
+      </div>
+
+      <div class="nav-section-title">Operations</div>
+      <div class="nav-item">
+        <a href="support-tickets.html" class="nav-link">
+          <i class="fa-solid fa-headset"></i>
+          <span>Support Tickets</span>
+          <span class="badge badge-danger nav-badge">3</span>
+        </a>
+      </div>
+      <div class="nav-item">
+        <a href="audit-logs.html" class="nav-link">
+          <i class="fa-solid fa-list-check"></i>
+          <span>Audit Logs</span>
+        </a>
+      </div>
+      <div class="nav-item">
+        <a href="system-health.html" class="nav-link">
+          <i class="fa-solid fa-heart-pulse"></i>
+          <span>System Health</span>
+        </a>
+      </div>
+      <div class="nav-item">
+        <a href="settings.html" class="nav-link">
+          <i class="fa-solid fa-gear"></i>
+          <span>Platform Settings</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" alt="Admin" class="current-user-avatar">
+        </div>
+        <div class="sidebar-user-info">
+          <span class="sidebar-user-name current-user-name">Alex Vance</span>
+          <span class="sidebar-user-role">Super Admin</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content Wrapper -->
+  <div class="main-wrapper">
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="topbar-toggle sidebar-toggle-btn" title="Toggle Navigation">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="topbar-search">
+          <div class="input-with-icon">
+            <i class="fa-solid fa-magnifying-glass input-icon"></i>
+            <input type="text" class="form-control" placeholder="Search gyms, invoices, tickets...">
+          </div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="role-indicator super-admin"><i class="fa-solid fa-shield-halved"></i> Super Admin</span>
+
+        <button class="topbar-action-btn theme-toggle-btn" title="Toggle Dark/Light Mode">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+
+        <div class="dropdown">
+          <button class="topbar-action-btn" id="btn-notifications" title="Notifications">
+            <i class="fa-solid fa-bell"></i>
+            <span class="action-badge"></span>
+          </button>
+        </div>
+
+        <div class="dropdown">
+          <button class="topbar-user-btn" data-dropdown-toggle>
+            <div class="avatar avatar-sm">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" class="current-user-avatar" alt="Avatar">
+            </div>
+            <div>
+              <div class="topbar-user-name current-user-name">Alex Vance</div>
+              <div class="topbar-user-role current-user-role">Super Admin</div>
+            </div>
+            <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; color: var(--text-subtle);"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="settings.html" class="dropdown-item"><i class="fa-solid fa-gear"></i> Platform Settings</a>
+            <a href="audit-logs.html" class="dropdown-item"><i class="fa-solid fa-clock-rotate-left"></i> My Audit Trail</a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item text-danger btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Page Content Container -->
+    <main class="content-wrapper">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">
+            <a href="dashboard.html">Super Admin</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Platform Dashboard</span>
+          </div>
+          <h1 class="page-title">SaaS Platform Overview</h1>
+          <p class="page-subtitle">Real-time health, subscription revenue, and active gym organizations.</p>
+        </div>
+        <div class="page-actions">
+          <a href="gyms.html" class="btn btn-secondary">
+            <i class="fa-solid fa-building"></i> View All Gyms
+          </a>
+          <button class="btn btn-accent" onclick="Modal.open('modal-add-gym')">
+            <i class="fa-solid fa-plus"></i> Add New Gym
+          </button>
+        </div>
+      </div>
+
+      <!-- KPI Stat Cards Grid (9 metrics) -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">Total Gyms</span>
+            <span class="stat-icon green"><i class="fa-solid fa-building"></i></span>
+          </div>
+          <div class="stat-value" id="kpi-total-gyms">10</div>
+          <div class="stat-meta">
+            <span class="stat-trend positive"><i class="fa-solid fa-arrow-up"></i> +2 this month</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">Active Gyms</span>
+            <span class="stat-icon blue"><i class="fa-solid fa-circle-check"></i></span>
+          </div>
+          <div class="stat-value" id="kpi-active-gyms">7</div>
+          <div class="stat-meta">
+            <span class="badge badge-success">70% paid retention</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">Free Trials</span>
+            <span class="stat-icon purple"><i class="fa-solid fa-clock"></i></span>
+          </div>
+          <div class="stat-value" id="kpi-trial-gyms">2</div>
+          <div class="stat-meta">
+            <span class="text-subtle">Expiring in 7 days</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">Suspended</span>
+            <span class="stat-icon red"><i class="fa-solid fa-ban"></i></span>
+          </div>
+          <div class="stat-value" id="kpi-suspended-gyms">1</div>
+          <div class="stat-meta">
+            <span class="text-danger">Failed payment</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">Total Members</span>
+            <span class="stat-icon green"><i class="fa-solid fa-users"></i></span>
+          </div>
+          <div class="stat-value" id="kpi-total-members">3,895</div>
+          <div class="stat-meta">
+            <span class="stat-trend positive"><i class="fa-solid fa-arrow-up"></i> +14.8% YoY</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">Monthly MRR</span>
+            <span class="stat-icon green"><i class="fa-solid fa-sack-dollar"></i></span>
+          </div>
+          <div class="stat-value" id="kpi-mrr">₹1,180</div>
+          <div class="stat-meta">
+            <span class="stat-trend positive"><i class="fa-solid fa-arrow-up"></i> +₹248 /mo</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">Renewals Due</span>
+            <span class="stat-icon amber"><i class="fa-solid fa-calendar-check"></i></span>
+          </div>
+          <div class="stat-value">3</div>
+          <div class="stat-meta">
+            <span class="text-warning">Next 14 days</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">Failed Payments</span>
+            <span class="stat-icon red"><i class="fa-solid fa-circle-exclamation"></i></span>
+          </div>
+          <div class="stat-value">1</div>
+          <div class="stat-meta">
+            <a href="billing.html" class="text-danger font-semibold">View invoice</a>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">Open Tickets</span>
+            <span class="stat-icon blue"><i class="fa-solid fa-headset"></i></span>
+          </div>
+          <div class="stat-value" id="kpi-open-tickets">2</div>
+          <div class="stat-meta">
+            <a href="support-tickets.html" class="text-electric font-semibold">Resolve queue</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts Section (2 Columns) -->
+      <div class="grid-2-1">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-chart-line text-accent"></i> Platform MRR Growth</h3>
+              <p class="card-subtitle">Monthly Recurring Revenue trajectory across all subscribed gyms</p>
+            </div>
+            <span class="badge badge-success">+24.5% vs Q1</span>
+          </div>
+          <div class="card-body">
+            <div style="height: 280px; position: relative;">
+              <canvas id="chart-platform-revenue"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-chart-pie text-electric"></i> SaaS Plan Distribution</h3>
+              <p class="card-subtitle">Active gym distribution by tier</p>
+            </div>
+          </div>
+          <div class="card-body">
+            <div style="height: 280px; position: relative;">
+              <canvas id="chart-plan-distribution"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tables and Activity Feeds -->
+      <div class="grid-2-1">
+        <!-- Recent Gyms Table -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-building text-accent"></i> Recent Gym Registrations</h3>
+              <p class="card-subtitle">Latest organizations on the GymFlow platform</p>
+            </div>
+            <a href="gyms.html" class="btn btn-sm btn-outline">View Directory</a>
+          </div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Gym Organization</th>
+                  <th>Owner</th>
+                  <th>Plan</th>
+                  <th>Status</th>
+                  <th>MRR</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="table-recent-gyms">
+                <!-- Injected via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Activity Feed -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-bolt text-warning"></i> Platform Activity Feed</h3>
+              <p class="card-subtitle">Live system and security events</p>
+            </div>
+            <a href="audit-logs.html" class="btn btn-icon btn-sm" title="View Audit Logs"><i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+          <div class="card-body">
+            <div class="timeline" id="platform-activity-feed">
+              <!-- Injected via JavaScript -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- Modal: Add New Gym -->
+<div class="modal-backdrop" id="modal-add-gym">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <h3 class="modal-title"><i class="fa-solid fa-building text-accent"></i> Onboard New Gym Organization</h3>
+      <button type="button" class="modal-close" data-modal-close>&times;</button>
+    </div>
+    <form id="form-add-gym" onsubmit="handleAddGym(event)">
+      <div class="modal-body">
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Gym Name <span class="required">*</span></label>
+            <input type="text" id="add-gym-name" class="form-control" placeholder="e.g. Spartan Strength Arena" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Owner Name <span class="required">*</span></label>
+            <input type="text" id="add-gym-owner" class="form-control" placeholder="e.g. Leo Vance" required>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Email <span class="required">*</span></label>
+            <input type="email" id="add-gym-email" class="form-control" placeholder="leo@spartan.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone <span class="required">*</span></label>
+            <input type="tel" id="add-gym-phone" class="form-control" placeholder="+1 (555) 789-0123" required>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">City, State <span class="required">*</span></label>
+            <input type="text" id="add-gym-city" class="form-control" placeholder="Phoenix, AZ" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">SaaS Subscription Plan <span class="required">*</span></label>
+            <select id="add-gym-plan" class="form-select" required>
+              <option value="saas_starter">Starter (₹49/mo)</option>
+              <option value="saas_growth" selected>Growth (₹99/mo)</option>
+              <option value="saas_enterprise">Enterprise Pro (₹199/mo)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-modal-close>Cancel</button>
+        <button type="submit" class="btn btn-accent"><i class="fa-solid fa-plus"></i> Create Gym Account</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="../assets/js/mock-data.js"></script>
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/charts.js"></script>
+<script src="../assets/js/navigation.js"></script>
+<script src="../assets/js/app.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    loadDashboardData();
+    renderCharts();
+  });
+
+  function loadDashboardData() {
+    const gyms = GymFlowDB.get('gyms');
+    const tickets = GymFlowDB.get('supportTickets', { scope: 'platform', status: 'Open' });
+    const auditLogs = GymFlowDB.get('auditLogs');
+
+    // Update KPI values
+    const totalGyms = gyms.length;
+    const activeGyms = gyms.filter(g => g.status === 'active').length;
+    const trialGyms = gyms.filter(g => g.status === 'trial').length;
+    const suspendedGyms = gyms.filter(g => g.status === 'suspended').length;
+    const totalMembers = gyms.reduce((acc, g) => acc + (g.membersCount || 0), 0);
+    const totalMrr = gyms.filter(g => g.status !== 'suspended').reduce((acc, g) => acc + (g.mrr || 0), 0);
+
+    document.getElementById('kpi-total-gyms').textContent = totalGyms;
+    document.getElementById('kpi-active-gyms').textContent = activeGyms;
+    document.getElementById('kpi-trial-gyms').textContent = trialGyms;
+    document.getElementById('kpi-suspended-gyms').textContent = suspendedGyms;
+    document.getElementById('kpi-total-members').textContent = totalMembers.toLocaleString();
+    document.getElementById('kpi-mrr').textContent = `₹${totalMrr.toLocaleString()}`;
+    document.getElementById('kpi-open-tickets').textContent = tickets.length;
+
+    // Render Recent Gyms Table (First 5)
+    const recentGyms = gyms.slice(0, 5);
+    const tbody = document.getElementById('table-recent-gyms');
+    tbody.innerHTML = recentGyms.map(gym => {
+      let statusBadge = 'badge-success';
+      if (gym.status === 'trial') statusBadge = 'badge-warning';
+      if (gym.status === 'suspended') statusBadge = 'badge-danger';
+
+      return `
+        <tr>
+          <td>
+            <div class="cell-entity">
+              <div class="avatar avatar-sm">
+                <img src="${gym.logo}" alt="${gym.name}">
+              </div>
+              <div>
+                <strong>${gym.name}</strong>
+                <div class="text-xs text-muted">${gym.city}</div>
+              </div>
+            </div>
+          </td>
+          <td>${gym.owner}</td>
+          <td><span class="badge badge-neutral">${gym.planName}</span></td>
+          <td><span class="badge ${statusBadge}"><span class="badge-dot"></span>${gym.status.toUpperCase()}</span></td>
+          <td class="font-bold">₹${gym.mrr}/mo</td>
+          <td>
+            <a href="gym-details.html?id=${gym.id}" class="btn btn-sm btn-outline" title="View Details">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </td>
+        </tr>
+      `;
+    }).join('');
+
+    // Render Activity Feed
+    const feed = document.getElementById('platform-activity-feed');
+    const recentLogs = auditLogs.slice(0, 5);
+    feed.innerHTML = recentLogs.map((log, idx) => {
+      let dotColor = idx === 0 ? '' : (idx === 1 ? 'blue' : (idx === 2 ? 'purple' : 'amber'));
+      return `
+        <div class="timeline-item">
+          <div class="timeline-dot ${dotColor}"></div>
+          <div class="timeline-header">
+            <span class="timeline-title">${log.action}</span>
+            <span class="timeline-time">${log.timestamp.split(' ')[1]}</span>
+          </div>
+          <p class="timeline-desc">${log.actor}: ${log.resource}</p>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function renderCharts() {
+    GymCharts.renderRevenueChart(
+      'chart-platform-revenue',
+      ['Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr'],
+      [640, 720, 890, 940, 1060, 1180]
+    );
+
+    GymCharts.renderPlanDistributionChart(
+      'chart-plan-distribution',
+      ['Growth (₹99)', 'Enterprise (₹199)', 'Starter (₹49)'],
+      [5, 2, 3]
+    );
+  }
+
+  function handleAddGym(e) {
+    e.preventDefault();
+    const name = document.getElementById('add-gym-name').value;
+    const owner = document.getElementById('add-gym-owner').value;
+    const email = document.getElementById('add-gym-email').value;
+    const phone = document.getElementById('add-gym-phone').value;
+    const city = document.getElementById('add-gym-city').value;
+    const planId = document.getElementById('add-gym-plan').value;
+
+    const planMap = {
+      'saas_starter': { name: 'Starter', mrr: 49 },
+      'saas_growth': { name: 'Growth', mrr: 99 },
+      'saas_enterprise': { name: 'Enterprise Pro', mrr: 199 }
+    };
+
+    const newGym = {
+      id: `gym_${Date.now()}`,
+      name: name,
+      slug: name.toLowerCase().replace(/[^a-z0-9]/g, '-'),
+      logo: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=100&h=100&fit=crop',
+      owner: owner,
+      email: email,
+      phone: phone,
+      address: 'Main Facility Blvd',
+      city: city,
+      planId: planId,
+      planName: planMap[planId].name,
+      status: 'active',
+      registrationDate: new Date().toISOString().split('T')[0],
+      renewalDate: new Date(Date.now() + 30 * 86400000).toISOString().split('T')[0],
+      mrr: planMap[planId].mrr,
+      membersCount: 0,
+      branchesCount: 1
+    };
+
+    GymFlowDB.insert('gyms', newGym);
+    Modal.close('modal-add-gym');
+    Toast.success(`Added ${name} to platform directory.`);
+    loadDashboardData();
+  }
+</script>
+</body>
+</html>

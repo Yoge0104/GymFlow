@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gym Directory — GymFlow Super Admin</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <a href="dashboard.html" class="brand-link">
+        <div class="brand-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <div class="brand-text">Gym<span>Flow</span></div>
+      </a>
+      <button class="topbar-toggle sidebar-toggle-btn d-none"><i class="fa-solid fa-bars"></i></button>
+    </div>
+
+    <div class="sidebar-nav">
+      <div class="nav-section-title">Overview</div>
+      <div class="nav-item">
+        <a href="dashboard.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i><span>Dashboard</span></a>
+      </div>
+
+      <div class="nav-section-title">Organizations</div>
+      <div class="nav-item">
+        <a href="gyms.html" class="nav-link active"><i class="fa-solid fa-building"></i><span>Gym Directory</span></a>
+      </div>
+      <div class="nav-item">
+        <a href="subscriptions.html" class="nav-link"><i class="fa-solid fa-receipt"></i><span>Subscriptions</span></a>
+      </div>
+      <div class="nav-item">
+        <a href="plans.html" class="nav-link"><i class="fa-solid fa-tags"></i><span>SaaS Plans</span></a>
+      </div>
+
+      <div class="nav-section-title">Finance</div>
+      <div class="nav-item">
+        <a href="billing.html" class="nav-link"><i class="fa-solid fa-credit-card"></i><span>Platform Billing</span></a>
+      </div>
+
+      <div class="nav-section-title">Platform Team</div>
+      <div class="nav-item">
+        <a href="platform-users.html" class="nav-link"><i class="fa-solid fa-user-shield"></i><span>Platform Users</span></a>
+      </div>
+      <div class="nav-item">
+        <a href="roles-permissions.html" class="nav-link"><i class="fa-solid fa-lock"></i><span>Roles & Matrix</span></a>
+      </div>
+      <div class="nav-item">
+        <a href="announcements.html" class="nav-link"><i class="fa-solid fa-bullhorn"></i><span>Announcements</span></a>
+      </div>
+
+      <div class="nav-section-title">Operations</div>
+      <div class="nav-item">
+        <a href="support-tickets.html" class="nav-link"><i class="fa-solid fa-headset"></i><span>Support Tickets</span><span class="badge badge-danger nav-badge">3</span></a>
+      </div>
+      <div class="nav-item">
+        <a href="audit-logs.html" class="nav-link"><i class="fa-solid fa-list-check"></i><span>Audit Logs</span></a>
+      </div>
+      <div class="nav-item">
+        <a href="system-health.html" class="nav-link"><i class="fa-solid fa-heart-pulse"></i><span>System Health</span></a>
+      </div>
+      <div class="nav-item">
+        <a href="settings.html" class="nav-link"><i class="fa-solid fa-gear"></i><span>Platform Settings</span></a>
+      </div>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" alt="Admin" class="current-user-avatar">
+        </div>
+        <div class="sidebar-user-info">
+          <span class="sidebar-user-name current-user-name">Alex Vance</span>
+          <span class="sidebar-user-role">Super Admin</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content Wrapper -->
+  <div class="main-wrapper">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="topbar-toggle sidebar-toggle-btn"><i class="fa-solid fa-bars"></i></button>
+        <div class="topbar-search">
+          <div class="input-with-icon">
+            <i class="fa-solid fa-magnifying-glass input-icon"></i>
+            <input type="text" id="global-search-input" class="form-control" placeholder="Quick search..." oninput="handleSearch(this.value)">
+          </div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="role-indicator super-admin"><i class="fa-solid fa-shield-halved"></i> Super Admin</span>
+        <button class="topbar-action-btn theme-toggle-btn" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
+        <button class="topbar-action-btn" id="btn-notifications"><i class="fa-solid fa-bell"></i><span class="action-badge"></span></button>
+        <div class="dropdown">
+          <button class="topbar-user-btn" data-dropdown-toggle>
+            <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" class="current-user-avatar" alt="User"></div>
+            <div><div class="topbar-user-name current-user-name">Alex Vance</div><div class="topbar-user-role">Super Admin</div></div>
+            <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; color: var(--text-subtle);"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="settings.html" class="dropdown-item"><i class="fa-solid fa-gear"></i> Settings</a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item text-danger btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-wrapper">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">
+            <a href="dashboard.html">Super Admin</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Gym Organizations</span>
+          </div>
+          <h1 class="page-title">Registered Gyms Directory</h1>
+          <p class="page-subtitle">Manage SaaS tenant accounts, branches, subscription tiers, and access statuses.</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-outline" onclick="exportGymsCsv()"><i class="fa-solid fa-download"></i> Export CSV</button>
+          <button class="btn btn-accent" onclick="Modal.open('modal-add-gym')"><i class="fa-solid fa-plus"></i> Add New Gym</button>
+        </div>
+      </div>
+
+      <!-- Gym Organizations & Multi-Branch Summary Stats -->
+      <div class="stats-grid" style="margin-bottom: 1.5rem;">
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">Total Gym Organizations</span>
+            <span class="stat-icon green"><i class="fa-solid fa-building"></i></span>
+          </div>
+          <div class="stat-value" id="kpi-total-gyms">10</div>
+          <div class="stat-meta">
+            <span class="text-muted">Registered SaaS tenants</span>
+          </div>
+        </div>
+
+        <div class="stat-card" style="cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;" onclick="filterByBranchType('multi')" title="Click to filter multi-branch gyms">
+          <div class="stat-card-header">
+            <span class="stat-label">Multi-Branch Gyms (2+)</span>
+            <span class="stat-icon blue"><i class="fa-solid fa-network-wired"></i></span>
+          </div>
+          <div class="stat-value" id="kpi-multibranch-gyms" style="color: var(--color-primary, #10b981);">5</div>
+          <div class="stat-meta">
+            <span class="badge badge-primary" id="kpi-multibranch-pct">50% of tenant network</span>
+          </div>
+        </div>
+
+        <div class="stat-card" style="cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;" onclick="filterByBranchType('single')" title="Click to filter single-branch gyms">
+          <div class="stat-card-header">
+            <span class="stat-label">Single-Branch Gyms</span>
+            <span class="stat-icon purple"><i class="fa-solid fa-store"></i></span>
+          </div>
+          <div class="stat-value" id="kpi-singlebranch-gyms">5</div>
+          <div class="stat-meta">
+            <span class="text-muted">Single facility gyms</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">Total Network Branches</span>
+            <span class="stat-icon amber"><i class="fa-solid fa-map-location-dot"></i></span>
+          </div>
+          <div class="stat-value" id="kpi-total-branches">19</div>
+          <div class="stat-meta">
+            <span class="text-muted">Combined authorized locations</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter & Search Toolbar -->
+      <div class="table-container">
+        <div class="table-toolbar">
+          <div class="table-search">
+            <div class="input-with-icon">
+              <i class="fa-solid fa-magnifying-glass input-icon"></i>
+              <input type="text" id="gym-search" class="form-control" placeholder="Search gym, owner, or city..." oninput="filterGyms()">
+            </div>
+          </div>
+          <div class="table-actions" style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+            <select id="filter-status" class="form-select" style="width: 150px;" onchange="filterGyms()">
+              <option value="">All Statuses</option>
+              <option value="active">Active</option>
+              <option value="trial">Free Trial</option>
+              <option value="suspended">Suspended</option>
+            </select>
+
+            <select id="filter-plan" class="form-select" style="width: 160px;" onchange="filterGyms()">
+              <option value="">All Plans</option>
+              <option value="Starter">Starter (₹49)</option>
+              <option value="Growth">Growth (₹99)</option>
+              <option value="Enterprise Pro">Enterprise Pro (₹199)</option>
+            </select>
+
+            <select id="filter-branches" class="form-select" style="width: 170px;" onchange="filterGyms()">
+              <option value="">All Branch Types</option>
+              <option value="multi">Multi-Branch (2+)</option>
+              <option value="single">Single Branch (1)</option>
+            </select>
+
+            <button type="button" class="btn btn-outline btn-sm" onclick="resetGymFilters()" title="Reset all filters">
+              <i class="fa-solid fa-arrow-rotate-left"></i> Reset
+            </button>
+          </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th class="sortable" onclick="sortGyms('name')" style="cursor: pointer;">
+                  Gym Organization <i class="fa-solid fa-sort text-muted" id="sort-icon-name"></i>
+                </th>
+                <th>Owner & Contact</th>
+                <th class="sortable" onclick="sortGyms('branchesCount')" style="cursor: pointer;">
+                  Branches <i class="fa-solid fa-sort text-muted" id="sort-icon-branchesCount"></i>
+                </th>
+                <th class="sortable" onclick="sortGyms('membersCount')" style="cursor: pointer;">
+                  Members <i class="fa-solid fa-sort text-muted" id="sort-icon-membersCount"></i>
+                </th>
+                <th>Subscription Plan</th>
+                <th class="sortable" onclick="sortGyms('status')" style="cursor: pointer;">
+                  Status <i class="fa-solid fa-sort text-muted" id="sort-icon-status"></i>
+                </th>
+                <th class="sortable" onclick="sortGyms('registrationDate')" style="cursor: pointer;">
+                  Reg. Date <i class="fa-solid fa-sort text-muted" id="sort-icon-registrationDate"></i>
+                </th>
+                <th style="text-align: right;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="gyms-tbody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-pagination" id="gyms-pagination">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- Modal: Add New Gym -->
+<div class="modal-backdrop" id="modal-add-gym">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <h3 class="modal-title"><i class="fa-solid fa-building text-accent"></i> Add New Gym Organization</h3>
+      <button type="button" class="modal-close" data-modal-close>&times;</button>
+    </div>
+    <form id="form-new-gym" onsubmit="submitNewGym(event)">
+      <div class="modal-body">
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Gym Name <span class="required">*</span></label>
+            <input type="text" id="new-gym-name" class="form-control" placeholder="Apex Fitness" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Owner Full Name <span class="required">*</span></label>
+            <input type="text" id="new-gym-owner" class="form-control" placeholder="Jane Doe" required>
+          </div>
+        </div>
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Email <span class="required">*</span></label>
+            <input type="email" id="new-gym-email" class="form-control" placeholder="jane@apex.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone <span class="required">*</span></label>
+            <input type="tel" id="new-gym-phone" class="form-control" placeholder="+1 (555) 123-4567" required>
+          </div>
+        </div>
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">City, State <span class="required">*</span></label>
+            <input type="text" id="new-gym-city" class="form-control" placeholder="Miami, FL" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">SaaS Plan <span class="required">*</span></label>
+            <select id="new-gym-plan" class="form-select" required>
+              <option value="saas_starter">Starter (₹49/mo)</option>
+              <option value="saas_growth" selected>Growth (₹99/mo)</option>
+              <option value="saas_enterprise">Enterprise Pro (₹199/mo)</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Authorized Branches <span class="required">*</span></label>
+            <input type="number" id="new-gym-branches" class="form-control" value="1" min="1" max="50" required>
+            <small class="text-xs text-muted">Multi-branch requires Growth (up to 3) or Enterprise (up to 10).</small>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-modal-close>Cancel</button>
+        <button type="submit" class="btn btn-accent"><i class="fa-solid fa-plus"></i> Save Gym</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal: Edit Gym -->
+<div class="modal-backdrop" id="modal-edit-gym">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <h3 class="modal-title"><i class="fa-solid fa-pen-to-square text-electric"></i> Edit Gym Organization</h3>
+      <button type="button" class="modal-close" data-modal-close>&times;</button>
+    </div>
+    <form id="form-edit-gym" onsubmit="submitEditGym(event)">
+      <input type="hidden" id="edit-gym-id">
+      <div class="modal-body">
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Gym Name <span class="required">*</span></label>
+            <input type="text" id="edit-gym-name" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Owner Name <span class="required">*</span></label>
+            <input type="text" id="edit-gym-owner" class="form-control" required>
+          </div>
+        </div>
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Email <span class="required">*</span></label>
+            <input type="email" id="edit-gym-email" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone <span class="required">*</span></label>
+            <input type="tel" id="edit-gym-phone" class="form-control" required>
+          </div>
+        </div>
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">City, State</label>
+            <input type="text" id="edit-gym-city" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Status</label>
+            <select id="edit-gym-status" class="form-select">
+              <option value="active">Active</option>
+              <option value="trial">Trial</option>
+              <option value="suspended">Suspended</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Authorized Branches <span class="required">*</span></label>
+            <input type="number" id="edit-gym-branches" class="form-control" min="1" max="50" required>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-modal-close>Cancel</button>
+        <button type="submit" class="btn btn-electric"><i class="fa-solid fa-floppy-disk"></i> Update Changes</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="../assets/js/mock-data.js"></script>
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/navigation.js"></script>
+<script src="../assets/js/app.js"></script>
+
+<script>
+  let gymsList = [];
+  let filteredList = [];
+  let currentPage = 1;
+  const pageSize = 6;
+  let sortKey = 'name';
+  let sortAsc = true;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadGyms();
+  });
+
+  function loadGyms() {
+    gymsList = GymFlowDB.get('gyms');
+    updateGymKPIs();
+    filterGyms();
+  }
+
+  function updateGymKPIs() {
+    const total = gymsList.length;
+    const multi = gymsList.filter(g => (g.branchesCount || 1) > 1).length;
+    const single = gymsList.filter(g => (g.branchesCount || 1) === 1).length;
+    const totalBranches = gymsList.reduce((acc, g) => acc + (g.branchesCount || 1), 0);
+    const multiPct = total > 0 ? Math.round((multi / total) * 100) : 0;
+
+    const elTotal = document.getElementById('kpi-total-gyms');
+    const elMulti = document.getElementById('kpi-multibranch-gyms');
+    const elMultiPct = document.getElementById('kpi-multibranch-pct');
+    const elSingle = document.getElementById('kpi-singlebranch-gyms');
+    const elTotalBranches = document.getElementById('kpi-total-branches');
+
+    if (elTotal) elTotal.textContent = total;
+    if (elMulti) elMulti.textContent = multi;
+    if (elMultiPct) elMultiPct.textContent = `${multiPct}% of tenant network`;
+    if (elSingle) elSingle.textContent = single;
+    if (elTotalBranches) elTotalBranches.textContent = totalBranches;
+  }
+
+  function filterByBranchType(type) {
+    const select = document.getElementById('filter-branches');
+    if (select) {
+      select.value = type;
+      filterGyms();
+      const tableElem = document.querySelector('.table-container');
+      if (tableElem) {
+        tableElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  }
+
+  function filterGyms() {
+    const q = (document.getElementById('gym-search')?.value || '').trim();
+    const status = document.getElementById('filter-status')?.value || '';
+    const plan = document.getElementById('filter-plan')?.value || '';
+    const branchType = document.getElementById('filter-branches')?.value || '';
+
+    filteredList = gymsList.filter(g => {
+      const matchQ = DataGridHelper.matchSearch(g, q, ['name', 'owner', 'city', 'email', 'id', 'planName']);
+      const matchStatus = !status || (g.status || '').toLowerCase() === status.toLowerCase();
+      const matchPlan = !plan || (g.planName || '').toLowerCase() === plan.toLowerCase();
+
+      const count = g.branchesCount || 1;
+      let matchBranch = true;
+      if (branchType === 'multi') matchBranch = count > 1;
+      else if (branchType === 'single') matchBranch = count === 1;
+
+      return matchQ && matchStatus && matchPlan && matchBranch;
+    });
+
+    // Sorting
+    filteredList.sort((a, b) => {
+      return DataGridHelper.compare(a, b, sortKey, sortAsc);
+    });
+
+    currentPage = 1;
+    renderTable();
+  }
+
+  function sortGyms(key) {
+    if (sortKey === key) {
+      sortAsc = !sortAsc;
+    } else {
+      sortKey = key;
+      sortAsc = true;
+    }
+    DataGridHelper.updateSortHeaders(document.querySelector('.data-table thead'), sortKey, sortAsc);
+    filterGyms();
+  }
+
+  function resetGymFilters() {
+    if (document.getElementById('gym-search')) document.getElementById('gym-search').value = '';
+    if (document.getElementById('filter-status')) document.getElementById('filter-status').value = '';
+    if (document.getElementById('filter-plan')) document.getElementById('filter-plan').value = '';
+    if (document.getElementById('filter-branches')) document.getElementById('filter-branches').value = '';
+    sortKey = 'name';
+    sortAsc = true;
+    DataGridHelper.updateSortHeaders(document.querySelector('.data-table thead'), '', true);
+    filterGyms();
+  }
+
+  function renderTable() {
+    const tbody = document.getElementById('gyms-tbody');
+    const start = (currentPage - 1) * pageSize;
+    const paged = filteredList.slice(start, start + pageSize);
+
+    if (paged.length === 0) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="8">
+            <div class="empty-state">
+              <div class="empty-icon"><i class="fa-solid fa-building-slash"></i></div>
+              <div class="empty-title">No Gym Organizations Found</div>
+              <div class="empty-description">No tenants match your search query or selected filter criteria.</div>
+              <button class="btn btn-sm btn-outline" onclick="resetGymFilters()" style="margin-top: 0.75rem;"><i class="fa-solid fa-arrow-rotate-left"></i> Reset Filters</button>
+            </div>
+          </td>
+        </tr>
+      `;
+      TableHelper.renderPagination(document.getElementById('gyms-pagination'), 0, 1, pageSize, () => {});
+      return;
+    }
+
+    tbody.innerHTML = paged.map(gym => {
+      let badgeClass = 'badge-success';
+      if (gym.status === 'trial') badgeClass = 'badge-warning';
+      if (gym.status === 'suspended') badgeClass = 'badge-danger';
+      const branches = gym.branchesCount || 1;
+      const isMulti = branches > 1;
+
+      return `
+        <tr>
+          <td>
+            <div class="cell-entity">
+              <div class="avatar">
+                <img src="${gym.logo}" alt="${gym.name}">
+              </div>
+              <div>
+                <strong><a href="gym-details.html?id=${gym.id}" class="text-main">${gym.name}</a></strong>
+                <div class="text-xs text-muted"><i class="fa-solid fa-location-dot"></i> ${gym.city}</div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div style="font-weight: 600;">${gym.owner}</div>
+            <div class="text-xs text-muted">${gym.email} &bull; ${gym.phone}</div>
+          </td>
+          <td>
+            ${isMulti 
+              ? `<span class="badge badge-primary" style="display: inline-flex; align-items: center; gap: 0.35rem; font-weight: 600;">
+                  <i class="fa-solid fa-network-wired"></i> ${branches} Branches
+                 </span>
+                 <div class="text-xs text-muted" style="margin-top: 2px;">Multi-branch chain</div>`
+              : `<span class="badge badge-neutral" style="display: inline-flex; align-items: center; gap: 0.35rem;">
+                  <i class="fa-solid fa-store"></i> 1 Branch
+                 </span>
+                 <div class="text-xs text-muted" style="margin-top: 2px;">Single location</div>`
+            }
+          </td>
+          <td><strong>${gym.membersCount || 0}</strong> <span class="text-xs text-muted">members</span></td>
+          <td><span class="badge badge-neutral">${gym.planName}</span></td>
+          <td><span class="badge ${badgeClass}"><span class="badge-dot"></span>${gym.status.toUpperCase()}</span></td>
+          <td class="text-xs text-muted">${gym.registrationDate}</td>
+          <td style="text-align: right;">
+            <div style="display: inline-flex; gap: 0.35rem;">
+              <a href="gym-details.html?id=${gym.id}" class="btn-icon btn-icon-sm" title="View Full Details">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+              <button class="btn-icon btn-icon-sm" title="Edit" onclick="openEditModal('${gym.id}')">
+                <i class="fa-solid fa-pen"></i>
+              </button>
+              <button class="btn-icon btn-icon-sm ${gym.status === 'suspended' ? 'text-success' : 'text-danger'}" 
+                title="${gym.status === 'suspended' ? 'Reactivate' : 'Suspend'}" 
+                onclick="toggleStatus('${gym.id}', '${gym.status}')">
+                <i class="fa-solid ${gym.status === 'suspended' ? 'fa-rotate-left' : 'fa-ban'}"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join('');
+
+    TableHelper.renderPagination(
+      document.getElementById('gyms-pagination'),
+      filteredList.length,
+      currentPage,
+      pageSize,
+      (newPage) => {
+        currentPage = newPage;
+        renderTable();
+      }
+    );
+  }
+
+  function toggleStatus(gymId, currentStatus) {
+    const nextStatus = currentStatus === 'suspended' ? 'active' : 'suspended';
+    const actionLabel = nextStatus === 'active' ? 'Reactivate' : 'Suspend';
+
+    Modal.confirm({
+      title: `${actionLabel} Gym Account?`,
+      message: `Are you sure you want to ${actionLabel.toLowerCase()} access for this organization?`,
+      confirmText: actionLabel,
+      confirmClass: nextStatus === 'active' ? 'btn-accent' : 'btn-danger',
+      onConfirm: () => {
+        GymFlowDB.update('gyms', gymId, { status: nextStatus });
+        Toast.success(`Gym status updated to ${nextStatus}.`);
+        loadGyms();
+      }
+    });
+  }
+
+  function openEditModal(gymId) {
+    const gym = GymFlowDB.getById('gyms', gymId);
+    if (!gym) return;
+    document.getElementById('edit-gym-id').value = gym.id;
+    document.getElementById('edit-gym-name').value = gym.name;
+    document.getElementById('edit-gym-owner').value = gym.owner;
+    document.getElementById('edit-gym-email').value = gym.email;
+    document.getElementById('edit-gym-phone').value = gym.phone;
+    document.getElementById('edit-gym-city').value = gym.city || '';
+    document.getElementById('edit-gym-status').value = gym.status;
+    document.getElementById('edit-gym-branches').value = gym.branchesCount || 1;
+    Modal.open('modal-edit-gym');
+  }
+
+  function submitEditGym(e) {
+    e.preventDefault();
+    const id = document.getElementById('edit-gym-id').value;
+    const updates = {
+      name: document.getElementById('edit-gym-name').value,
+      owner: document.getElementById('edit-gym-owner').value,
+      email: document.getElementById('edit-gym-email').value,
+      phone: document.getElementById('edit-gym-phone').value,
+      city: document.getElementById('edit-gym-city').value,
+      status: document.getElementById('edit-gym-status').value,
+      branchesCount: parseInt(document.getElementById('edit-gym-branches').value) || 1
+    };
+    GymFlowDB.update('gyms', id, updates);
+    Modal.close('modal-edit-gym');
+    Toast.success('Gym organization details updated.');
+    loadGyms();
+  }
+
+  function submitNewGym(e) {
+    e.preventDefault();
+    const name = document.getElementById('new-gym-name').value;
+    const owner = document.getElementById('new-gym-owner').value;
+    const email = document.getElementById('new-gym-email').value;
+    const phone = document.getElementById('new-gym-phone').value;
+    const city = document.getElementById('new-gym-city').value;
+    const planId = document.getElementById('new-gym-plan').value;
+    const branches = parseInt(document.getElementById('new-gym-branches').value) || 1;
+
+    const planMap = {
+      'saas_starter': { name: 'Starter', mrr: 49 },
+      'saas_growth': { name: 'Growth', mrr: 99 },
+      'saas_enterprise': { name: 'Enterprise Pro', mrr: 199 }
+    };
+
+    const newGym = {
+      id: `gym_${Date.now()}`,
+      name: name,
+      slug: name.toLowerCase().replace(/[^a-z0-9]/g, '-'),
+      logo: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=100&h=100&fit=crop',
+      owner: owner,
+      email: email,
+      phone: phone,
+      address: 'Main Commercial Ave',
+      city: city,
+      planId: planId,
+      planName: planMap[planId].name,
+      status: 'active',
+      registrationDate: new Date().toISOString().split('T')[0],
+      renewalDate: new Date(Date.now() + 30 * 86400000).toISOString().split('T')[0],
+      mrr: planMap[planId].mrr,
+      membersCount: 0,
+      branchesCount: branches
+    };
+
+    GymFlowDB.insert('gyms', newGym);
+    Modal.close('modal-add-gym');
+    document.getElementById('form-new-gym').reset();
+    Toast.success(`Added ${name} successfully.`);
+    loadGyms();
+  }
+
+  function exportGymsCsv() {
+    const headers = ['Gym ID', 'Gym Name', 'Owner', 'Email', 'Phone', 'City', 'Branches', 'Plan', 'Status', 'MRR (₹)', 'Members'];
+    const rows = filteredList.map(g => [
+      g.id, g.name, g.owner, g.email, g.phone, g.city, g.branchesCount || 1, g.planName, g.status, g.mrr, g.membersCount
+    ]);
+    TableHelper.exportToCsv('gymflow-gyms-export.csv', headers, rows);
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audit Logs — Super Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <a href="dashboard.html" class="brand-link">
+        <div class="brand-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <div class="brand-text">Gym<span>Flow</span></div>
+      </a>
+      <button class="topbar-toggle sidebar-toggle-btn d-none"><i class="fa-solid fa-bars"></i></button>
+    </div>
+    <div class="sidebar-nav">
+      <div class="nav-section-title">Overview</div>
+      <div class="nav-item"><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i><span>Dashboard</span></a></div>
+      <div class="nav-section-title">Organizations</div>
+      <div class="nav-item"><a href="gyms.html" class="nav-link"><i class="fa-solid fa-building"></i><span>Gym Directory</span></a></div>
+      <div class="nav-item"><a href="subscriptions.html" class="nav-link"><i class="fa-solid fa-receipt"></i><span>Subscriptions</span></a></div>
+      <div class="nav-item"><a href="plans.html" class="nav-link"><i class="fa-solid fa-tags"></i><span>SaaS Plans</span></a></div>
+      <div class="nav-section-title">Finance</div>
+      <div class="nav-item"><a href="billing.html" class="nav-link"><i class="fa-solid fa-credit-card"></i><span>Platform Billing</span></a></div>
+      <div class="nav-section-title">Platform Team</div>
+      <div class="nav-item"><a href="platform-users.html" class="nav-link"><i class="fa-solid fa-user-shield"></i><span>Platform Users</span></a></div>
+      <div class="nav-item"><a href="roles-permissions.html" class="nav-link"><i class="fa-solid fa-lock"></i><span>Roles & Matrix</span></a></div>
+      <div class="nav-item"><a href="announcements.html" class="nav-link"><i class="fa-solid fa-bullhorn"></i><span>Announcements</span></a></div>
+      <div class="nav-section-title">Operations</div>
+      <div class="nav-item"><a href="support-tickets.html" class="nav-link"><i class="fa-solid fa-headset"></i><span>Support Tickets</span><span class="badge badge-danger nav-badge">3</span></a></div>
+      <div class="nav-item"><a href="audit-logs.html" class="nav-link active"><i class="fa-solid fa-list-check"></i><span>Audit Logs</span></a></div>
+      <div class="nav-item"><a href="system-health.html" class="nav-link"><i class="fa-solid fa-heart-pulse"></i><span>System Health</span></a></div>
+      <div class="nav-item"><a href="settings.html" class="nav-link"><i class="fa-solid fa-gear"></i><span>Platform Settings</span></a></div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" alt="Admin" class="current-user-avatar"></div>
+        <div class="sidebar-user-info"><span class="sidebar-user-name current-user-name">Alex Vance</span><span class="sidebar-user-role">Super Admin</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main-wrapper">
+    <header class="topbar">
+      <div class="topbar-left"><button class="topbar-toggle sidebar-toggle-btn"><i class="fa-solid fa-bars"></i></button></div>
+      <div class="topbar-right">
+        <span class="role-indicator super-admin"><i class="fa-solid fa-shield-halved"></i> Super Admin</span>
+        <button class="topbar-action-btn theme-toggle-btn"><i class="fa-solid fa-moon"></i></button>
+        <button class="topbar-action-btn" id="btn-notifications"><i class="fa-solid fa-bell"></i><span class="action-badge"></span></button>
+        <div class="dropdown">
+          <button class="topbar-user-btn" data-dropdown-toggle>
+            <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" class="current-user-avatar" alt="Avatar"></div>
+            <div><div class="topbar-user-name current-user-name">Alex Vance</div><div class="topbar-user-role">Super Admin</div></div>
+            <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; color: var(--text-subtle);"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="settings.html" class="dropdown-item"><i class="fa-solid fa-gear"></i> Settings</a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item text-danger btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-wrapper">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">
+            <a href="dashboard.html">Super Admin</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Security & Audit</span>
+          </div>
+          <h1 class="page-title">Platform Audit Trail</h1>
+          <p class="page-subtitle">Immutable chronological record of administrative actions, data exports, and tenant modifications.</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-outline" onclick="exportLogsCsv()"><i class="fa-solid fa-download"></i> Export Logs</button>
+        </div>
+      </div>
+
+      <div class="alert alert-info">
+        <i class="fa-solid fa-shield-halved"></i>
+        <div><strong>Security Audit Logging:</strong> Every write or update operation performed in GymFlow automatically appends a tamper-evident audit record here.</div>
+      </div>
+
+      <div class="table-container">
+      <div class="table-container">
+        <div class="table-toolbar" style="gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+          <div class="table-search" style="flex: 1; min-width: 220px; max-width: 280px;">
+            <div class="input-with-icon">
+              <i class="fa-solid fa-magnifying-glass input-icon"></i>
+              <input type="text" id="log-search" class="form-control" placeholder="Search actor, action, resource..." oninput="filterLogs()">
+            </div>
+          </div>
+          <div class="table-actions" style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+            <!-- Result / Severity filter -->
+            <select id="log-filter-result" class="form-select" style="width: 150px;" onchange="filterLogs()">
+              <option value="">All Results</option>
+              <option value="SUCCESS">Success</option>
+              <option value="FAILED">Failed</option>
+              <option value="WARNING">Warning</option>
+            </select>
+
+            <!-- Role filter -->
+            <select id="log-filter-role" class="form-select" style="width: 160px;" onchange="filterLogs()">
+              <option value="">All Roles</option>
+            </select>
+
+            <!-- Reset Button -->
+            <button type="button" class="btn btn-outline btn-sm" id="btn-reset-logs" onclick="resetLogFilters()" title="Reset all filters">
+              <i class="fa-solid fa-arrow-rotate-left"></i> Reset
+            </button>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+            <thead>
+              <tr>
+                <th class="sortable" onclick="sortLogs('timestamp')" style="cursor: pointer;">
+                  Timestamp <i class="fa-solid fa-sort text-muted" id="sort-icon-timestamp"></i>
+                </th>
+                <th class="sortable" onclick="sortLogs('actor')" style="cursor: pointer;">
+                  Actor <i class="fa-solid fa-sort text-muted" id="sort-icon-actor"></i>
+                </th>
+                <th class="sortable" onclick="sortLogs('role')" style="cursor: pointer;">
+                  Role <i class="fa-solid fa-sort text-muted" id="sort-icon-role"></i>
+                </th>
+                <th class="sortable" onclick="sortLogs('action')" style="cursor: pointer;">
+                  Action Taken <i class="fa-solid fa-sort text-muted" id="sort-icon-action"></i>
+                </th>
+                <th>Affected Target / Resource</th>
+                <th>Client IP</th>
+                <th class="sortable" onclick="sortLogs('result')" style="cursor: pointer;">
+                  Result <i class="fa-solid fa-sort text-muted" id="sort-icon-result"></i>
+                </th>
+              </tr>
+            </thead>
+            <tbody id="logs-tbody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="../assets/js/mock-data.js"></script>
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/navigation.js"></script>
+<script src="../assets/js/app.js"></script>
+
+<script>
+  let logs = [];
+  let filteredLogs = [];
+  let currentSortKey = 'timestamp';
+  let isSortAsc = false;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadLogs();
+  });
+
+  function loadLogs() {
+    logs = GymFlowDB.get('auditLogs') || [];
+
+    // Populate role filter
+    const roleSelect = document.getElementById('log-filter-role');
+    if (roleSelect) {
+      const roles = Array.from(new Set(logs.map(l => l.role).filter(Boolean)));
+      roleSelect.innerHTML = '<option value="">All Roles</option>' +
+        roles.map(r => `<option value="${r}">${r}</option>`).join('');
+    }
+
+    filterLogs();
+  }
+
+  function filterLogs() {
+    const q = (document.getElementById('log-search')?.value || '').trim();
+    const result = document.getElementById('log-filter-result')?.value || '';
+    const role = document.getElementById('log-filter-role')?.value || '';
+
+    filteredLogs = logs.filter(l => {
+      const matchQ = DataGridHelper.matchSearch(l, q, ['actor', 'action', 'resource', 'role', 'ip']);
+      const matchResult = !result || (l.result || '').toUpperCase() === result.toUpperCase();
+      const matchRole = !role || l.role === role;
+      return matchQ && matchResult && matchRole;
+    });
+
+    // Sorting
+    filteredLogs.sort((a, b) => {
+      return DataGridHelper.compare(a, b, currentSortKey, isSortAsc);
+    });
+
+    renderLogs();
+  }
+
+  function sortLogs(key) {
+    if (currentSortKey === key) {
+      isSortAsc = !isSortAsc;
+    } else {
+      currentSortKey = key;
+      isSortAsc = true;
+    }
+    DataGridHelper.updateSortHeaders(document.querySelector('.data-table thead'), currentSortKey, isSortAsc);
+    filterLogs();
+  }
+
+  function resetLogFilters() {
+    if (document.getElementById('log-search')) document.getElementById('log-search').value = '';
+    if (document.getElementById('log-filter-result')) document.getElementById('log-filter-result').value = '';
+    if (document.getElementById('log-filter-role')) document.getElementById('log-filter-role').value = '';
+    currentSortKey = 'timestamp';
+    isSortAsc = false;
+    DataGridHelper.updateSortHeaders(document.querySelector('.data-table thead'), '', false);
+    filterLogs();
+  }
+
+  function renderLogs() {
+    const tbody = document.getElementById('logs-tbody');
+    if (!filteredLogs.length) {
+      tbody.innerHTML = `<tr><td colspan="7">${DataGridHelper.getEmptyStateHtml('No Audit Logs Found', 'No security audit entries match your filters.', 'resetLogFilters()')}</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = filteredLogs.map(l => `
+      <tr>
+        <td class="text-xs text-muted font-bold">${l.timestamp}</td>
+        <td><strong>${l.actor}</strong></td>
+        <td><span class="badge badge-purple">${l.role}</span></td>
+        <td><code style="background: var(--bg-surface-secondary); padding: 0.2rem 0.4rem; border-radius: var(--radius-xs);">${l.action}</code></td>
+        <td class="text-xs">${l.resource || '--'}</td>
+        <td class="text-xs text-muted">${l.ip || '127.0.0.1'}</td>
+        <td><span class="badge ${l.result === 'SUCCESS' ? 'badge-success' : 'badge-danger'}">${l.result}</span></td>
+      </tr>
+    `).join('');
+  }
+
+  function exportLogsCsv() {
+    const headers = ['Timestamp', 'Actor', 'Role', 'Action', 'Resource', 'IP', 'Result'];
+    const rows = logs.map(l => [l.timestamp, l.actor, l.role, l.action, l.resource, l.ip, l.result]);
+    TableHelper.exportToCsv('gymflow-audit-logs.csv', headers, rows);
+  }
+</script>
+</body>
+</html>

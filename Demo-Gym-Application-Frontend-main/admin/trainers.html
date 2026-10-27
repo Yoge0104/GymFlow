@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trainer Profiles — Gym Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <a href="dashboard.html" class="brand-link">
+        <div class="brand-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <div class="brand-text">Gym<span>Flow</span></div>
+      </a>
+      <button class="topbar-toggle sidebar-toggle-btn d-none"><i class="fa-solid fa-bars"></i></button>
+    </div>
+    <div class="sidebar-nav">
+      <div class="nav-section-title">Overview</div>
+      <div class="nav-item"><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i><span>Dashboard</span></a></div>
+      <div class="nav-section-title">Members & Club</div>
+      <div class="nav-item"><a href="branches.html" class="nav-link"><i class="fa-solid fa-network-wired"></i><span>Branches</span></a></div>
+      <div class="nav-item"><a href="members.html" class="nav-link"><i class="fa-solid fa-users"></i><span>Membership Management</span></a></div>
+      <div class="nav-item"><a href="membership-plans.html" class="nav-link"><i class="fa-solid fa-tags"></i><span>Plans</span></a></div>
+      <div class="nav-item"><a href="attendance.html" class="nav-link"><i class="fa-solid fa-id-card-clip"></i><span>Attendance Desk</span></a></div>
+      <div class="nav-section-title">Training & Classes</div>
+      <div class="nav-item"><a href="trainers.html" class="nav-link active"><i class="fa-solid fa-user-ninja"></i><span>Trainers</span></a></div>
+      <div class="nav-item"><a href="classes.html" class="nav-link"><i class="fa-solid fa-calendar-days"></i><span>Classes & Timetable</span></a></div>
+      <div class="nav-item"><a href="class-bookings.html" class="nav-link"><i class="fa-solid fa-book-bookmark"></i><span>Class Bookings</span></a></div>
+      <div class="nav-item"><a href="workout-plans.html" class="nav-link"><i class="fa-solid fa-clipboard-list"></i><span>Workout Plans</span></a></div>
+      <div class="nav-section-title">Financials & Sales</div>
+      <div class="nav-item"><a href="payments.html" class="nav-link"><i class="fa-solid fa-credit-card"></i><span>Payments</span></a></div>
+      <div class="nav-item"><a href="invoices.html" class="nav-link"><i class="fa-solid fa-file-invoice-dollar"></i><span>Invoices</span></a></div>
+      <div class="nav-item"><a href="expenses.html" class="nav-link"><i class="fa-solid fa-receipt"></i><span>Expenses</span></a></div>
+      <div class="nav-item"><a href="leads.html" class="nav-link"><i class="fa-solid fa-user-plus"></i><span>Leads CRM</span></a></div>
+      <div class="nav-section-title">Operations</div>
+      <div class="nav-item"><a href="equipment.html" class="nav-link"><i class="fa-solid fa-dumbbell"></i><span>Equipment</span></a></div>
+      <div class="nav-item"><a href="maintenance.html" class="nav-link"><i class="fa-solid fa-screwdriver-wrench"></i><span>Maintenance</span></a></div>
+      <div class="nav-item"><a href="reports.html" class="nav-link"><i class="fa-solid fa-chart-line"></i><span>Reports & Analytics</span></a></div>
+      <div class="nav-section-title">Administration</div>
+      <div class="nav-item"><a href="staff.html" class="nav-link"><i class="fa-solid fa-user-tie"></i><span>Staff Accounts</span></a></div>
+      <div class="nav-item"><a href="roles-permissions.html" class="nav-link"><i class="fa-solid fa-lock"></i><span>Roles & Access</span></a></div>
+      <div class="nav-item"><a href="notifications.html" class="nav-link"><i class="fa-solid fa-bell"></i><span>Notifications</span></a></div>
+      <div class="nav-item"><a href="support.html" class="nav-link"><i class="fa-solid fa-headset"></i><span>Support Helpdesk</span></a></div>
+      <div class="nav-item"><a href="settings.html" class="nav-link"><i class="fa-solid fa-gear"></i><span>Gym Settings</span></a></div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&h=100&fit=crop" alt="User" class="current-user-avatar"></div>
+        <div class="sidebar-user-info"><span class="sidebar-user-name current-user-name">Marcus Vance</span><span class="sidebar-user-role">Gym Admin</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main-wrapper">
+    <header class="topbar">
+      <div class="topbar-left"><button class="topbar-toggle sidebar-toggle-btn"><i class="fa-solid fa-bars"></i></button></div>
+      <div class="topbar-right">
+        <span class="role-indicator admin"><i class="fa-solid fa-building"></i> Gym Admin</span>
+        <button class="topbar-action-btn theme-toggle-btn"><i class="fa-solid fa-moon"></i></button>
+        <button class="topbar-action-btn" id="btn-notifications"><i class="fa-solid fa-bell"></i><span class="action-badge"></span></button>
+        <div class="dropdown">
+          <button class="topbar-user-btn" data-dropdown-toggle>
+            <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&h=100&fit=crop" class="current-user-avatar" alt="Avatar"></div>
+            <div><div class="topbar-user-name current-user-name">Marcus Vance</div><div class="topbar-user-role">Gym Admin</div></div>
+            <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; color: var(--text-subtle);"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="settings.html" class="dropdown-item"><i class="fa-solid fa-gear"></i> Settings</a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item text-danger btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-wrapper">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">
+            <a href="dashboard.html">Gym Admin</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Coaches & Trainers</span>
+          </div>
+          <h1 class="page-title">Personal Trainers & Fitness Instructors</h1>
+          <p class="page-subtitle">Roster of certified fitness coaches, assigned classes, client caps, and work shifts.</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-accent" onclick="Modal.open('modal-add-trainer')"><i class="fa-solid fa-plus"></i> Add Trainer</button>
+        </div>
+      </div>
+
+      <!-- Search, Filter & Sort Toolbar -->
+      <div class="card" style="margin-bottom: 1.5rem; padding: 1rem 1.25rem;">
+        <div style="display: flex; gap: 1rem; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+          <!-- Search input -->
+          <div style="position: relative; flex: 1; min-width: 250px; max-width: 350px;">
+            <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none;"></i>
+            <input type="text" id="trainer-search" class="form-control" placeholder="Search by name, specialization, ID..." style="padding-left: 38px;" oninput="filterTrainers()">
+          </div>
+
+          <!-- Filters and Sort -->
+          <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+            <!-- Branch filter -->
+            <select id="trainer-filter-branch" class="form-select" style="width: 140px;" onchange="filterTrainers()">
+              <option value="">All Branches</option>
+            </select>
+
+            <!-- Specialization filter -->
+            <select id="trainer-filter-spec" class="form-select" style="width: 160px;" onchange="filterTrainers()">
+              <option value="">All Specializations</option>
+            </select>
+
+            <!-- Status filter -->
+            <select id="trainer-filter-status" class="form-select" style="width: 130px;" onchange="filterTrainers()">
+              <option value="">All Statuses</option>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
+
+            <!-- Sort By dropdown -->
+            <select id="trainer-sort-by" class="form-select" style="width: 160px;" onchange="filterTrainers()">
+              <option value="name_asc">Name (A-Z)</option>
+              <option value="name_desc">Name (Z-A)</option>
+              <option value="exp_desc">Experience (Highest)</option>
+              <option value="rating_desc">Rating (Highest)</option>
+            </select>
+
+            <!-- Reset Button -->
+            <button type="button" class="btn btn-outline btn-sm" id="btn-reset-trainer-filters" onclick="resetTrainerFilters()" title="Reset all filters">
+              <i class="fa-solid fa-arrow-rotate-left"></i> Reset
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-3" id="trainers-grid">
+        <!-- Injected via JS -->
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- Modal: Add Trainer -->
+<div class="modal-backdrop" id="modal-add-trainer">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <h3 class="modal-title"><i class="fa-solid fa-user-ninja text-accent"></i> Add Certified Trainer</h3>
+      <button type="button" class="modal-close" data-modal-close>&times;</button>
+    </div>
+    <form onsubmit="handleSaveTrainer(event)">
+      <div class="modal-body">
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Full Name <span class="required">*</span></label>
+            <input type="text" id="tr-name" class="form-control" placeholder="e.g. Mike Tyson" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Specialization <span class="required">*</span></label>
+            <input type="text" id="tr-spec" class="form-control" placeholder="e.g. Boxing, Hypertrophy" required>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Email <span class="required">*</span></label>
+            <input type="email" id="tr-email" class="form-control" placeholder="mike@ironpulse.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone <span class="required">*</span></label>
+            <input type="tel" id="tr-phone" class="form-control" placeholder="+1 (555) 301-7777" required>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Shift Availability <span class="required">*</span></label>
+            <input type="text" id="tr-avail" class="form-control" value="Mon - Fri (7 AM - 3 PM)" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Experience</label>
+            <input type="text" id="tr-exp" class="form-control" placeholder="5 years">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-modal-close>Cancel</button>
+        <button type="submit" class="btn btn-accent"><i class="fa-solid fa-check"></i> Register Trainer</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="../assets/js/mock-data.js"></script>
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/navigation.js"></script>
+<script src="../assets/js/app.js"></script>
+
+<script>
+  let allTrainers = [];
+  let filteredTrainers = [];
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadTrainers();
+  });
+
+  function loadTrainers() {
+    const gymId = Auth.getTenantGymId();
+    allTrainers = GymFlowDB.get('trainers', { gymId: gymId }) || [];
+
+    // Populate branches
+    const branchSelect = document.getElementById('trainer-filter-branch');
+    if (branchSelect) {
+      const branches = GymFlowDB.get('branches', { gymId: gymId }) || [];
+      branchSelect.innerHTML = '<option value="">All Branches</option>' +
+        branches.map(b => `<option value="${b.id}">${b.name}</option>`).join('');
+    }
+
+    // Populate specializations
+    const specSelect = document.getElementById('trainer-filter-spec');
+    if (specSelect) {
+      const specs = Array.from(new Set(allTrainers.map(t => t.specialization).filter(Boolean)));
+      specSelect.innerHTML = '<option value="">All Specializations</option>' +
+        specs.map(s => `<option value="${s}">${s}</option>`).join('');
+    }
+
+    filterTrainers();
+  }
+
+  function filterTrainers() {
+    const q = (document.getElementById('trainer-search')?.value || '').trim();
+    const branch = document.getElementById('trainer-filter-branch')?.value || '';
+    const spec = document.getElementById('trainer-filter-spec')?.value || '';
+    const status = document.getElementById('trainer-filter-status')?.value || '';
+    const sortVal = document.getElementById('trainer-sort-by')?.value || 'name_asc';
+
+    filteredTrainers = allTrainers.filter(t => {
+      const matchQ = DataGridHelper.matchSearch(t, q, ['name', 'specialization', 'id', 'email', 'phone', 'availability']);
+      const matchBranch = !branch || t.branchId === branch || t.branch === branch;
+      const matchSpec = !spec || (t.specialization && t.specialization.toLowerCase().includes(spec.toLowerCase()));
+      const matchStatus = !status || (t.status || 'active').toLowerCase() === status.toLowerCase();
+      return matchQ && matchBranch && matchSpec && matchStatus;
+    });
+
+    // Sorting
+    filteredTrainers.sort((a, b) => {
+      if (sortVal === 'name_asc') return DataGridHelper.compare(a, b, 'name', true);
+      if (sortVal === 'name_desc') return DataGridHelper.compare(a, b, 'name', false);
+      if (sortVal === 'exp_desc') {
+        const expA = parseInt(a.experience) || 0;
+        const expB = parseInt(b.experience) || 0;
+        return expB - expA;
+      }
+      if (sortVal === 'rating_desc') {
+        return (Number(b.rating) || 0) - (Number(a.rating) || 0);
+      }
+      return 0;
+    });
+
+    renderTrainers();
+  }
+
+  function resetTrainerFilters() {
+    if (document.getElementById('trainer-search')) document.getElementById('trainer-search').value = '';
+    if (document.getElementById('trainer-filter-branch')) document.getElementById('trainer-filter-branch').value = '';
+    if (document.getElementById('trainer-filter-spec')) document.getElementById('trainer-filter-spec').value = '';
+    if (document.getElementById('trainer-filter-status')) document.getElementById('trainer-filter-status').value = '';
+    if (document.getElementById('trainer-sort-by')) document.getElementById('trainer-sort-by').value = 'name_asc';
+    filterTrainers();
+  }
+
+  function renderTrainers() {
+    const container = document.getElementById('trainers-grid');
+    if (!filteredTrainers.length) {
+      container.className = '';
+      container.innerHTML = DataGridHelper.getEmptyStateHtml(
+        'No Fitness Coaches Found',
+        'No coaches match your search terms or filter selections.',
+        'resetTrainerFilters()'
+      );
+      return;
+    }
+
+    container.className = 'grid-3';
+    container.innerHTML = filteredTrainers.map(t => `
+      <div class="card card-hover">
+        <div class="card-body">
+          <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1.25rem;">
+            <div class="avatar avatar-lg">
+              <img src="${t.avatar || 'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&h=100&fit=crop'}" alt="${t.name}">
+            </div>
+            <div>
+              <h3 style="font-size: 1.15rem; margin-bottom: 0.2rem;">${t.name}</h3>
+              <div class="text-xs text-accent font-semibold">${t.specialization}</div>
+              <div class="text-xs text-muted" style="margin-top: 0.2rem;">
+                <span style="color: var(--color-warning);">&starf; ${t.rating || 4.9}</span> (${t.clientCount || 10} Active Clients) &bull; ${t.experience || '5 years exp'}
+              </div>
+            </div>
+          </div>
+
+          <div style="font-size: 0.8125rem; display: flex; flex-direction: column; gap: 0.45rem; color: var(--text-muted); border-top: 1px solid var(--border-color); padding-top: 1rem; margin-bottom: 1.25rem;">
+            <div><i class="fa-solid fa-envelope text-accent"></i> ${t.email}</div>
+            <div><i class="fa-solid fa-phone text-accent"></i> ${t.phone}</div>
+            <div><i class="fa-solid fa-calendar-check text-accent"></i> ${t.availability}</div>
+            <div><i class="fa-solid fa-person-running text-accent"></i> Classes: ${(t.assignedClasses || []).join(', ') || 'General PT'}</div>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end; gap: 0.5rem;">
+            <button class="btn btn-sm ${t.status === 'active' ? 'btn-outline-danger' : 'btn-accent'}" onclick="toggleTrainerStatus('${t.id}', '${t.status}')">
+              ${t.status === 'active' ? 'Deactivate' : 'Activate'}
+            </button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function handleSaveTrainer(e) {
+    e.preventDefault();
+    const gymId = Auth.getTenantGymId();
+    const newTr = {
+      id: `tr_${Date.now()}`,
+      gymId: gymId,
+      name: document.getElementById('tr-name').value,
+      email: document.getElementById('tr-email').value,
+      phone: document.getElementById('tr-phone').value,
+      avatar: 'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&h=100&fit=crop',
+      specialization: document.getElementById('tr-spec').value,
+      availability: document.getElementById('tr-avail').value,
+      experience: document.getElementById('tr-exp').value || '3 years',
+      assignedClasses: ['Group Strength'],
+      clientCount: 1,
+      rating: 5.0,
+      status: 'active'
+    };
+
+    GymFlowDB.insert('trainers', newTr);
+    Modal.close('modal-add-trainer');
+    Toast.success(`Trainer ${newTr.name} added to gym.`);
+    loadTrainers();
+  }
+
+  function toggleTrainerStatus(id, curr) {
+    const next = curr === 'active' ? 'inactive' : 'active';
+    GymFlowDB.update('trainers', id, { status: next });
+    Toast.success(`Trainer marked as ${next}.`);
+    loadTrainers();
+  }
+</script>
+</body>
+</html>

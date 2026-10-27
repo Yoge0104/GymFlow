@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile — Member Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <a href="dashboard.html" class="brand-link">
+        <div class="brand-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <div class="brand-text">Gym<span>Flow</span></div>
+      </a>
+      <button class="topbar-toggle sidebar-toggle-btn d-none"><i class="fa-solid fa-bars"></i></button>
+    </div>
+    <div class="sidebar-nav">
+      <div class="nav-section-title">Overview</div>
+      <div class="nav-item"><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a></div>
+      
+      <div class="nav-section-title">Fitness & Training</div>
+      <div class="nav-item"><a href="workout-plan.html" class="nav-link"><i class="fa-solid fa-clipboard-list"></i><span>Workout Plan</span></a></div>
+      <div class="nav-item"><a href="classes.html" class="nav-link"><i class="fa-solid fa-calendar-days"></i><span>Classes & Timetable</span></a></div>
+      <div class="nav-item"><a href="my-bookings.html" class="nav-link"><i class="fa-solid fa-bookmark"></i><span>My Bookings</span></a></div>
+      <div class="nav-item"><a href="progress.html" class="nav-link"><i class="fa-solid fa-chart-line"></i><span>Body Progress</span></a></div>
+      <div class="nav-item"><a href="attendance.html" class="nav-link"><i class="fa-solid fa-clock-rotate-left"></i><span>Attendance History</span></a></div>
+      
+      <div class="nav-section-title">Membership & Billing</div>
+      <div class="nav-item"><a href="my-membership.html" class="nav-link"><i class="fa-solid fa-id-card"></i><span>My Membership</span></a></div>
+      <div class="nav-item"><a href="plans.html" class="nav-link"><i class="fa-solid fa-tags"></i><span>Plans & Upgrade</span></a></div>
+      <div class="nav-item"><a href="payments.html" class="nav-link"><i class="fa-solid fa-credit-card"></i><span>Billing & Receipts</span></a></div>
+      
+      <div class="nav-section-title">Account & Support</div>
+      <div class="nav-item"><a href="my-profile.html" class="nav-link active"><i class="fa-solid fa-user"></i><span>My Profile</span></a></div>
+      <div class="nav-item"><a href="notifications.html" class="nav-link"><i class="fa-solid fa-bell"></i><span>Notifications</span></a></div>
+      <div class="nav-item"><a href="support.html" class="nav-link"><i class="fa-solid fa-headset"></i><span>Member Support</span></a></div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop" alt="Member" class="current-user-avatar"></div>
+        <div class="sidebar-user-info"><span class="sidebar-user-name current-user-name">Alex Morgan</span><span class="sidebar-user-role">IronPulse Member</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main-wrapper">
+    <header class="topbar">
+      <div class="topbar-left"><button class="topbar-toggle sidebar-toggle-btn"><i class="fa-solid fa-bars"></i></button></div>
+      <div class="topbar-right">
+        <span class="role-indicator member" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); font-weight: 600; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem;">
+          <i class="fa-solid fa-person-running"></i> Gym Member
+        </span>
+        <button class="topbar-action-btn theme-toggle-btn"><i class="fa-solid fa-moon"></i></button>
+        <a href="notifications.html" class="topbar-action-btn" id="btn-notifications"><i class="fa-solid fa-bell"></i><span class="action-badge"></span></a>
+        <div class="dropdown">
+          <button class="topbar-user-btn" data-dropdown-toggle>
+            <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop" class="current-user-avatar" alt="Avatar"></div>
+            <div><div class="topbar-user-name current-user-name">Alex Morgan</div><div class="topbar-user-role">IronPulse Member</div></div>
+            <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; color: var(--text-subtle);"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="my-profile.html" class="dropdown-item"><i class="fa-solid fa-user"></i> My Profile</a>
+            <a href="my-membership.html" class="dropdown-item"><i class="fa-solid fa-id-card"></i> Membership</a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item text-danger btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-wrapper">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">
+            <a href="dashboard.html">Member Portal</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">My Profile</span>
+          </div>
+          <h1 class="page-title">Personal Profile & Goals</h1>
+          <p class="page-subtitle">Manage your personal contact info, emergency contacts, and fitness preferences.</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-primary" onclick="handleSaveProfile()"><i class="fa-solid fa-floppy-disk"></i> Save Profile</button>
+        </div>
+      </div>
+
+      <div class="grid-2-1" style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem;">
+        
+        <!-- Left: Edit Profile Form -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Personal Information</h3>
+          </div>
+          <div class="card-body">
+            <div class="form-grid" style="grid-template-columns: 1fr 1fr; gap: 1.25rem;">
+              <div class="form-group">
+                <label class="form-label">Full Legal Name <span class="required">*</span></label>
+                <input type="text" id="prof-name" class="form-control" value="Alex Morgan">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email Address <span class="required">*</span></label>
+                <input type="email" id="prof-email" class="form-control" value="alex.morgan@example.com">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Phone Number <span class="required">*</span></label>
+                <input type="tel" id="prof-phone" class="form-control" value="+1 (555) 101-2001">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Date of Birth</label>
+                <input type="date" id="prof-dob" class="form-control" value="1994-08-14">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Gender</label>
+                <select id="prof-gender" class="form-select">
+                  <option value="Male" selected>Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Non-binary">Non-binary</option>
+                  <option value="Prefer not to say">Prefer not to say</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Primary Home Branch</label>
+                <select id="prof-branch" class="form-select">
+                  <option value="Downtown Flagship" selected>Downtown Flagship (Austin, TX)</option>
+                  <option value="Westside Fitness">Westside Fitness (Austin, TX)</option>
+                </select>
+              </div>
+              <div class="form-group" style="grid-column: span 2;">
+                <label class="form-label">Emergency Contact (Name & Phone)</label>
+                <input type="text" id="prof-emergency" class="form-control" value="Sarah Morgan (+1 555-101-9999)">
+              </div>
+            </div>
+
+            <hr style="margin: 1.75rem 0; border: none; border-top: 1px solid var(--border-color);">
+
+            <h3 class="card-title" style="margin-bottom: 1.25rem;">Fitness Preferences & Health Details</h3>
+            <div class="form-grid" style="grid-template-columns: 1fr 1fr; gap: 1.25rem;">
+              <div class="form-group">
+                <label class="form-label">Primary Fitness Goal</label>
+                <input type="text" id="prof-goal" class="form-control" value="Hypertrophy & Muscle Tone">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Assigned Coach / Trainer</label>
+                <input type="text" id="prof-trainer" class="form-control" value="Coach David Miller" readonly style="background: var(--bg-hover);">
+              </div>
+              <div class="form-group" style="grid-column: span 2;">
+                <label class="form-label">Training Notes / Health Considerations</label>
+                <textarea id="prof-notes" class="form-textarea" rows="3">Consistent morning lifter. Preparing for amateur powerlifting meet. Mild previous right shoulder impingement resolved.</textarea>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer" style="display: flex; justify-content: flex-end;">
+            <button class="btn btn-accent" onclick="handleSaveProfile()"><i class="fa-solid fa-check"></i> Save Profile Details</button>
+          </div>
+        </div>
+
+        <!-- Right: Profile Card & Password -->
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+          
+          <!-- Avatar & ID Badge Card -->
+          <div class="card" style="text-align: center;">
+            <div class="card-body" style="padding: 2rem 1.5rem;">
+              <div class="avatar avatar-xl" style="margin: 0 auto 1rem; width: 90px; height: 90px; border: 3px solid var(--accent-color);">
+                <img id="prof-avatar-img" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop" class="current-user-avatar" alt="Alex Morgan">
+              </div>
+              <h3 id="prof-display-name" style="margin-bottom: 0.25rem;">Alex Morgan</h3>
+              <p class="text-xs text-muted" style="margin-bottom: 0.75rem;">Member since May 2025 &bull; #MEM-101</p>
+              <span class="badge badge-success" style="font-size: 0.8rem; padding: 0.35rem 0.85rem;"><i class="fa-solid fa-check"></i> Active VIP</span>
+
+              <div style="margin-top: 1.25rem;">
+                <button class="btn btn-sm btn-outline" onclick="simulateChangeAvatar()"><i class="fa-solid fa-camera"></i> Change Photo</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Change Password Card -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i class="fa-solid fa-key text-accent"></i> Security & Password</h3>
+            </div>
+            <form onsubmit="handlePasswordChange(event)">
+              <div class="card-body">
+                <div class="form-group">
+                  <label class="form-label">Current Password</label>
+                  <input type="password" class="form-control" placeholder="••••••••" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">New Password</label>
+                  <input type="password" class="form-control" placeholder="At least 8 characters" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Confirm New Password</label>
+                  <input type="password" class="form-control" placeholder="Re-type new password" required>
+                </div>
+              </div>
+              <div class="card-footer">
+                <button type="submit" class="btn btn-sm btn-secondary" style="width: 100%;">Update Password</button>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="../assets/js/mock-data.js"></script>
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/navigation.js"></script>
+<script src="../assets/js/app.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    loadMemberProfile();
+  });
+
+  function loadMemberProfile() {
+    const memberId = Auth.getActiveMemberId();
+    const mem = GymFlowDB.findById('members', memberId);
+    if (mem) {
+      document.getElementById('prof-name').value = mem.name || '';
+      document.getElementById('prof-email').value = mem.email || '';
+      document.getElementById('prof-phone').value = mem.phone || '';
+      document.getElementById('prof-dob').value = mem.dob || '';
+      document.getElementById('prof-gender').value = mem.gender || 'Male';
+      document.getElementById('prof-emergency').value = mem.emergencyContact || '';
+      document.getElementById('prof-goal').value = mem.fitnessGoal || '';
+      document.getElementById('prof-trainer').value = mem.assignedTrainer || 'Coach David Miller';
+      document.getElementById('prof-notes').value = mem.notes || '';
+      document.getElementById('prof-display-name').textContent = mem.name || 'Alex Morgan';
+      if (mem.avatar) {
+        document.getElementById('prof-avatar-img').src = mem.avatar;
+      }
+    }
+  }
+
+  function simulateChangeAvatar() {
+    const avatars = [
+      'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop',
+      'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=100&h=100&fit=crop',
+      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop'
+    ];
+    const newAvatar = avatars[Math.floor(Math.random() * avatars.length)];
+    document.getElementById('prof-avatar-img').src = newAvatar;
+    
+    // Update active user in Auth
+    const user = Auth.getUser();
+    if (user && user.role === 'member') {
+      user.avatar = newAvatar;
+      Auth.setUser(user);
+    }
+    Toast.info('Avatar image updated.');
+  }
+
+  function handleSaveProfile() {
+    const memberId = Auth.getActiveMemberId();
+    const updated = {
+      name: document.getElementById('prof-name').value,
+      email: document.getElementById('prof-email').value,
+      phone: document.getElementById('prof-phone').value,
+      dob: document.getElementById('prof-dob').value,
+      gender: document.getElementById('prof-gender').value,
+      emergencyContact: document.getElementById('prof-emergency').value,
+      fitnessGoal: document.getElementById('prof-goal').value,
+      notes: document.getElementById('prof-notes').value,
+      avatar: document.getElementById('prof-avatar-img').src
+    };
+
+    GymFlowDB.update('members', memberId, updated);
+    document.getElementById('prof-display-name').textContent = updated.name;
+    
+    // Sync with auth user
+    const user = Auth.getUser();
+    if (user && user.role === 'member') {
+      user.name = updated.name;
+      user.email = updated.email;
+      user.avatar = updated.avatar;
+      Auth.setUser(user);
+    }
+
+    Toast.success('Profile details saved successfully!');
+  }
+
+  function handlePasswordChange(e) {
+    e.preventDefault();
+    Toast.success('Security password successfully updated.');
+    e.target.reset();
+  }
+</script>
+</body>
+</html>

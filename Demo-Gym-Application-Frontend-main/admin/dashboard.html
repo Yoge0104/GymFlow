@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gym Admin Dashboard — IronPulse Fitness</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <a href="dashboard.html" class="brand-link">
+        <div class="brand-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <div class="brand-text">Gym<span>Flow</span></div>
+      </a>
+      <button class="topbar-toggle sidebar-toggle-btn d-none"><i class="fa-solid fa-bars"></i></button>
+    </div>
+
+    <div class="sidebar-nav">
+      <div class="nav-section-title">Overview</div>
+      <div class="nav-item"><a href="dashboard.html" class="nav-link active"><i class="fa-solid fa-chart-pie"></i><span>Dashboard</span></a></div>
+
+      <div class="nav-section-title">Members & Club</div>
+      <div class="nav-item"><a href="branches.html" class="nav-link"><i class="fa-solid fa-network-wired"></i><span>Branches</span></a></div>
+      <div class="nav-item"><a href="members.html" class="nav-link"><i class="fa-solid fa-users"></i><span>Membership Management</span></a></div>
+      <div class="nav-item"><a href="membership-plans.html" class="nav-link"><i class="fa-solid fa-tags"></i><span>Plans</span></a></div>
+      <div class="nav-item"><a href="attendance.html" class="nav-link"><i class="fa-solid fa-id-card-clip"></i><span>Attendance Desk</span></a></div>
+
+      <div class="nav-section-title">Training & Classes</div>
+      <div class="nav-item"><a href="trainers.html" class="nav-link"><i class="fa-solid fa-user-ninja"></i><span>Trainers</span></a></div>
+      <div class="nav-item"><a href="classes.html" class="nav-link"><i class="fa-solid fa-calendar-days"></i><span>Classes & Timetable</span></a></div>
+      <div class="nav-item"><a href="class-bookings.html" class="nav-link"><i class="fa-solid fa-book-bookmark"></i><span>Class Bookings</span></a></div>
+      <div class="nav-item"><a href="workout-plans.html" class="nav-link"><i class="fa-solid fa-clipboard-list"></i><span>Workout Plans</span></a></div>
+
+      <div class="nav-section-title">Financials & Sales</div>
+      <div class="nav-item"><a href="payments.html" class="nav-link"><i class="fa-solid fa-credit-card"></i><span>Payments</span></a></div>
+      <div class="nav-item"><a href="invoices.html" class="nav-link"><i class="fa-solid fa-file-invoice-dollar"></i><span>Invoices</span></a></div>
+      <div class="nav-item"><a href="expenses.html" class="nav-link"><i class="fa-solid fa-receipt"></i><span>Expenses</span></a></div>
+      <div class="nav-item"><a href="leads.html" class="nav-link"><i class="fa-solid fa-user-plus"></i><span>Leads CRM</span></a></div>
+
+      <div class="nav-section-title">Operations</div>
+      <div class="nav-item"><a href="equipment.html" class="nav-link"><i class="fa-solid fa-dumbbell"></i><span>Equipment</span></a></div>
+      <div class="nav-item"><a href="maintenance.html" class="nav-link"><i class="fa-solid fa-screwdriver-wrench"></i><span>Maintenance</span></a></div>
+      <div class="nav-item"><a href="reports.html" class="nav-link"><i class="fa-solid fa-chart-line"></i><span>Reports & Analytics</span></a></div>
+
+      <div class="nav-section-title">Administration</div>
+      <div class="nav-item"><a href="staff.html" class="nav-link"><i class="fa-solid fa-user-tie"></i><span>Staff Accounts</span></a></div>
+      <div class="nav-item"><a href="roles-permissions.html" class="nav-link"><i class="fa-solid fa-lock"></i><span>Roles & Access</span></a></div>
+      <div class="nav-item"><a href="notifications.html" class="nav-link"><i class="fa-solid fa-bell"></i><span>Notifications</span></a></div>
+      <div class="nav-item"><a href="support.html" class="nav-link"><i class="fa-solid fa-headset"></i><span>Support Helpdesk</span></a></div>
+      <div class="nav-item"><a href="settings.html" class="nav-link"><i class="fa-solid fa-gear"></i><span>Gym Settings</span></a></div>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&h=100&fit=crop" alt="User" class="current-user-avatar"></div>
+        <div class="sidebar-user-info"><span class="sidebar-user-name current-user-name">Marcus Vance</span><span class="sidebar-user-role">Gym Admin</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content Wrapper -->
+  <div class="main-wrapper">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="topbar-toggle sidebar-toggle-btn"><i class="fa-solid fa-bars"></i></button>
+        <div style="font-size: 0.875rem; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 0.5rem;">
+          <i class="fa-solid fa-building text-electric"></i>
+          <span id="topbar-gym-name">IronPulse Fitness Club</span>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="role-indicator admin"><i class="fa-solid fa-building"></i> Gym Admin</span>
+        <button class="topbar-action-btn theme-toggle-btn" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
+        <button class="topbar-action-btn" id="btn-notifications"><i class="fa-solid fa-bell"></i><span class="action-badge"></span></button>
+        <div class="dropdown">
+          <button class="topbar-user-btn" data-dropdown-toggle>
+            <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&h=100&fit=crop" class="current-user-avatar" alt="Avatar"></div>
+            <div><div class="topbar-user-name current-user-name">Marcus Vance</div><div class="topbar-user-role">Gym Admin</div></div>
+            <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; color: var(--text-subtle);"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="settings.html" class="dropdown-item"><i class="fa-solid fa-gear"></i> Gym Settings</a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item text-danger btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-wrapper">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">
+            <a href="dashboard.html">Gym Admin</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Executive Dashboard</span>
+          </div>
+          <h1 class="page-title">Gym Operations Command Center</h1>
+          <p class="page-subtitle">Live occupancy, member counts, check-in flows, and cashflow overview for IronPulse.</p>
+        </div>
+        <div class="page-actions">
+          <a href="attendance.html" class="btn btn-primary"><i class="fa-solid fa-id-card-clip"></i> Open Check-In Desk</a>
+          <a href="members.html" class="btn btn-accent"><i class="fa-solid fa-user-plus"></i> New Member</a>
+        </div>
+      </div>
+
+      <!-- 10 Metric Cards -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">Total Members</span>
+            <span class="stat-icon green"><i class="fa-solid fa-users"></i></span>
+          </div>
+          <div class="stat-value" id="kpi-gym-total-members">20</div>
+          <div class="stat-meta"><span class="stat-trend positive">+3 this week</span></div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">Active Memberships</span>
+            <span class="stat-icon blue"><i class="fa-solid fa-circle-check"></i></span>
+          </div>
+          <div class="stat-value" id="kpi-gym-active-members">15</div>
+          <div class="stat-meta"><span class="badge badge-success">75% active rate</span></div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">Expiring Soon</span>
+            <span class="stat-icon amber"><i class="fa-solid fa-clock"></i></span>
+          </div>
+          <div class="stat-value" id="kpi-gym-expiring-members">3</div>
+          <div class="stat-meta"><a href="members.html?tab=lifecycle" class="text-warning font-semibold">Review Lifecycle</a></div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">Expired</span>
+            <span class="stat-icon red"><i class="fa-solid fa-user-xmark"></i></span>
+          </div>
+          <div class="stat-value" id="kpi-gym-expired-members">2</div>
+          <div class="stat-meta"><span class="text-danger">Follow up needed</span></div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">Today's Attendance</span>
+            <span class="stat-icon green"><i class="fa-solid fa-id-card-clip"></i></span>
+          </div>
+          <div class="stat-value" id="kpi-gym-today-attendance">6</div>
+          <div class="stat-meta"><span class="badge badge-success">Live check-ins</span></div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">Monthly Revenue</span>
+            <span class="stat-icon green"><i class="fa-solid fa-sack-dollar"></i></span>
+          </div>
+          <div class="stat-value" id="kpi-gym-monthly-revenue">₹3,124</div>
+          <div class="stat-meta"><span class="stat-trend positive">+11% vs last month</span></div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">Pending Payments</span>
+            <span class="stat-icon amber"><i class="fa-solid fa-hourglass-half"></i></span>
+          </div>
+          <div class="stat-value" id="kpi-gym-pending-payments">2</div>
+          <div class="stat-meta"><a href="payments.html" class="text-warning font-semibold">Review invoices</a></div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">Active Trainers</span>
+            <span class="stat-icon purple"><i class="fa-solid fa-dumbbell"></i></span>
+          </div>
+          <div class="stat-value" id="kpi-gym-trainers">5</div>
+          <div class="stat-meta"><span class="text-muted">Avg rating 4.9 &starf;</span></div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">CRM New Leads</span>
+            <span class="stat-icon blue"><i class="fa-solid fa-funnel-dollar"></i></span>
+          </div>
+          <div class="stat-value" id="kpi-gym-leads">5</div>
+          <div class="stat-meta"><a href="leads.html" class="text-electric font-semibold">View Pipeline</a></div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">Maintenance Alerts</span>
+            <span class="stat-icon red"><i class="fa-solid fa-screwdriver-wrench"></i></span>
+          </div>
+          <div class="stat-value" id="kpi-gym-maintenance">2</div>
+          <div class="stat-meta"><a href="maintenance.html" class="text-danger font-semibold">1 High Priority</a></div>
+        </div>
+      </div>
+
+      <!-- Charts Section (Attendance & Revenue) -->
+      <div class="grid-2-1">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-chart-column text-electric"></i> Weekly Member Attendance Flow</h3>
+              <p class="card-subtitle">Daily check-ins across Downtown Flagship & North Austin branches</p>
+            </div>
+            <a href="attendance.html" class="btn btn-sm btn-outline">Full Log</a>
+          </div>
+          <div class="card-body">
+            <div style="height: 270px; position: relative;">
+              <canvas id="chart-gym-attendance"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-chart-pie text-accent"></i> Membership Tier Split</h3>
+              <p class="card-subtitle">Enrolled members by package type</p>
+            </div>
+          </div>
+          <div class="card-body">
+            <div style="height: 270px; position: relative;">
+              <canvas id="chart-gym-plans"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tables and Today's Class Schedule -->
+      <div class="grid-2-1">
+        <!-- Recent Registrations & Payments -->
+        <!-- Recent Registrations & Payments -->
+        <div class="card">
+          <div class="card-header" style="flex-wrap: wrap; gap: 0.5rem; justify-content: space-between; align-items: center;">
+            <h3 class="card-title"><i class="fa-solid fa-users text-accent"></i> Recently Enrolled Members</h3>
+            <div style="display: flex; gap: 0.4rem; align-items: center; flex-wrap: wrap;">
+              <div style="position: relative; width: 160px;">
+                <input type="text" id="dash-mem-search" class="form-control" placeholder="Search member..." style="padding: 0.25rem 0.5rem; font-size: 0.78rem;" oninput="filterDashboardMembers()">
+              </div>
+              <select id="dash-mem-filter-status" class="form-select" style="font-size: 0.78rem; width: 110px;" onchange="filterDashboardMembers()">
+                <option value="">All Statuses</option>
+                <option value="Active">Active</option>
+                <option value="Expiring">Expiring</option>
+                <option value="Expired">Expired</option>
+              </select>
+              <a href="members.html" class="btn btn-sm btn-outline">Directory</a>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th class="sortable" onclick="sortDashboardMembers('name')" style="cursor: pointer;">
+                    Member <i class="fa-solid fa-sort text-muted" id="sort-icon-dash-name"></i>
+                  </th>
+                  <th>Plan</th>
+                  <th class="sortable" onclick="sortDashboardMembers('startDate')" style="cursor: pointer;">
+                    Start Date <i class="fa-solid fa-sort text-muted" id="sort-icon-dash-startDate"></i>
+                  </th>
+                  <th class="sortable" onclick="sortDashboardMembers('expiryDate')" style="cursor: pointer;">
+                    Expiry Date <i class="fa-solid fa-sort text-muted" id="sort-icon-dash-expiryDate"></i>
+                  </th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="dashboard-recent-members">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- Today's Classes -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title"><i class="fa-solid fa-calendar-check text-purple"></i> Today's Schedule</h3>
+            <a href="classes.html" class="btn btn-sm btn-outline">All Classes</a>
+          </div>
+          <div class="card-body" style="padding: 1rem;">
+            <div id="dashboard-today-classes" style="display: flex; flex-direction: column; gap: 0.75rem;">
+              <!-- Injected via JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="../assets/js/mock-data.js"></script>
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/charts.js"></script>
+<script src="../assets/js/navigation.js"></script>
+<script src="../assets/js/app.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    loadGymDashboard();
+  });
+
+  function loadGymDashboard() {
+    const gymId = Auth.getTenantGymId();
+    const members = GymFlowDB.get('members', { gymId: gymId });
+    const attendance = GymFlowDB.get('attendance', { gymId: gymId });
+    const payments = GymFlowDB.get('payments', { gymId: gymId });
+    const trainers = GymFlowDB.get('trainers', { gymId: gymId });
+    const leads = GymFlowDB.get('leads', { gymId: gymId });
+    const maint = GymFlowDB.get('maintenance', { gymId: gymId, status: 'In Progress' });
+    const classes = GymFlowDB.get('classes', { gymId: gymId });
+
+    // KPIs
+    document.getElementById('kpi-gym-total-members').textContent = members.length;
+    document.getElementById('kpi-gym-active-members').textContent = members.filter(m => m.status === 'Active').length;
+    document.getElementById('kpi-gym-expiring-members').textContent = members.filter(m => m.status === 'Expiring').length;
+    document.getElementById('kpi-gym-expired-members').textContent = members.filter(m => m.status === 'Expired').length;
+    document.getElementById('kpi-gym-today-attendance').textContent = attendance.filter(a => a.date === '2026-04-21').length;
+    
+    const paidTotal = payments.filter(p => p.status === 'Paid').reduce((acc, p) => acc + p.amount, 0);
+    document.getElementById('kpi-gym-monthly-revenue').textContent = `₹${paidTotal.toLocaleString()}`;
+    document.getElementById('kpi-gym-pending-payments').textContent = payments.filter(p => p.status === 'Pending').length;
+    document.getElementById('kpi-gym-trainers').textContent = trainers.length;
+    document.getElementById('kpi-gym-leads').textContent = leads.length;
+    document.getElementById('kpi-gym-maintenance').textContent = maint.length;
+
+    // Charts
+    GymCharts.renderAttendanceChart('chart-gym-attendance', ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], [84, 112, 128, 95, 102, 145, 68]);
+    GymCharts.renderPlanDistributionChart('chart-gym-plans', ['Annual VIP', 'Semi-Annual', 'Quarterly Pass', 'Standard Monthly', 'PT Elite'], [6, 4, 3, 5, 2]);
+
+    window._dashMembers = members;
+    filterDashboardMembers();
+
+    // Today's classes
+    const classContainer = document.getElementById('dashboard-today-classes');
+    classContainer.innerHTML = classes.slice(0, 4).map(c => `
+      <div style="background: var(--bg-surface-secondary); padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <div style="font-weight: 700; font-size: 0.875rem;">${c.name}</div>
+          <div class="text-xs text-muted"><i class="fa-solid fa-clock"></i> ${c.time} (${c.duration}) &bull; ${c.trainerName}</div>
+        </div>
+        <div style="text-align: right;">
+          <span class="badge ${c.bookedCount >= c.capacity ? 'badge-danger' : 'badge-success'}">${c.bookedCount}/${c.capacity} Booked</span>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  let dashSortKey = 'startDate';
+  let dashSortAsc = false;
+
+  function filterDashboardMembers() {
+    const list = window._dashMembers || [];
+    const q = (document.getElementById('dash-mem-search')?.value || '').trim();
+    const status = document.getElementById('dash-mem-filter-status')?.value || '';
+
+    let filtered = list.filter(m => {
+      const matchQ = DataGridHelper.matchSearch(m, q, ['name', 'email', 'planName', 'id']);
+      const matchStatus = !status || m.status === status;
+      return matchQ && matchStatus;
+    });
+
+    filtered.sort((a, b) => {
+      return DataGridHelper.compare(a, b, dashSortKey, dashSortAsc);
+    });
+
+    const recent = filtered.slice(0, 6);
+    const tbody = document.getElementById('dashboard-recent-members');
+    if (!recent.length) {
+      tbody.innerHTML = `<tr><td colspan="6" class="text-center text-muted" style="padding: 1.5rem;">No members match search.</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = recent.map(m => {
+      let badge = 'badge-success';
+      if (m.status === 'Expiring') badge = 'badge-warning';
+      if (m.status === 'Expired') badge = 'badge-danger';
+
+      return `
+        <tr>
+          <td>
+            <div class="cell-entity">
+              <div class="avatar avatar-sm"><img src="${m.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop'}" alt="${m.name}"></div>
+              <div>
+                <strong><a href="member-details.html?id=${m.id}" class="text-main">${m.name}</a></strong>
+                <div class="text-xs text-muted">${m.email}</div>
+              </div>
+            </div>
+          </td>
+          <td><span class="badge badge-neutral">${m.planName}</span></td>
+          <td class="text-xs text-muted">${m.startDate}</td>
+          <td class="text-xs text-muted">${m.expiryDate}</td>
+          <td><span class="badge ${badge}"><span class="badge-dot"></span>${m.status}</span></td>
+          <td>
+            <a href="member-details.html?id=${m.id}" class="btn-icon btn-icon-sm" title="View Profile">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  function sortDashboardMembers(key) {
+    if (dashSortKey === key) {
+      dashSortAsc = !dashSortAsc;
+    } else {
+      dashSortKey = key;
+      dashSortAsc = true;
+    }
+    const thead = document.querySelector('.data-table thead');
+    if (thead) DataGridHelper.updateSortHeaders(thead, dashSortKey, dashSortAsc);
+    filterDashboardMembers();
+  }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Platform Settings — Super Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <a href="dashboard.html" class="brand-link">
+        <div class="brand-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <div class="brand-text">Gym<span>Flow</span></div>
+      </a>
+      <button class="topbar-toggle sidebar-toggle-btn d-none"><i class="fa-solid fa-bars"></i></button>
+    </div>
+    <div class="sidebar-nav">
+      <div class="nav-section-title">Overview</div>
+      <div class="nav-item"><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i><span>Dashboard</span></a></div>
+      <div class="nav-section-title">Organizations</div>
+      <div class="nav-item"><a href="gyms.html" class="nav-link"><i class="fa-solid fa-building"></i><span>Gym Directory</span></a></div>
+      <div class="nav-item"><a href="subscriptions.html" class="nav-link"><i class="fa-solid fa-receipt"></i><span>Subscriptions</span></a></div>
+      <div class="nav-item"><a href="plans.html" class="nav-link"><i class="fa-solid fa-tags"></i><span>SaaS Plans</span></a></div>
+      <div class="nav-section-title">Finance</div>
+      <div class="nav-item"><a href="billing.html" class="nav-link"><i class="fa-solid fa-credit-card"></i><span>Platform Billing</span></a></div>
+      <div class="nav-section-title">Platform Team</div>
+      <div class="nav-item"><a href="platform-users.html" class="nav-link"><i class="fa-solid fa-user-shield"></i><span>Platform Users</span></a></div>
+      <div class="nav-item"><a href="roles-permissions.html" class="nav-link"><i class="fa-solid fa-lock"></i><span>Roles & Matrix</span></a></div>
+      <div class="nav-item"><a href="announcements.html" class="nav-link"><i class="fa-solid fa-bullhorn"></i><span>Announcements</span></a></div>
+      <div class="nav-section-title">Operations</div>
+      <div class="nav-item"><a href="support-tickets.html" class="nav-link"><i class="fa-solid fa-headset"></i><span>Support Tickets</span><span class="badge badge-danger nav-badge">3</span></a></div>
+      <div class="nav-item"><a href="audit-logs.html" class="nav-link"><i class="fa-solid fa-list-check"></i><span>Audit Logs</span></a></div>
+      <div class="nav-item"><a href="system-health.html" class="nav-link"><i class="fa-solid fa-heart-pulse"></i><span>System Health</span></a></div>
+      <div class="nav-item"><a href="settings.html" class="nav-link active"><i class="fa-solid fa-gear"></i><span>Platform Settings</span></a></div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" alt="Admin" class="current-user-avatar"></div>
+        <div class="sidebar-user-info"><span class="sidebar-user-name current-user-name">Alex Vance</span><span class="sidebar-user-role">Super Admin</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main-wrapper">
+    <header class="topbar">
+      <div class="topbar-left"><button class="topbar-toggle sidebar-toggle-btn"><i class="fa-solid fa-bars"></i></button></div>
+      <div class="topbar-right">
+        <span class="role-indicator super-admin"><i class="fa-solid fa-shield-halved"></i> Super Admin</span>
+        <button class="topbar-action-btn theme-toggle-btn"><i class="fa-solid fa-moon"></i></button>
+        <button class="topbar-action-btn" id="btn-notifications"><i class="fa-solid fa-bell"></i><span class="action-badge"></span></button>
+        <div class="dropdown">
+          <button class="topbar-user-btn" data-dropdown-toggle>
+            <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" class="current-user-avatar" alt="Avatar"></div>
+            <div><div class="topbar-user-name current-user-name">Alex Vance</div><div class="topbar-user-role">Super Admin</div></div>
+            <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; color: var(--text-subtle);"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="settings.html" class="dropdown-item"><i class="fa-solid fa-gear"></i> Settings</a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item text-danger btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-wrapper">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">
+            <a href="dashboard.html">Super Admin</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Configuration</span>
+          </div>
+          <h1 class="page-title">Platform Configuration</h1>
+          <p class="page-subtitle">Global platform branding, multi-tenant parameters, currencies, and demo storage reset.</p>
+        </div>
+      </div>
+
+      <div class="tabs-nav">
+        <button class="tab-btn active" data-tab="tab-general"><i class="fa-solid fa-sliders"></i> General & Branding</button>
+        <button class="tab-btn" data-tab="tab-finance"><i class="fa-solid fa-coins"></i> Currency & Locale</button>
+        <button class="tab-btn" data-tab="tab-security"><i class="fa-solid fa-shield-halved"></i> Security & 2FA</button>
+        <button class="tab-btn" data-tab="tab-database"><i class="fa-solid fa-database"></i> Demo Storage Control</button>
+      </div>
+
+      <!-- Tab: General -->
+      <div class="tab-pane active" id="tab-general">
+        <div class="card" style="max-width: 800px;">
+          <div class="card-header"><h3 class="card-title">Platform Identity</h3></div>
+          <form onsubmit="saveGeneralSettings(event)">
+            <div class="card-body">
+              <div class="grid-2" style="margin-bottom: 0;">
+                <div class="form-group">
+                  <label class="form-label">Platform Name</label>
+                  <input type="text" id="set-platform-name" class="form-control" value="GymFlow SaaS Platform">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Support Helpdesk Email</label>
+                  <input type="email" id="set-support-email" class="form-control" value="support@gymflow.app">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Platform Domain</label>
+                <input type="text" id="set-domain" class="form-control" value="https://gymflow.app">
+              </div>
+            </div>
+            <div class="card-footer" style="justify-content: flex-end;">
+              <button type="submit" class="btn btn-accent"><i class="fa-solid fa-check"></i> Save General Settings</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Tab: Finance & Locale -->
+      <div class="tab-pane" id="tab-finance">
+        <div class="card" style="max-width: 800px;">
+          <div class="card-header"><h3 class="card-title">Locale & Default Currency</h3></div>
+          <form onsubmit="saveFinanceSettings(event)">
+            <div class="card-body">
+              <div class="grid-2" style="margin-bottom: 0;">
+                <div class="form-group">
+                  <label class="form-label">Default Billing Currency</label>
+                  <select class="form-select" id="set-currency">
+                    <option value="INR" selected>INR — Indian Rupee (₹)</option>
+                    <option value="USD">USD — United States Dollar ($)</option>
+                    <option value="EUR">EUR — Euro (€)</option>
+                    <option value="GBP">GBP — British Pound (£)</option>
+                    <option value="CAD">CAD — Canadian Dollar (C$)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Default Time Zone</label>
+                  <select class="form-select" id="set-timezone">
+                    <option value="America/Chicago" selected>Central Time (US & Canada)</option>
+                    <option value="America/New_York">Eastern Time (US & Canada)</option>
+                    <option value="America/Los_Angeles">Pacific Time (US & Canada)</option>
+                    <option value="Europe/London">London / UTC</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer" style="justify-content: flex-end;">
+              <button type="submit" class="btn btn-accent"><i class="fa-solid fa-check"></i> Save Locale Settings</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Tab: Security -->
+      <div class="tab-pane" id="tab-security">
+        <div class="card" style="max-width: 800px;">
+          <div class="card-header"><h3 class="card-title">Security & Session Policies</h3></div>
+          <div class="card-body">
+            <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <strong>Enforce Two-Factor Authentication (2FA)</strong>
+                  <div class="text-xs text-muted">Require all Super Admin and Gym Owner accounts to use authenticator app</div>
+                </div>
+                <label class="form-switch">
+                  <input type="checkbox" checked>
+                  <span class="switch-slider"></span>
+                </label>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+                <div>
+                  <strong>Auto Session Timeout</strong>
+                  <div class="text-xs text-muted">Log out inactive administrative sessions after 30 minutes</div>
+                </div>
+                <label class="form-switch">
+                  <input type="checkbox" checked>
+                  <span class="switch-slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Database Reset -->
+      <div class="tab-pane" id="tab-database">
+        <div class="card" style="max-width: 800px; border-color: var(--color-danger);">
+          <div class="card-header" style="background: var(--color-danger-bg);">
+            <h3 class="card-title text-danger"><i class="fa-solid fa-triangle-exclamation"></i> Demo Data Reset Zone</h3>
+          </div>
+          <div class="card-body">
+            <p>If you have modified test gym records, added members, or generated test invoices, you can instantly restore the entire frontend dataset back to its rich initial state.</p>
+            <button type="button" class="btn btn-danger" onclick="resetDatabase()"><i class="fa-solid fa-rotate-left"></i> Reset All Data to Initial Demo State</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="../assets/js/mock-data.js"></script>
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/navigation.js"></script>
+<script src="../assets/js/app.js"></script>
+
+<script>
+  function saveGeneralSettings(e) {
+    e.preventDefault();
+    Toast.success('Platform general branding settings saved.');
+  }
+
+  function saveFinanceSettings(e) {
+    e.preventDefault();
+    Toast.success('Currency and locale settings updated.');
+  }
+
+  function resetDatabase() {
+    Modal.confirm({
+      title: 'Reset Demo Database?',
+      message: 'This will reset all gym collections, members, payments, and attendance records back to the fresh initial seed dataset.',
+      confirmText: 'Reset Everything',
+      confirmClass: 'btn-danger',
+      onConfirm: () => {
+        GymFlowDB.resetToDefaults();
+        Toast.success('All demo data restored to factory defaults.');
+        setTimeout(() => window.location.reload(), 600);
+      }
+    });
+  }
+</script>
+</body>
+</html>

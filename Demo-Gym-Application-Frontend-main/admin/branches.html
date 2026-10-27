@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Branch Locations — Gym Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <a href="dashboard.html" class="brand-link">
+        <div class="brand-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <div class="brand-text">Gym<span>Flow</span></div>
+      </a>
+      <button class="topbar-toggle sidebar-toggle-btn d-none"><i class="fa-solid fa-bars"></i></button>
+    </div>
+    <div class="sidebar-nav">
+      <div class="nav-section-title">Overview</div>
+      <div class="nav-item"><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i><span>Dashboard</span></a></div>
+      <div class="nav-section-title">Members & Club</div>
+      <div class="nav-item"><a href="branches.html" class="nav-link active"><i class="fa-solid fa-network-wired"></i><span>Branches</span></a></div>
+      <div class="nav-item"><a href="members.html" class="nav-link"><i class="fa-solid fa-users"></i><span>Membership Management</span></a></div>
+      <div class="nav-item"><a href="membership-plans.html" class="nav-link"><i class="fa-solid fa-tags"></i><span>Plans</span></a></div>
+      <div class="nav-item"><a href="attendance.html" class="nav-link"><i class="fa-solid fa-id-card-clip"></i><span>Attendance Desk</span></a></div>
+      <div class="nav-section-title">Training & Classes</div>
+      <div class="nav-item"><a href="trainers.html" class="nav-link"><i class="fa-solid fa-user-ninja"></i><span>Trainers</span></a></div>
+      <div class="nav-item"><a href="classes.html" class="nav-link"><i class="fa-solid fa-calendar-days"></i><span>Classes & Timetable</span></a></div>
+      <div class="nav-item"><a href="class-bookings.html" class="nav-link"><i class="fa-solid fa-book-bookmark"></i><span>Class Bookings</span></a></div>
+      <div class="nav-item"><a href="workout-plans.html" class="nav-link"><i class="fa-solid fa-clipboard-list"></i><span>Workout Plans</span></a></div>
+      <div class="nav-section-title">Financials & Sales</div>
+      <div class="nav-item"><a href="payments.html" class="nav-link"><i class="fa-solid fa-credit-card"></i><span>Payments</span></a></div>
+      <div class="nav-item"><a href="invoices.html" class="nav-link"><i class="fa-solid fa-file-invoice-dollar"></i><span>Invoices</span></a></div>
+      <div class="nav-item"><a href="expenses.html" class="nav-link"><i class="fa-solid fa-receipt"></i><span>Expenses</span></a></div>
+      <div class="nav-item"><a href="leads.html" class="nav-link"><i class="fa-solid fa-user-plus"></i><span>Leads CRM</span></a></div>
+      <div class="nav-section-title">Operations</div>
+      <div class="nav-item"><a href="equipment.html" class="nav-link"><i class="fa-solid fa-dumbbell"></i><span>Equipment</span></a></div>
+      <div class="nav-item"><a href="maintenance.html" class="nav-link"><i class="fa-solid fa-screwdriver-wrench"></i><span>Maintenance</span></a></div>
+      <div class="nav-item"><a href="reports.html" class="nav-link"><i class="fa-solid fa-chart-line"></i><span>Reports & Analytics</span></a></div>
+      <div class="nav-section-title">Administration</div>
+      <div class="nav-item"><a href="staff.html" class="nav-link"><i class="fa-solid fa-user-tie"></i><span>Staff Accounts</span></a></div>
+      <div class="nav-item"><a href="roles-permissions.html" class="nav-link"><i class="fa-solid fa-lock"></i><span>Roles & Access</span></a></div>
+      <div class="nav-item"><a href="notifications.html" class="nav-link"><i class="fa-solid fa-bell"></i><span>Notifications</span></a></div>
+      <div class="nav-item"><a href="support.html" class="nav-link"><i class="fa-solid fa-headset"></i><span>Support Helpdesk</span></a></div>
+      <div class="nav-item"><a href="settings.html" class="nav-link"><i class="fa-solid fa-gear"></i><span>Gym Settings</span></a></div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&h=100&fit=crop" alt="User" class="current-user-avatar"></div>
+        <div class="sidebar-user-info"><span class="sidebar-user-name current-user-name">Marcus Vance</span><span class="sidebar-user-role">Gym Admin</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main-wrapper">
+    <header class="topbar">
+      <div class="topbar-left"><button class="topbar-toggle sidebar-toggle-btn"><i class="fa-solid fa-bars"></i></button></div>
+      <div class="topbar-right">
+        <span class="role-indicator admin"><i class="fa-solid fa-building"></i> Gym Admin</span>
+        <button class="topbar-action-btn theme-toggle-btn"><i class="fa-solid fa-moon"></i></button>
+        <button class="topbar-action-btn" id="btn-notifications"><i class="fa-solid fa-bell"></i><span class="action-badge"></span></button>
+        <div class="dropdown">
+          <button class="topbar-user-btn" data-dropdown-toggle>
+            <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&h=100&fit=crop" class="current-user-avatar" alt="User"></div>
+            <div><div class="topbar-user-name current-user-name">Marcus Vance</div><div class="topbar-user-role">Gym Admin</div></div>
+            <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; color: var(--text-subtle);"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="settings.html" class="dropdown-item"><i class="fa-solid fa-gear"></i> Gym Settings</a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item text-danger btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-wrapper">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">
+            <a href="dashboard.html">Gym Admin</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Gym Branches</span>
+          </div>
+          <h1 class="page-title">Branch Locations & Facilities</h1>
+          <p class="page-subtitle">Multi-location facility management, branch managers, and operating schedules.</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-accent" onclick="Modal.open('modal-add-branch')"><i class="fa-solid fa-plus"></i> Add New Branch</button>
+        </div>
+      </div>
+
+      <!-- Search, Filter & Sort Toolbar -->
+      <div class="card" style="margin-bottom: 1.5rem; padding: 1rem 1.25rem;">
+        <div style="display: flex; gap: 1rem; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+          <!-- Search input -->
+          <div style="position: relative; flex: 1; min-width: 260px; max-width: 380px;">
+            <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none;"></i>
+            <input type="text" id="branch-search" class="form-control" placeholder="Search by name, location, or ID..." style="padding-left: 38px;" oninput="filterBranches()">
+          </div>
+
+          <!-- Filters and Sort -->
+          <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+            <!-- Status filter -->
+            <select id="branch-filter-status" class="form-select" style="width: 140px;" onchange="filterBranches()">
+              <option value="">All Statuses</option>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
+
+            <!-- Location filter -->
+            <select id="branch-filter-location" class="form-select" style="width: 150px;" onchange="filterBranches()">
+              <option value="">All Locations</option>
+            </select>
+
+            <!-- Sort By dropdown -->
+            <select id="branch-sort-by" class="form-select" style="width: 160px;" onchange="filterBranches()">
+              <option value="name_asc">Name (A-Z)</option>
+              <option value="name_desc">Name (Z-A)</option>
+              <option value="members_desc">Members (High-Low)</option>
+              <option value="members_asc">Members (Low-High)</option>
+            </select>
+
+            <!-- Reset Button -->
+            <button type="button" class="btn btn-outline btn-sm" id="btn-reset-branch-filters" onclick="resetBranchFilters()" title="Reset all filters">
+              <i class="fa-solid fa-arrow-rotate-left"></i> Reset
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2" id="branches-cards-container">
+        <!-- Injected via JS -->
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- Modal: Add Branch -->
+<div class="modal-backdrop" id="modal-add-branch">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <h3 class="modal-title"><i class="fa-solid fa-network-wired text-accent"></i> Add Gym Branch</h3>
+      <button type="button" class="modal-close" data-modal-close>&times;</button>
+    </div>
+    <form onsubmit="handleSaveBranch(event)">
+      <div class="modal-body">
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Branch Name <span class="required">*</span></label>
+            <input type="text" id="br-name" class="form-control" placeholder="South Congress Studio" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Branch Manager <span class="required">*</span></label>
+            <input type="text" id="br-manager" class="form-control" placeholder="Rachel Kim" required>
+          </div>
+        </div>
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Street Address <span class="required">*</span></label>
+            <input type="text" id="br-address" class="form-control" placeholder="1800 S Congress Ave" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Contact Phone <span class="required">*</span></label>
+            <input type="tel" id="br-phone" class="form-control" placeholder="+1 (555) 234-5690" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Operating Hours <span class="required">*</span></label>
+          <input type="text" id="br-hours" class="form-control" value="Mon-Fri: 5:00 AM - 11:00 PM | Sat-Sun: 7:00 AM - 9:00 PM" required>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-modal-close>Cancel</button>
+        <button type="submit" class="btn btn-accent"><i class="fa-solid fa-check"></i> Create Branch</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="../assets/js/mock-data.js"></script>
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/navigation.js"></script>
+<script src="../assets/js/app.js"></script>
+
+<script>
+  let allBranches = [];
+  let filteredBranches = [];
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadBranches();
+  });
+
+  function loadBranches() {
+    const gymId = Auth.getTenantGymId();
+    allBranches = GymFlowDB.get('branches', { gymId: gymId }) || [];
+
+    // Populate locations
+    const locSelect = document.getElementById('branch-filter-location');
+    if (locSelect) {
+      const locations = Array.from(new Set(allBranches.map(b => b.city || b.address).filter(Boolean)));
+      locSelect.innerHTML = '<option value="">All Locations</option>' +
+        locations.map(loc => `<option value="${loc}">${loc}</option>`).join('');
+    }
+
+    filterBranches();
+  }
+
+  function filterBranches() {
+    const q = (document.getElementById('branch-search')?.value || '').trim();
+    const status = document.getElementById('branch-filter-status')?.value || '';
+    const loc = document.getElementById('branch-filter-location')?.value || '';
+    const sortVal = document.getElementById('branch-sort-by')?.value || 'name_asc';
+
+    filteredBranches = allBranches.filter(b => {
+      const matchQ = DataGridHelper.matchSearch(b, q, ['name', 'address', 'city', 'id', 'manager']);
+      const matchStatus = !status || (b.status || 'active').toLowerCase() === status.toLowerCase();
+      const matchLoc = !loc || (b.city && b.city.toLowerCase() === loc.toLowerCase()) || (b.address && b.address.toLowerCase().includes(loc.toLowerCase()));
+      return matchQ && matchStatus && matchLoc;
+    });
+
+    // Sorting
+    filteredBranches.sort((a, b) => {
+      if (sortVal === 'name_asc') return DataGridHelper.compare(a, b, 'name', true);
+      if (sortVal === 'name_desc') return DataGridHelper.compare(a, b, 'name', false);
+      if (sortVal === 'members_desc') return (Number(b.memberCount) || 0) - (Number(a.memberCount) || 0);
+      if (sortVal === 'members_asc') return (Number(a.memberCount) || 0) - (Number(b.memberCount) || 0);
+      return 0;
+    });
+
+    renderBranches();
+  }
+
+  function resetBranchFilters() {
+    if (document.getElementById('branch-search')) document.getElementById('branch-search').value = '';
+    if (document.getElementById('branch-filter-status')) document.getElementById('branch-filter-status').value = '';
+    if (document.getElementById('branch-filter-location')) document.getElementById('branch-filter-location').value = '';
+    if (document.getElementById('branch-sort-by')) document.getElementById('branch-sort-by').value = 'name_asc';
+    filterBranches();
+  }
+
+  function renderBranches() {
+    const container = document.getElementById('branches-cards-container');
+    if (!filteredBranches.length) {
+      container.className = '';
+      container.innerHTML = DataGridHelper.getEmptyStateHtml(
+        'No Gym Branches Found',
+        'We could not find any branch matching your search or filter criteria.',
+        'resetBranchFilters()'
+      );
+      return;
+    }
+
+    container.className = 'grid-2';
+    container.innerHTML = filteredBranches.map(b => `
+      <div class="card card-hover">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">${b.name}</h3>
+            <div class="text-xs text-muted"><i class="fa-solid fa-location-dot"></i> ${b.address}</div>
+          </div>
+          <span class="badge ${b.status === 'inactive' ? 'badge-neutral' : 'badge-success'}">
+            <span class="badge-dot"></span>${b.status ? b.status.toUpperCase() : 'ACTIVE'}
+          </span>
+        </div>
+        <div class="card-body">
+          <div style="display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.875rem;">
+            <div><i class="fa-solid fa-user-tie text-accent"></i> <strong>Manager:</strong> ${b.manager || 'N/A'}</div>
+            <div><i class="fa-solid fa-phone text-accent"></i> <strong>Phone:</strong> ${b.phone || 'N/A'}</div>
+            <div><i class="fa-solid fa-clock text-accent"></i> <strong>Hours:</strong> ${b.openingHours || 'N/A'}</div>
+            <div style="margin-top: 0.5rem; padding-top: 0.75rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+              <span>Enrolled Members:</span>
+              <strong style="font-size: 1.15rem; color: var(--color-accent);">${b.memberCount || 0} members</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function handleSaveBranch(e) {
+    e.preventDefault();
+    const gymId = Auth.getTenantGymId();
+    const newBr = {
+      id: `br_${Date.now()}`,
+      gymId: gymId,
+      name: document.getElementById('br-name').value,
+      manager: document.getElementById('br-manager').value,
+      address: document.getElementById('br-address').value,
+      phone: document.getElementById('br-phone').value,
+      openingHours: document.getElementById('br-hours').value,
+      memberCount: 0,
+      status: 'active'
+    };
+
+    GymFlowDB.insert('branches', newBr);
+    Modal.close('modal-add-branch');
+    Toast.success(`Branch ${newBr.name} opened.`);
+    loadBranches();
+  }
+</script>
+</body>
+</html>

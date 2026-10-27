@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gym Settings & Configuration — GymFlow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <a href="dashboard.html" class="brand-link">
+        <div class="brand-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <div class="brand-text">Gym<span>Flow</span></div>
+      </a>
+      <button class="topbar-toggle sidebar-toggle-btn d-none"><i class="fa-solid fa-bars"></i></button>
+    </div>
+    <div class="sidebar-nav">
+      <div class="nav-section-title">Overview</div>
+      <div class="nav-item"><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i><span>Dashboard</span></a></div>
+      <div class="nav-section-title">Members & Club</div>
+      <div class="nav-item"><a href="branches.html" class="nav-link"><i class="fa-solid fa-network-wired"></i><span>Branches</span></a></div>
+      <div class="nav-item"><a href="members.html" class="nav-link"><i class="fa-solid fa-users"></i><span>Membership Management</span></a></div>
+      <div class="nav-item"><a href="membership-plans.html" class="nav-link"><i class="fa-solid fa-tags"></i><span>Plans</span></a></div>
+      <div class="nav-item"><a href="attendance.html" class="nav-link"><i class="fa-solid fa-id-card-clip"></i><span>Attendance Desk</span></a></div>
+      <div class="nav-section-title">Training & Classes</div>
+      <div class="nav-item"><a href="trainers.html" class="nav-link"><i class="fa-solid fa-user-ninja"></i><span>Trainers</span></a></div>
+      <div class="nav-item"><a href="classes.html" class="nav-link"><i class="fa-solid fa-calendar-days"></i><span>Classes & Timetable</span></a></div>
+      <div class="nav-item"><a href="class-bookings.html" class="nav-link"><i class="fa-solid fa-book-bookmark"></i><span>Class Bookings</span></a></div>
+      <div class="nav-item"><a href="workout-plans.html" class="nav-link"><i class="fa-solid fa-clipboard-list"></i><span>Workout Plans</span></a></div>
+      <div class="nav-section-title">Financials & Sales</div>
+      <div class="nav-item"><a href="payments.html" class="nav-link"><i class="fa-solid fa-credit-card"></i><span>Payments</span></a></div>
+      <div class="nav-item"><a href="invoices.html" class="nav-link"><i class="fa-solid fa-file-invoice-dollar"></i><span>Invoices</span></a></div>
+      <div class="nav-item"><a href="expenses.html" class="nav-link"><i class="fa-solid fa-receipt"></i><span>Expenses</span></a></div>
+      <div class="nav-item"><a href="leads.html" class="nav-link"><i class="fa-solid fa-user-plus"></i><span>Leads CRM</span></a></div>
+      <div class="nav-section-title">Operations</div>
+      <div class="nav-item"><a href="equipment.html" class="nav-link"><i class="fa-solid fa-dumbbell"></i><span>Equipment</span></a></div>
+      <div class="nav-item"><a href="maintenance.html" class="nav-link"><i class="fa-solid fa-screwdriver-wrench"></i><span>Maintenance</span></a></div>
+      <div class="nav-item"><a href="reports.html" class="nav-link"><i class="fa-solid fa-chart-line"></i><span>Reports & Analytics</span></a></div>
+      <div class="nav-section-title">Administration</div>
+      <div class="nav-item"><a href="staff.html" class="nav-link"><i class="fa-solid fa-user-tie"></i><span>Staff Accounts</span></a></div>
+      <div class="nav-item"><a href="roles-permissions.html" class="nav-link"><i class="fa-solid fa-lock"></i><span>Roles & Access</span></a></div>
+      <div class="nav-item"><a href="notifications.html" class="nav-link"><i class="fa-solid fa-bell"></i><span>Notifications</span></a></div>
+      <div class="nav-item"><a href="support.html" class="nav-link"><i class="fa-solid fa-headset"></i><span>Support Helpdesk</span></a></div>
+      <div class="nav-item"><a href="settings.html" class="nav-link active"><i class="fa-solid fa-gear"></i><span>Gym Settings</span></a></div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&h=100&fit=crop" alt="User" class="current-user-avatar"></div>
+        <div class="sidebar-user-info"><span class="sidebar-user-name current-user-name">Marcus Vance</span><span class="sidebar-user-role">Gym Admin</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main-wrapper">
+    <header class="topbar">
+      <div class="topbar-left"><button class="topbar-toggle sidebar-toggle-btn"><i class="fa-solid fa-bars"></i></button></div>
+      <div class="topbar-right">
+        <span class="role-indicator admin"><i class="fa-solid fa-building"></i> Gym Admin</span>
+        <button class="topbar-action-btn theme-toggle-btn"><i class="fa-solid fa-moon"></i></button>
+        <button class="topbar-action-btn" id="btn-notifications"><i class="fa-solid fa-bell"></i><span class="action-badge"></span></button>
+        <div class="dropdown">
+          <button class="topbar-user-btn" data-dropdown-toggle>
+            <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&h=100&fit=crop" class="current-user-avatar" alt="Avatar"></div>
+            <div><div class="topbar-user-name current-user-name">Marcus Vance</div><div class="topbar-user-role">Gym Admin</div></div>
+            <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; color: var(--text-subtle);"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="settings.html" class="dropdown-item"><i class="fa-solid fa-gear"></i> Settings</a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item text-danger btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-wrapper">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">
+            <a href="dashboard.html">Gym Admin</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Settings</span>
+          </div>
+          <h1 class="page-title">Gym Settings & Brand Identity</h1>
+          <p class="page-subtitle">Configure business profile, operating hours, tax rules, and invoice layouts for your gym.</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-primary" onclick="saveAllSettings()"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+        </div>
+      </div>
+
+      <!-- Tab Navigation -->
+      <div class="tabs-nav">
+        <button class="tab-btn active" data-tab="tab-brand"><i class="fa-solid fa-building"></i> Profile & Brand</button>
+        <button class="tab-btn" data-tab="tab-hours"><i class="fa-solid fa-clock"></i> Hours & Access</button>
+        <button class="tab-btn" data-tab="tab-finance"><i class="fa-solid fa-file-invoice-dollar"></i> Invoicing & Tax</button>
+        <button class="tab-btn" data-tab="tab-policies"><i class="fa-solid fa-shield-halved"></i> Member Policies</button>
+      </div>
+
+      <!-- Tab: Brand -->
+      <div class="tab-pane active" id="tab-brand">
+        <div class="card" style="max-width: 860px;">
+          <div class="card-header">
+            <h3 class="card-title">Gym Profile & Visual Identity</h3>
+          </div>
+          <div class="card-body">
+            <div style="display: flex; gap: 2rem; align-items: center; margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-color);">
+              <div style="position: relative;">
+                <img id="gym-logo-preview" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=150&h=150&fit=crop" alt="Gym Logo" style="width: 100px; height: 100px; border-radius: var(--radius-md); object-fit: cover; border: 2px solid var(--border-color);">
+              </div>
+              <div>
+                <h4 style="margin-bottom: 0.25rem;">Club Logo & Banner</h4>
+                <p class="text-sm text-muted" style="margin-bottom: 0.75rem;">Recommended size: 400x400px. PNG or JPG format.</p>
+                <div style="display: flex; gap: 0.5rem;">
+                  <button type="button" class="btn btn-sm btn-outline" onclick="simulateLogoUpload()"><i class="fa-solid fa-cloud-arrow-up"></i> Upload New</button>
+                  <button type="button" class="btn btn-sm btn-secondary" onclick="resetDefaultLogo()">Reset</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-grid" style="grid-template-columns: 1fr 1fr; gap: 1.25rem;">
+              <div class="form-group">
+                <label class="form-label">Gym Legal Name <span class="required">*</span></label>
+                <input type="text" id="gym-name" class="form-control" value="IronPulse Fitness Club">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Slogan / Tagline</label>
+                <input type="text" id="gym-slogan" class="form-control" value="Peak Performance, Unmatched Dedication">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Contact Email <span class="required">*</span></label>
+                <input type="email" id="gym-email" class="form-control" value="contact@ironpulse.com">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Phone Number <span class="required">*</span></label>
+                <input type="tel" id="gym-phone" class="form-control" value="+1 (555) 234-5678">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Primary Street Address</label>
+                <input type="text" id="gym-address" class="form-control" value="742 Evergreen Terrace, Downtown District">
+              </div>
+              <div class="form-group">
+                <label class="form-label">City, State & ZIP</label>
+                <input type="text" id="gym-city" class="form-control" value="Austin, TX 78701">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Website URL</label>
+                <input type="url" id="gym-website" class="form-control" value="https://ironpulse.example.com">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Social Media Handle (@)</label>
+                <input type="text" id="gym-social" class="form-control" value="@ironpulse_official">
+              </div>
+            </div>
+          </div>
+          <div class="card-footer" style="display: flex; justify-content: flex-end;">
+            <button class="btn btn-accent" onclick="saveAllSettings()"><i class="fa-solid fa-check"></i> Save Brand Info</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Hours & Access -->
+      <div class="tab-pane" id="tab-hours">
+        <div class="card" style="max-width: 860px;">
+          <div class="card-header">
+            <h3 class="card-title">Operating Hours & Capacity Limits</h3>
+          </div>
+          <div class="card-body">
+            <div class="form-grid" style="grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.5rem;">
+              <div class="form-group">
+                <label class="form-label">Monday – Friday Hours</label>
+                <input type="text" id="hours-weekday" class="form-control" value="05:30 AM – 11:00 PM">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Saturday Hours</label>
+                <input type="text" id="hours-saturday" class="form-control" value="07:00 AM – 09:00 PM">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Sunday & Holidays Hours</label>
+                <input type="text" id="hours-sunday" class="form-control" value="08:00 AM – 06:00 PM">
+              </div>
+              <div class="form-group">
+                <label class="form-label">24/7 Keycard Access Enabled</label>
+                <select id="access-247" class="form-select">
+                  <option value="enabled" selected>Yes — Active VIP Keyholders Only</option>
+                  <option value="disabled">No — Strictly Supervised Hours</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Default Main Hall Safe Capacity</label>
+                <input type="number" id="capacity-main" class="form-control" value="120">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Studio Capacity Limit</label>
+                <input type="number" id="capacity-studio" class="form-control" value="30">
+              </div>
+            </div>
+          </div>
+          <div class="card-footer" style="display: flex; justify-content: flex-end;">
+            <button class="btn btn-accent" onclick="saveAllSettings()"><i class="fa-solid fa-check"></i> Save Schedule</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Finance & Tax -->
+      <div class="tab-pane" id="tab-finance">
+        <div class="card" style="max-width: 860px;">
+          <div class="card-header">
+            <h3 class="card-title">Invoicing, Sales Tax & Receipts</h3>
+          </div>
+          <div class="card-body">
+            <div class="form-grid" style="grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.5rem;">
+              <div class="form-group">
+                <label class="form-label">Currency Symbol</label>
+                <input type="text" id="tax-currency" class="form-control" value="₹">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Default Sales Tax Rate (%)</label>
+                <input type="number" step="0.1" id="tax-rate" class="form-control" value="8.25">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Invoice Prefix</label>
+                <input type="text" id="invoice-prefix" class="form-control" value="INV-IP-">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Tax ID / Business Registration #</label>
+                <input type="text" id="business-tax-id" class="form-control" value="TX-8492031-G">
+              </div>
+              <div class="form-group" style="grid-column: span 2;">
+                <label class="form-label">Invoice Footer Notice / Wire Details</label>
+                <textarea id="invoice-footer" class="form-textarea" rows="3">Thank you for working out with IronPulse Fitness! Direct bank wire: Chase Bank NA, Routing: 111000614, Acct: 94827104. Questions? Call +1 (555) 234-5678.</textarea>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer" style="display: flex; justify-content: flex-end;">
+            <button class="btn btn-accent" onclick="saveAllSettings()"><i class="fa-solid fa-check"></i> Save Invoicing Rules</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Policies -->
+      <div class="tab-pane" id="tab-policies">
+        <div class="card" style="max-width: 860px;">
+          <div class="card-header">
+            <h3 class="card-title">Membership & Cancellation Policies</h3>
+          </div>
+          <div class="card-body">
+            <div class="form-grid" style="grid-template-columns: 1fr 1fr; gap: 1.25rem;">
+              <div class="form-group">
+                <label class="form-label">Grace Period for Overdue Dues (Days)</label>
+                <input type="number" id="policy-grace" class="form-control" value="7">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Cancellation Notice Requirement</label>
+                <select id="policy-notice" class="form-select">
+                  <option value="14">14 Days Prior</option>
+                  <option value="30" selected>30 Days Prior</option>
+                  <option value="0">Immediate / No Notice</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Guest Passes Per Month (Per Member)</label>
+                <input type="number" id="policy-guests" class="form-control" value="2">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Auto-Renew Default</label>
+                <select id="policy-renew" class="form-select">
+                  <option value="true" selected>Enabled by default</option>
+                  <option value="false">Requires manual renewal</option>
+                </select>
+              </div>
+              <div class="form-group" style="grid-column: span 2;">
+                <label class="form-label">Standard Liability & Health Waiver Summary</label>
+                <textarea id="policy-waiver" class="form-textarea" rows="3">Members acknowledge that physical exercise involves inherent risks. Members affirm they are medically cleared for strenuous exercise and waive liability against IronPulse Fitness Club for accidental injury on premises.</textarea>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer" style="display: flex; justify-content: flex-end;">
+            <button class="btn btn-accent" onclick="saveAllSettings()"><i class="fa-solid fa-check"></i> Save Policies</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="../assets/js/mock-data.js"></script>
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/navigation.js"></script>
+<script src="../assets/js/app.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    loadGymSettings();
+  });
+
+  function loadGymSettings() {
+    const gymId = Auth.getTenantGymId();
+    const gym = GymFlowDB.findById('gyms', gymId);
+    if (gym) {
+      document.getElementById('gym-name').value = gym.name || 'IronPulse Fitness Club';
+      document.getElementById('gym-email').value = gym.email || 'contact@ironpulse.com';
+      document.getElementById('gym-phone').value = gym.phone || '+1 (555) 234-5678';
+      document.getElementById('gym-address').value = gym.address || '742 Evergreen Terrace';
+      document.getElementById('gym-city').value = gym.city || 'Austin, TX';
+      if (gym.logo) {
+        document.getElementById('gym-logo-preview').src = gym.logo;
+      }
+    }
+  }
+
+  function simulateLogoUpload() {
+    const sampleLogos = [
+      'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=150&h=150&fit=crop',
+      'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=150&h=150&fit=crop',
+      'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=150&h=150&fit=crop'
+    ];
+    const picked = sampleLogos[Math.floor(Math.random() * sampleLogos.length)];
+    document.getElementById('gym-logo-preview').src = picked;
+    Toast.info('New logo uploaded and previewed.');
+  }
+
+  function resetDefaultLogo() {
+    document.getElementById('gym-logo-preview').src = 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=150&h=150&fit=crop';
+    Toast.info('Logo reset to default.');
+  }
+
+  function saveAllSettings() {
+    const gymId = Auth.getTenantGymId();
+    const updated = {
+      name: document.getElementById('gym-name').value,
+      email: document.getElementById('gym-email').value,
+      phone: document.getElementById('gym-phone').value,
+      address: document.getElementById('gym-address').value,
+      city: document.getElementById('gym-city').value,
+      logo: document.getElementById('gym-logo-preview').src
+    };
+    GymFlowDB.update('gyms', gymId, updated);
+    Toast.success('Gym settings and brand identity saved successfully!');
+  }
+</script>
+</body>
+</html>

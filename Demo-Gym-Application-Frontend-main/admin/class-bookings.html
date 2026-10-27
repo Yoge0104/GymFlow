@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class Bookings — Gym Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <a href="dashboard.html" class="brand-link">
+        <div class="brand-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <div class="brand-text">Gym<span>Flow</span></div>
+      </a>
+      <button class="topbar-toggle sidebar-toggle-btn d-none"><i class="fa-solid fa-bars"></i></button>
+    </div>
+    <div class="sidebar-nav">
+      <div class="nav-section-title">Overview</div>
+      <div class="nav-item"><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i><span>Dashboard</span></a></div>
+      <div class="nav-section-title">Members & Club</div>
+      <div class="nav-item"><a href="branches.html" class="nav-link"><i class="fa-solid fa-network-wired"></i><span>Branches</span></a></div>
+      <div class="nav-item"><a href="members.html" class="nav-link"><i class="fa-solid fa-users"></i><span>Membership Management</span></a></div>
+      <div class="nav-item"><a href="membership-plans.html" class="nav-link"><i class="fa-solid fa-tags"></i><span>Plans</span></a></div>
+      <div class="nav-item"><a href="attendance.html" class="nav-link"><i class="fa-solid fa-id-card-clip"></i><span>Attendance Desk</span></a></div>
+      <div class="nav-section-title">Training & Classes</div>
+      <div class="nav-item"><a href="trainers.html" class="nav-link"><i class="fa-solid fa-user-ninja"></i><span>Trainers</span></a></div>
+      <div class="nav-item"><a href="classes.html" class="nav-link"><i class="fa-solid fa-calendar-days"></i><span>Classes & Timetable</span></a></div>
+      <div class="nav-item"><a href="class-bookings.html" class="nav-link active"><i class="fa-solid fa-book-bookmark"></i><span>Class Bookings</span></a></div>
+      <div class="nav-item"><a href="workout-plans.html" class="nav-link"><i class="fa-solid fa-clipboard-list"></i><span>Workout Plans</span></a></div>
+      <div class="nav-section-title">Financials & Sales</div>
+      <div class="nav-item"><a href="payments.html" class="nav-link"><i class="fa-solid fa-credit-card"></i><span>Payments</span></a></div>
+      <div class="nav-item"><a href="invoices.html" class="nav-link"><i class="fa-solid fa-file-invoice-dollar"></i><span>Invoices</span></a></div>
+      <div class="nav-item"><a href="expenses.html" class="nav-link"><i class="fa-solid fa-receipt"></i><span>Expenses</span></a></div>
+      <div class="nav-item"><a href="leads.html" class="nav-link"><i class="fa-solid fa-user-plus"></i><span>Leads CRM</span></a></div>
+      <div class="nav-section-title">Operations</div>
+      <div class="nav-item"><a href="equipment.html" class="nav-link"><i class="fa-solid fa-dumbbell"></i><span>Equipment</span></a></div>
+      <div class="nav-item"><a href="maintenance.html" class="nav-link"><i class="fa-solid fa-screwdriver-wrench"></i><span>Maintenance</span></a></div>
+      <div class="nav-item"><a href="reports.html" class="nav-link"><i class="fa-solid fa-chart-line"></i><span>Reports & Analytics</span></a></div>
+      <div class="nav-section-title">Administration</div>
+      <div class="nav-item"><a href="staff.html" class="nav-link"><i class="fa-solid fa-user-tie"></i><span>Staff Accounts</span></a></div>
+      <div class="nav-item"><a href="roles-permissions.html" class="nav-link"><i class="fa-solid fa-lock"></i><span>Roles & Access</span></a></div>
+      <div class="nav-item"><a href="notifications.html" class="nav-link"><i class="fa-solid fa-bell"></i><span>Notifications</span></a></div>
+      <div class="nav-item"><a href="support.html" class="nav-link"><i class="fa-solid fa-headset"></i><span>Support Helpdesk</span></a></div>
+      <div class="nav-item"><a href="settings.html" class="nav-link"><i class="fa-solid fa-gear"></i><span>Gym Settings</span></a></div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&h=100&fit=crop" alt="User" class="current-user-avatar"></div>
+        <div class="sidebar-user-info"><span class="sidebar-user-name current-user-name">Marcus Vance</span><span class="sidebar-user-role">Gym Admin</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main-wrapper">
+    <header class="topbar">
+      <div class="topbar-left"><button class="topbar-toggle sidebar-toggle-btn"><i class="fa-solid fa-bars"></i></button></div>
+      <div class="topbar-right">
+        <span class="role-indicator admin"><i class="fa-solid fa-building"></i> Gym Admin</span>
+        <button class="topbar-action-btn theme-toggle-btn"><i class="fa-solid fa-moon"></i></button>
+        <button class="topbar-action-btn" id="btn-notifications"><i class="fa-solid fa-bell"></i><span class="action-badge"></span></button>
+        <div class="dropdown">
+          <button class="topbar-user-btn" data-dropdown-toggle>
+            <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&h=100&fit=crop" class="current-user-avatar" alt="Avatar"></div>
+            <div><div class="topbar-user-name current-user-name">Marcus Vance</div><div class="topbar-user-role">Gym Admin</div></div>
+            <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; color: var(--text-subtle);"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="settings.html" class="dropdown-item"><i class="fa-solid fa-gear"></i> Settings</a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item text-danger btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-wrapper">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">
+            <a href="dashboard.html">Gym Admin</a>
+            <span class="breadcrumb-separator">/</span>
+            <a href="classes.html">Classes</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Roster & Bookings</span>
+          </div>
+          <h1 class="page-title">Member Class Reservations</h1>
+          <p class="page-subtitle">Track attendees, check-in statuses, and capacity allocations across all fitness sessions.</p>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <div class="table-toolbar" style="gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+          <div class="table-search" style="flex: 1; min-width: 220px; max-width: 280px;">
+            <div class="input-with-icon">
+              <i class="fa-solid fa-magnifying-glass input-icon"></i>
+              <input type="text" id="booking-search" class="form-control" placeholder="Search member, class, ID..." oninput="filterBookings()">
+            </div>
+          </div>
+          <div class="table-actions" style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+            <!-- Status filter -->
+            <select id="booking-filter-status" class="form-select" style="width: 130px;" onchange="filterBookings()">
+              <option value="">All Statuses</option>
+              <option value="Confirmed">Confirmed</option>
+              <option value="Attended">Attended</option>
+              <option value="Cancelled">Cancelled</option>
+            </select>
+
+            <!-- Class filter -->
+            <select id="booking-filter-class" class="form-select" style="width: 140px;" onchange="filterBookings()">
+              <option value="">All Classes</option>
+            </select>
+
+            <!-- Trainer filter -->
+            <select id="booking-filter-trainer" class="form-select" style="width: 150px;" onchange="filterBookings()">
+              <option value="">All Instructors</option>
+            </select>
+
+            <!-- Date filter -->
+            <input type="date" id="booking-filter-date" class="form-control" style="width: 150px;" onchange="filterBookings()">
+
+            <!-- Reset Button -->
+            <button type="button" class="btn btn-outline btn-sm" id="btn-reset-bookings" onclick="resetBookingFilters()" title="Reset all filters">
+              <i class="fa-solid fa-arrow-rotate-left"></i> Reset
+            </button>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th class="sortable" onclick="sortBookings('id')" style="cursor: pointer;">
+                  Booking ID <i class="fa-solid fa-sort text-muted" id="sort-icon-id"></i>
+                </th>
+                <th class="sortable" onclick="sortBookings('memberName')" style="cursor: pointer;">
+                  Member <i class="fa-solid fa-sort text-muted" id="sort-icon-memberName"></i>
+                </th>
+                <th>Class Session</th>
+                <th>Instructor</th>
+                <th class="sortable" onclick="sortBookings('date')" style="cursor: pointer;">
+                  Scheduled Date & Time <i class="fa-solid fa-sort text-muted" id="sort-icon-date"></i>
+                </th>
+                <th class="sortable" onclick="sortBookings('status')" style="cursor: pointer;">
+                  Booking Status <i class="fa-solid fa-sort text-muted" id="sort-icon-status"></i>
+                </th>
+                <th style="text-align: right;">Action</th>
+              </tr>
+            </thead>
+            <tbody id="bookings-tbody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="../assets/js/mock-data.js"></script>
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/navigation.js"></script>
+<script src="../assets/js/app.js"></script>
+
+<script>
+  let bookings = [];
+  let filteredBookings = [];
+  let currentSortKey = 'date';
+  let isSortAsc = true;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadBookings();
+  });
+
+  function loadBookings() {
+    const gymId = Auth.getTenantGymId();
+    bookings = GymFlowDB.get('classBookings', { gymId: gymId }) || [];
+
+    // Populate class filter
+    const classSelect = document.getElementById('booking-filter-class');
+    if (classSelect) {
+      const classNames = Array.from(new Set(bookings.map(b => b.className).filter(Boolean)));
+      classSelect.innerHTML = '<option value="">All Classes</option>' +
+        classNames.map(c => `<option value="${c}">${c}</option>`).join('');
+    }
+
+    // Populate trainer filter
+    const trainerSelect = document.getElementById('booking-filter-trainer');
+    if (trainerSelect) {
+      const trainers = Array.from(new Set(bookings.map(b => b.trainerName).filter(Boolean)));
+      trainerSelect.innerHTML = '<option value="">All Instructors</option>' +
+        trainers.map(t => `<option value="${t}">${t}</option>`).join('');
+    }
+
+    filterBookings();
+  }
+
+  function filterBookings() {
+    const q = (document.getElementById('booking-search')?.value || '').trim();
+    const status = document.getElementById('booking-filter-status')?.value || '';
+    const className = document.getElementById('booking-filter-class')?.value || '';
+    const trainer = document.getElementById('booking-filter-trainer')?.value || '';
+    const dateVal = document.getElementById('booking-filter-date')?.value || '';
+
+    filteredBookings = bookings.filter(b => {
+      const matchQ = DataGridHelper.matchSearch(b, q, ['memberName', 'className', 'id', 'trainerName']);
+      const matchStatus = !status || b.status === status;
+      const matchClass = !className || b.className === className;
+      const matchTrainer = !trainer || b.trainerName === trainer;
+      const matchDate = !dateVal || b.date === dateVal;
+      return matchQ && matchStatus && matchClass && matchTrainer && matchDate;
+    });
+
+    // Sorting
+    filteredBookings.sort((a, b) => {
+      return DataGridHelper.compare(a, b, currentSortKey, isSortAsc);
+    });
+
+    renderBookings();
+  }
+
+  function sortBookings(key) {
+    if (currentSortKey === key) {
+      isSortAsc = !isSortAsc;
+    } else {
+      currentSortKey = key;
+      isSortAsc = true;
+    }
+    DataGridHelper.updateSortHeaders(document.querySelector('.data-table thead'), currentSortKey, isSortAsc);
+    filterBookings();
+  }
+
+  function resetBookingFilters() {
+    if (document.getElementById('booking-search')) document.getElementById('booking-search').value = '';
+    if (document.getElementById('booking-filter-status')) document.getElementById('booking-filter-status').value = '';
+    if (document.getElementById('booking-filter-class')) document.getElementById('booking-filter-class').value = '';
+    if (document.getElementById('booking-filter-trainer')) document.getElementById('booking-filter-trainer').value = '';
+    if (document.getElementById('booking-filter-date')) document.getElementById('booking-filter-date').value = '';
+    currentSortKey = 'date';
+    isSortAsc = true;
+    DataGridHelper.updateSortHeaders(document.querySelector('.data-table thead'), '', true);
+    filterBookings();
+  }
+
+  function renderBookings() {
+    const tbody = document.getElementById('bookings-tbody');
+    if (!filteredBookings.length) {
+      tbody.innerHTML = `<tr><td colspan="7">${DataGridHelper.getEmptyStateHtml('No Class Bookings Found', 'No bookings match your selected filter criteria.', 'resetBookingFilters()')}</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = filteredBookings.map(b => {
+      let badge = 'badge-success';
+      if (b.status === 'Cancelled') badge = 'badge-danger';
+      if (b.status === 'Attended') badge = 'badge-purple';
+
+      return `
+        <tr>
+          <td><strong>#${b.id}</strong></td>
+          <td><strong>${b.memberName}</strong></td>
+          <td>${b.className}</td>
+          <td>${b.trainerName}</td>
+          <td>${b.date} at ${b.time}</td>
+          <td><span class="badge ${badge}"><span class="badge-dot"></span>${b.status}</span></td>
+          <td style="text-align: right;">
+            <div style="display: inline-flex; gap: 0.35rem;">
+              ${b.status === 'Confirmed' ? `
+                <button class="btn btn-sm btn-outline-accent" onclick="markAttended('${b.id}')"><i class="fa-solid fa-check"></i> Attended</button>
+                <button class="btn btn-sm btn-outline-danger" onclick="cancelBooking('${b.id}')"><i class="fa-solid fa-xmark"></i> Cancel</button>
+              ` : `
+                <span class="text-xs text-muted">Completed</span>
+              `}
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  function markAttended(id) {
+    GymFlowDB.update('classBookings', id, { status: 'Attended' });
+    Toast.success('Booking marked as Attended.');
+    loadBookings();
+  }
+
+  function cancelBooking(id) {
+    Modal.confirm({
+      title: 'Cancel Reservation?',
+      message: 'Cancel this member booking? The seat will be released.',
+      confirmText: 'Cancel Booking',
+      confirmClass: 'btn-danger',
+      onConfirm: () => {
+        GymFlowDB.update('classBookings', id, { status: 'Cancelled' });
+        Toast.warning('Booking cancelled.');
+        loadBookings();
+      }
+    });
+  }
+</script>
+</body>
+</html>

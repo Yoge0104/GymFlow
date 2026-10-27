@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notifications & Alerts — Member Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <a href="dashboard.html" class="brand-link">
+        <div class="brand-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <div class="brand-text">Gym<span>Flow</span></div>
+      </a>
+      <button class="topbar-toggle sidebar-toggle-btn d-none"><i class="fa-solid fa-bars"></i></button>
+    </div>
+    <div class="sidebar-nav">
+      <div class="nav-section-title">Overview</div>
+      <div class="nav-item"><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a></div>
+      
+      <div class="nav-section-title">Fitness & Training</div>
+      <div class="nav-item"><a href="workout-plan.html" class="nav-link"><i class="fa-solid fa-clipboard-list"></i><span>Workout Plan</span></a></div>
+      <div class="nav-item"><a href="classes.html" class="nav-link"><i class="fa-solid fa-calendar-days"></i><span>Classes & Timetable</span></a></div>
+      <div class="nav-item"><a href="my-bookings.html" class="nav-link"><i class="fa-solid fa-bookmark"></i><span>My Bookings</span></a></div>
+      <div class="nav-item"><a href="progress.html" class="nav-link"><i class="fa-solid fa-chart-line"></i><span>Body Progress</span></a></div>
+      <div class="nav-item"><a href="attendance.html" class="nav-link"><i class="fa-solid fa-clock-rotate-left"></i><span>Attendance History</span></a></div>
+      
+      <div class="nav-section-title">Membership & Billing</div>
+      <div class="nav-item"><a href="my-membership.html" class="nav-link"><i class="fa-solid fa-id-card"></i><span>My Membership</span></a></div>
+      <div class="nav-item"><a href="plans.html" class="nav-link"><i class="fa-solid fa-tags"></i><span>Plans & Upgrade</span></a></div>
+      <div class="nav-item"><a href="payments.html" class="nav-link"><i class="fa-solid fa-credit-card"></i><span>Billing & Receipts</span></a></div>
+      
+      <div class="nav-section-title">Account & Support</div>
+      <div class="nav-item"><a href="my-profile.html" class="nav-link"><i class="fa-solid fa-user"></i><span>My Profile</span></a></div>
+      <div class="nav-item"><a href="notifications.html" class="nav-link active"><i class="fa-solid fa-bell"></i><span>Notifications</span></a></div>
+      <div class="nav-item"><a href="support.html" class="nav-link"><i class="fa-solid fa-headset"></i><span>Member Support</span></a></div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop" alt="Member" class="current-user-avatar"></div>
+        <div class="sidebar-user-info"><span class="sidebar-user-name current-user-name">Alex Morgan</span><span class="sidebar-user-role">IronPulse Member</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main-wrapper">
+    <header class="topbar">
+      <div class="topbar-left"><button class="topbar-toggle sidebar-toggle-btn"><i class="fa-solid fa-bars"></i></button></div>
+      <div class="topbar-right">
+        <span class="role-indicator member" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); font-weight: 600; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem;">
+          <i class="fa-solid fa-person-running"></i> Gym Member
+        </span>
+        <button class="topbar-action-btn theme-toggle-btn"><i class="fa-solid fa-moon"></i></button>
+        <a href="notifications.html" class="topbar-action-btn" id="btn-notifications"><i class="fa-solid fa-bell"></i><span class="action-badge"></span></a>
+        <div class="dropdown">
+          <button class="topbar-user-btn" data-dropdown-toggle>
+            <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop" class="current-user-avatar" alt="Avatar"></div>
+            <div><div class="topbar-user-name current-user-name">Alex Morgan</div><div class="topbar-user-role">IronPulse Member</div></div>
+            <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; color: var(--text-subtle);"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="my-profile.html" class="dropdown-item"><i class="fa-solid fa-user"></i> My Profile</a>
+            <a href="my-membership.html" class="dropdown-item"><i class="fa-solid fa-id-card"></i> Membership</a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item text-danger btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-wrapper">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">
+            <a href="dashboard.html">Member Portal</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Notifications</span>
+          </div>
+          <h1 class="page-title">Personal Alerts & Announcements</h1>
+          <p class="page-subtitle">Stay informed about scheduled classes, billing renewals, club notices, and workout updates.</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-outline" onclick="markAllRead()"><i class="fa-solid fa-check-double"></i> Mark All as Read</button>
+        </div>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="tabs-nav">
+        <button class="tab-btn active" onclick="setNotifCategory('All', this)"><i class="fa-solid fa-list"></i> All Alerts</button>
+        <button class="tab-btn" onclick="setNotifCategory('Classes', this)"><i class="fa-solid fa-calendar-check"></i> Classes & Schedule</button>
+        <button class="tab-btn" onclick="setNotifCategory('Billing', this)"><i class="fa-solid fa-credit-card"></i> Billing & Renewals</button>
+        <button class="tab-btn" onclick="setNotifCategory('Announcements', this)"><i class="fa-solid fa-bullhorn"></i> Club Notices</button>
+      </div>
+
+      <!-- Notifications List -->
+      <div id="notifications-list" style="display: flex; flex-direction: column; gap: 1rem;">
+        <!-- Rendered via JS -->
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="../assets/js/mock-data.js"></script>
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/navigation.js"></script>
+<script src="../assets/js/app.js"></script>
+
+<script>
+  let memberAlerts = [
+    {
+      id: 'notif_1',
+      category: 'Classes',
+      title: 'Class Reminder: Morning HIIT Blast Tomorrow',
+      message: 'Your spot in Morning HIIT Blast with Sarah Connor is confirmed for tomorrow at 07:00 AM in Studio A. Bring hydration and workout towel.',
+      time: '2 hours ago',
+      unread: true,
+      icon: 'fa-calendar-check',
+      iconClass: 'blue'
+    },
+    {
+      id: 'notif_2',
+      category: 'Announcements',
+      title: 'Hydro-Massage Lounge Demo Today',
+      message: 'IronPulse has installed state-of-the-art water massage beds on the mezzanine floor. VIP members can test a free 15-minute recovery session today.',
+      time: '5 hours ago',
+      unread: true,
+      icon: 'fa-bullhorn',
+      iconClass: 'purple'
+    },
+    {
+      id: 'notif_3',
+      category: 'Classes',
+      title: 'New Workout Progression Assigned',
+      message: 'Coach David Miller updated your Hypertrophy 4-Day Routine with progressive overload weights for Week 4.',
+      time: 'Yesterday',
+      unread: false,
+      icon: 'fa-dumbbell',
+      iconClass: 'green'
+    },
+    {
+      id: 'notif_4',
+      category: 'Billing',
+      title: 'Payment Receipt: #INV-IP-8419 Confirmed',
+      message: 'Your annual VIP membership pass (₹650.00) payment processed successfully. Thank you for being a valued member.',
+      time: '3 days ago',
+      unread: false,
+      icon: 'fa-receipt',
+      iconClass: 'green'
+    },
+    {
+      id: 'notif_5',
+      category: 'Announcements',
+      title: 'Memorial Day Holiday Hours',
+      message: 'Downtown branch will operate from 08:00 AM to 04:00 PM on Memorial Day. 24/7 keycard access remains fully functional for VIP members.',
+      time: '1 week ago',
+      unread: false,
+      icon: 'fa-clock',
+      iconClass: 'orange'
+    }
+  ];
+
+  let activeCategory = 'All';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    renderAlerts();
+  });
+
+  function setNotifCategory(category, btn) {
+    activeCategory = category;
+    document.querySelectorAll('.tabs-nav .tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderAlerts();
+  }
+
+  function renderAlerts() {
+    const container = document.getElementById('notifications-list');
+    const filtered = memberAlerts.filter(a => activeCategory === 'All' || a.category === activeCategory);
+
+    if (filtered.length === 0) {
+      container.innerHTML = `
+        <div class="card">
+          <div class="card-body" style="text-align: center; padding: 3rem 1rem;">
+            <i class="fa-solid fa-bell-slash" style="font-size: 2.5rem; color: var(--text-muted); margin-bottom: 0.75rem;"></i>
+            <h3>No Alerts Found</h3>
+            <p class="text-sm text-muted">You have no notifications in this category.</p>
+          </div>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = filtered.map(a => `
+      <div class="card" style="border-left: 4px solid ${a.unread ? 'var(--accent-color)' : 'var(--border-color)'}; background: ${a.unread ? 'var(--bg-surface)' : 'var(--bg-hover)'};">
+        <div class="card-body" style="display: flex; gap: 1.25rem; align-items: flex-start;">
+          <div class="stat-icon ${a.iconClass}" style="width: 44px; height: 44px; font-size: 1.15rem; flex-shrink: 0;">
+            <i class="fa-solid ${a.icon}"></i>
+          </div>
+          <div style="flex: 1;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem; flex-wrap: wrap; gap: 0.5rem;">
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <h4 style="margin: 0; font-size: 1rem; font-weight: ${a.unread ? '700' : '600'};">${a.title}</h4>
+                ${a.unread ? '<span class="badge badge-accent" style="font-size: 0.7rem;">New</span>' : ''}
+              </div>
+              <span class="text-xs text-muted">${a.time}</span>
+            </div>
+            <p class="text-xs text-muted" style="margin: 0 0 0.5rem; font-size: 0.85rem; line-height: 1.45;">${a.message}</p>
+            <div style="display: flex; gap: 0.5rem;">
+              ${a.unread ? `<button class="btn btn-xs btn-outline" onclick="markOneRead('${a.id}')"><i class="fa-solid fa-check"></i> Mark as read</button>` : ''}
+              <button class="btn btn-xs btn-secondary" onclick="dismissAlert('${a.id}')"><i class="fa-solid fa-xmark"></i> Dismiss</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function markOneRead(id) {
+    const item = memberAlerts.find(x => x.id === id);
+    if (item) {
+      item.unread = false;
+      renderAlerts();
+      Toast.info('Notification marked as read.');
+    }
+  }
+
+  function dismissAlert(id) {
+    memberAlerts = memberAlerts.filter(x => x.id !== id);
+    renderAlerts();
+    Toast.info('Alert dismissed.');
+  }
+
+  function markAllRead() {
+    memberAlerts.forEach(a => a.unread = false);
+    renderAlerts();
+    Toast.success('All notifications marked as read.');
+  }
+</script>
+</body>
+</html>

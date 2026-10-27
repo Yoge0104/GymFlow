@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GymFlow — Modern Multi-Tenant SaaS Gym Management Platform</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <style>
+    /* Landing page specific layout */
+    .landing-header {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 500;
+      transition: background-color var(--transition-base);
+    }
+    [data-theme="dark"] .landing-header {
+      background: rgba(19, 28, 49, 0.9);
+    }
+    .landing-nav {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1.15rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .landing-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .landing-nav-links a {
+      color: var(--text-main);
+      font-weight: 600;
+      font-size: 0.925rem;
+      transition: color var(--transition-fast);
+    }
+    .landing-nav-links a:hover {
+      color: var(--color-accent);
+    }
+    .hero-section {
+      padding: 5rem 1.5rem 4rem;
+      text-align: center;
+      background: radial-gradient(circle at 50% 20%, rgba(16, 185, 129, 0.08) 0%, transparent 60%);
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      background: var(--color-accent-subtle);
+      color: var(--color-accent);
+      border: 1px solid var(--color-accent-border);
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+    .hero-title {
+      font-size: clamp(2.25rem, 5vw, 3.75rem);
+      font-weight: 800;
+      line-height: 1.15;
+      max-width: 880px;
+      margin: 0 auto 1.25rem;
+      letter-spacing: -0.03em;
+    }
+    .hero-desc {
+      font-size: 1.15rem;
+      max-width: 650px;
+      margin: 0 auto 2.25rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .hero-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 3.5rem;
+    }
+    .preview-card {
+      max-width: 1100px;
+      margin: 0 auto;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.18);
+      overflow: hidden;
+      background: var(--bg-surface);
+    }
+    .features-section, .roles-section, .pricing-section, .faq-section {
+      padding: 5rem 1.5rem;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .section-title h2 {
+      font-size: 2.25rem;
+      margin-bottom: 0.5rem;
+    }
+    .section-title p {
+      font-size: 1.05rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      margin-bottom: 1rem;
+      background: var(--bg-surface);
+      overflow: hidden;
+    }
+    .faq-question {
+      padding: 1.25rem 1.5rem;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+    .faq-answer {
+      padding: 0 1.5rem 1.25rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      display: none;
+      line-height: 1.6;
+    }
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+    .faq-item.active .faq-question i {
+      transform: rotate(180deg);
+    }
+    .footer {
+      background: var(--color-primary-dark);
+      color: #94a3b8;
+      padding: 4rem 1.5rem 2rem;
+      border-top: 1px solid var(--border-color);
+    }
+    .footer-grid {
+      max-width: 1280px;
+      margin: 0 auto 3rem;
+      display: grid;
+      grid-template-columns: 2fr repeat(3, 1fr);
+      gap: 3rem;
+    }
+    @media (max-width: 900px) {
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+    .footer a {
+      color: #94a3b8;
+      display: block;
+      margin-bottom: 0.6rem;
+      font-size: 0.9rem;
+      transition: color var(--transition-fast);
+    }
+    .footer a:hover {
+      color: var(--color-accent);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Landing Topbar Header -->
+  <header class="landing-header">
+    <div class="landing-nav">
+      <a href="index.html" class="brand-link">
+        <div class="brand-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <div class="brand-text">Gym<span>Flow</span></div>
+      </a>
+      <div class="landing-nav-links">
+        <a href="#features">Features</a>
+        <a href="#roles">Solutions</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <button class="topbar-action-btn theme-toggle-btn" title="Toggle Dark/Light Mode">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <a href="login.html" class="btn btn-outline btn-sm">Sign In</a>
+        <a href="register.html" class="btn btn-accent btn-sm">
+          <span>Start Free Trial</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-badge">
+      <i class="fa-solid fa-bolt"></i>
+      <span>Next-Gen Multi-Tenant Gym Architecture</span>
+    </div>
+    <h1 class="hero-title">
+      Scale Your Gym Empire with <span style="color: var(--color-accent);">One Powerful SaaS</span> Platform
+    </h1>
+    <p class="hero-desc">
+      GymFlow provides an end-to-end cloud ecosystem for fitness chains, independent studios, personal trainers, and members. Manage memberships, branches, real-time check-ins, automated billing, and workout routines.
+    </p>
+    <div class="hero-buttons">
+      <a href="register.html" class="btn btn-accent btn-lg">
+        <i class="fa-solid fa-rocket"></i>
+        <span>Register Your Gym</span>
+      </a>
+      <a href="login.html" class="btn btn-secondary btn-lg">
+        <i class="fa-solid fa-eye"></i>
+        <span>Explore Live Demo</span>
+      </a>
+      <a href="#roles" class="btn btn-outline btn-lg">
+        <i class="fa-solid fa-network-wired"></i>
+        <span>Compare 3 Roles</span>
+      </a>
+    </div>
+
+    <!-- Live Preview Mockup Card -->
+    <div class="preview-card">
+      <div style="background: var(--bg-surface-secondary); padding: 0.75rem 1.25rem; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; gap: 0.4rem;">
+          <span style="width: 11px; height: 11px; border-radius: 50%; background: #ef4444; display: inline-block;"></span>
+          <span style="width: 11px; height: 11px; border-radius: 50%; background: #f59e0b; display: inline-block;"></span>
+          <span style="width: 11px; height: 11px; border-radius: 50%; background: #10b981; display: inline-block;"></span>
+        </div>
+        <!-- <div style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted); background: var(--bg-surface); padding: 0.2rem 1.5rem; border-radius: var(--radius-full); border: 1px solid var(--border-color);">
+          gymflow.app/admin/dashboard.html
+        </div> -->
+        <!-- <div style="font-size: 0.75rem; color: var(--text-subtle);">v2.4 Active</div> -->
+      </div>
+      <div style="padding: 2rem; text-align: left;">
+        <div class="stats-grid" style="margin-bottom: 1.5rem;">
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-label">Total Active Members</span>
+              <span class="stat-icon green"><i class="fa-solid fa-users"></i></span>
+            </div>
+            <div class="stat-value">420</div>
+            <div class="stat-meta">
+              <span class="stat-trend positive"><i class="fa-solid fa-arrow-up"></i> +12.4%</span>
+              <span>vs last month</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-label">Today's Attendance</span>
+              <span class="stat-icon blue"><i class="fa-solid fa-id-card-clip"></i></span>
+            </div>
+            <div class="stat-value">128</div>
+            <div class="stat-meta">
+              <span class="stat-trend positive"><i class="fa-solid fa-circle-check"></i> 89.2%</span>
+              <span>peak morning flow</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-label">Monthly Gross Revenue</span>
+              <span class="stat-icon green"><i class="fa-solid fa-sack-dollar"></i></span>
+            </div>
+            <div class="stat-value">₹18,450</div>
+            <div class="stat-meta">
+              <span class="stat-trend positive"><i class="fa-solid fa-arrow-up"></i> +8.1%</span>
+              <span>recurring billing</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-label">Active Trainers</span>
+              <span class="stat-icon purple"><i class="fa-solid fa-dumbbell"></i></span>
+            </div>
+            <div class="stat-value">5</div>
+            <div class="stat-meta">
+              <span class="text-accent font-semibold">100% capacity booked</span>
+            </div>
+          </div>
+        </div>
+        <div style="text-align: center; padding: 1.5rem 0 0.5rem;">
+          <a href="login.html" class="btn btn-accent">
+            <span>Launch Complete Interactive Dashboard</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section" id="features">
+    <div class="section-title">
+      <h2>Everything Your Gym Needs Under One Roof</h2>
+      <p>Built with enterprise scalability and consumer-grade simplicity for managers, staff, and athletes.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card card-hover">
+        <div class="card-body">
+          <div class="stat-icon green mb-4"><i class="fa-solid fa-building-user"></i></div>
+          <h4 class="mb-2">Multi-Tenant & Multi-Branch</h4>
+          <p>Seamlessly isolate gym records with distinct databases, branding, and branch managers while overseeing consolidated analytics.</p>
+        </div>
+      </div>
+      <div class="card card-hover">
+        <div class="card-body">
+          <div class="stat-icon blue mb-4"><i class="fa-solid fa-qrcode"></i></div>
+          <h4 class="mb-2">Smart Attendance Tracking</h4>
+          <p>Real-time check-in and check-out logs with duplicate prevention, fast member lookup, and simulated QR-code verification.</p>
+        </div>
+      </div>
+      <div class="card card-hover">
+        <div class="card-body">
+          <div class="stat-icon purple mb-4"><i class="fa-solid fa-calendar-days"></i></div>
+          <h4 class="mb-2">Class Scheduling & Booking</h4>
+          <p>Publish timetables for Spin, Yoga, CrossFit, and Boxing. Members book seats online with capacity limits and automated waitlists.</p>
+        </div>
+      </div>
+      <div class="card card-hover">
+        <div class="card-body">
+          <div class="stat-icon amber mb-4"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+          <h4 class="mb-2">Automated Billing & Invoices</h4>
+          <p>Track membership fees, generate professional branded PDF invoices with tax breakdown, and record cash or card payments.</p>
+        </div>
+      </div>
+      <div class="card card-hover">
+        <div class="card-body">
+          <div class="stat-icon red mb-4"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+          <h4 class="mb-2">Equipment Maintenance</h4>
+          <p>Maintain equipment inventories, log repair tickets from Reported to Completed, and track warranty expirations.</p>
+        </div>
+      </div>
+      <div class="card card-hover">
+        <div class="card-body">
+          <div class="stat-icon green mb-4"><i class="fa-solid fa-mobile-screen-button"></i></div>
+          <h4 class="mb-2">Mobile Member Portal</h4>
+          <p>Members manage their subscriptions, review workout regimens, book classes, track body composition, and download receipts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 Roles Architecture Section -->
+  <section class="roles-section" id="roles" style="background: var(--bg-surface); border-radius: var(--radius-xl); border: 1px solid var(--border-color);">
+    <div class="section-title">
+      <h2>Engineered for 3 Distinct User Roles</h2>
+      <p>Role-tailored interfaces and permission boundaries ensure everyone gets the exact tools they need.</p>
+    </div>
+    <div class="grid-3">
+      <!-- Super Admin -->
+      <div class="card" style="border-top: 4px solid var(--color-purple);">
+        <div class="card-body">
+          <div class="role-indicator super-admin mb-3">Role 1: SaaS Super Admin</div>
+          <h3 class="mb-2">Platform Operator</h3>
+          <p class="mb-4">Oversee the entire GymFlow ecosystem across all registered gym organizations worldwide.</p>
+          <ul style="display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+            <li><i class="fa-solid fa-check text-accent"></i> Manage 10+ Registered Gyms</li>
+            <li><i class="fa-solid fa-check text-accent"></i> Configure SaaS Plans & Pricing</li>
+            <li><i class="fa-solid fa-check text-accent"></i> Platform Billing & Revenue Analytics</li>
+            <li><i class="fa-solid fa-check text-accent"></i> System Health & Audit Logging</li>
+            <li><i class="fa-solid fa-check text-accent"></i> Platform-wide Announcements</li>
+          </ul>
+          <a href="login.html" class="btn btn-secondary w-100" onclick="Auth.loginAs('superadmin')">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>Open Super Admin Portal</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Gym Admin -->
+      <div class="card" style="border-top: 4px solid var(--color-electric);">
+        <div class="card-body">
+          <div class="role-indicator admin mb-3">Role 2: Gym Admin</div>
+          <h3 class="mb-2">Gym Owner & Manager</h3>
+          <p class="mb-4">Day-to-day command center for single or multi-branch fitness centers and health clubs.</p>
+          <ul style="display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+            <li><i class="fa-solid fa-check text-accent"></i> Member Onboarding & Profiles</li>
+            <li><i class="fa-solid fa-check text-accent"></i> Real-time Check-In Desk</li>
+            <li><i class="fa-solid fa-check text-accent"></i> Trainers & Class Scheduling</li>
+            <li><i class="fa-solid fa-check text-accent"></i> Lead Management CRM</li>
+            <li><i class="fa-solid fa-check text-accent"></i> Revenue, Expenses & Invoices</li>
+          </ul>
+          <a href="login.html" class="btn btn-electric w-100" onclick="Auth.loginAs('gymadmin')">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Open Gym Admin Portal</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Member -->
+      <div class="card" style="border-top: 4px solid var(--color-accent);">
+        <div class="card-body">
+          <div class="role-indicator member mb-3">Role 3: Member / Athlete</div>
+          <h3 class="mb-2">Gym Member</h3>
+          <p class="mb-4">Self-service mobile-friendly web application for members to track workouts and memberships.</p>
+          <ul style="display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+            <li><i class="fa-solid fa-check text-accent"></i> My Active Plan & Renewal Countdown</li>
+            <li><i class="fa-solid fa-check text-accent"></i> Assigned Daily Workout Routine</li>
+            <li><i class="fa-solid fa-check text-accent"></i> 1-Click Class Booking</li>
+            <li><i class="fa-solid fa-check text-accent"></i> Check-in History & Streak</li>
+            <li><i class="fa-solid fa-check text-accent"></i> Body Weight & Metric Logs</li>
+          </ul>
+          <a href="login.html" class="btn btn-accent w-100" onclick="Auth.loginAs('member')">
+            <i class="fa-solid fa-user"></i>
+            <span>Open Member Portal</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Overview Section -->
+  <section class="pricing-section" id="pricing">
+    <div class="section-title">
+      <h2>Predictable, Transparent SaaS Pricing</h2>
+      <p>Choose the tier that matches your club size. Upgrade or cancel anytime with zero lock-in.</p>
+    </div>
+    <div class="grid-3">
+      <!-- Starter -->
+      <div class="card">
+        <div class="card-body">
+          <h4>Starter</h4>
+          <p class="text-sm">Ideal for boutique studios and personal trainer studios.</p>
+          <div style="font-size: 2.75rem; font-weight: 800; font-family: var(--font-heading); color: var(--text-main); margin: 1rem 0;">
+            ₹49<span style="font-size: 1rem; color: var(--text-muted); font-weight: 500;">/month</span>
+          </div>
+          <ul style="display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.875rem; color: var(--text-muted); margin-bottom: 2rem;">
+            <li><i class="fa-solid fa-check text-accent"></i> 1 Gym Location</li>
+            <li><i class="fa-solid fa-check text-accent"></i> Up to 300 Members</li>
+            <li><i class="fa-solid fa-check text-accent"></i> 3 Staff Accounts</li>
+            <li><i class="fa-solid fa-check text-accent"></i> Attendance & Invoicing</li>
+            <li><i class="fa-solid fa-check text-accent"></i> 14-day free trial</li>
+          </ul>
+          <a href="register.html?plan=saas_starter" class="btn btn-outline w-100">Start 14-Day Trial</a>
+        </div>
+      </div>
+
+      <!-- Growth -->
+      <div class="card" style="border: 2px solid var(--color-accent); position: relative;">
+        <div style="position: absolute; top: 2px; right: 20px; background: var(--color-accent); color: #fff; font-size: 0.725rem; font-weight: 800; padding: 0.2rem 0.75rem; border-radius: var(--radius-full); text-transform: uppercase;">
+          Most Popular
+        </div>
+        <div class="card-body">
+          <h4>Growth</h4>
+          <p class="text-sm">Designed for growing fitness clubs with multiple branches.</p>
+          <div style="font-size: 2.75rem; font-weight: 800; font-family: var(--font-heading); color: var(--text-main); margin: 1rem 0;">
+            ₹99<span style="font-size: 1rem; color: var(--text-muted); font-weight: 500;">/month</span>
+          </div>
+          <ul style="display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.875rem; color: var(--text-muted); margin-bottom: 2rem;">
+            <li><i class="fa-solid fa-check text-accent"></i> Up to 3 Gym Branches</li>
+            <li><i class="fa-solid fa-check text-accent"></i> Up to 1,000 Members</li>
+            <li><i class="fa-solid fa-check text-accent"></i> 10 Staff Accounts</li>
+            <li><i class="fa-solid fa-check text-accent"></i> Full Class & Trainer Scheduling</li>
+            <li><i class="fa-solid fa-check text-accent"></i> Lead CRM & Maintenance</li>
+            <li><i class="fa-solid fa-check text-accent"></i> Priority 24/7 Support</li>
+          </ul>
+          <a href="register.html?plan=saas_growth" class="btn btn-accent w-100">Start 14-Day Trial</a>
+        </div>
+      </div>
+
+      <!-- Enterprise Pro -->
+      <div class="card">
+        <div class="card-body">
+          <h4>Enterprise Pro</h4>
+          <p class="text-sm">For regional gym franchises and multi-location athletic brands.</p>
+          <div style="font-size: 2.75rem; font-weight: 800; font-family: var(--font-heading); color: var(--text-main); margin: 1rem 0;">
+            ₹199<span style="font-size: 1rem; color: var(--text-muted); font-weight: 500;">/month</span>
+          </div>
+          <ul style="display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.875rem; color: var(--text-muted); margin-bottom: 2rem;">
+            <li><i class="fa-solid fa-check text-accent"></i> Up to 10 Branches</li>
+            <li><i class="fa-solid fa-check text-accent"></i> Up to 5,000 Members</li>
+            <li><i class="fa-solid fa-check text-accent"></i> 50 Staff Accounts</li>
+            <li><i class="fa-solid fa-check text-accent"></i> Custom Branding & Domain</li>
+            <li><i class="fa-solid fa-check text-accent"></i> Granular RBAC Permissions</li>
+            <li><i class="fa-solid fa-check text-accent"></i> Dedicated Account Manager</li>
+          </ul>
+          <a href="register.html?plan=saas_enterprise" class="btn btn-outline w-100">Start 14-Day Trial</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section" id="faq">
+    <div class="section-title">
+      <h2>Frequently Asked Questions</h2>
+      <p>Have questions about how GymFlow operates? We have answers.</p>
+    </div>
+    <div style="max-width: 800px; margin: 0 auto;">
+      <div class="faq-item active">
+        <div class="faq-question">
+          <span>Is this frontend prototype connected to a real live database?</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          No. This is a pure frontend demonstration architecture. All changes, new members, registrations, and payment entries persist in your browser's LocalStorage using a structured mock database layer (GymFlowDB). No real banking or servers are contacted.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>How do I switch between Super Admin, Gym Admin, and Member roles?</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          You can click the one-click demo login buttons on the <a href="login.html" class="text-accent font-semibold">Login Page</a>, or use the floating "Switch Demo Role" widget at the bottom right corner of any dashboard page.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Can I export reports and invoices to CSV or print them?</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          Yes! All member tables, transaction tables, and reports support 1-click CSV download, and invoices support clean, browser-native print preview dialogs with mock tax and currency calculations.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Is the design responsive for tablets and mobile devices?</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          Absolutely. The entire navigation collapses into a mobile slide-out drawer, tables scroll smoothly horizontally with sticky identifiers, and cards adapt cleanly across all screen sizes.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <div class="brand-link mb-3" style="color: #ffffff;">
+          <div class="brand-icon"><i class="fa-solid fa-dumbbell"></i></div>
+          <div class="brand-text">Gym<span>Flow</span></div>
+        </div>
+        <p style="color: #94a3b8; font-size: 0.875rem; max-width: 320px;">
+          The all-in-one multi-tenant SaaS operating system designed for modern gym chains, athletic centers, and fitness entrepreneurs.
+        </p>
+        <div style="display: flex; gap: 0.75rem; margin-top: 1rem;">
+          <a href="#" class="btn-icon btn-icon-sm" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.1); color: #fff;"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#" class="btn-icon btn-icon-sm" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.1); color: #fff;"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="#" class="btn-icon btn-icon-sm" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.1); color: #fff;"><i class="fa-brands fa-github"></i></a>
+        </div>
+      </div>
+      <div>
+        <h5 style="color: #fff; margin-bottom: 1.25rem;">Platform</h5>
+        <a href="#features">Features</a>
+        <a href="#roles">Solutions</a>
+        <a href="#pricing">Pricing Plans</a>
+        <a href="super-admin/dashboard.html">Super Admin Demo</a>
+      </div>
+      <div>
+        <h5 style="color: #fff; margin-bottom: 1.25rem;">Portals</h5>
+        <a href="admin/dashboard.html">Gym Admin Hub</a>
+        <a href="member/dashboard.html">Member Portal</a>
+        <a href="login.html">Sign In</a>
+        <a href="register.html">Register Organization</a>
+      </div>
+      <div>
+        <h5 style="color: #fff; margin-bottom: 1.25rem;">Legal & Support</h5>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Security Overview</a>
+        <a href="#">support@gymflow.app</a>
+      </div>
+    </div>
+    <div style="max-width: 1280px; margin: 0 auto; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.8125rem;">
+      <div>&copy; 2026 GymFlow SaaS Inc. All rights reserved. Built for evaluation & prototyping.</div>
+      <div style="color: #64748b;">Multi-Tenant Gym Architecture Prototype</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/mock-data.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/components.js"></script>
+  <script src="assets/js/navigation.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    // FAQ Accordion interaction
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.parentElement;
+        item.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>

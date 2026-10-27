@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Classes & Schedules — Gym Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <a href="dashboard.html" class="brand-link">
+        <div class="brand-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <div class="brand-text">Gym<span>Flow</span></div>
+      </a>
+      <button class="topbar-toggle sidebar-toggle-btn d-none"><i class="fa-solid fa-bars"></i></button>
+    </div>
+    <div class="sidebar-nav">
+      <div class="nav-section-title">Overview</div>
+      <div class="nav-item"><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i><span>Dashboard</span></a></div>
+      <div class="nav-section-title">Members & Club</div>
+      <div class="nav-item"><a href="branches.html" class="nav-link"><i class="fa-solid fa-network-wired"></i><span>Branches</span></a></div>
+      <div class="nav-item"><a href="members.html" class="nav-link"><i class="fa-solid fa-users"></i><span>Membership Management</span></a></div>
+      <div class="nav-item"><a href="membership-plans.html" class="nav-link"><i class="fa-solid fa-tags"></i><span>Plans</span></a></div>
+      <div class="nav-item"><a href="attendance.html" class="nav-link"><i class="fa-solid fa-id-card-clip"></i><span>Attendance Desk</span></a></div>
+      <div class="nav-section-title">Training & Classes</div>
+      <div class="nav-item"><a href="trainers.html" class="nav-link"><i class="fa-solid fa-user-ninja"></i><span>Trainers</span></a></div>
+      <div class="nav-item"><a href="classes.html" class="nav-link active"><i class="fa-solid fa-calendar-days"></i><span>Classes & Timetable</span></a></div>
+      <div class="nav-item"><a href="class-bookings.html" class="nav-link"><i class="fa-solid fa-book-bookmark"></i><span>Class Bookings</span></a></div>
+      <div class="nav-item"><a href="workout-plans.html" class="nav-link"><i class="fa-solid fa-clipboard-list"></i><span>Workout Plans</span></a></div>
+      <div class="nav-section-title">Financials & Sales</div>
+      <div class="nav-item"><a href="payments.html" class="nav-link"><i class="fa-solid fa-credit-card"></i><span>Payments</span></a></div>
+      <div class="nav-item"><a href="invoices.html" class="nav-link"><i class="fa-solid fa-file-invoice-dollar"></i><span>Invoices</span></a></div>
+      <div class="nav-item"><a href="expenses.html" class="nav-link"><i class="fa-solid fa-receipt"></i><span>Expenses</span></a></div>
+      <div class="nav-item"><a href="leads.html" class="nav-link"><i class="fa-solid fa-user-plus"></i><span>Leads CRM</span></a></div>
+      <div class="nav-section-title">Operations</div>
+      <div class="nav-item"><a href="equipment.html" class="nav-link"><i class="fa-solid fa-dumbbell"></i><span>Equipment</span></a></div>
+      <div class="nav-item"><a href="maintenance.html" class="nav-link"><i class="fa-solid fa-screwdriver-wrench"></i><span>Maintenance</span></a></div>
+      <div class="nav-item"><a href="reports.html" class="nav-link"><i class="fa-solid fa-chart-line"></i><span>Reports & Analytics</span></a></div>
+      <div class="nav-section-title">Administration</div>
+      <div class="nav-item"><a href="staff.html" class="nav-link"><i class="fa-solid fa-user-tie"></i><span>Staff Accounts</span></a></div>
+      <div class="nav-item"><a href="roles-permissions.html" class="nav-link"><i class="fa-solid fa-lock"></i><span>Roles & Access</span></a></div>
+      <div class="nav-item"><a href="notifications.html" class="nav-link"><i class="fa-solid fa-bell"></i><span>Notifications</span></a></div>
+      <div class="nav-item"><a href="support.html" class="nav-link"><i class="fa-solid fa-headset"></i><span>Support Helpdesk</span></a></div>
+      <div class="nav-item"><a href="settings.html" class="nav-link"><i class="fa-solid fa-gear"></i><span>Gym Settings</span></a></div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&h=100&fit=crop" alt="User" class="current-user-avatar"></div>
+        <div class="sidebar-user-info"><span class="sidebar-user-name current-user-name">Marcus Vance</span><span class="sidebar-user-role">Gym Admin</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main-wrapper">
+    <header class="topbar">
+      <div class="topbar-left"><button class="topbar-toggle sidebar-toggle-btn"><i class="fa-solid fa-bars"></i></button></div>
+      <div class="topbar-right">
+        <span class="role-indicator admin"><i class="fa-solid fa-building"></i> Gym Admin</span>
+        <button class="topbar-action-btn theme-toggle-btn"><i class="fa-solid fa-moon"></i></button>
+        <button class="topbar-action-btn" id="btn-notifications"><i class="fa-solid fa-bell"></i><span class="action-badge"></span></button>
+        <div class="dropdown">
+          <button class="topbar-user-btn" data-dropdown-toggle>
+            <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&h=100&fit=crop" class="current-user-avatar" alt="Avatar"></div>
+            <div><div class="topbar-user-name current-user-name">Marcus Vance</div><div class="topbar-user-role">Gym Admin</div></div>
+            <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; color: var(--text-subtle);"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="settings.html" class="dropdown-item"><i class="fa-solid fa-gear"></i> Settings</a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item text-danger btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-wrapper">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">
+            <a href="dashboard.html">Gym Admin</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Class Schedules</span>
+          </div>
+          <h1 class="page-title">Classes & Weekly Timetable</h1>
+          <p class="page-subtitle">Schedule group fitness sessions, configure seat capacities, and monitor registrations.</p>
+        </div>
+        <div class="page-actions">
+          <a href="class-bookings.html" class="btn btn-outline"><i class="fa-solid fa-book-bookmark"></i> View Bookings</a>
+          <button class="btn btn-accent" onclick="Modal.open('modal-add-class')"><i class="fa-solid fa-plus"></i> Schedule Class</button>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <!-- Search, Filter & Sort Toolbar -->
+        <div class="table-toolbar" style="gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+          <div class="table-search" style="flex: 1; min-width: 220px; max-width: 300px;">
+            <div class="input-with-icon">
+              <i class="fa-solid fa-magnifying-glass input-icon"></i>
+              <input type="text" id="class-search" class="form-control" placeholder="Search class or coach..." oninput="filterClasses()">
+            </div>
+          </div>
+          <div class="table-actions" style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+            <!-- Branch filter -->
+            <select id="class-filter-branch" class="form-select" style="width: 140px;" onchange="filterClasses()">
+              <option value="">All Branches</option>
+            </select>
+            <!-- Trainer filter -->
+            <select id="class-filter-trainer" class="form-select" style="width: 140px;" onchange="filterClasses()">
+              <option value="">All Coaches</option>
+            </select>
+            <!-- Category / Class Type filter -->
+            <select id="class-filter-category" class="form-select" style="width: 130px;" onchange="filterClasses()">
+              <option value="">All Types</option>
+              <option value="HIIT">HIIT</option>
+              <option value="Yoga">Yoga</option>
+              <option value="Spin">Spin</option>
+              <option value="Strength">Strength</option>
+              <option value="Boxing">Boxing</option>
+              <option value="Pilates">Pilates</option>
+            </select>
+            <!-- Availability filter -->
+            <select id="class-filter-avail" class="form-select" style="width: 140px;" onchange="filterClasses()">
+              <option value="">All Availability</option>
+              <option value="open">Seats Open</option>
+              <option value="full">Class Full</option>
+            </select>
+            <!-- Date Filter -->
+            <input type="date" id="class-filter-date" class="form-control" style="width: 150px;" onchange="filterClasses()">
+            <!-- Reset Button -->
+            <button type="button" class="btn btn-outline btn-sm" id="btn-reset-classes" onclick="resetClassFilters()" title="Reset all filters">
+              <i class="fa-solid fa-arrow-rotate-left"></i> Reset
+            </button>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th class="sortable" onclick="sortClasses('name')" style="cursor: pointer;">
+                  Class Name & Category <i class="fa-solid fa-sort text-muted" id="sort-icon-name"></i>
+                </th>
+                <th class="sortable" onclick="sortClasses('trainerName')" style="cursor: pointer;">
+                  Instructor / Coach <i class="fa-solid fa-sort text-muted" id="sort-icon-trainerName"></i>
+                </th>
+                <th>Branch & Studio</th>
+                <th class="sortable" onclick="sortClasses('date')" style="cursor: pointer;">
+                  Date & Time <i class="fa-solid fa-sort text-muted" id="sort-icon-date"></i>
+                </th>
+                <th>Duration</th>
+                <th class="sortable" onclick="sortClasses('capacity')" style="cursor: pointer;">
+                  Capacity / Booked <i class="fa-solid fa-sort text-muted" id="sort-icon-capacity"></i>
+                </th>
+                <th>Status</th>
+                <th style="text-align: right;">Action</th>
+              </tr>
+            </thead>
+            <tbody id="classes-tbody">
+              <!-- Injected via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- Modal: Schedule Class -->
+<div class="modal-backdrop" id="modal-add-class">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <h3 class="modal-title"><i class="fa-solid fa-calendar-plus text-accent"></i> Schedule Fitness Class</h3>
+      <button type="button" class="modal-close" data-modal-close>&times;</button>
+    </div>
+    <form onsubmit="handleSaveClass(event)">
+      <div class="modal-body">
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Class Name <span class="required">*</span></label>
+            <input type="text" id="cls-name" class="form-control" placeholder="e.g. Kettlebell Metabolic Blast" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Category <span class="required">*</span></label>
+            <select id="cls-cat" class="form-select" required>
+              <option value="HIIT">HIIT & Conditioning</option>
+              <option value="Yoga">Yoga & Mobility</option>
+              <option value="Spin">RPM Spin & Cycling</option>
+              <option value="Strength">Strength & Powerlifting</option>
+              <option value="Boxing">Combat & Boxing</option>
+              <option value="Pilates">Pilates & Core</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Assigned Coach <span class="required">*</span></label>
+            <select id="cls-trainer" class="form-select" required>
+              <option value="Sarah Connor">Sarah Connor</option>
+              <option value="David Miller">David Miller</option>
+              <option value="Elena Rostova">Elena Rostova</option>
+              <option value="Marcus Steel">Marcus Steel</option>
+              <option value="Leo Torres">Leo Torres</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Branch & Studio Room <span class="required">*</span></label>
+            <input type="text" id="cls-room" class="form-control" value="Downtown Studio A" required>
+          </div>
+        </div>
+
+        <div class="grid-3" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Date <span class="required">*</span></label>
+            <input type="date" id="cls-date" class="form-control" value="2026-05-01" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Time <span class="required">*</span></label>
+            <input type="text" id="cls-time" class="form-control" value="06:00 PM" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Seat Capacity <span class="required">*</span></label>
+            <input type="number" id="cls-cap" class="form-control" value="20" min="5" required>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-modal-close>Cancel</button>
+        <button type="submit" class="btn btn-accent"><i class="fa-solid fa-calendar-check"></i> Add to Timetable</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="../assets/js/mock-data.js"></script>
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/navigation.js"></script>
+<script src="../assets/js/app.js"></script>
+
+<script>
+  let classList = [];
+  let filteredClasses = [];
+  let currentSortKey = 'date';
+  let isSortAsc = true;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadClasses();
+  });
+
+  function loadClasses() {
+    const gymId = Auth.getTenantGymId();
+    classList = GymFlowDB.get('classes', { gymId: gymId }) || [];
+
+    // Populate branch filter
+    const branchSelect = document.getElementById('class-filter-branch');
+    if (branchSelect) {
+      const branches = GymFlowDB.get('branches', { gymId: gymId }) || [];
+      branchSelect.innerHTML = '<option value="">All Branches</option>' +
+        branches.map(b => `<option value="${b.id}">${b.name}</option>`).join('');
+    }
+
+    // Populate coach filter
+    const coachSelect = document.getElementById('class-filter-trainer');
+    if (coachSelect) {
+      const coaches = Array.from(new Set(classList.map(c => c.trainerName).filter(Boolean)));
+      coachSelect.innerHTML = '<option value="">All Coaches</option>' +
+        coaches.map(c => `<option value="${c}">${c}</option>`).join('');
+    }
+
+    filterClasses();
+  }
+
+  function filterClasses() {
+    const q = (document.getElementById('class-search')?.value || '').trim();
+    const branch = document.getElementById('class-filter-branch')?.value || '';
+    const coach = document.getElementById('class-filter-trainer')?.value || '';
+    const category = document.getElementById('class-filter-category')?.value || '';
+    const avail = document.getElementById('class-filter-avail')?.value || '';
+    const dateVal = document.getElementById('class-filter-date')?.value || '';
+
+    filteredClasses = classList.filter(c => {
+      const matchQ = DataGridHelper.matchSearch(c, q, ['name', 'trainerName', 'category', 'room', 'id']);
+      const matchBranch = !branch || c.branchId === branch;
+      const matchCoach = !coach || c.trainerName === coach;
+      const matchCategory = !category || (c.category && c.category.toLowerCase().includes(category.toLowerCase()));
+      const matchDate = !dateVal || c.date === dateVal;
+
+      let matchAvail = true;
+      if (avail === 'open') matchAvail = (c.bookedCount || 0) < (c.capacity || 0);
+      else if (avail === 'full') matchAvail = (c.bookedCount || 0) >= (c.capacity || 0);
+
+      return matchQ && matchBranch && matchCoach && matchCategory && matchDate && matchAvail;
+    });
+
+    // Sorting
+    filteredClasses.sort((a, b) => {
+      if (currentSortKey === 'capacity') {
+        const valA = (a.capacity || 0) - (a.bookedCount || 0);
+        const valB = (b.capacity || 0) - (b.bookedCount || 0);
+        return isSortAsc ? valA - valB : valB - valA;
+      }
+      return DataGridHelper.compare(a, b, currentSortKey, isSortAsc);
+    });
+
+    renderClasses();
+  }
+
+  function sortClasses(key) {
+    if (currentSortKey === key) {
+      isSortAsc = !isSortAsc;
+    } else {
+      currentSortKey = key;
+      isSortAsc = true;
+    }
+    DataGridHelper.updateSortHeaders(document.querySelector('.data-table thead'), currentSortKey, isSortAsc);
+    filterClasses();
+  }
+
+  function resetClassFilters() {
+    if (document.getElementById('class-search')) document.getElementById('class-search').value = '';
+    if (document.getElementById('class-filter-branch')) document.getElementById('class-filter-branch').value = '';
+    if (document.getElementById('class-filter-trainer')) document.getElementById('class-filter-trainer').value = '';
+    if (document.getElementById('class-filter-category')) document.getElementById('class-filter-category').value = '';
+    if (document.getElementById('class-filter-avail')) document.getElementById('class-filter-avail').value = '';
+    if (document.getElementById('class-filter-date')) document.getElementById('class-filter-date').value = '';
+    currentSortKey = 'date';
+    isSortAsc = true;
+    DataGridHelper.updateSortHeaders(document.querySelector('.data-table thead'), '', true);
+    filterClasses();
+  }
+
+  function renderClasses() {
+    const tbody = document.getElementById('classes-tbody');
+    if (!filteredClasses.length) {
+      tbody.innerHTML = `<tr><td colspan="8">${DataGridHelper.getEmptyStateHtml('No Fitness Classes Found', 'No sessions match your search or filter criteria.', 'resetClassFilters()')}</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = filteredClasses.map(c => `
+      <tr>
+        <td>
+          <strong>${c.name}</strong>
+          <div class="text-xs text-muted"><span class="badge badge-neutral">${c.category}</span></div>
+        </td>
+        <td><strong>${c.trainerName}</strong></td>
+        <td>${c.room || 'Main Studio'}</td>
+        <td>
+          <div style="font-weight: 600;">${c.date}</div>
+          <div class="text-xs text-muted">${c.time}</div>
+        </td>
+        <td class="text-xs text-muted font-bold">${c.duration}</td>
+        <td>
+          <span class="badge ${c.bookedCount >= c.capacity ? 'badge-danger' : 'badge-success'}">
+            ${c.bookedCount} / ${c.capacity} booked
+          </span>
+        </td>
+        <td><span class="badge ${c.status === 'active' ? 'badge-success' : 'badge-danger'}">${c.status ? c.status.toUpperCase() : 'ACTIVE'}</span></td>
+        <td style="text-align: right;">
+          <button class="btn btn-sm btn-outline-danger" onclick="cancelClass('${c.id}')">
+            <i class="fa-solid fa-ban"></i> Cancel
+          </button>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  function handleSaveClass(e) {
+    e.preventDefault();
+    const gymId = Auth.getTenantGymId();
+    const newCls = {
+      id: `cls_${Date.now()}`,
+      gymId: gymId,
+      branchId: 'br_1',
+      name: document.getElementById('cls-name').value,
+      category: document.getElementById('cls-cat').value,
+      trainerName: document.getElementById('cls-trainer').value,
+      date: document.getElementById('cls-date').value,
+      time: document.getElementById('cls-time').value,
+      duration: '50 mins',
+      capacity: Number(document.getElementById('cls-cap').value),
+      bookedCount: 0,
+      room: document.getElementById('cls-room').value,
+      status: 'active'
+    };
+
+    GymFlowDB.insert('classes', newCls);
+    Modal.close('modal-add-class');
+    Toast.success(`Class ${newCls.name} scheduled.`);
+    loadClasses();
+  }
+
+  function cancelClass(id) {
+    Modal.confirm({
+      title: 'Cancel Fitness Class?',
+      message: 'This will notify all booked members and remove the class from active schedule.',
+      confirmText: 'Cancel Class',
+      confirmClass: 'btn-danger',
+      onConfirm: () => {
+        GymFlowDB.update('classes', id, { status: 'cancelled' });
+        Toast.warning('Class cancelled.');
+        loadClasses();
+      }
+    });
+  }
+</script>
+</body>
+</html>

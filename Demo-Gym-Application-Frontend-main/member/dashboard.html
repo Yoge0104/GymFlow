@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Member Dashboard — GymFlow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <a href="dashboard.html" class="brand-link">
+        <div class="brand-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <div class="brand-text">Gym<span>Flow</span></div>
+      </a>
+      <button class="topbar-toggle sidebar-toggle-btn d-none"><i class="fa-solid fa-bars"></i></button>
+    </div>
+    <div class="sidebar-nav">
+      <div class="nav-section-title">Overview</div>
+      <div class="nav-item"><a href="dashboard.html" class="nav-link active"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a></div>
+      
+      <div class="nav-section-title">Fitness & Training</div>
+      <div class="nav-item"><a href="workout-plan.html" class="nav-link"><i class="fa-solid fa-clipboard-list"></i><span>Workout Plan</span></a></div>
+      <div class="nav-item"><a href="classes.html" class="nav-link"><i class="fa-solid fa-calendar-days"></i><span>Classes & Timetable</span></a></div>
+      <div class="nav-item"><a href="my-bookings.html" class="nav-link"><i class="fa-solid fa-bookmark"></i><span>My Bookings</span></a></div>
+      <div class="nav-item"><a href="progress.html" class="nav-link"><i class="fa-solid fa-chart-line"></i><span>Body Progress</span></a></div>
+      <div class="nav-item"><a href="attendance.html" class="nav-link"><i class="fa-solid fa-clock-rotate-left"></i><span>Attendance History</span></a></div>
+      
+      <div class="nav-section-title">Membership & Billing</div>
+      <div class="nav-item"><a href="my-membership.html" class="nav-link"><i class="fa-solid fa-id-card"></i><span>My Membership</span></a></div>
+      <div class="nav-item"><a href="plans.html" class="nav-link"><i class="fa-solid fa-tags"></i><span>Plans & Upgrade</span></a></div>
+      <div class="nav-item"><a href="payments.html" class="nav-link"><i class="fa-solid fa-credit-card"></i><span>Billing & Receipts</span></a></div>
+      
+      <div class="nav-section-title">Account & Support</div>
+      <div class="nav-item"><a href="my-profile.html" class="nav-link"><i class="fa-solid fa-user"></i><span>My Profile</span></a></div>
+      <div class="nav-item"><a href="notifications.html" class="nav-link"><i class="fa-solid fa-bell"></i><span>Notifications</span></a></div>
+      <div class="nav-item"><a href="support.html" class="nav-link"><i class="fa-solid fa-headset"></i><span>Member Support</span></a></div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop" alt="Member" class="current-user-avatar"></div>
+        <div class="sidebar-user-info"><span class="sidebar-user-name current-user-name">Alex Morgan</span><span class="sidebar-user-role">IronPulse Member</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main-wrapper">
+    <header class="topbar">
+      <div class="topbar-left"><button class="topbar-toggle sidebar-toggle-btn"><i class="fa-solid fa-bars"></i></button></div>
+      <div class="topbar-right">
+        <span class="role-indicator member" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); font-weight: 600; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem;">
+          <i class="fa-solid fa-person-running"></i> Gym Member
+        </span>
+        <button class="topbar-action-btn theme-toggle-btn"><i class="fa-solid fa-moon"></i></button>
+        <a href="notifications.html" class="topbar-action-btn" id="btn-notifications"><i class="fa-solid fa-bell"></i><span class="action-badge"></span></a>
+        <div class="dropdown">
+          <button class="topbar-user-btn" data-dropdown-toggle>
+            <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop" class="current-user-avatar" alt="Avatar"></div>
+            <div><div class="topbar-user-name current-user-name">Alex Morgan</div><div class="topbar-user-role">IronPulse Member</div></div>
+            <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; color: var(--text-subtle);"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="my-profile.html" class="dropdown-item"><i class="fa-solid fa-user"></i> My Profile</a>
+            <a href="my-membership.html" class="dropdown-item"><i class="fa-solid fa-id-card"></i> Membership</a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item text-danger btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-wrapper">
+      <!-- Member Welcome Banner -->
+      <div class="card" style="background: linear-gradient(135deg, rgba(26, 32, 44, 0.95), rgba(45, 55, 72, 0.9)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&fit=crop') center/cover; color: #fff; margin-bottom: 1.5rem; border: none; overflow: hidden; position: relative;">
+        <div class="card-body" style="padding: 2rem; position: relative; z-index: 2;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;">
+            <div>
+              <span class="badge" style="background: var(--accent-color); color: #000; font-weight: 700; margin-bottom: 0.75rem;">VIP ACTIVE MEMBER</span>
+              <h1 style="color: #fff; font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">Welcome back, <span id="welcome-name">Alex</span>! 💪</h1>
+              <p style="color: rgba(255, 255, 255, 0.8); max-width: 580px; margin-bottom: 0; font-size: 0.95rem;">
+                IronPulse Fitness Club — Downtown Branch. You have an active workout streak of <strong style="color: var(--accent-color);">14 days</strong>! Keep crushing your goals.
+              </p>
+            </div>
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <button class="btn btn-accent" id="btn-quick-checkin" onclick="handleQuickCheckIn()"><i class="fa-solid fa-qrcode"></i> Quick Check-In</button>
+              <a href="classes.html" class="btn btn-outline" style="color: #fff; border-color: rgba(255,255,255,0.4);"><i class="fa-solid fa-calendar-plus"></i> Book Class</a>
+            </div>
+          </div>
+        </div>
+      </div>
+<<<<<<< HEAD
+<!-- Member Dashboard KPI Cards -->
+<section class="member-kpi-grid" id="member-kpi-grid">
+
+  <!-- Membership Validity -->
+  <article class="member-kpi-card membership-card">
+    <div class="kpi-card-top">
+      <div class="kpi-icon green-icon">
+        <i class="fa-solid fa-id-card"></i>
+      </div>
+      <span class="kpi-status status-active">
+        <i class="fa-solid fa-circle-check"></i> Active
+      </span>
+    </div>
+
+    <div class="kpi-card-content">
+      <p class="kpi-label">Membership Validity</p>
+      <h3 class="kpi-value">
+        <span id="kpi-days-remaining">192</span>
+        <small>days left</small>
+      </h3>
+      <p class="kpi-description" id="kpi-membership-plan">
+        Annual VIP Pass
+      </p>
+    </div>
+
+    <div class="kpi-progress-track">
+      <div class="kpi-progress-fill green-progress"
+           id="kpi-membership-progress" style="width: 70%">
+      </div>
+    </div>
+    <div class="kpi-progress-label">
+      <span>Membership duration</span>
+      <span id="kpi-membership-percent">70% remaining</span>
+    </div>
+  </article>
+
+
+  <!-- Monthly Attendance Streak -->
+  <article class="member-kpi-card streak-card">
+    <div class="kpi-card-top">
+      <div class="kpi-icon purple-icon">
+        <i class="fa-solid fa-fire"></i>
+      </div>
+      <span class="kpi-status status-purple">This month</span>
+    </div>
+
+    <div class="kpi-card-content">
+      <p class="kpi-label">Monthly Attendance</p>
+      <h3 class="kpi-value">
+        <span id="kpi-streak">14</span>
+        <small>visits</small>
+      </h3>
+      <p class="kpi-description">
+        <i class="fa-solid fa-arrow-trend-up"></i>
+        <span id="kpi-streak-message">Keep your streak going!</span>
+      </p>
+    </div>
+
+    <div class="kpi-mini-stats">
+      <div class="kpi-mini-stat">
+        <span class="mini-stat-number" id="kpi-weekly-visits">4</span>
+        <span class="mini-stat-label">This week</span>
+      </div>
+      <div class="kpi-mini-divider"></div>
+      <div class="kpi-mini-stat">
+        <span class="mini-stat-number" id="kpi-monthly-goal">20</span>
+        <span class="mini-stat-label">Monthly goal</span>
+      </div>
+    </div>
+  </article>
+
+
+  <!-- Current Weight -->
+  <article class="member-kpi-card weight-card">
+    <div class="kpi-card-top">
+      <div class="kpi-icon blue-icon">
+        <i class="fa-solid fa-dumbbell"></i>
+      </div>
+      <span class="kpi-status status-blue">Fitness</span>
+    </div>
+
+    <div class="kpi-card-content">
+      <p class="kpi-label">Current Weight</p>
+      <h3 class="kpi-value">
+        <span id="kpi-current-weight">81.3</span>
+        <small>kg</small>
+      </h3>
+      <p class="kpi-description">
+        <i class="fa-solid fa-chart-line"></i>
+        <span id="kpi-weight-change">Progress tracking</span>
+      </p>
+    </div>
+
+    <div class="kpi-weight-footer">
+      <span><i class="fa-solid fa-bullseye"></i> Target weight</span>
+      <strong><span id="kpi-target-weight">75</span> kg</strong>
+    </div>
+  </article>
+
+
+  <!-- Upcoming Classes -->
+  <article class="member-kpi-card classes-card">
+    <div class="kpi-card-top">
+      <div class="kpi-icon orange-icon">
+        <i class="fa-solid fa-calendar-check"></i>
+      </div>
+      <span class="kpi-status status-orange">Scheduled</span>
+    </div>
+
+    <div class="kpi-card-content">
+      <p class="kpi-label">Upcoming Classes</p>
+      <h3 class="kpi-value">
+        <span id="kpi-classes-count">2</span>
+        <small>booked</small>
+      </h3>
+      <p class="kpi-description">
+        <i class="fa-regular fa-clock"></i>
+        Your next session
+      </p>
+    </div>
+
+    <div class="kpi-class-footer">
+      <div class="kpi-class-date-icon">
+        <i class="fa-solid fa-calendar-day"></i>
+      </div>
+      <div class="kpi-class-next">
+        <strong id="kpi-next-class">Tomorrow</strong>
+        <span id="kpi-next-class-time">07:00 AM</span>
+      </div>
+    </div>
+  </article>
+
+</section>
+=======
+
+      <!-- KPI Stat Cards -->
+      <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); margin-bottom: 1.5rem;">
+        <div class="stat-card">
+          <div class="stat-icon green"><i class="fa-solid fa-id-card"></i></div>
+          <div class="stat-info">
+            <span class="stat-label">Membership Validity</span>
+            <span class="stat-value" id="kpi-days-remaining">192 Days</span>
+            <span class="stat-change text-success"><i class="fa-solid fa-circle-check"></i> Annual VIP Pass</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon purple"><i class="fa-solid fa-fire"></i></div>
+          <div class="stat-info">
+            <span class="stat-label">Monthly Streak</span>
+            <span class="stat-value" id="kpi-streak">14 Visits</span>
+            <span class="stat-change text-success"><i class="fa-solid fa-arrow-trend-up"></i> Top 5% at club</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon blue"><i class="fa-solid fa-dumbbell"></i></div>
+          <div class="stat-info">
+            <span class="stat-label">Current Weight</span>
+            <span class="stat-value" id="kpi-current-weight">81.3 kg</span>
+            <span class="stat-change text-success"><i class="fa-solid fa-arrow-down"></i> -3.2 kg since Jan</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon orange"><i class="fa-solid fa-calendar-check"></i></div>
+          <div class="stat-info">
+            <span class="stat-label">Upcoming Classes</span>
+            <span class="stat-value" id="kpi-classes-count">2 Booked</span>
+            <span class="stat-change text-muted">Next: Tomorrow 07:00 AM</span>
+          </div>
+        </div>
+      </div>
+
+>>>>>>> d832a2791cfbe3530142912a0522d7e539f037e8
+      <!-- Two-Column Main Grid -->
+      <div class="grid-2-1" style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+        
+        <!-- Left: Today's Workout & Upcoming Classes -->
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+          
+          <!-- Today's Routine Card -->
+          <div class="card">
+            <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <h3 class="card-title"><i class="fa-solid fa-dumbbell text-accent"></i> Today's Workout Focus</h3>
+                <span class="text-xs text-muted">Assigned by Coach David Miller &bull; 4-Day Hypertrophy Split</span>
+              </div>
+              <a href="workout-plan.html" class="btn btn-sm btn-outline">Full Plan <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="card-body">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding: 0.75rem 1rem; background: var(--bg-hover); border-radius: var(--radius-md);">
+                <div>
+                  <h4 style="font-size: 1rem; margin-bottom: 0.2rem;">Push Day (Chest, Shoulders & Triceps)</h4>
+                  <span class="text-xs text-muted">Target: 4 Exercises &bull; Approx. 55 mins</span>
+                </div>
+                <span class="badge badge-success">3 / 4 Done</span>
+              </div>
+
+              <div class="table-container attendance-table-wrapper table-responsive">
+                <table class="table data-table attendance-table">
+                  <thead>
+                    <tr>
+                      <th>Status</th>
+                      <th>Exercise</th>
+                      <th>Sets & Reps</th>
+                      <th>Target Load</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span class="badge badge-success"><i class="fa-solid fa-check"></i> Done</span></td>
+                      <td><strong>Barbell Bench Press</strong></td>
+                      <td>4 sets &times; 8 reps</td>
+                      <td>185 lbs</td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge badge-success"><i class="fa-solid fa-check"></i> Done</span></td>
+                      <td><strong>Incline Dumbbell Press</strong></td>
+                      <td>3 sets &times; 10-12 reps</td>
+                      <td>65 lbs</td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge badge-success"><i class="fa-solid fa-check"></i> Done</span></td>
+                      <td><strong>Military Overhead Press</strong></td>
+                      <td>3 sets &times; 8-10 reps</td>
+                      <td>115 lbs</td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge badge-warning"><i class="fa-solid fa-hourglass"></i> Pending</span></td>
+                      <td><strong>Tricep Rope Pushdowns</strong></td>
+                      <td>4 sets &times; 12-15 reps</td>
+                      <td>55 lbs</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Upcoming Booked Classes -->
+          <div class="card">
+            <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+              <h3 class="card-title"><i class="fa-solid fa-calendar-days text-accent"></i> My Booked Classes</h3>
+              <a href="my-bookings.html" class="btn btn-sm btn-outline">Manage All <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="card-body" id="dashboard-bookings-list">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Membership Pass & Club Info -->
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+          
+          <!-- Digital Member Pass Card -->
+          <div class="card" style="border: 2px solid var(--accent-color); background: var(--bg-surface);">
+            <div class="card-header" style="border-bottom: 1px dashed var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+              <span class="badge badge-accent">DIGITAL GYM PASS</span>
+              <span class="text-xs text-muted">ID: #MEM-101</span>
+            </div>
+            <div class="card-body" style="text-align: center; padding: 1.5rem 1rem;">
+              <div class="avatar avatar-lg" style="margin: 0 auto 0.75rem; width: 72px; height: 72px; border: 3px solid var(--accent-color);">
+                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop" class="current-user-avatar" alt="Member Avatar">
+              </div>
+              <h3 style="margin-bottom: 0.25rem;" class="current-user-name">Alex Morgan</h3>
+              <p class="text-xs text-muted" style="margin-bottom: 1rem;">IronPulse Fitness &bull; Downtown Branch</p>
+
+              <!-- Simulated Barcode/QR -->
+              <div style="background: #fff; padding: 0.75rem; border-radius: var(--radius-sm); display: inline-block; margin-bottom: 1rem; border: 1px solid var(--border-color);">
+                <i class="fa-solid fa-qrcode" style="font-size: 5rem; color: #1a202c;"></i>
+                <div style="font-family: monospace; font-size: 0.75rem; color: #333; margin-top: 0.25rem; letter-spacing: 2px;">IP-101-8492</div>
+              </div>
+
+              <div style="background: var(--bg-hover); padding: 0.75rem; border-radius: var(--radius-md); text-align: left; font-size: 0.8125rem;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+                  <span class="text-muted">Plan:</span>
+                  <strong>Annual VIP All-Access</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+                  <span class="text-muted">Valid Through:</span>
+                  <strong class="text-success">May 1, 2026</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span class="text-muted">Access:</span>
+                  <strong>24/7 Keycard Active</strong>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer" style="display: flex; gap: 0.5rem;">
+              <a href="my-membership.html" class="btn btn-sm btn-outline" style="flex: 1;"><i class="fa-solid fa-id-badge"></i> View Plan</a>
+              <button class="btn btn-sm btn-primary" style="flex: 1;" onclick="handleQuickCheckIn()"><i class="fa-solid fa-door-open"></i> Check In</button>
+            </div>
+          </div>
+
+          <!-- Club Notice Board -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i class="fa-solid fa-bullhorn text-accent"></i> Club Announcements</h3>
+            </div>
+            <div class="card-body" style="padding: 0;">
+              <div style="padding: 1rem; border-bottom: 1px solid var(--border-color);">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;">
+                  <strong style="font-size: 0.85rem;">Free Hydro-Massage Demo</strong>
+                  <span class="text-xs text-muted">Today</span>
+                </div>
+                <p class="text-xs text-muted" style="margin: 0;">Try out the brand new Hydro-Massage bed on the recovery mezzanine between 4 PM and 8 PM.</p>
+              </div>
+              <div style="padding: 1rem;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;">
+                  <strong style="font-size: 0.85rem;">Powerlifting Seminar</strong>
+                  <span class="text-xs text-muted">Saturday</span>
+                </div>
+                <p class="text-xs text-muted" style="margin: 0;">Guest coach seminar on squat biomechanics at 10:00 AM. Free for VIP members.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="../assets/js/mock-data.js"></script>
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/navigation.js"></script>
+<script src="../assets/js/app.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    loadMemberDashboard();
+  });
+
+  function loadMemberDashboard() {
+    const memberId = Auth.getActiveMemberId();
+    const member = GymFlowDB.findById('members', memberId);
+
+    if (member) {
+      document.getElementById('welcome-name').textContent = member.name.split(' ')[0];
+      
+      // Calculate remaining days
+      if (member.expiryDate) {
+        const diff = Math.ceil((new Date(member.expiryDate) - new Date()) / (1000 * 60 * 60 * 24));
+        document.getElementById('kpi-days-remaining').textContent = `${diff > 0 ? diff : 0} Days`;
+      }
+    }
+
+    // Load recent upcoming bookings
+    const bookings = GymFlowDB.get('classBookings', { memberId: memberId, status: 'Confirmed' });
+    document.getElementById('kpi-classes-count').textContent = `${bookings.length} Booked`;
+
+    const container = document.getElementById('dashboard-bookings-list');
+    if (bookings.length === 0) {
+      container.innerHTML = `
+        <div class="empty-state" style="padding: 2rem 1rem; text-align: center;">
+          <i class="fa-solid fa-calendar-xmark" style="font-size: 2rem; color: var(--text-muted); margin-bottom: 0.5rem;"></i>
+          <p class="text-muted text-sm">No upcoming classes booked.</p>
+          <a href="classes.html" class="btn btn-sm btn-accent">Browse Class Timetable</a>
+        </div>
+      `;
+    } else {
+      container.innerHTML = bookings.slice(0, 3).map(b => `
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.85rem 0; border-bottom: 1px solid var(--border-color);">
+          <div style="display: flex; gap: 0.85rem; align-items: center;">
+            <div class="stat-icon blue" style="width: 40px; height: 40px; font-size: 1rem;"><i class="fa-solid fa-person-running"></i></div>
+            <div>
+              <strong style="font-size: 0.9rem; display: block;">${b.className}</strong>
+              <span class="text-xs text-muted"><i class="fa-solid fa-calendar"></i> ${b.date} &bull; <i class="fa-solid fa-clock"></i> ${b.time} &bull; ${b.trainerName}</span>
+            </div>
+          </div>
+          <span class="badge badge-success">Confirmed</span>
+        </div>
+      `).join('');
+    }
+  }
+
+  function handleQuickCheckIn() {
+    const memberId = Auth.getActiveMemberId();
+    const gymId = Auth.getTenantGymId();
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const dateStr = now.toISOString().split('T')[0];
+
+    // Check if already checked in today
+    const existing = GymFlowDB.get('attendance', { memberId: memberId, date: dateStr });
+    if (existing.length > 0) {
+      Toast.info(`You are already checked in for today (${existing[0].checkInTime}). Enjoy your workout!`);
+      return;
+    }
+
+    // Insert attendance record
+    GymFlowDB.insert('attendance', {
+      id: `att_${Date.now()}`,
+      gymId: gymId,
+      branchId: 'br_1',
+      branchName: 'Downtown Flagship',
+      memberId: memberId,
+      memberName: 'Alex Morgan',
+      date: dateStr,
+      checkInTime: timeStr,
+      checkOutTime: null,
+      method: 'Self-Service QR Pass',
+      status: 'Present'
+    });
+
+    Toast.success(`Check-in verified! Welcome to IronPulse at ${timeStr}.`);
+  }
+</script>
+</body>
+</html>

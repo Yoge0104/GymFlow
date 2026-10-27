@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register Gym Organization — GymFlow SaaS Platform</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <style>
+    .register-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1.5rem;
+      background: linear-gradient(135deg, var(--bg-body) 0%, var(--bg-surface-secondary) 100%);
+    }
+    .register-card {
+      width: 100%;
+      max-width: 680px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-xl);
+      padding: 2.5rem;
+    }
+  </style>
+</head>
+<body class="register-page">
+
+  <div class="register-card">
+    <div style="text-align: center; margin-bottom: 2rem;">
+      <a href="index.html" class="brand-link" style="justify-content: center; margin-bottom: 0.75rem;">
+        <div class="brand-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <div class="brand-text">Gym<span>Flow</span></div>
+      </a>
+      <h2 style="font-size: 1.65rem; margin-bottom: 0.35rem;">Register Your Gym Organization</h2>
+      <p style="font-size: 0.875rem;">Start your 14-day free trial. No credit card required for demonstration.</p>
+    </div>
+
+    <form id="form-register" onsubmit="handleRegistration(event)">
+      <div class="grid-2" style="margin-bottom: 0;">
+        <div class="form-group">
+          <label class="form-label" for="reg-gym-name">Gym Organization Name <span class="required">*</span></label>
+          <div class="input-with-icon">
+            <i class="fa-solid fa-building input-icon"></i>
+            <input type="text" id="reg-gym-name" class="form-control" placeholder="e.g. IronPulse Athletics" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="reg-owner-name">Owner Full Name <span class="required">*</span></label>
+          <div class="input-with-icon">
+            <i class="fa-solid fa-user input-icon"></i>
+            <input type="text" id="reg-owner-name" class="form-control" placeholder="e.g. Marcus Vance" required>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-bottom: 0;">
+        <div class="form-group">
+          <label class="form-label" for="reg-email">Business Email <span class="required">*</span></label>
+          <div class="input-with-icon">
+            <i class="fa-solid fa-envelope input-icon"></i>
+            <input type="email" id="reg-email" class="form-control" placeholder="owner@gymname.com" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="reg-phone">Phone Number <span class="required">*</span></label>
+          <div class="input-with-icon">
+            <i class="fa-solid fa-phone input-icon"></i>
+            <input type="tel" id="reg-phone" class="form-control" placeholder="+1 (555) 000-0000" required>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-bottom: 0;">
+        <div class="form-group">
+          <label class="form-label" for="reg-address">Street Address <span class="required">*</span></label>
+          <div class="input-with-icon">
+            <i class="fa-solid fa-location-dot input-icon"></i>
+            <input type="text" id="reg-address" class="form-control" placeholder="123 Fitness Ave" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="reg-city">City, State / Region <span class="required">*</span></label>
+          <div class="input-with-icon">
+            <i class="fa-solid fa-city input-icon"></i>
+            <input type="text" id="reg-city" class="form-control" placeholder="Austin, TX" required>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="reg-plan">Preferred Subscription Plan <span class="required">*</span></label>
+        <select id="reg-plan" class="form-select" required>
+          <option value="saas_starter">Starter Plan (₹49/month — 1 Branch, up to 300 members)</option>
+          <option value="saas_growth" selected>Growth Plan (₹99/month — 3 Branches, up to 1,000 members)</option>
+          <option value="saas_enterprise">Enterprise Pro (₹199/month — 10 Branches, up to 5,000 members)</option>
+        </select>
+      </div>
+
+      <div class="grid-2" style="margin-bottom: 0;">
+        <div class="form-group">
+          <label class="form-label" for="reg-password">Password <span class="required">*</span></label>
+          <div class="input-with-icon">
+            <i class="fa-solid fa-lock input-icon"></i>
+            <input type="password" id="reg-password" class="form-control" minlength="6" placeholder="At least 6 characters" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="reg-confirm-password">Confirm Password <span class="required">*</span></label>
+          <div class="input-with-icon">
+            <i class="fa-solid fa-lock input-icon"></i>
+            <input type="password" id="reg-confirm-password" class="form-control" data-match="#reg-password" placeholder="Confirm password" required>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-check">
+          <input type="checkbox" id="reg-terms" required checked>
+          <span>I accept the GymFlow <a href="#" class="text-accent">Terms of Service</a> and <a href="#" class="text-accent">Privacy Policy</a> (Demonstration)</span>
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-accent w-100 btn-lg mb-3">
+        <i class="fa-solid fa-rocket"></i>
+        <span>Complete Registration & Launch Gym</span>
+      </button>
+
+      <div style="text-align: center; font-size: 0.875rem; color: var(--text-muted);">
+        Already registered?
+        <a href="login.html" class="font-semibold text-electric">Sign In to Existing Gym</a>
+      </div>
+    </form>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/mock-data.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/components.js"></script>
+  <script src="assets/js/validation.js"></script>
+  <script src="assets/js/navigation.js"></script>
+  <script>
+    // Preselect plan from URL param if present
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const plan = params.get('plan');
+      if (plan) {
+        const select = document.getElementById('reg-plan');
+        if (select) select.value = plan;
+      }
+    });
+
+    function handleRegistration(e) {
+      e.preventDefault();
+      const form = document.getElementById('form-register');
+
+      if (!Validation.validateForm(form)) {
+        Toast.error('Please fix the errors in the form.');
+        return;
+      }
+
+      const gymName = document.getElementById('reg-gym-name').value;
+      const ownerName = document.getElementById('reg-owner-name').value;
+      const email = document.getElementById('reg-email').value;
+      const phone = document.getElementById('reg-phone').value;
+      const address = document.getElementById('reg-address').value;
+      const city = document.getElementById('reg-city').value;
+      const planId = document.getElementById('reg-plan').value;
+
+      const planNameMap = {
+        'saas_starter': 'Starter',
+        'saas_growth': 'Growth',
+        'saas_enterprise': 'Enterprise Pro'
+      };
+
+      const newGym = {
+        id: `gym_${Date.now()}`,
+        name: gymName,
+        slug: gymName.toLowerCase().replace(/[^a-z0-9]/g, '-'),
+        logo: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=100&h=100&fit=crop',
+        owner: ownerName,
+        email: email,
+        phone: phone,
+        address: address,
+        city: city,
+        planId: planId,
+        planName: planNameMap[planId] || 'Growth',
+        status: 'trial',
+        registrationDate: new Date().toISOString().split('T')[0],
+        renewalDate: new Date(Date.now() + 14 * 86400000).toISOString().split('T')[0],
+        mrr: planId === 'saas_starter' ? 49 : (planId === 'saas_growth' ? 99 : 199),
+        membersCount: 0,
+        branchesCount: 1
+      };
+
+      // Save into GymFlowDB
+      GymFlowDB.insert('gyms', newGym);
+
+      // Create primary branch
+      GymFlowDB.insert('branches', {
+        id: `br_${Date.now()}`,
+        gymId: newGym.id,
+        name: 'Main Flagship Branch',
+        address: address,
+        city: city,
+        phone: phone,
+        manager: ownerName,
+        memberCount: 0,
+        openingHours: 'Mon-Sun: 6:00 AM - 10:00 PM',
+        status: 'active'
+      });
+
+      // Log in as this gym admin
+      Auth.setUser({
+        id: `usr_${Date.now()}`,
+        name: ownerName,
+        email: email,
+        role: 'gymadmin',
+        roleLabel: 'Gym Admin (Owner)',
+        gymId: newGym.id,
+        gymName: newGym.name,
+        avatar: 'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&h=100&fit=crop',
+        dashboardUrl: '../admin/dashboard.html'
+      }, true);
+
+      Toast.success(`Welcome to GymFlow, ${gymName}! 14-day free trial activated.`);
+      setTimeout(() => {
+        window.location.href = 'admin/dashboard.html';
+      }, 1000);
+    }
+  </script>
+</body>
+</html>

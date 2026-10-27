@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff Management — Gym Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <a href="dashboard.html" class="brand-link">
+        <div class="brand-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <div class="brand-text">Gym<span>Flow</span></div>
+      </a>
+      <button class="topbar-toggle sidebar-toggle-btn d-none"><i class="fa-solid fa-bars"></i></button>
+    </div>
+    <div class="sidebar-nav">
+      <div class="nav-section-title">Overview</div>
+      <div class="nav-item"><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i><span>Dashboard</span></a></div>
+      <div class="nav-section-title">Members & Club</div>
+      <div class="nav-item"><a href="branches.html" class="nav-link"><i class="fa-solid fa-network-wired"></i><span>Branches</span></a></div>
+      <div class="nav-item"><a href="members.html" class="nav-link"><i class="fa-solid fa-users"></i><span>Membership Management</span></a></div>
+      <div class="nav-item"><a href="membership-plans.html" class="nav-link"><i class="fa-solid fa-tags"></i><span>Plans</span></a></div>
+      <div class="nav-item"><a href="attendance.html" class="nav-link"><i class="fa-solid fa-id-card-clip"></i><span>Attendance Desk</span></a></div>
+      <div class="nav-section-title">Training & Classes</div>
+      <div class="nav-item"><a href="trainers.html" class="nav-link"><i class="fa-solid fa-user-ninja"></i><span>Trainers</span></a></div>
+      <div class="nav-item"><a href="classes.html" class="nav-link"><i class="fa-solid fa-calendar-days"></i><span>Classes & Timetable</span></a></div>
+      <div class="nav-item"><a href="class-bookings.html" class="nav-link"><i class="fa-solid fa-book-bookmark"></i><span>Class Bookings</span></a></div>
+      <div class="nav-item"><a href="workout-plans.html" class="nav-link"><i class="fa-solid fa-clipboard-list"></i><span>Workout Plans</span></a></div>
+      <div class="nav-section-title">Financials & Sales</div>
+      <div class="nav-item"><a href="payments.html" class="nav-link"><i class="fa-solid fa-credit-card"></i><span>Payments</span></a></div>
+      <div class="nav-item"><a href="invoices.html" class="nav-link"><i class="fa-solid fa-file-invoice-dollar"></i><span>Invoices</span></a></div>
+      <div class="nav-item"><a href="expenses.html" class="nav-link"><i class="fa-solid fa-receipt"></i><span>Expenses</span></a></div>
+      <div class="nav-item"><a href="leads.html" class="nav-link"><i class="fa-solid fa-user-plus"></i><span>Leads CRM</span></a></div>
+      <div class="nav-section-title">Operations</div>
+      <div class="nav-item"><a href="equipment.html" class="nav-link"><i class="fa-solid fa-dumbbell"></i><span>Equipment</span></a></div>
+      <div class="nav-item"><a href="maintenance.html" class="nav-link"><i class="fa-solid fa-screwdriver-wrench"></i><span>Maintenance</span></a></div>
+      <div class="nav-item"><a href="reports.html" class="nav-link"><i class="fa-solid fa-chart-line"></i><span>Reports & Analytics</span></a></div>
+      <div class="nav-section-title">Administration</div>
+      <div class="nav-item"><a href="staff.html" class="nav-link active"><i class="fa-solid fa-user-tie"></i><span>Staff Accounts</span></a></div>
+      <div class="nav-item"><a href="roles-permissions.html" class="nav-link"><i class="fa-solid fa-lock"></i><span>Roles & Access</span></a></div>
+      <div class="nav-item"><a href="notifications.html" class="nav-link"><i class="fa-solid fa-bell"></i><span>Notifications</span></a></div>
+      <div class="nav-item"><a href="support.html" class="nav-link"><i class="fa-solid fa-headset"></i><span>Support Helpdesk</span></a></div>
+      <div class="nav-item"><a href="settings.html" class="nav-link"><i class="fa-solid fa-gear"></i><span>Gym Settings</span></a></div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&h=100&fit=crop" alt="User" class="current-user-avatar"></div>
+        <div class="sidebar-user-info"><span class="sidebar-user-name current-user-name">Marcus Vance</span><span class="sidebar-user-role">Gym Admin</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main-wrapper">
+    <header class="topbar">
+      <div class="topbar-left"><button class="topbar-toggle sidebar-toggle-btn"><i class="fa-solid fa-bars"></i></button></div>
+      <div class="topbar-right">
+        <span class="role-indicator admin"><i class="fa-solid fa-building"></i> Gym Admin</span>
+        <button class="topbar-action-btn theme-toggle-btn"><i class="fa-solid fa-moon"></i></button>
+        <button class="topbar-action-btn" id="btn-notifications"><i class="fa-solid fa-bell"></i><span class="action-badge"></span></button>
+        <div class="dropdown">
+          <button class="topbar-user-btn" data-dropdown-toggle>
+            <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&h=100&fit=crop" class="current-user-avatar" alt="Avatar"></div>
+            <div><div class="topbar-user-name current-user-name">Marcus Vance</div><div class="topbar-user-role">Gym Admin</div></div>
+            <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; color: var(--text-subtle);"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="settings.html" class="dropdown-item"><i class="fa-solid fa-gear"></i> Settings</a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item text-danger btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-wrapper">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">
+            <a href="dashboard.html">Gym Admin</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Gym Staff</span>
+          </div>
+          <h1 class="page-title">Gym Staff & Facility Personnel</h1>
+          <p class="page-subtitle">Manage branch staff accounts, reception desk operators, and facility coordinators.</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-accent" onclick="Modal.open('modal-add-staff')"><i class="fa-solid fa-user-plus"></i> Add Staff Member</button>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <div class="table-toolbar" style="gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+          <div class="table-search" style="flex: 1; min-width: 220px; max-width: 280px;">
+            <div class="input-with-icon">
+              <i class="fa-solid fa-magnifying-glass input-icon"></i>
+              <input type="text" id="staff-search" class="form-control" placeholder="Search name, email, role..." oninput="filterStaff()">
+            </div>
+          </div>
+          <div class="table-actions" style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+            <!-- Role filter -->
+            <select id="staff-filter-role" class="form-select" style="width: 140px;" onchange="filterStaff()">
+              <option value="">All Roles</option>
+            </select>
+
+            <!-- Branch filter -->
+            <select id="staff-filter-branch" class="form-select" style="width: 140px;" onchange="filterStaff()">
+              <option value="">All Branches</option>
+            </select>
+
+            <!-- Status filter -->
+            <select id="staff-filter-status" class="form-select" style="width: 130px;" onchange="filterStaff()">
+              <option value="">All Statuses</option>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
+
+            <!-- Reset Button -->
+            <button type="button" class="btn btn-outline btn-sm" id="btn-reset-staff" onclick="resetStaffFilters()" title="Reset all filters">
+              <i class="fa-solid fa-arrow-rotate-left"></i> Reset
+            </button>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+            <thead>
+              <tr>
+                <th class="sortable" onclick="sortStaff('name')" style="cursor: pointer;">
+                  Staff Name <i class="fa-solid fa-sort text-muted" id="sort-icon-name"></i>
+                </th>
+                <th class="sortable" onclick="sortStaff('role')" style="cursor: pointer;">
+                  Role <i class="fa-solid fa-sort text-muted" id="sort-icon-role"></i>
+                </th>
+                <th>Contact</th>
+                <th class="sortable" onclick="sortStaff('branch')" style="cursor: pointer;">
+                  Branch Assignment <i class="fa-solid fa-sort text-muted" id="sort-icon-branch"></i>
+                </th>
+                <th class="sortable" onclick="sortStaff('status')" style="cursor: pointer;">
+                  Status <i class="fa-solid fa-sort text-muted" id="sort-icon-status"></i>
+                </th>
+                <th style="text-align: right;">Action</th>
+              </tr>
+            </thead>
+            <tbody id="staff-tbody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- Modal: Add Staff -->
+<div class="modal-backdrop" id="modal-add-staff">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <h3 class="modal-title"><i class="fa-solid fa-user-plus text-accent"></i> Add Staff Member</h3>
+      <button type="button" class="modal-close" data-modal-close>&times;</button>
+    </div>
+    <form onsubmit="handleSaveStaff(event)">
+      <div class="modal-body">
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Full Name <span class="required">*</span></label>
+            <input type="text" id="stf-name" class="form-control" placeholder="Kelly Green" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Staff Role <span class="required">*</span></label>
+            <select id="stf-role" class="form-select" required>
+              <option value="Front Desk Receptionist">Front Desk Receptionist</option>
+              <option value="Branch Manager">Branch Manager</option>
+              <option value="Accountant">Accountant</option>
+              <option value="Cleaner / Custodian">Cleaner / Custodian</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Email <span class="required">*</span></label>
+            <input type="email" id="stf-email" class="form-control" placeholder="kelly@ironpulse.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone <span class="required">*</span></label>
+            <input type="tel" id="stf-phone" class="form-control" placeholder="+1 (555) 401-9999" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Branch Assignment</label>
+          <select id="stf-branch" class="form-select">
+            <option value="Downtown Flagship">Downtown Flagship</option>
+            <option value="North Austin Studio">North Austin Studio</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-modal-close>Cancel</button>
+        <button type="submit" class="btn btn-accent"><i class="fa-solid fa-check"></i> Register Staff</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="../assets/js/mock-data.js"></script>
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/navigation.js"></script>
+<script src="../assets/js/app.js"></script>
+
+<script>
+  let staffList = [];
+  let filteredStaff = [];
+  let currentSortKey = 'name';
+  let isSortAsc = true;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadStaff();
+  });
+
+  function loadStaff() {
+    const gymId = Auth.getTenantGymId();
+    staffList = GymFlowDB.get('staff', { gymId: gymId }) || [];
+
+    // Populate role filter
+    const roleSelect = document.getElementById('staff-filter-role');
+    if (roleSelect) {
+      const roles = Array.from(new Set(staffList.map(s => s.role).filter(Boolean)));
+      roleSelect.innerHTML = '<option value="">All Roles</option>' +
+        roles.map(r => `<option value="${r}">${r}</option>`).join('');
+    }
+
+    // Populate branch filter
+    const brSelect = document.getElementById('staff-filter-branch');
+    if (brSelect) {
+      const branches = Array.from(new Set(staffList.map(s => s.branch).filter(Boolean)));
+      brSelect.innerHTML = '<option value="">All Branches</option>' +
+        branches.map(b => `<option value="${b}">${b}</option>`).join('');
+    }
+
+    filterStaff();
+  }
+
+  function filterStaff() {
+    const q = (document.getElementById('staff-search')?.value || '').trim();
+    const role = document.getElementById('staff-filter-role')?.value || '';
+    const branch = document.getElementById('staff-filter-branch')?.value || '';
+    const status = document.getElementById('staff-filter-status')?.value || '';
+
+    filteredStaff = staffList.filter(s => {
+      const matchQ = DataGridHelper.matchSearch(s, q, ['name', 'email', 'phone', 'role', 'branch', 'id']);
+      const matchRole = !role || s.role === role;
+      const matchBranch = !branch || s.branch === branch;
+      const matchStatus = !status || (s.status || 'active').toLowerCase() === status.toLowerCase();
+      return matchQ && matchRole && matchBranch && matchStatus;
+    });
+
+    // Sorting
+    filteredStaff.sort((a, b) => {
+      return DataGridHelper.compare(a, b, currentSortKey, isSortAsc);
+    });
+
+    renderStaff();
+  }
+
+  function sortStaff(key) {
+    if (currentSortKey === key) {
+      isSortAsc = !isSortAsc;
+    } else {
+      currentSortKey = key;
+      isSortAsc = true;
+    }
+    DataGridHelper.updateSortHeaders(document.querySelector('.data-table thead'), currentSortKey, isSortAsc);
+    filterStaff();
+  }
+
+  function resetStaffFilters() {
+    if (document.getElementById('staff-search')) document.getElementById('staff-search').value = '';
+    if (document.getElementById('staff-filter-role')) document.getElementById('staff-filter-role').value = '';
+    if (document.getElementById('staff-filter-branch')) document.getElementById('staff-filter-branch').value = '';
+    if (document.getElementById('staff-filter-status')) document.getElementById('staff-filter-status').value = '';
+    currentSortKey = 'name';
+    isSortAsc = true;
+    DataGridHelper.updateSortHeaders(document.querySelector('.data-table thead'), '', true);
+    filterStaff();
+  }
+
+  function renderStaff() {
+    const tbody = document.getElementById('staff-tbody');
+    if (!filteredStaff.length) {
+      tbody.innerHTML = `<tr><td colspan="6">${DataGridHelper.getEmptyStateHtml('No Staff Members Found', 'No accounts match your search or filter options.', 'resetStaffFilters()')}</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = filteredStaff.map(s => `
+      <tr>
+        <td>
+          <div class="cell-entity">
+            <div class="avatar avatar-sm">${s.name.substring(0, 2).toUpperCase()}</div>
+            <strong>${s.name}</strong>
+          </div>
+        </td>
+        <td><span class="badge badge-purple">${s.role}</span></td>
+        <td class="text-xs text-muted">${s.email}<br>${s.phone}</td>
+        <td>${s.branch}</td>
+        <td><span class="badge ${s.status === 'inactive' ? 'badge-neutral' : 'badge-success'}"><span class="badge-dot"></span>${s.status ? s.status.toUpperCase() : 'ACTIVE'}</span></td>
+        <td style="text-align: right;">
+          <button class="btn btn-sm btn-outline-danger" onclick="toggleStaff('${s.id}')">
+            ${s.status === 'inactive' ? 'Activate' : 'Deactivate'}
+          </button>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  function handleSaveStaff(e) {
+    e.preventDefault();
+    const gymId = Auth.getTenantGymId();
+    const newStf = {
+      id: `stf_${Date.now()}`,
+      gymId: gymId,
+      name: document.getElementById('stf-name').value,
+      role: document.getElementById('stf-role').value,
+      email: document.getElementById('stf-email').value,
+      phone: document.getElementById('stf-phone').value,
+      branch: document.getElementById('stf-branch').value,
+      status: 'active'
+    };
+
+    GymFlowDB.insert('staff', newStf);
+    Modal.close('modal-add-staff');
+    Toast.success(`Staff account for ${newStf.name} created.`);
+    loadStaff();
+  }
+
+  function toggleStaffStatus(id, curr) {
+    const next = curr === 'active' ? 'inactive' : 'active';
+    GymFlowDB.update('staff', id, { status: next });
+    Toast.success(`Staff status changed to ${next}.`);
+    loadStaff();
+  }
+</script>
+</body>
+</html>

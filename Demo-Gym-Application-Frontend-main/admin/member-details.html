@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Member Profile & Record — Gym Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <a href="dashboard.html" class="brand-link">
+        <div class="brand-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <div class="brand-text">Gym<span>Flow</span></div>
+      </a>
+      <button class="topbar-toggle sidebar-toggle-btn d-none"><i class="fa-solid fa-bars"></i></button>
+    </div>
+    <div class="sidebar-nav">
+      <div class="nav-section-title">Overview</div>
+      <div class="nav-item"><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i><span>Dashboard</span></a></div>
+      <div class="nav-section-title">Members & Club</div>
+      <div class="nav-item"><a href="branches.html" class="nav-link"><i class="fa-solid fa-network-wired"></i><span>Branches</span></a></div>
+      <div class="nav-item"><a href="members.html" class="nav-link active"><i class="fa-solid fa-users"></i><span>Membership Management</span></a></div>
+      <div class="nav-item"><a href="membership-plans.html" class="nav-link"><i class="fa-solid fa-tags"></i><span>Plans</span></a></div>
+      <div class="nav-item"><a href="attendance.html" class="nav-link"><i class="fa-solid fa-id-card-clip"></i><span>Attendance Desk</span></a></div>
+      <div class="nav-section-title">Training & Classes</div>
+      <div class="nav-item"><a href="trainers.html" class="nav-link"><i class="fa-solid fa-user-ninja"></i><span>Trainers</span></a></div>
+      <div class="nav-item"><a href="classes.html" class="nav-link"><i class="fa-solid fa-calendar-days"></i><span>Classes & Timetable</span></a></div>
+      <div class="nav-item"><a href="class-bookings.html" class="nav-link"><i class="fa-solid fa-book-bookmark"></i><span>Class Bookings</span></a></div>
+      <div class="nav-item"><a href="workout-plans.html" class="nav-link"><i class="fa-solid fa-clipboard-list"></i><span>Workout Plans</span></a></div>
+      <div class="nav-section-title">Financials & Sales</div>
+      <div class="nav-item"><a href="payments.html" class="nav-link"><i class="fa-solid fa-credit-card"></i><span>Payments</span></a></div>
+      <div class="nav-item"><a href="invoices.html" class="nav-link"><i class="fa-solid fa-file-invoice-dollar"></i><span>Invoices</span></a></div>
+      <div class="nav-item"><a href="expenses.html" class="nav-link"><i class="fa-solid fa-receipt"></i><span>Expenses</span></a></div>
+      <div class="nav-item"><a href="leads.html" class="nav-link"><i class="fa-solid fa-user-plus"></i><span>Leads CRM</span></a></div>
+      <div class="nav-section-title">Operations</div>
+      <div class="nav-item"><a href="equipment.html" class="nav-link"><i class="fa-solid fa-dumbbell"></i><span>Equipment</span></a></div>
+      <div class="nav-item"><a href="maintenance.html" class="nav-link"><i class="fa-solid fa-screwdriver-wrench"></i><span>Maintenance</span></a></div>
+      <div class="nav-item"><a href="reports.html" class="nav-link"><i class="fa-solid fa-chart-line"></i><span>Reports & Analytics</span></a></div>
+      <div class="nav-section-title">Administration</div>
+      <div class="nav-item"><a href="staff.html" class="nav-link"><i class="fa-solid fa-user-tie"></i><span>Staff Accounts</span></a></div>
+      <div class="nav-item"><a href="roles-permissions.html" class="nav-link"><i class="fa-solid fa-lock"></i><span>Roles & Access</span></a></div>
+      <div class="nav-item"><a href="notifications.html" class="nav-link"><i class="fa-solid fa-bell"></i><span>Notifications</span></a></div>
+      <div class="nav-item"><a href="support.html" class="nav-link"><i class="fa-solid fa-headset"></i><span>Support Helpdesk</span></a></div>
+      <div class="nav-item"><a href="settings.html" class="nav-link"><i class="fa-solid fa-gear"></i><span>Gym Settings</span></a></div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&h=100&fit=crop" alt="User" class="current-user-avatar"></div>
+        <div class="sidebar-user-info"><span class="sidebar-user-name current-user-name">Marcus Vance</span><span class="sidebar-user-role">Gym Admin</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main-wrapper">
+    <header class="topbar">
+      <div class="topbar-left"><button class="topbar-toggle sidebar-toggle-btn"><i class="fa-solid fa-bars"></i></button></div>
+      <div class="topbar-right">
+        <span class="role-indicator admin"><i class="fa-solid fa-building"></i> Gym Admin</span>
+        <button class="topbar-action-btn theme-toggle-btn"><i class="fa-solid fa-moon"></i></button>
+        <button class="topbar-action-btn" id="btn-notifications"><i class="fa-solid fa-bell"></i><span class="action-badge"></span></button>
+        <div class="dropdown">
+          <button class="topbar-user-btn" data-dropdown-toggle>
+            <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&h=100&fit=crop" class="current-user-avatar" alt="Avatar"></div>
+            <div><div class="topbar-user-name current-user-name">Marcus Vance</div><div class="topbar-user-role">Gym Admin</div></div>
+            <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; color: var(--text-subtle);"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="settings.html" class="dropdown-item"><i class="fa-solid fa-gear"></i> Gym Settings</a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item text-danger btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-wrapper">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">
+            <a href="dashboard.html">Gym Admin</a>
+            <span class="breadcrumb-separator">/</span>
+            <a href="members.html">Membership Management</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current" id="breadcrumb-mem-name">Member Profile</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.85rem;">
+            <h1 class="page-title" id="profile-name">Alex Morgan</h1>
+            <span class="badge badge-success" id="profile-status">ACTIVE</span>
+          </div>
+          <p class="page-subtitle" id="profile-subinfo">ID: mem_101 &bull; Downtown Branch Flagship</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-outline-accent" onclick="simulateCheckIn()"><i class="fa-solid fa-qrcode"></i> Quick Check-In Today</button>
+          <button class="btn btn-accent" onclick="openRenewModal()"><i class="fa-solid fa-arrows-rotate"></i> Renew Membership</button>
+        </div>
+      </div>
+
+      <!-- 7 Tabs -->
+      <div class="tabs-nav">
+        <button class="tab-btn active" data-tab="tab-overview"><i class="fa-solid fa-user"></i> Overview</button>
+        <button class="tab-btn" data-tab="tab-membership"><i class="fa-solid fa-id-card"></i> Membership</button>
+        <button class="tab-btn" data-tab="tab-attendance"><i class="fa-solid fa-calendar-check"></i> Attendance</button>
+        <button class="tab-btn" data-tab="tab-payments"><i class="fa-solid fa-receipt"></i> Payments</button>
+        <button class="tab-btn" data-tab="tab-workout"><i class="fa-solid fa-dumbbell"></i> Workout Plan</button>
+        <button class="tab-btn" data-tab="tab-progress"><i class="fa-solid fa-chart-line"></i> Fitness Progress</button>
+        <button class="tab-btn" data-tab="tab-notes"><i class="fa-solid fa-note-sticky"></i> Notes</button>
+      </div>
+
+      <!-- Tab: Overview -->
+      <div class="tab-pane active" id="tab-overview">
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-header"><h3 class="card-title">Personal Information</h3></div>
+            <div class="card-body">
+              <div style="display: flex; gap: 1.25rem; align-items: center; margin-bottom: 1.5rem;">
+                <div class="avatar avatar-xl">
+                  <img id="detail-avatar" src="" alt="Avatar">
+                </div>
+                <div>
+                  <h3 id="detail-name" style="margin-bottom: 0.2rem;">--</h3>
+                  <div class="text-xs text-muted" id="detail-email">--</div>
+                  <div class="text-xs text-muted" id="detail-phone">--</div>
+                </div>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.875rem;">
+                <div><strong>Assigned Coach:</strong> <span id="detail-trainer" class="text-muted">Coach David Miller</span></div>
+                <div><strong>Emergency Contact:</strong> <span id="detail-emergency" class="text-muted">--</span></div>
+                <div><strong>Fitness Target:</strong> <span id="detail-goal" class="text-muted">--</span></div>
+                <div><strong>Date of Birth:</strong> <span id="detail-dob" class="text-muted">--</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header"><h3 class="card-title">Membership Status Card</h3></div>
+            <div class="card-body">
+              <div style="padding: 1.25rem; border-radius: var(--radius-md); background: var(--bg-surface-secondary); margin-bottom: 1rem;">
+                <span class="text-xs text-muted">CURRENT PLAN</span>
+                <div style="font-size: 1.5rem; font-weight: 800; color: var(--color-accent);" id="card-plan">--</div>
+                <div class="text-xs text-muted" id="card-dates">Expires: --</div>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.85rem;">
+                <div><strong>Payment Status:</strong> <span id="card-payment" class="badge badge-success">Paid</span></div>
+                <div><strong>Locker Access:</strong> <span class="badge badge-neutral">Included (Locker #44)</span></div>
+                <div><strong>Branch Privileges:</strong> <span class="badge badge-purple">All-Branches Access</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Membership -->
+      <div class="tab-pane" id="tab-membership">
+        <div class="card">
+          <div class="card-header"><h3 class="card-title">Contract & Membership Terms</h3></div>
+          <div class="card-body">
+            <div style="display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.875rem;">
+              <div><strong>Plan Name:</strong> <span id="mem-plan-full">--</span></div>
+              <div><strong>Start Date:</strong> <span id="mem-start-date">--</span></div>
+              <div><strong>Expiry Date:</strong> <span id="mem-expiry-date">--</span></div>
+              <div><strong>Billing Cadence:</strong> Recurring Auto-Renewal</div>
+            </div>
+            <div style="margin-top: 1.5rem;">
+              <button class="btn btn-accent" onclick="openRenewModal()"><i class="fa-solid fa-arrows-rotate"></i> Extend / Renew Membership Term</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Attendance -->
+      <div class="tab-pane" id="tab-attendance">
+        <div class="card">
+          <div class="card-header"><h3 class="card-title">Personal Check-In History</h3></div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Check-In Time</th>
+                  <th>Check-Out Time</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="member-attendance-tbody">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Payments -->
+      <div class="tab-pane" id="tab-payments">
+        <div class="card">
+          <div class="card-header"><h3 class="card-title">Transaction & Invoice Receipts</h3></div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Invoice #</th>
+                  <th>Description</th>
+                  <th>Date</th>
+                  <th>Amount</th>
+                  <th>Method</th>
+                  <th>Status</th>
+                  <th>Receipt</th>
+                </tr>
+              </thead>
+              <tbody id="member-payments-tbody">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Workout Plan -->
+      <div class="tab-pane" id="tab-workout">
+        <div class="card">
+          <div class="card-header"><h3 class="card-title">Assigned Training Routine</h3></div>
+          <div class="card-body" id="member-workout-view">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Progress -->
+      <div class="tab-pane" id="tab-progress">
+        <div class="card mb-4">
+          <div class="card-header"><h3 class="card-title">Weight Loss & Body Composition Trend</h3></div>
+          <div class="card-body">
+            <div style="height: 260px; position: relative;">
+              <canvas id="chart-member-progress"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Notes -->
+      <div class="tab-pane" id="tab-notes">
+        <div class="card" style="max-width: 800px;">
+          <div class="card-header"><h3 class="card-title">Coach & Front-Desk Staff Notes</h3></div>
+          <div class="card-body">
+            <textarea id="mem-notes-textarea" class="form-textarea" rows="4"></textarea>
+            <div style="margin-top: 1rem; display: flex; justify-content: flex-end;">
+              <button class="btn btn-accent" onclick="saveMemberNotes()"><i class="fa-solid fa-floppy-disk"></i> Save Notes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="../assets/js/mock-data.js"></script>
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/charts.js"></script>
+<script src="../assets/js/navigation.js"></script>
+<script src="../assets/js/app.js"></script>
+
+<script>
+  let member = null;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id') || 'mem_101';
+    member = GymFlowDB.getById('members', id) || GymFlowDB.get('members')[0];
+
+    if (!member) {
+      Toast.error('Member not found.');
+      return;
+    }
+
+    renderMember();
+  });
+
+  function renderMember() {
+    document.getElementById('breadcrumb-mem-name').textContent = member.name;
+    document.getElementById('profile-name').textContent = member.name;
+    document.getElementById('profile-subinfo').textContent = `ID: ${member.id} • Assigned Coach: ${member.assignedTrainer || 'David Miller'}`;
+    
+    document.getElementById('profile-status').textContent = member.status.toUpperCase();
+    document.getElementById('detail-avatar').src = member.avatar;
+    document.getElementById('detail-name').textContent = member.name;
+    document.getElementById('detail-email').textContent = member.email;
+    document.getElementById('detail-phone').textContent = member.phone;
+    document.getElementById('detail-emergency').textContent = member.emergencyContact || 'None provided';
+    document.getElementById('detail-goal').textContent = member.fitnessGoal || 'General Wellness';
+    document.getElementById('detail-dob').textContent = member.dob || '1995-05-12';
+    document.getElementById('detail-trainer').textContent = member.assignedTrainer || 'Coach David Miller';
+
+    document.getElementById('card-plan').textContent = member.planName;
+    document.getElementById('card-dates').textContent = `Term: ${member.startDate} to ${member.expiryDate}`;
+    document.getElementById('mem-plan-full').textContent = member.planName;
+    document.getElementById('mem-start-date').textContent = member.startDate;
+    document.getElementById('mem-expiry-date').textContent = member.expiryDate;
+    document.getElementById('mem-notes-textarea').value = member.notes || '';
+
+    // Attendance
+    const attList = GymFlowDB.get('attendance', { memberId: member.id });
+    const attTbody = document.getElementById('member-attendance-tbody');
+    if (attList.length === 0) {
+      attTbody.innerHTML = `<tr><td colspan="4" class="text-center text-muted" style="padding: 1.5rem;">No recorded visits yet.</td></tr>`;
+    } else {
+      attTbody.innerHTML = attList.map(a => `
+        <tr>
+          <td><strong>${a.date}</strong></td>
+          <td>${a.checkInTime}</td>
+          <td>${a.checkOutTime}</td>
+          <td><span class="badge badge-success">${a.status}</span></td>
+        </tr>
+      `).join('');
+    }
+
+    // Payments
+    const payList = GymFlowDB.get('payments', { memberId: member.id });
+    const payTbody = document.getElementById('member-payments-tbody');
+    if (payList.length === 0) {
+      payTbody.innerHTML = `<tr><td colspan="7" class="text-center text-muted" style="padding: 1.5rem;">No payment history found.</td></tr>`;
+    } else {
+      payTbody.innerHTML = payList.map(p => `
+        <tr>
+          <td><strong>${p.invoiceNo}</strong></td>
+          <td>${p.description}</td>
+          <td class="text-xs text-muted">${p.date}</td>
+          <td><strong>₹${p.amount.toFixed(2)}</strong></td>
+          <td class="text-xs text-muted">${p.method}</td>
+          <td><span class="badge badge-success">${p.status}</span></td>
+          <td>
+            <button class="btn btn-sm btn-outline" onclick="PrintHelper.previewInvoice(${JSON.stringify(p).replace(/"/g, '&quot;')})">
+              <i class="fa-solid fa-receipt"></i>
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // Workout view
+    const wp = GymFlowDB.get('workoutPlans', { memberId: member.id })[0] || INITIAL_MOCK_DATA.workoutPlans[0];
+    const wpView = document.getElementById('member-workout-view');
+    wpView.innerHTML = `
+      <h4 style="margin-bottom: 0.5rem;">${wp.title}</h4>
+      <p class="text-sm text-muted mb-4">Goal: ${wp.goal} &bull; Assigned by ${wp.trainerName}</p>
+      <div class="grid-2">
+        ${(wp.weeklySchedule || []).map(day => `
+          <div style="background: var(--bg-surface-secondary); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+            <div style="font-weight: 700; margin-bottom: 0.5rem; color: var(--color-accent);">${day.day}</div>
+            <ul style="font-size: 0.8125rem; display: flex; flex-direction: column; gap: 0.4rem;">
+              ${day.exercises.map(e => `
+                <li><strong>${e.name}:</strong> ${e.sets} sets &times; ${e.reps} (${e.weight})</li>
+              `).join('')}
+            </ul>
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+    // Progress Chart
+    GymCharts.renderWeightProgressChart('chart-member-progress', ['Jan 15', 'Feb 15', 'Mar 15', 'Apr 15'], [84.5, 83.2, 82.0, 81.3]);
+  }
+
+  function simulateCheckIn() {
+    GymFlowDB.insert('attendance', {
+      id: `att_${Date.now()}`,
+      gymId: member.gymId,
+      branchId: member.branchId || 'br_1',
+      memberId: member.id,
+      memberName: member.name,
+      avatar: member.avatar,
+      date: new Date().toISOString().split('T')[0],
+      checkInTime: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      checkOutTime: '--',
+      status: 'In Gym'
+    });
+    Toast.success(`Check-in recorded for ${member.name}.`);
+    renderMember();
+  }
+
+  function openRenewModal() {
+    Modal.confirm({
+      title: 'Renew Membership?',
+      message: `Extend ${member.name}'s membership by 1 month for ₹49.00?`,
+      confirmText: 'Renew Now',
+      confirmClass: 'btn-accent',
+      onConfirm: () => {
+        const newExpiry = new Date(Date.now() + 30 * 86400000).toISOString().split('T')[0];
+        GymFlowDB.update('members', member.id, { expiryDate: newExpiry, status: 'Active' });
+        member.expiryDate = newExpiry;
+        member.status = 'Active';
+        Toast.success('Membership renewed for 30 days.');
+        renderMember();
+      }
+    });
+  }
+
+  function saveMemberNotes() {
+    const notes = document.getElementById('mem-notes-textarea').value;
+    GymFlowDB.update('members', member.id, { notes: notes });
+    Toast.success('Staff notes updated.');
+  }
+</script>
+</body>
+</html>

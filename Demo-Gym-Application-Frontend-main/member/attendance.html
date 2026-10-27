@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance History — Member Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <a href="dashboard.html" class="brand-link">
+        <div class="brand-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <div class="brand-text">Gym<span>Flow</span></div>
+      </a>
+      <button class="topbar-toggle sidebar-toggle-btn d-none"><i class="fa-solid fa-bars"></i></button>
+    </div>
+    <div class="sidebar-nav">
+      <div class="nav-section-title">Overview</div>
+      <div class="nav-item"><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a></div>
+      
+      <div class="nav-section-title">Fitness & Training</div>
+      <div class="nav-item"><a href="workout-plan.html" class="nav-link"><i class="fa-solid fa-clipboard-list"></i><span>Workout Plan</span></a></div>
+      <div class="nav-item"><a href="classes.html" class="nav-link"><i class="fa-solid fa-calendar-days"></i><span>Classes & Timetable</span></a></div>
+      <div class="nav-item"><a href="my-bookings.html" class="nav-link"><i class="fa-solid fa-bookmark"></i><span>My Bookings</span></a></div>
+      <div class="nav-item"><a href="progress.html" class="nav-link"><i class="fa-solid fa-chart-line"></i><span>Body Progress</span></a></div>
+      <div class="nav-item"><a href="attendance.html" class="nav-link active"><i class="fa-solid fa-clock-rotate-left"></i><span>Attendance History</span></a></div>
+      
+      <div class="nav-section-title">Membership & Billing</div>
+      <div class="nav-item"><a href="my-membership.html" class="nav-link"><i class="fa-solid fa-id-card"></i><span>My Membership</span></a></div>
+      <div class="nav-item"><a href="plans.html" class="nav-link"><i class="fa-solid fa-tags"></i><span>Plans & Upgrade</span></a></div>
+      <div class="nav-item"><a href="payments.html" class="nav-link"><i class="fa-solid fa-credit-card"></i><span>Billing & Receipts</span></a></div>
+      
+      <div class="nav-section-title">Account & Support</div>
+      <div class="nav-item"><a href="my-profile.html" class="nav-link"><i class="fa-solid fa-user"></i><span>My Profile</span></a></div>
+      <div class="nav-item"><a href="notifications.html" class="nav-link"><i class="fa-solid fa-bell"></i><span>Notifications</span></a></div>
+      <div class="nav-item"><a href="support.html" class="nav-link"><i class="fa-solid fa-headset"></i><span>Member Support</span></a></div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop" alt="Member" class="current-user-avatar"></div>
+        <div class="sidebar-user-info"><span class="sidebar-user-name current-user-name">Alex Morgan</span><span class="sidebar-user-role">IronPulse Member</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main-wrapper">
+    <header class="topbar">
+      <div class="topbar-left"><button class="topbar-toggle sidebar-toggle-btn"><i class="fa-solid fa-bars"></i></button></div>
+      <div class="topbar-right">
+        <span class="role-indicator member" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); font-weight: 600; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem;">
+          <i class="fa-solid fa-person-running"></i> Gym Member
+        </span>
+        <button class="topbar-action-btn theme-toggle-btn"><i class="fa-solid fa-moon"></i></button>
+        <a href="notifications.html" class="topbar-action-btn" id="btn-notifications"><i class="fa-solid fa-bell"></i><span class="action-badge"></span></a>
+        <div class="dropdown">
+          <button class="topbar-user-btn" data-dropdown-toggle>
+            <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop" class="current-user-avatar" alt="Avatar"></div>
+            <div><div class="topbar-user-name current-user-name">Alex Morgan</div><div class="topbar-user-role">IronPulse Member</div></div>
+            <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; color: var(--text-subtle);"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="my-profile.html" class="dropdown-item"><i class="fa-solid fa-user"></i> My Profile</a>
+            <a href="my-membership.html" class="dropdown-item"><i class="fa-solid fa-id-card"></i> Membership</a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item text-danger btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-wrapper">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">
+            <a href="dashboard.html">Member Portal</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Attendance</span>
+          </div>
+          <h1 class="page-title">Attendance & Workout Consistency</h1>
+          <p class="page-subtitle">Track your gym check-ins, consistency streaks, and peak training hours.</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-accent" onclick="recordSelfCheckIn()"><i class="fa-solid fa-qrcode"></i> Scan Gym QR Code</button>
+        </div>
+      </div>
+
+      <!-- KPI Summary Cards -->
+<<<<<<< HEAD
+      <div class="stats-grid kpi-summary-grid">
+=======
+      <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-bottom: 1.5rem;">
+>>>>>>> d832a2791cfbe3530142912a0522d7e539f037e8
+        <div class="stat-card">
+          <div class="stat-icon green"><i class="fa-solid fa-fire"></i></div>
+          <div class="stat-info">
+            <span class="stat-label">Active Streak</span>
+            <span class="stat-value">14 Days</span>
+            <span class="stat-change text-success"><i class="fa-solid fa-arrow-trend-up"></i> Personal Record!</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon blue"><i class="fa-solid fa-calendar-check"></i></div>
+          <div class="stat-info">
+            <span class="stat-label">Visits This Month</span>
+            <span class="stat-value" id="kpi-monthly-visits">18 Visits</span>
+            <span class="stat-change text-success">Target: 16 visits</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon purple"><i class="fa-solid fa-clock"></i></div>
+          <div class="stat-info">
+            <span class="stat-label">Peak Workout Window</span>
+            <span class="stat-value">06:30 – 08:00 AM</span>
+            <span class="stat-change text-muted">Early Bird Lifter</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon orange"><i class="fa-solid fa-stopwatch"></i></div>
+          <div class="stat-info">
+            <span class="stat-label">Avg. Workout Length</span>
+            <span class="stat-value">68 Minutes</span>
+            <span class="stat-change text-muted">Optimal duration</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Consistency Chart Card -->
+      <div class="card" style="margin-bottom: 1.5rem;">
+        <div class="card-header">
+          <h3 class="card-title"><i class="fa-solid fa-chart-column text-accent"></i> Weekly Check-In Distribution</h3>
+        </div>
+        <div class="card-body">
+          <div style="height: 240px; position: relative;">
+            <canvas id="memberAttendanceChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Attendance Table Card -->
+      <div class="attendance-card card table-container">
+      <div class="attendance-card card table-container">
+        <div class="attendance-header card-header table-toolbar" style="gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+          <div>
+            <h3 class="card-title"><i class="fa-solid fa-clock-rotate-left text-accent"></i> Check-in History Log</h3>
+            <p class="attendance-subtitle">Your gym check-ins, timestamps, and club location logs</p>
+          </div>
+          <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+            <div class="attendance-search" style="min-width: 200px;">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="search-attendance" class="form-control" placeholder="Search by date or keyword..." oninput="filterAttendance()">
+            </div>
+            <!-- Branch filter -->
+            <!-- <select id="mem-att-filter-branch" class="form-select" style="width: 140px;" onchange="filterAttendance()">
+              <option value="">All Branches</option>
+              <option value="Downtown Flagship">Downtown Flagship</option>
+              <option value="North Austin Studio">North Austin Studio</option>
+            </select> -->
+            <!-- Status filter -->
+            <select id="mem-att-filter-status" class="form-select" style="width: 130px;" onchange="filterAttendance()">
+              <option value="">All Statuses</option>
+              <option value="Completed">Completed</option>
+              <option value="In Session">In Session</option>
+              <option value="Present">Present</option>
+            </select>
+            <!-- Reset Button -->
+            <button type="button" class="btn btn-outline btn-sm" onclick="resetMemberAttendanceFilters()" title="Reset all filters">
+              <i class="fa-solid fa-arrow-rotate-left"></i> Reset
+            </button>
+          </div>
+        </div>
+        <div class="attendance-body card-body">
+          <div class="attendance-table-wrapper table-responsive">
+            <table class="attendance-table data-table table">
+              <thead>
+              <thead>
+<<<<<<< HEAD
+    <tr>
+        <th>Sr. No.</th>
+
+        <th class="sortable" onclick="sortMemberAttendance('date')" style="cursor: pointer;">
+            Date
+            <i class="fa-solid fa-sort text-muted" id="sort-icon-date"></i>
+        </th>
+
+        <th class="sortable" onclick="sortMemberAttendance('checkInTime')" style="cursor: pointer;">
+            Check-In Time
+            <i class="fa-solid fa-sort text-muted" id="sort-icon-checkInTime"></i>
+        </th>
+
+        <th>Check-Out Time</th>
+        <th>Branch Location</th>
+        <th>Verification Method</th>
+
+        <th class="sortable" onclick="sortMemberAttendance('status')" style="cursor: pointer;">
+            Status
+            <i class="fa-solid fa-sort text-muted" id="sort-icon-status"></i>
+        </th>
+    </tr>
+</thead>
+=======
+                <tr>
+                  <th class="sortable" onclick="sortMemberAttendance('date')" style="cursor: pointer;">
+                    Date <i class="fa-solid fa-sort text-muted" id="sort-icon-date"></i>
+                  </th>
+                  <th class="sortable" onclick="sortMemberAttendance('checkInTime')" style="cursor: pointer;">
+                    Check-In Time <i class="fa-solid fa-sort text-muted" id="sort-icon-checkInTime"></i>
+                  </th>
+                  <th>Check-Out Time</th>
+                  <th>Branch Location</th>
+                  <th>Verification Method</th>
+                  <th class="sortable" onclick="sortMemberAttendance('status')" style="cursor: pointer;">
+                    Status <i class="fa-solid fa-sort text-muted" id="sort-icon-status"></i>
+                  </th>
+                </tr>
+              </thead>
+>>>>>>> d832a2791cfbe3530142912a0522d7e539f037e8
+              <tbody id="member-attendance-tbody">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../assets/js/mock-data.js"></script>
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/charts.js"></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/navigation.js"></script>
+<script src="../assets/js/app.js"></script>
+
+<script>
+  let memberLogs = [];
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadAttendanceData();
+    initWeeklyChart();
+  });
+
+  function loadAttendanceData() {
+    const memberId = Auth.getActiveMemberId();
+    memberLogs = GymFlowDB.get('attendance', { memberId: memberId });
+
+    if (memberLogs.length === 0) {
+      // Seed realistic attendance history if empty
+      memberLogs = [
+        { id: 'att_1', date: '2026-04-21', checkInTime: '06:45 AM', checkOutTime: '08:05 AM', branchName: 'Downtown Flagship', method: 'Mobile QR Pass', status: 'Completed' },
+        { id: 'att_2', date: '2026-04-20', checkInTime: '07:00 AM', checkOutTime: '08:15 AM', branchName: 'Downtown Flagship', method: 'Mobile QR Pass', status: 'Completed' },
+        { id: 'att_3', date: '2026-04-19', checkInTime: '08:30 AM', checkOutTime: '09:45 AM', branchName: 'Westside Fitness', method: 'RFID Keycard', status: 'Completed' },
+        { id: 'att_4', date: '2026-04-18', checkInTime: '07:15 AM', checkOutTime: '08:30 AM', branchName: 'Downtown Flagship', method: 'Mobile QR Pass', status: 'Completed' },
+        { id: 'att_5', date: '2026-04-16', checkInTime: '06:50 AM', checkOutTime: '08:10 AM', branchName: 'Downtown Flagship', method: 'Mobile QR Pass', status: 'Completed' },
+        { id: 'att_6', date: '2026-04-15', checkInTime: '07:05 AM', checkOutTime: '08:20 AM', branchName: 'Downtown Flagship', method: 'Mobile QR Pass', status: 'Completed' },
+        { id: 'att_7', date: '2026-04-14', checkInTime: '06:40 AM', checkOutTime: '07:55 AM', branchName: 'Downtown Flagship', method: 'RFID Keycard', status: 'Completed' }
+      ];
+    }
+
+    document.getElementById('kpi-monthly-visits').textContent = `${memberLogs.length} Visits`;
+    renderAttendanceTable(memberLogs);
+  }
+
+  let filteredLogs = [];
+  let currentSortKey = 'date';
+  let isSortAsc = false;
+
+  function filterAttendance() {
+    const q = (document.getElementById('search-attendance')?.value || '').trim();
+    const branch = document.getElementById('mem-att-filter-branch')?.value || '';
+    const status = document.getElementById('mem-att-filter-status')?.value || '';
+
+    filteredLogs = memberLogs.filter(l => {
+      const matchQ = DataGridHelper.matchSearch(l, q, ['date', 'branchName', 'method', 'checkInTime']);
+      const matchBranch = !branch || (l.branchName && l.branchName.toLowerCase().includes(branch.toLowerCase()));
+      const matchStatus = !status || (l.status && l.status.toLowerCase() === status.toLowerCase()) || (!l.checkOutTime && status === 'In Session');
+      return matchQ && matchBranch && matchStatus;
+    });
+
+    // Sorting
+    filteredLogs.sort((a, b) => {
+      return DataGridHelper.compare(a, b, currentSortKey, isSortAsc);
+    });
+
+    renderAttendanceTable(filteredLogs);
+  }
+
+  function sortMemberAttendance(key) {
+    if (currentSortKey === key) {
+      isSortAsc = !isSortAsc;
+    } else {
+      currentSortKey = key;
+      isSortAsc = true;
+    }
+    DataGridHelper.updateSortHeaders(document.querySelector('.attendance-table thead'), currentSortKey, isSortAsc);
+    filterAttendance();
+  }
+
+  function resetMemberAttendanceFilters() {
+    if (document.getElementById('search-attendance')) document.getElementById('search-attendance').value = '';
+    if (document.getElementById('mem-att-filter-branch')) document.getElementById('mem-att-filter-branch').value = '';
+    if (document.getElementById('mem-att-filter-status')) document.getElementById('mem-att-filter-status').value = '';
+    currentSortKey = 'date';
+    isSortAsc = false;
+    DataGridHelper.updateSortHeaders(document.querySelector('.attendance-table thead'), '', false);
+    filterAttendance();
+  }
+
+  function renderAttendanceTable(list = filteredLogs) {
+    const tbody = document.getElementById('member-attendance-tbody');
+    if (!list || list.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="6">${DataGridHelper.getEmptyStateHtml('No Attendance Records Found', 'No gym sessions match your selected filters.', 'resetMemberAttendanceFilters()')}</td></tr>`;
+      return;
+    }
+
+<<<<<<< HEAD
+   tbody.innerHTML = list.map((l, index) => `
+    <tr>
+        <td>${index + 1}</td>
+        <td><strong>${App.formatDate(l.date)}</strong></td>
+        <td>
+            <i class="fa-solid fa-arrow-right-to-bracket text-success"></i>
+            ${l.checkInTime}
+        </td>
+        <td>
+            ${l.checkOutTime
+                ? `<i class="fa-solid fa-arrow-right-from-bracket text-muted"></i> ${l.checkOutTime}`
+                : '<span class="badge badge-warning">In Session</span>'
+            }
+        </td>
+        <td>
+            <i class="fa-solid fa-location-dot text-muted"></i>
+            ${l.branchName || 'Downtown Flagship'}
+        </td>
+        <td>
+            <span class="badge badge-neutral">${l.method || 'Mobile QR'}</span>
+        </td>
+        <td>
+            <span class="badge badge-success">${l.status || 'Completed'}</span>
+        </td>
+    </tr>
+`).join('');
+=======
+    tbody.innerHTML = list.map(l => `
+      <tr>
+        <td><strong>${App.formatDate(l.date)}</strong></td>
+        <td><i class="fa-solid fa-arrow-right-to-bracket text-success"></i> ${l.checkInTime}</td>
+        <td>${l.checkOutTime ? `<i class="fa-solid fa-arrow-right-from-bracket text-muted"></i> ${l.checkOutTime}` : '<span class="badge badge-warning">In Session</span>'}</td>
+        <td><i class="fa-solid fa-location-dot text-muted"></i> ${l.branchName || 'Downtown Flagship'}</td>
+        <td><span class="badge badge-neutral">${l.method || 'Mobile QR'}</span></td>
+        <td><span class="badge badge-success">${l.status || 'Completed'}</span></td>
+      </tr>
+    `).join('');
+>>>>>>> d832a2791cfbe3530142912a0522d7e539f037e8
+  }
+
+  function recordSelfCheckIn() {
+    const memberId = Auth.getActiveMemberId();
+    const gymId = Auth.getTenantGymId();
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const dateStr = now.toISOString().split('T')[0];
+
+    const newLog = {
+      id: `att_${Date.now()}`,
+      gymId: gymId,
+      branchId: 'br_1',
+      branchName: 'Downtown Flagship',
+      memberId: memberId,
+      memberName: 'Alex Morgan',
+      date: dateStr,
+      checkInTime: timeStr,
+      checkOutTime: null,
+      method: 'Mobile QR Pass',
+      status: 'Present'
+    };
+
+    GymFlowDB.insert('attendance', newLog);
+    memberLogs.unshift(newLog);
+    renderAttendanceTable(memberLogs);
+    Toast.success(`Checked in at Downtown Flagship (${timeStr})! Enjoy your training.`);
+  }
+
+  function initWeeklyChart() {
+    const canvas = document.getElementById('memberAttendanceChart');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        datasets: [{
+          label: 'Minutes Trained',
+          data: [75, 80, 0, 70, 85, 90, 0],
+          backgroundColor: '#10b981',
+          borderRadius: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false }
+        },
+        scales: {
+          x: { grid: { display: false } },
+          y: {
+            grid: { color: 'rgba(255, 255, 255, 0.05)' },
+            ticks: { callback: (v) => `${v}m` }
+          }
+        }
+      }
+    });
+  }
+</script>
+</body>
+</html>
